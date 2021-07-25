@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Atomium
+namespace Weatherwane
 {
     public partial class Form1 : Form
     {
@@ -59,6 +59,7 @@ namespace Atomium
 
             saveItem.Click += saveItem_Click;
             loadItem.Click += loadItem_Click;
+            dynamicButton.Click += dynamicButton_Click;
             menuStrip1.Items.Add(fileItem);
 
             ToolStripMenuItem aboutItem = new ToolStripMenuItem("О программе");
@@ -140,124 +141,6 @@ namespace Atomium
         }
 
 
-        private void VisibleChoiceParallelepipedParametrs(bool isVisible)
-        {
-            labelChoiceParalC1.Visible = isVisible;
-            labelChoiceParalE1.Visible = isVisible;
-            labelChoiceParalC2.Visible = isVisible;
-            labelChoiceParalE2.Visible = isVisible;
-            labelChoiceParalCX.Visible = isVisible;
-            labelChoiceParalCY.Visible = isVisible;
-            labelChoiceParalCZ.Visible = isVisible;
-            labelChoiceParalEX.Visible = isVisible;
-            labelChoiceParalEY.Visible = isVisible;
-            labelChoiceParalEZ.Visible = isVisible;
-
-            ChoiceParalCX.Visible = isVisible;
-            ChoiceParalCY.Visible = isVisible;
-            ChoiceParalCZ.Visible = isVisible;
-            ChoiceParalEX.Visible = isVisible;
-            ChoiceParalEY.Visible = isVisible;
-            ChoiceParalEZ.Visible = isVisible;
-        }
-       
-
-        private void VisibleChoiceSphereParametrs(bool isVisible)
-        {
-            labelChoiceSphereC.Visible = isVisible;
-            labelChoiceSphereR.Visible = isVisible;
-            labelChoiceSphereCX.Visible = isVisible;
-            labelChoiceSphereCY.Visible = isVisible;
-            labelChoiceSphereCZ.Visible = isVisible;
-
-            ChoiceSphereCX.Visible = isVisible;
-            ChoiceSphereCY.Visible = isVisible;
-            ChoiceSphereCZ.Visible = isVisible;
-            ChoiceSphereR.Visible = isVisible;
-        }
-
-        private void VisibleChoiceTrianglePyramidParametrs(bool isVisible)
-        {
-            labelChoiceTrianglePyramidP.Visible = isVisible;
-            labelChoiceTrianglePyramidA.Visible = isVisible;
-            labelChoiceTrianglePyramidB.Visible = isVisible;
-            labelChoiceTrianglePyramidC.Visible = isVisible;
-
-            labelChoiceTrianglePyramidPX.Visible = isVisible;
-            labelChoiceTrianglePyramidAX.Visible = isVisible;
-            labelChoiceTrianglePyramidBX.Visible = isVisible;
-            labelChoiceTrianglePyramidCX.Visible = isVisible;
-
-            labelChoiceTrianglePyramidPY.Visible = isVisible;
-            labelChoiceTrianglePyramidAY.Visible = isVisible;
-            labelChoiceTrianglePyramidBY.Visible = isVisible;
-            labelChoiceTrianglePyramidCY.Visible = isVisible;
-
-            labelChoiceTrianglePyramidPZ.Visible = isVisible;
-            labelChoiceTrianglePyramidAZ.Visible = isVisible;
-            labelChoiceTrianglePyramidBZ.Visible = isVisible;
-            labelChoiceTrianglePyramidCZ.Visible = isVisible;
-
-            ChoiceTrianglePyramidPX.Visible = isVisible;
-            ChoiceTrianglePyramidAX.Visible = isVisible;
-            ChoiceTrianglePyramidBX.Visible = isVisible;
-            ChoiceTrianglePyramidCX.Visible = isVisible;
-
-            ChoiceTrianglePyramidPY.Visible = isVisible;
-            ChoiceTrianglePyramidAY.Visible = isVisible;
-            ChoiceTrianglePyramidBY.Visible = isVisible;
-            ChoiceTrianglePyramidCY.Visible = isVisible;
-
-            ChoiceTrianglePyramidPZ.Visible = isVisible;
-            ChoiceTrianglePyramidAZ.Visible = isVisible;
-            ChoiceTrianglePyramidBZ.Visible = isVisible;
-            ChoiceTrianglePyramidCZ.Visible = isVisible;
-        }
-
-        private void VisibleChoiceQuadPyramidParametrs(bool isVisible)
-        {
-            labelChoiceQuadPyramidP.Visible = isVisible;
-            labelChoiceQuadPyramidA.Visible = isVisible;
-            labelChoiceQuadPyramidB.Visible = isVisible;
-            labelChoiceQuadPyramidC.Visible = isVisible;
-            labelChoiceQuadPyramidD.Visible = isVisible;
-
-            labelChoiceQuadPyramidPX.Visible = isVisible;
-            labelChoiceQuadPyramidAX.Visible = isVisible;
-            labelChoiceQuadPyramidBX.Visible = isVisible;
-            labelChoiceQuadPyramidCX.Visible = isVisible;
-            labelChoiceQuadPyramidDX.Visible = isVisible;
-
-            labelChoiceQuadPyramidPY.Visible = isVisible;
-            labelChoiceQuadPyramidAY.Visible = isVisible;
-            labelChoiceQuadPyramidBY.Visible = isVisible;
-            labelChoiceQuadPyramidCY.Visible = isVisible;
-            labelChoiceQuadPyramidDY.Visible = isVisible;
-
-            labelChoiceQuadPyramidPZ.Visible = isVisible;
-            labelChoiceQuadPyramidAZ.Visible = isVisible;
-            labelChoiceQuadPyramidBZ.Visible = isVisible;
-            labelChoiceQuadPyramidCZ.Visible = isVisible;
-            labelChoiceQuadPyramidDZ.Visible = isVisible;
-
-            ChoiceQuadPyramidPX.Visible = isVisible;
-            ChoiceQuadPyramidAX.Visible = isVisible;
-            ChoiceQuadPyramidBX.Visible = isVisible;
-            ChoiceQuadPyramidCX.Visible = isVisible;
-            ChoiceQuadPyramidDX.Visible = isVisible;
-
-            ChoiceQuadPyramidPY.Visible = isVisible;
-            ChoiceQuadPyramidAY.Visible = isVisible;
-            ChoiceQuadPyramidBY.Visible = isVisible;
-            ChoiceQuadPyramidCY.Visible = isVisible;
-            ChoiceQuadPyramidDY.Visible = isVisible;
-
-            ChoiceQuadPyramidPZ.Visible = isVisible;
-            ChoiceQuadPyramidAZ.Visible = isVisible;
-            ChoiceQuadPyramidBZ.Visible = isVisible;
-            ChoiceQuadPyramidCZ.Visible = isVisible;
-            ChoiceQuadPyramidDZ.Visible = isVisible;
-        }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -292,7 +175,6 @@ namespace Atomium
                     ChoiceColor.Visible = true;
                     ChoiceReflective.Visible = true;
                     ChoiceSpecular.Visible = true;
-                    ChoiceName.Visible = true;
                     labelChoiceReflective.Visible = true;
                     labelChoiceSpecular.Visible = true;
                     btnChange.Visible = true;
@@ -302,31 +184,18 @@ namespace Atomium
                     if (selectedObject == "плоскость основания")
                     {
                         btnDeletePrimitive.Visible = false;
-                        ChoiceName.Visible = false;
-                        labelChoiceName.Visible = false;
                     }
                     else
                     {
                         btnDeletePrimitive.Visible = true;
-                        ChoiceName.Visible = true;
-                        labelChoiceName.Visible = true;
                     }
                 }
                 
                 else
                 {
-                    VisibleChoiceSphereParametrs(false);
-                    VisibleChoiceTrianglePyramidParametrs(false);
-                    VisibleChoiceQuadPyramidParametrs(false);
-                    VisibleChoiceCylinderParametrs(false);
-                    VisibleChoiceConeParametrs(false);
-                    VisibleChoiceParallelepipedParametrs(false);
-                    VisibleVParametrs(false);
                     ChoiceColor.Visible = false;
                     ChoiceReflective.Visible = false;
                     ChoiceSpecular.Visible = false;
-                    ChoiceName.Visible = false;
-                    labelChoiceName.Visible = false;
                     labelChoiceColor.Visible = false;
                     labelChoiceReflective.Visible = false;
                     labelChoiceSpecular.Visible = false;
@@ -376,20 +245,6 @@ namespace Atomium
                         str += "reflective = " + tmp.reflective;
                         flag = 1;
                     }
-                    else if (primitives[i] is Cone)
-                    {
-                        Cone tmp = (Cone)primitives[i];
-                        str = "Name: " + tmp.name + ", ";
-                        str += "Type: Конус, ";
-                        str += "Parametrs: Cосн = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
-                        str += "V = (" + String.Format("{0:f6}", tmp.V.x) + "; " + String.Format("{0:f6}", tmp.V.y) + "; " + String.Format("{0:f6}", tmp.V.z) + "), ";
-                        str += "Minm = " + tmp.minm + ", ";
-                        str += "Maxm = " + tmp.maxm + ", ";
-                        str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
-                        str += "specular = " + tmp.specular + ", ";
-                        str += "reflective = " + tmp.reflective;
-                        flag = 1;
-                    }
                     else if (primitives[i] is Parallelepiped)
                     {
                         Parallelepiped tmp = (Parallelepiped)primitives[i];
@@ -411,21 +266,6 @@ namespace Atomium
                         str += "A = (" + tmp.A.x + "; " + tmp.A.y + "; " + tmp.A.z + "), ";
                         str += "B = (" + tmp.B.x + "; " + tmp.B.y + "; " + tmp.B.z + "), ";
                         str += "C = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
-                        str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
-                        str += "specular = " + tmp.specular + ", ";
-                        str += "reflective = " + tmp.reflective;
-                        flag = 1;
-                    }
-                    else if (primitives[i] is QuadPyramid)
-                    {
-                        QuadPyramid tmp = (QuadPyramid)primitives[i];
-                        str = "Name: " + tmp.name + ", ";
-                        str += "Type: Пирамида, ";
-                        str += "Parametrs: P = (" + tmp.P.x + "; " + tmp.P.y + "; " + tmp.P.z + "), ";
-                        str += "A = (" + tmp.A.x + "; " + tmp.A.y + "; " + tmp.A.z + "), ";
-                        str += "B = (" + tmp.B.x + "; " + tmp.B.y + "; " + tmp.B.z + "), ";
-                        str += "C = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
-                        str += "D = (" + tmp.D.x + "; " + tmp.D.y + "; " + tmp.D.z + "), ";
                         str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
                         str += "specular = " + tmp.specular + ", ";
                         str += "reflective = " + tmp.reflective;
@@ -517,96 +357,6 @@ namespace Atomium
 
         }
 
-
-
-        private void VisibleChoiceConeParametrs(bool isVisible)
-        {
-            labelChoiceConeC.Visible = isVisible;
-            labelChoiceConeK.Visible = isVisible;
-            labelChoiceConeFrom.Visible = isVisible;
-            labelChoiceConeTo.Visible = isVisible;
-            labelChoiceConeGrad.Visible = isVisible;
-            labelChoiceV.Visible = isVisible;
-            labelChoiceConeCX.Visible = isVisible;
-            labelChoiceConeCY.Visible = isVisible;
-            labelChoiceConeCZ.Visible = isVisible;
-            labelChoiceCylinderVX.Visible = isVisible;
-            labelChoiceCylinderVY.Visible = isVisible;
-            labelChoiceCylinderVZ.Visible = isVisible;
-            labelChoiceConeH.Visible = isVisible;
-
-
-            ChoiceConeCX.Visible = isVisible;
-            ChoiceConeCY.Visible = isVisible;
-            ChoiceConeCZ.Visible = isVisible;
-
-            ChoiceVX.Visible = isVisible;
-            ChoiceVY.Visible = isVisible;
-            ChoiceVZ.Visible = isVisible;
-
-            ChoiceConeMaxm.Visible = isVisible;
-            ChoiceConeMinm.Visible = isVisible;
-            ChoiceConeK.Visible = isVisible;
-
-
-
-
-        }
-
-        private void VisibleChoiceCylinderParametrs(bool isVisible)
-        {
-             labelChoiceCylinderC.Visible = isVisible;
-             labelChoiceCylinderR.Visible = isVisible;
-             labelChoiceV.Visible = isVisible;
-             labelChoiceCylinderCX.Visible = isVisible;
-             labelChoiceCylinderCY.Visible = isVisible;
-             labelChoiceCylinderCZ.Visible = isVisible;
-             labelChoiceCylinderVX.Visible = isVisible;
-             labelChoiceCylinderVY.Visible = isVisible;
-             labelChoiceCylinderVZ.Visible = isVisible;
-
-            labelChoiceCylinderH.Visible = isVisible;
-
-             ChoiceCylinderCX.Visible = isVisible;
-             ChoiceCylinderCY.Visible = isVisible;
-             ChoiceCylinderCZ.Visible = isVisible;
-
-            ChoiceVX.Visible = isVisible;
-            ChoiceVY.Visible = isVisible;
-            ChoiceVZ.Visible = isVisible;
-
-            ChoiceCylinderR.Visible = isVisible;
-             ChoiceCylinderH.Visible = isVisible;
-        }
-
-        private void VisibleVParametrs(bool isVisible)
-        {
-            
-
-            labelWorkV.Visible = isVisible;
-            labelRotV.Visible = isVisible;
-            labelRotVX.Visible = isVisible;
-            labelRotVY.Visible = isVisible;
-            labelRotVZ.Visible = isVisible;
-            RotVX.Visible = isVisible;
-            RotVY.Visible = isVisible;
-            RotVZ.Visible = isVisible;
-            labelChangeVX.Visible = isVisible;
-            labelChangeVY.Visible = isVisible;
-            labelChangeVZ.Visible = isVisible;
-            ChangeVX.Visible = isVisible;
-            ChangeVY.Visible = isVisible;
-            ChangeVZ.Visible = isVisible;
-
-            btnChangeV.Visible = isVisible;
-            labelChangeV.Visible = isVisible;
-
-            btnRotVX.Visible = isVisible;
-            btnRotVY.Visible = isVisible;
-            btnRotVZ.Visible = isVisible;
-
-        }
-
         private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedObject = this.choiceObject.SelectedItem.ToString();
@@ -626,22 +376,7 @@ namespace Atomium
             if (primitive is Sphere)
             {
                 Sphere tmp = (Sphere)primitive;
-                VisibleChoiceSphereParametrs(true);
-                VisibleChoiceTrianglePyramidParametrs(false);
-                VisibleChoiceQuadPyramidParametrs(false);
-                VisibleChoiceConeParametrs(false);
-                VisibleChoiceParallelepipedParametrs(false);
-                VisibleChoiceCylinderParametrs(false);
-                VisibleVParametrs(false);
-
-                ChoiceName.Text = tmp.name;
-                ChoiceName.Visible = true;
-                labelChoiceName.Visible = true;
                 btnDeletePrimitive.Visible = true;
-                ChoiceSphereCX.Value = (decimal)tmp.C.x;
-                ChoiceSphereCY.Value = (decimal)tmp.C.y;
-                ChoiceSphereCZ.Value = (decimal)tmp.C.z;
-                ChoiceSphereR.Value = (decimal)tmp.radius;
                 ChoiceSpecular.Value = (decimal)tmp.specular;
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
@@ -650,74 +385,7 @@ namespace Atomium
             }
             else if (primitive is TrianglePyramid)
             {
-
-                VisibleChoiceTrianglePyramidParametrs(true);
-                VisibleChoiceSphereParametrs(false);
-                VisibleChoiceQuadPyramidParametrs(false);
-                VisibleChoiceConeParametrs(false);
-                VisibleChoiceParallelepipedParametrs(false);
-                VisibleChoiceCylinderParametrs(false);
-                VisibleVParametrs(false);
                 TrianglePyramid tmp = (TrianglePyramid)primitive;
-                ChoiceName.Text = tmp.name;
-                labelChoiceName.Visible = true;
-                ChoiceName.Visible = true;
-                btnDeletePrimitive.Visible = true;
-                ChoiceTrianglePyramidPX.Value = (decimal)tmp.P.x;
-                ChoiceTrianglePyramidPY.Value = (decimal)tmp.P.y;
-                ChoiceTrianglePyramidPZ.Value = (decimal)tmp.P.z;
-
-                ChoiceTrianglePyramidAX.Value = (decimal)tmp.A.x;
-                ChoiceTrianglePyramidAY.Value = (decimal)tmp.A.y;
-                ChoiceTrianglePyramidAZ.Value = (decimal)tmp.A.z;
-
-                ChoiceTrianglePyramidBX.Value = (decimal)tmp.B.x;
-                ChoiceTrianglePyramidBY.Value = (decimal)tmp.B.y;
-                ChoiceTrianglePyramidBZ.Value = (decimal)tmp.B.z;
-
-                ChoiceTrianglePyramidCX.Value = (decimal)tmp.C.x;
-                ChoiceTrianglePyramidCY.Value = (decimal)tmp.C.y;
-                ChoiceTrianglePyramidCZ.Value = (decimal)tmp.C.z;
-
-                ChoiceSpecular.Value = (decimal)tmp.specular;
-                ChoiceReflective.Value = (decimal)tmp.reflective;
-                ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
-
-            }
-            else if (primitive is QuadPyramid)
-            {
-
-                VisibleChoiceTrianglePyramidParametrs(false);
-                VisibleChoiceSphereParametrs(false);
-                VisibleChoiceQuadPyramidParametrs(true);
-                VisibleChoiceConeParametrs(false);
-                VisibleChoiceParallelepipedParametrs(false);
-                VisibleChoiceCylinderParametrs(false);
-                VisibleVParametrs(false);
-                QuadPyramid tmp = (QuadPyramid)primitive;
-                ChoiceName.Text = tmp.name;
-                labelChoiceName.Visible = true;
-                ChoiceName.Visible = true;
-                btnDeletePrimitive.Visible = true;
-                ChoiceQuadPyramidPX.Value = (decimal)tmp.P.x;
-                ChoiceQuadPyramidPY.Value = (decimal)tmp.P.y;
-                ChoiceQuadPyramidPZ.Value = (decimal)tmp.P.z;
-
-                ChoiceQuadPyramidAX.Value = (decimal)tmp.A.x;
-                ChoiceQuadPyramidAY.Value = (decimal)tmp.A.y;
-                ChoiceQuadPyramidAZ.Value = (decimal)tmp.A.z;
-
-                ChoiceQuadPyramidBX.Value = (decimal)tmp.B.x;
-                ChoiceQuadPyramidBY.Value = (decimal)tmp.B.y;
-                ChoiceQuadPyramidBZ.Value = (decimal)tmp.B.z;
-
-                ChoiceQuadPyramidCX.Value = (decimal)tmp.C.x;
-                ChoiceQuadPyramidCY.Value = (decimal)tmp.C.y;
-                ChoiceQuadPyramidCZ.Value = (decimal)tmp.C.z;
-
-                ChoiceQuadPyramidDX.Value = (decimal)tmp.D.x;
-                ChoiceQuadPyramidDY.Value = (decimal)tmp.D.y;
-                ChoiceQuadPyramidDZ.Value = (decimal)tmp.D.z;
 
                 ChoiceSpecular.Value = (decimal)tmp.specular;
                 ChoiceReflective.Value = (decimal)tmp.reflective;
@@ -727,65 +395,11 @@ namespace Atomium
             else if (primitive is Cylinder)
             {
 
-                VisibleChoiceTrianglePyramidParametrs(false);
-                VisibleChoiceSphereParametrs(false);
-                VisibleChoiceQuadPyramidParametrs(false);
-                VisibleChoiceConeParametrs(false);
-                VisibleChoiceParallelepipedParametrs(false);
-                VisibleChoiceCylinderParametrs(true);
-                VisibleVParametrs(true);
                 Cylinder tmp = (Cylinder)primitive;
                 V = tmp.V;
-                labelChoiceName.Visible = true;
-                ChoiceName.Text = tmp.name;
-                ChoiceName.Visible = true;
+                
                 btnDeletePrimitive.Visible = true;
-                labelChoiceV.Text = "Вектор оси цилиндра";
-                labelWorkV.Text = "Действия с вектором оси цилиндра :";
-                ChoiceCylinderCX.Value = (decimal)tmp.C.x;
-                ChoiceCylinderCY.Value = (decimal)tmp.C.y;
-                ChoiceCylinderCZ.Value = (decimal)tmp.C.z;
 
-                ChoiceVX.Text = String.Format("{0:f6}", tmp.V.x);
-                ChoiceVY.Text = String.Format("{0:f6}", tmp.V.y);
-                ChoiceVZ.Text = String.Format("{0:f6}", tmp.V.z);
-
-                ChoiceCylinderH.Value = (decimal)tmp.maxm;
-                ChoiceCylinderR.Value = (decimal)tmp.radius;
-
-                ChoiceSpecular.Value = (decimal)tmp.specular;
-                ChoiceReflective.Value = (decimal)tmp.reflective;
-                ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
-            }
-            else if (primitive is Cone)
-            {
-
-                VisibleChoiceTrianglePyramidParametrs(false);
-                VisibleChoiceSphereParametrs(false);
-                VisibleChoiceQuadPyramidParametrs(false);
-                VisibleChoiceCylinderParametrs(false);
-                VisibleChoiceParallelepipedParametrs(false);
-                VisibleChoiceConeParametrs(true);
-                VisibleVParametrs(true);
-                Cone tmp = (Cone)primitive;
-                V = tmp.V;
-                labelChoiceName.Visible = true;
-                ChoiceName.Text = tmp.name;
-                ChoiceName.Visible = true;
-                btnDeletePrimitive.Visible = true;
-                labelChoiceV.Text = "Вектор оси конуса";
-                labelWorkV.Text = "Действия с вектором оси конуса :";
-                ChoiceConeCX.Value = (decimal)tmp.C.x;
-                ChoiceConeCY.Value = (decimal)tmp.C.y;
-                ChoiceConeCZ.Value = (decimal)tmp.C.z;
-
-                ChoiceVX.Text = String.Format("{0:f6}", tmp.V.x);
-                ChoiceVY.Text = String.Format("{0:f6}", tmp.V.y);
-                ChoiceVZ.Text = String.Format("{0:f6}", tmp.V.z);
-
-                ChoiceConeK.Value = (decimal)tmp.angle;
-                ChoiceConeMaxm.Value = (decimal)tmp.maxm;
-                ChoiceConeMinm.Value = (decimal)tmp.minm;
 
                 ChoiceSpecular.Value = (decimal)tmp.specular;
                 ChoiceReflective.Value = (decimal)tmp.reflective;
@@ -794,24 +408,8 @@ namespace Atomium
             else if (primitive is Parallelepiped)
             {
                 Parallelepiped tmp = (Parallelepiped)primitive;
-                VisibleChoiceSphereParametrs(false);
-                VisibleChoiceTrianglePyramidParametrs(false);
-                VisibleChoiceQuadPyramidParametrs(false);
-                VisibleChoiceConeParametrs(false);
-                VisibleChoiceParallelepipedParametrs(true);
-                VisibleChoiceCylinderParametrs(false);
-                VisibleVParametrs(false);
 
-                ChoiceName.Text = tmp.name;
-                labelChoiceName.Visible = true;
-                ChoiceName.Visible = true;
                 btnDeletePrimitive.Visible = true;
-                ChoiceParalCX.Value = (decimal)tmp.C.x;
-                ChoiceParalCY.Value = (decimal)tmp.C.y;
-                ChoiceParalCZ.Value = (decimal)tmp.C.z;
-                ChoiceParalEX.Value = (decimal)tmp.E.x;
-                ChoiceParalEY.Value = (decimal)tmp.E.y;
-                ChoiceParalEZ.Value = (decimal)tmp.E.z;
                 ChoiceSpecular.Value = (decimal)tmp.specular;
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
@@ -821,31 +419,12 @@ namespace Atomium
             else if (primitive is Plane)
             {
                 Plane tmp = (Plane)primitive;
-                VisibleChoiceSphereParametrs(false);
-                VisibleChoiceTrianglePyramidParametrs(false);
-                VisibleChoiceQuadPyramidParametrs(false);
-                VisibleChoiceConeParametrs(false);
-                VisibleChoiceParallelepipedParametrs(false);
-                VisibleChoiceCylinderParametrs(false);
-                VisibleVParametrs(false);
-                labelChoiceName.Visible = false;
-                ChoiceName.Visible = false;
                 btnDeletePrimitive.Visible = false;
                 ChoiceSpecular.Value = (decimal)tmp.specular;
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
 
 
-            }
-            else
-            {
-                VisibleChoiceSphereParametrs(false);
-                VisibleChoiceTrianglePyramidParametrs(false);
-                VisibleChoiceQuadPyramidParametrs(false);
-                VisibleChoiceCylinderParametrs(false);
-                VisibleChoiceConeParametrs(false);
-                VisibleChoiceParallelepipedParametrs(false);
-                VisibleVParametrs(false);
             }
         }
 
@@ -985,109 +564,23 @@ namespace Atomium
 
         private void btnChange_Click(object sender, EventArgs e)
         {
-            if (primitive is Sphere)
-            {
-                string choiceName = ChoiceName.ToString();
-                choiceName = choiceName.Replace("System.Windows.Forms.TextBox, Text: ", "");
-                Color color = ChoiceColor.BackColor;
-                UpdateSphereCommand updateSphereCommand = new UpdateSphereCommand(primitive.name, choiceName,
-                    new Vec3d((double)ChoiceSphereCX.Value, (double)ChoiceSphereCY.Value, (double)ChoiceSphereCZ.Value),
-                    (double)ChoiceSphereR.Value, new Vec3d((double)color.R, (double)color.G, (double)color.B), (double)ChoiceSpecular.Value, (double)ChoiceReflective.Value);
-
-                facade.executeCommand(updateSphereCommand);
-            }
-            else if (primitive is TrianglePyramid)
-            {
-                string choiceName = ChoiceName.ToString();
-                choiceName = choiceName.Replace("System.Windows.Forms.TextBox, Text: ", "");
-                Color color = ChoiceColor.BackColor;
-                Vec3d P = new Vec3d((double)ChoiceTrianglePyramidPX.Value, (double)ChoiceTrianglePyramidPY.Value, (double)ChoiceTrianglePyramidPZ.Value);
-                Vec3d A = new Vec3d((double)ChoiceTrianglePyramidAX.Value, (double)ChoiceTrianglePyramidAY.Value, (double)ChoiceTrianglePyramidAZ.Value);
-                Vec3d B = new Vec3d((double)ChoiceTrianglePyramidBX.Value, (double)ChoiceTrianglePyramidBY.Value, (double)ChoiceTrianglePyramidBZ.Value);
-                Vec3d C = new Vec3d((double)ChoiceTrianglePyramidCX.Value, (double)ChoiceTrianglePyramidCY.Value, (double)ChoiceTrianglePyramidCZ.Value);
-                if (checkTrianglePyramid(P, A, B, C) == false)
-                {
-                    MessageBox.Show("Это не пирамида. Введите другие координаты!");
-                    return;
-                }
-                else
-                {
-                    UpdateTrianglePyramidCommand updateTrianglePyramidCommand = new UpdateTrianglePyramidCommand(primitive.name, choiceName,
-                        P, A, B, C,
-
-                       new Vec3d((double)color.R, (double)color.G, (double)color.B), (double)ChoiceSpecular.Value, (double)ChoiceReflective.Value);
-                    facade.executeCommand(updateTrianglePyramidCommand);
-                }
-
-
-            }
-            else if (primitive is QuadPyramid)
-            {
-                string choiceName = ChoiceName.ToString();
-                choiceName = choiceName.Replace("System.Windows.Forms.TextBox, Text: ", "");
-                Color color = ChoiceColor.BackColor;
-                UpdateQuadPyramidCommand updateQuadPyramidCommand = new UpdateQuadPyramidCommand(primitive.name, choiceName,
-                    new Vec3d((double)ChoiceQuadPyramidPX.Value, (double)ChoiceQuadPyramidPY.Value, (double)ChoiceQuadPyramidPZ.Value),
-                    new Vec3d((double)ChoiceQuadPyramidAX.Value, (double)ChoiceQuadPyramidAY.Value, (double)ChoiceQuadPyramidAZ.Value),
-                    new Vec3d((double)ChoiceQuadPyramidBX.Value, (double)ChoiceQuadPyramidBY.Value, (double)ChoiceQuadPyramidBZ.Value),
-                    new Vec3d((double)ChoiceQuadPyramidCX.Value, (double)ChoiceQuadPyramidCY.Value, (double)ChoiceQuadPyramidCZ.Value),
-                    new Vec3d((double)ChoiceQuadPyramidDX.Value, (double)ChoiceQuadPyramidDY.Value, (double)ChoiceQuadPyramidDZ.Value),
-
-                   new Vec3d((double)color.R, (double)color.G, (double)color.B), (double)ChoiceSpecular.Value, (double)ChoiceReflective.Value);
-
-                facade.executeCommand(updateQuadPyramidCommand);
-            }
-            else if (primitive is Cylinder)
-            {
-                string choiceName = ChoiceName.ToString();
-                choiceName = choiceName.Replace("System.Windows.Forms.TextBox, Text: ", "");
-                Color color = ChoiceColor.BackColor;
-                UpdateCylinderCommand updateCylinderCommand = new UpdateCylinderCommand(primitive.name, choiceName,
-                    new Vec3d((double)ChoiceCylinderCX.Value, (double)ChoiceCylinderCY.Value, (double)ChoiceCylinderCZ.Value),
-                    V, (double)ChoiceCylinderR.Value, (double)ChoiceCylinderH.Value,
-                   new Vec3d((double)color.R, (double)color.G, (double)color.B), (double)ChoiceSpecular.Value, (double)ChoiceReflective.Value);
-
-                facade.executeCommand(updateCylinderCommand);
-            }
-            else if (primitive is Cone)
-            {
-                string choiceName = ChoiceName.ToString();
-                choiceName = choiceName.Replace("System.Windows.Forms.TextBox, Text: ", "");
-                Color color = ChoiceColor.BackColor;
-                UpdateConeCommand updateConeCommand = new UpdateConeCommand(primitive.name, choiceName,
-                    new Vec3d((double)ChoiceConeCX.Value, (double)ChoiceConeCY.Value, (double)ChoiceConeCZ.Value),
-                    V, (double)ChoiceConeK.Value, (double)ChoiceConeMinm.Value, (double)ChoiceConeMaxm.Value,
-                   new Vec3d((double)color.R, (double)color.G, (double)color.B), (double)ChoiceSpecular.Value, (double)ChoiceReflective.Value);
-
-                facade.executeCommand(updateConeCommand);
-            }
-            else if (primitive is Parallelepiped)
-            {
-                string choiceName = ChoiceName.ToString();
-                choiceName = choiceName.Replace("System.Windows.Forms.TextBox, Text: ", "");
-                Color color = ChoiceColor.BackColor;
-                Vec3d C = new Vec3d((double)ChoiceParalCX.Value, (double)ChoiceParalCY.Value, (double)ChoiceParalCZ.Value);
-                Vec3d E = new Vec3d((double)ChoiceParalEX.Value, (double)ChoiceParalEY.Value, (double)ChoiceParalEZ.Value);
-                if (checkParallelepiped(C, E) == false)
-                {
-                    MessageBox.Show("Это не параллелепипед. Введите другие координаты!");
-                    return;
-                }
-                else
-                {
-                    UpdateParallelepipedCommand updateParallelepipedCommand = new UpdateParallelepipedCommand(primitive.name, choiceName,
-                        C, E,
-                       new Vec3d((double)color.R, (double)color.G, (double)color.B), (double)ChoiceSpecular.Value, (double)ChoiceReflective.Value);
-
-                    facade.executeCommand(updateParallelepipedCommand);
-                }
-            }
-            else if (primitive is Plane && primitive.name == "плоскость основания")
+            if (primitive is Plane && primitive.name == "плоскость основания")
             {
                 Color color = ChoiceColor.BackColor;
                 UpdateBasePlaneCommand updateBasePlaneCommand = new UpdateBasePlaneCommand(new Vec3d((double)color.R, (double)color.G, (double)color.B), (double)ChoiceSpecular.Value, (double)ChoiceReflective.Value);
                 facade.executeCommand(updateBasePlaneCommand);
             }
+            else
+            {
+                Color color = ChoiceColor.BackColor;
+                UpdatePrimitiveCommand UpdatePrimitiveCommand = new UpdatePrimitiveCommand(
+                    primitive.name,
+                    new Vec3d((double)color.R, (double)color.G, (double)color.B),
+                    (double)ChoiceSpecular.Value,
+                    (double)ChoiceReflective.Value);
+                facade.executeCommand(UpdatePrimitiveCommand);
+            }
+
             if (checkBox2Render.Checked == true)
                 render();
         }
@@ -1112,57 +605,6 @@ namespace Atomium
             V.z = result[2];
         }
 
-        private void btnRotVX_Click(object sender, EventArgs e)
-        {
-            double angle = (double)RotVX.Value;
-            double[,] RMtr = new double[4, 4] { { 1, 0, 0, 0 },
-                                                { 0, Math.Cos(angle * Math.PI / 180), -Math.Sin(angle * Math.PI / 180), 0 },
-                                                { 0, Math.Sin(angle * Math.PI / 180), Math.Cos(angle * Math.PI / 180), 0 },
-                                                { 0, 0, 0, 1 } };
-            MultiplyMV(RMtr);
-            updateLabelV();
-        }
-
-        private void btnRotVY_Click(object sender, EventArgs e)
-        {
-            double angle = (double)RotVY.Value;
-            double[,] RMtr = new double[4, 4] { { Math.Cos(angle * Math.PI / 180), 0, -Math.Sin(angle * Math.PI / 180), 0 },
-                                                { 0, 1, 0, 0 },
-                                                { Math.Sin(angle * Math.PI / 180), 0, Math.Cos(angle * Math.PI / 180), 0 },
-                                                { 0, 0, 0, 1 } };
-            MultiplyMV(RMtr);
-            updateLabelV();
-        }
-
-        private void btnRotVZ_Click(object sender, EventArgs e)
-        {
-            double angle = (double)RotVZ.Value;
-            double[,] RMtr = new double[4, 4] { { Math.Cos(angle * Math.PI / 180), -Math.Sin(angle * Math.PI / 180), 0, 0 },
-                                                { Math.Sin(angle * Math.PI / 180), Math.Cos(angle * Math.PI / 180), 0, 0 },
-                                                { 0, 0, 1, 0 },
-                                                { 0, 0, 0, 1 } };
-            MultiplyMV(RMtr);
-            updateLabelV();
-        }
-
-        private void btnChangeV_Click(object sender, EventArgs e)
-        {
-            Vec3d tmpV = new Vec3d((double)ChangeVX.Value, (double)ChangeVY.Value, (double)ChangeVZ.Value);
-            if (isUnitVector(tmpV) == false)
-            {
-                MessageBox.Show("Вектор оси не единичный. Введите другие координаты!");
-                return;
-            }
-            V = tmpV;
-            updateLabelV();
-        }
-
-        private void updateLabelV()
-        {
-            ChoiceVX.Text = String.Format("{0:f6}", V.x);
-            ChoiceVY.Text = String.Format("{0:f6}", V.y);
-            ChoiceVZ.Text = String.Format("{0:f6}", V.z);
-        }
 
         private void btnRender_Click(object sender, EventArgs e)
         {

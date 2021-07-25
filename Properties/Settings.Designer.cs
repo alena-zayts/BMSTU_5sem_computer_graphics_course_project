@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Atomium.Properties
+namespace Weatherwane.Properties
 {
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 
-namespace Atomium
+namespace Weatherwane
 {
     class Converter
     {
@@ -18,12 +18,6 @@ namespace Atomium
 
         [JsonProperty("cylinders")]
         private Cylinder[] cylinders;
-
-        [JsonProperty("cones")]
-        private Cone[] cones;
-
-        [JsonProperty("quadPyramids")]
-        private QuadPyramid[] quadPyramids;
 
         [JsonProperty("trianglePyramids")]
         private TrianglePyramid[] trianglePyramids;
@@ -45,8 +39,6 @@ namespace Atomium
 
             List<Sphere> spheres = new List<Sphere>();
             List<Cylinder> cylinders = new List<Cylinder>();
-            List<Cone> cones = new List<Cone>();
-            List<QuadPyramid> quadPyramids = new List<QuadPyramid>();
             List<TrianglePyramid> trianglePyramids = new List<TrianglePyramid>();
             List<Parallelepiped> parallelepipeds = new List<Parallelepiped>();
             List<Plane> planes = new List<Plane>();
@@ -58,12 +50,6 @@ namespace Atomium
 
                 else if (scene.sceneObjects[i] is Cylinder)
                     cylinders.Add((Cylinder)scene.sceneObjects[i]);
-
-                else if (scene.sceneObjects[i] is Cone)
-                    cones.Add((Cone)scene.sceneObjects[i]);
-
-                else if (scene.sceneObjects[i] is QuadPyramid)
-                    quadPyramids.Add((QuadPyramid)scene.sceneObjects[i]);
 
                 else if (scene.sceneObjects[i] is TrianglePyramid)
                     trianglePyramids.Add((TrianglePyramid)scene.sceneObjects[i]);
@@ -77,8 +63,6 @@ namespace Atomium
 
             this.spheres = spheres.ToArray();
             this.cylinders = cylinders.ToArray();
-            this.cones = cones.ToArray();
-            this.quadPyramids = quadPyramids.ToArray();
             this.trianglePyramids = trianglePyramids.ToArray();
             this.parallelepipeds = parallelepipeds.ToArray();
             this.planes = planes.ToArray();
@@ -97,12 +81,6 @@ namespace Atomium
 
             for (int i = 0; i < this.cylinders.Length; i++)
                 scene.AddCylinder(this.cylinders[i].name, this.cylinders[i].C, this.cylinders[i].V, this.cylinders[i].radius, this.cylinders[i].maxm, this.cylinders[i].color, this.cylinders[i].specular, this.cylinders[i].reflective);
-
-            for (int i = 0; i < this.cones.Length; i++)
-                scene.AddCone(this.cones[i].name, this.cones[i].C, this.cones[i].V, this.cones[i].angle, this.cones[i].minm, this.cones[i].maxm, this.cones[i].color, this.cones[i].specular, this.cones[i].reflective);
-
-            for (int i = 0; i < this.quadPyramids.Length; i++)
-                scene.AddQuadPyramid(this.quadPyramids[i].name, this.quadPyramids[i].P, this.quadPyramids[i].A, this.quadPyramids[i].B, this.quadPyramids[i].C, this.quadPyramids[i].D, this.quadPyramids[i].color, this.quadPyramids[i].specular, this.quadPyramids[i].reflective);
 
             for (int i = 0; i < this.trianglePyramids.Length; i++)
                 scene.AddTrianglePyramid(this.trianglePyramids[i].name, this.trianglePyramids[i].P, this.trianglePyramids[i].A, this.trianglePyramids[i].B, this.trianglePyramids[i].C, this.trianglePyramids[i].color, this.trianglePyramids[i].specular, this.trianglePyramids[i].reflective);

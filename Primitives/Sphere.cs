@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atomium
+namespace Weatherwane
 {
     class Sphere : Primitive
     {

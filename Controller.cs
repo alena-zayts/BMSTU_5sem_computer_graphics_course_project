@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Atomium
+namespace Weatherwane
 {
     class Controller
     {
-        private int n = 4;
+        private int n = 8;
         private Scene scene;
         private Scene sceneOXYZ;
         private RayTracer rayTracer;
@@ -94,16 +94,6 @@ namespace Atomium
             scene.AddCylinder(name, C, V, radius, maxm, color, specular, reflective);
         }
 
-        public void AddConeToScene(string name, Vec3d C, double k, Vec3d V, double minm, double maxm, Vec3d color, double specular, double reflective)
-        {
-            scene.AddCone(name, C, V, k, minm, maxm, color, specular, reflective);
-        }
-
-        public void AddQuadPyramidToScene(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D, Vec3d color, double specular, double reflective)
-        {
-            scene.AddQuadPyramid(name, P, A, B, C, D, color, specular, reflective);
-        }
-
         public void AddTrianglePyramidToScene(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d color, double specular, double reflective)
         {
             scene.AddTrianglePyramid(name, P, A, B, C, color, specular, reflective);
@@ -137,6 +127,11 @@ namespace Atomium
             {
                 
                 tmp = rayTracer.render(drawBackground);
+                this.sceneOXYZ.convertBackgroundReverse(tmp, this.scene.canvasWidth, this.scene.canvasHeight);
+                this.sceneOXYZ.camera = this.scene.camera;
+                tmp_axes = rayTracerOXYZ.render(true);
+
+                drawingAxes(ref canvas, drawAxes);
                 for (int j = 0; j < scene.sceneObjects.Count; j++)
                 {
                     a = scene.sceneObjects[j];
@@ -231,6 +226,21 @@ namespace Atomium
             this.scene.RemoveLightPoint(name);
         }
 
+        public void updatePrimitive(string name, Vec3d color, double specular, double reflective)
+        {
+            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
+            {
+                if (this.scene.sceneObjects[i].name == name)
+                {
+                    this.scene.sceneObjects[i].name = name;
+                    this.scene.sceneObjects[i].color = color;
+                    this.scene.sceneObjects[i].specular = specular;
+                    this.scene.sceneObjects[i].reflective = reflective;
+                    break;
+                }
+            }
+        }
+
         public void updateSphere(string oldname, string newname, Vec3d C, double r, Vec3d color, double specular, double reflective)
         {
             int index = -1;
@@ -310,20 +320,6 @@ namespace Atomium
             this.scene.AddTrianglePyramid(newname, P, A, B, C, color, specular, reflective);
         }
 
-        public void updateQuadPyramid(string oldname, string newname, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D, Vec3d color, double specular, double reflective)
-        {
-
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
-            {
-                if (this.scene.sceneObjects[i].name == oldname)
-                {
-                    this.scene.sceneObjects.RemoveRange(i, 1);
-                    i--;
-                }
-            }
-            this.scene.AddQuadPyramid(newname, P, A, B, C, D, color, specular, reflective);
-        }
-
         public void updateCylinder(string oldname, string newname, Vec3d C, Vec3d V, double r, double maxm, Vec3d color, double specular, double reflective)
         {
 
@@ -337,21 +333,6 @@ namespace Atomium
             }
             this.scene.AddCylinder(newname, C, V, r, maxm, color, specular, reflective);
         }
-
-        public void updateCone(string oldname, string newname, Vec3d C, Vec3d V, double alpha, double minm, double maxm, Vec3d color, double specular, double reflective)
-        {
-
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
-            {
-                if (this.scene.sceneObjects[i].name == oldname)
-                {
-                    this.scene.sceneObjects.RemoveRange(i, 1);
-                    i--;
-                }
-            }
-            this.scene.AddCone(newname, C, V, alpha, minm, maxm, color, specular, reflective);
-        }
-
 
         public void deletePrimitive(string name)
         {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace Atomium
+namespace Weatherwane
 {
     class Scene
     {
@@ -204,32 +204,6 @@ namespace Atomium
         public void AddParallelepiped(string name, Vec3d C, Vec3d E, Vec3d color, double specular, double reflective)
         {
             sceneObjects.Add(new Parallelepiped(name, C, E, color, specular, reflective));
-        }
-
-        public void AddCone(string name, Vec3d C, Vec3d V, double alpha, double minm, double maxm, Vec3d color, double specular, double reflective)
-        {
-            double k = Math.Tan(alpha * Math.PI / 180);
-            sceneObjects.Add(new Cone(name, C, V, alpha, k, minm, maxm, color, specular, reflective));            
-            double r = maxm * k;
-            AddDiskPlane(name,C + maxm * V, V, r, color, specular, reflective);
-            if (minm > 0)
-            {
-                r = minm * k;
-                AddDiskPlane(name, C + minm * V, V, r, color, specular, reflective);
-            }
-
-        }
-
-
-        public void AddQuadPyramid(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D, Vec3d color, double specular, double reflective)
-        {
-            AddTriangle(name, P, A, B, color, specular, reflective);
-            AddTriangle(name, P, B, C, color, specular, reflective);
-            AddTriangle(name, P, C, D, color, specular, reflective);
-            AddTriangle(name, P, D, A, color, specular, reflective);
-            AddTriangle(name, A, B, D, color, specular, reflective);
-            AddTriangle(name, B, C, D, color, specular, reflective);
-            sceneObjects.Add(new QuadPyramid(name, P, A, B, C, D, color, specular, reflective));
         }
 
         public void AddTrianglePyramid(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d color, double specular, double reflective)

@@ -4,8 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atomium
+namespace Weatherwane
 {
+    class UpdatePrimitiveCommand : Command
+    {
+        private string name;
+        private double specular;
+        private double reflective;
+        private Vec3d color;
+
+        public UpdatePrimitiveCommand(string name, Vec3d color, double specular, double reflective)
+        {
+            this.name = name;
+            this.color = color;
+            this.specular = specular;
+            this.reflective = reflective;
+        }
+        public override void execute(Controller controller)
+        {
+            controller.updatePrimitive(this.name, this.color, this.specular, this.reflective);
+        }
+    }
     class UpdateSphereCommand : Command
     {
         private string oldname;
@@ -88,38 +107,6 @@ namespace Atomium
         }
     }
 
-    class UpdateQuadPyramidCommand : Command
-    {
-        private string oldname;
-        private string newname;
-        private Vec3d P;
-        private Vec3d A;
-        private Vec3d B;
-        private Vec3d C;
-        private Vec3d D;
-        private double specular;
-        private double reflective;
-        private Vec3d color;
-
-        public UpdateQuadPyramidCommand(string oldname, string newname, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D, Vec3d color, double specular, double reflective)
-        {
-            this.oldname = oldname;
-            this.newname = newname;
-            this.P = P;
-            this.A = A;
-            this.B = B;
-            this.C = C;
-            this.D = D;
-            this.color = color;
-            this.specular = specular;
-            this.reflective = reflective;
-        }
-        public override void execute(Controller controller)
-        {
-            controller.updateQuadPyramid(this.oldname, this.newname, this.P, this.A, this.B, this.C, this.D, this.color, this.specular, this.reflective);
-        }
-    }
-
     class UpdateCylinderCommand : Command
     {
         private string oldname;
@@ -165,38 +152,6 @@ namespace Atomium
         public override void execute(Controller controller)
         {
             controller.updateBasePlane(this.color, this.specular, this.reflective);
-        }
-    }
-
-    class UpdateConeCommand : Command
-    {
-        private string oldname;
-        private string newname;
-        private Vec3d C;
-        private Vec3d V;
-        private double alpha;
-        private double minm;
-        private double maxm;
-        private double specular;
-        private double reflective;
-        private Vec3d color;
-
-        public UpdateConeCommand(string oldname, string newname, Vec3d C, Vec3d V, double alpha, double minm, double maxm, Vec3d color, double specular, double reflective)
-        {
-            this.oldname = oldname;
-            this.newname = newname;
-            this.C = C;
-            this.V = V;
-            this.alpha = alpha;
-            this.minm = minm;
-            this.maxm = maxm;
-            this.color = color;
-            this.specular = specular;
-            this.reflective = reflective;
-        }
-        public override void execute(Controller controller)
-        {
-            controller.updateCone(this.oldname, this.newname, this.C, this.V, this.alpha, this.minm, this.maxm, this.color, this.specular, this.reflective);
         }
     }
 }

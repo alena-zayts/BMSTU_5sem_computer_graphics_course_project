@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atomium
+namespace Weatherwane
 {
-    class Triangle : Primitive
+    class Parallelepiped : Primitive
     {
-        public Vec3d A;
-        public Vec3d B;
-        public Triangle(string name, Vec3d C, Vec3d A, Vec3d B,
+        public Vec3d E;
+        public Parallelepiped(string name, Vec3d C, Vec3d E,
             Vec3d color, double specular, double reflective) : base(name, C, color, specular, reflective)
         {
-            this.A = A;
-            this.B = B;
+            this.E = E;
         }
     }
 }

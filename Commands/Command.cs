@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atomium
+namespace Weatherwane
 {
-    enum TypeSceneObject { sphere, cylinder};
-    abstract class SceneObject
+    abstract class Command
     {
+        abstract public void execute(Controller controller);
     }
 }

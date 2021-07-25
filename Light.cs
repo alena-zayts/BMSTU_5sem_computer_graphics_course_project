@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atomium
+namespace Weatherwane
 {
 
     enum LightType { Ambient, Point, Directional};

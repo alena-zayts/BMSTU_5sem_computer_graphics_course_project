@@ -14,7 +14,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 
 
-namespace Atomium
+namespace Weatherwane
 {
     class RayTracer
     {
@@ -132,48 +132,6 @@ namespace Atomium
             {
                 t2 = Double.PositiveInfinity;
             }
-        }
-
-        private void IntersectRayCone(Vec3d O, Vec3d D, Cone cone, ref double t1, ref double t2)
-        {
-            Vec3d CO = O - cone.C;
-
-            double d_d = Vec3d.ScalarMultiplication(D, D);
-            double d_co = Vec3d.ScalarMultiplication(D, CO);
-            double co_co = Vec3d.ScalarMultiplication(CO, CO);
-            double d_v = Vec3d.ScalarMultiplication(D, cone.V);
-            double co_v = Vec3d.ScalarMultiplication(CO, cone.V);
-
-            double a = d_d - (1 + cone.k * cone.k) * d_v * d_v;
-            double b = 2 * (d_co - (1 + cone.k * cone.k) * d_v * co_v);
-            double c = co_co - (1 + cone.k * cone.k) * co_v * co_v;
-
-
-            double discriminant = b * b - 4 * a * c;
-
-            if (discriminant < 0)
-            {
-                t1 = Double.PositiveInfinity;
-                t2 = Double.PositiveInfinity;
-                return;
-            }
-
-            t1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
-            t2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
-
-            double m1 = d_v * t1 + co_v;
-            double m2 = d_v * t2 + co_v;
-
-            
-            if (m1 < cone.minm || m1 > cone.maxm)
-            {
-                t1 = Double.PositiveInfinity;
-            }
-            if (m2 < cone.minm || m2 > cone.maxm)
-            {
-                t2 = Double.PositiveInfinity;
-            }
-
         }
         private void IntersectRayTriangle(Vec3d O, Vec3d D, Vec3d v0, Vec3d v1, Vec3d v2, ref double t1)
         {
@@ -362,10 +320,6 @@ namespace Atomium
                 {
                     IntersectRayCylinder(O, D, (Cylinder)this.scene.sceneObjects[i], ref t1, ref t2);
                 }
-                else if (this.scene.sceneObjects[i] is Cone)
-                {
-                    IntersectRayCone(O, D, (Cone)this.scene.sceneObjects[i], ref t1, ref t2);
-                }
                 else if (this.scene.sceneObjects[i] is Parallelepiped)
                 {
                     IntersectRayParallelepiped(O, D, (Parallelepiped)this.scene.sceneObjects[i], ref t1, ref t2);
@@ -445,22 +399,6 @@ namespace Atomium
 
         }
 
-        private Vec3d Vec3dNormalCone(Vec3d P, double closest_t, Cone cone, Vec3d O, Vec3d D)
-        {
-
-            Vec3d CO = O - cone.C;
-
-            double d_v = Vec3d.ScalarMultiplication(D, cone.V);
-            double co_v = Vec3d.ScalarMultiplication(CO, cone.V);
-
-            double m = d_v * closest_t + co_v;
-            
-            Vec3d normal = P - cone.C - (1 + cone.k * cone.k) * cone.V * m;
-            
-            return normal;
-
-        }
-
         private Vec3d Vec3dNormalTriangle(Triangle closest_object)
         {
             Vec3d e1 = closest_object.A - closest_object.C;
@@ -496,8 +434,6 @@ namespace Atomium
                 N = Vec3dNormalParallelepiped(P, (Parallelepiped)closest_object);
             else if (closest_object is Cylinder)
                 N = Vec3dNormalCylinder(P, closest_t, (Cylinder)closest_object, O, D);
-            else if (closest_object is Cone)
-                N = Vec3dNormalCone(P, closest_t, (Cone)closest_object, O, D);
             else if (closest_object is Triangle)
             {
                 N = Vec3dNormalTriangle((Triangle)closest_object);

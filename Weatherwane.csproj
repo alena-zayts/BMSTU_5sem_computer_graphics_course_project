@@ -51,32 +51,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddPrimitiveCommand.cs" />
+    <Compile Include="Commands\AddPrimitiveCommand.cs" />
     <Compile Include="Camera.cs" />
-    <Compile Include="CameraCommands.cs" />
+    <Compile Include="Commands\CameraCommands.cs" />
     <Compile Include="CameraManager.cs" />
-    <Compile Include="Command.cs" />
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Converter.cs" />
-    <Compile Include="DeletePrimitiveCommand.cs" />
+    <Compile Include="Commands\DeletePrimitiveCommand.cs" />
     <Compile Include="FacadeViewer.cs" />
-    <Compile Include="GetSceneObjectsCommand.cs" />
-    <Compile Include="LightsCommand.cs" />
-    <Compile Include="LoadCommand.cs" />
+    <Compile Include="Commands\GetSceneObjectsCommand.cs" />
+    <Compile Include="Commands\LightsCommand.cs" />
+    <Compile Include="Commands\LoadCommand.cs" />
     <Compile Include="LoadScene.cs" />
-    <Compile Include="QuadPyramid.cs" />
-    <Compile Include="RenderCommand.cs" />
-    <Compile Include="SaveCommand.cs" />
+    <Compile Include="Commands\RenderCommand.cs" />
+    <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="SaveScene.cs" />
-    <Compile Include="Triangle.cs" />
-    <Compile Include="TrianglePyramid.cs" />
-    <Compile Include="Parallelepiped.cs" />
-    <Compile Include="Cone.cs" />
-    <Compile Include="Cylinder.cs" />
-    <Compile Include="Plane.cs" />
-    <Compile Include="Primitive.cs" />
-    <Compile Include="SceneObject.cs" />
-    <Compile Include="Model.cs" />
+    <Compile Include="Primitives\Triangle.cs" />
+    <Compile Include="Primitives\TrianglePyramid.cs" />
+    <Compile Include="Primitives\Parallelepiped.cs" />
+    <Compile Include="Primitives\Cylinder.cs" />
+    <Compile Include="Primitives\Plane.cs" />
+    <Compile Include="Primitives\Primitive.cs" />
     <Compile Include="Light.cs" />
     <Compile Include="RayTracer.cs" />
     <Compile Include="Scene.cs" />
@@ -88,10 +84,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sphere.cs" />
+    <Compile Include="Primitives\Sphere.cs" />
     <Compile Include="TransformPrimitive.cs" />
-    <Compile Include="UpdatePrimitiveCommand.cs" />
-    <Compile Include="Vec3d.cs" />
+    <Compile Include="Commands\UpdatePrimitiveCommand.cs" />
+    <Compile Include="Primitives\Vec3d.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
