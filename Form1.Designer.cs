@@ -32,6 +32,16 @@
             this.canvas = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.btnDeleteObject = new System.Windows.Forms.TabPage();
+            this.choiceObject = new System.Windows.Forms.ComboBox();
+            this.checkBox2Render = new System.Windows.Forms.CheckBox();
+            this.labelChoiceColor = new System.Windows.Forms.Label();
+            this.ChoiceReflective = new System.Windows.Forms.NumericUpDown();
+            this.ChoiceSpecular = new System.Windows.Forms.NumericUpDown();
+            this.ChoiceColor = new System.Windows.Forms.PictureBox();
+            this.btnChange = new System.Windows.Forms.Button();
+            this.labelChoiceSpecular = new System.Windows.Forms.Label();
+            this.labelChoiceReflective = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -97,23 +107,15 @@
             this.AddLightPosX = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.btnClear = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBoxNebo = new System.Windows.Forms.CheckBox();
             this.dynamicButton = new System.Windows.Forms.Button();
-            this.labelChoiceReflective = new System.Windows.Forms.Label();
-            this.labelChoiceSpecular = new System.Windows.Forms.Label();
-            this.btnChange = new System.Windows.Forms.Button();
-            this.ChoiceColor = new System.Windows.Forms.PictureBox();
-            this.ChoiceSpecular = new System.Windows.Forms.NumericUpDown();
-            this.ChoiceReflective = new System.Windows.Forms.NumericUpDown();
-            this.labelChoiceColor = new System.Windows.Forms.Label();
-            this.checkBox2Render = new System.Windows.Forms.CheckBox();
-            this.choiceObject = new System.Windows.Forms.ComboBox();
-            this.btnDeletePrimitive = new System.Windows.Forms.Button();
-            this.btnDeleteObject = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.btnDeleteObject.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceReflective)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceSpecular)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceColor)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -133,10 +135,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.AddLightPosZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddLightPosY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddLightPosX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChoiceColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChoiceSpecular)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChoiceReflective)).BeginInit();
-            this.btnDeleteObject.SuspendLayout();
             this.SuspendLayout();
             // 
             // canvas
@@ -160,6 +158,152 @@
             this.tabControl1.Size = new System.Drawing.Size(1268, 654);
             this.tabControl1.TabIndex = 45;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // btnDeleteObject
+            // 
+            this.btnDeleteObject.Controls.Add(this.choiceObject);
+            this.btnDeleteObject.Controls.Add(this.checkBox2Render);
+            this.btnDeleteObject.Controls.Add(this.labelChoiceColor);
+            this.btnDeleteObject.Controls.Add(this.ChoiceReflective);
+            this.btnDeleteObject.Controls.Add(this.ChoiceSpecular);
+            this.btnDeleteObject.Controls.Add(this.ChoiceColor);
+            this.btnDeleteObject.Controls.Add(this.btnChange);
+            this.btnDeleteObject.Controls.Add(this.labelChoiceSpecular);
+            this.btnDeleteObject.Controls.Add(this.labelChoiceReflective);
+            this.btnDeleteObject.Location = new System.Drawing.Point(8, 39);
+            this.btnDeleteObject.Margin = new System.Windows.Forms.Padding(6);
+            this.btnDeleteObject.Name = "btnDeleteObject";
+            this.btnDeleteObject.Padding = new System.Windows.Forms.Padding(6);
+            this.btnDeleteObject.Size = new System.Drawing.Size(1252, 607);
+            this.btnDeleteObject.TabIndex = 1;
+            this.btnDeleteObject.Text = "Изменить";
+            this.btnDeleteObject.UseVisualStyleBackColor = true;
+            // 
+            // choiceObject
+            // 
+            this.choiceObject.AutoCompleteCustomSource.AddRange(new string[] {
+            "Сфера",
+            "Цилиндр",
+            "Конус",
+            "Треугольная пирамида",
+            "Четырехугольная пирамида",
+            "Параллелепипед"});
+            this.choiceObject.DisplayMember = "Сфера";
+            this.choiceObject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.choiceObject.FormattingEnabled = true;
+            this.choiceObject.Items.AddRange(new object[] {
+            "Сфера",
+            "Конус",
+            "Четырехугольная пирамида",
+            "Треугольная пирамида",
+            "Цилиндр",
+            "Параллелепипед"});
+            this.choiceObject.Location = new System.Drawing.Point(12, 12);
+            this.choiceObject.Margin = new System.Windows.Forms.Padding(6);
+            this.choiceObject.Name = "choiceObject";
+            this.choiceObject.Size = new System.Drawing.Size(754, 33);
+            this.choiceObject.TabIndex = 329;
+            this.choiceObject.SelectedIndexChanged += new System.EventHandler(this.choiceObject_SelectedIndexChanged);
+            // 
+            // checkBox2Render
+            // 
+            this.checkBox2Render.AutoSize = true;
+            this.checkBox2Render.Checked = true;
+            this.checkBox2Render.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2Render.Location = new System.Drawing.Point(184, 554);
+            this.checkBox2Render.Margin = new System.Windows.Forms.Padding(6);
+            this.checkBox2Render.Name = "checkBox2Render";
+            this.checkBox2Render.Size = new System.Drawing.Size(192, 29);
+            this.checkBox2Render.TabIndex = 328;
+            this.checkBox2Render.Text = "с рендерингом";
+            this.checkBox2Render.UseVisualStyleBackColor = true;
+            // 
+            // labelChoiceColor
+            // 
+            this.labelChoiceColor.AutoSize = true;
+            this.labelChoiceColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChoiceColor.Location = new System.Drawing.Point(12, 387);
+            this.labelChoiceColor.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelChoiceColor.Name = "labelChoiceColor";
+            this.labelChoiceColor.Size = new System.Drawing.Size(79, 30);
+            this.labelChoiceColor.TabIndex = 325;
+            this.labelChoiceColor.Text = "Цвет:";
+            // 
+            // ChoiceReflective
+            // 
+            this.ChoiceReflective.DecimalPlaces = 3;
+            this.ChoiceReflective.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.ChoiceReflective.Location = new System.Drawing.Point(260, 487);
+            this.ChoiceReflective.Margin = new System.Windows.Forms.Padding(6);
+            this.ChoiceReflective.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ChoiceReflective.Name = "ChoiceReflective";
+            this.ChoiceReflective.Size = new System.Drawing.Size(96, 31);
+            this.ChoiceReflective.TabIndex = 323;
+            // 
+            // ChoiceSpecular
+            // 
+            this.ChoiceSpecular.Location = new System.Drawing.Point(260, 437);
+            this.ChoiceSpecular.Margin = new System.Windows.Forms.Padding(6);
+            this.ChoiceSpecular.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.ChoiceSpecular.Name = "ChoiceSpecular";
+            this.ChoiceSpecular.Size = new System.Drawing.Size(96, 31);
+            this.ChoiceSpecular.TabIndex = 322;
+            // 
+            // ChoiceColor
+            // 
+            this.ChoiceColor.BackColor = System.Drawing.Color.Red;
+            this.ChoiceColor.Location = new System.Drawing.Point(260, 387);
+            this.ChoiceColor.Margin = new System.Windows.Forms.Padding(6);
+            this.ChoiceColor.Name = "ChoiceColor";
+            this.ChoiceColor.Size = new System.Drawing.Size(116, 38);
+            this.ChoiceColor.TabIndex = 321;
+            this.ChoiceColor.TabStop = false;
+            this.ChoiceColor.Click += new System.EventHandler(this.ChoiceColor_Click);
+            // 
+            // btnChange
+            // 
+            this.btnChange.Location = new System.Drawing.Point(18, 546);
+            this.btnChange.Margin = new System.Windows.Forms.Padding(6);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(150, 44);
+            this.btnChange.TabIndex = 324;
+            this.btnChange.Text = "Применить";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            // 
+            // labelChoiceSpecular
+            // 
+            this.labelChoiceSpecular.AutoSize = true;
+            this.labelChoiceSpecular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChoiceSpecular.Location = new System.Drawing.Point(12, 437);
+            this.labelChoiceSpecular.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelChoiceSpecular.Name = "labelChoiceSpecular";
+            this.labelChoiceSpecular.Size = new System.Drawing.Size(156, 30);
+            this.labelChoiceSpecular.TabIndex = 326;
+            this.labelChoiceSpecular.Text = "Блестящий:";
+            // 
+            // labelChoiceReflective
+            // 
+            this.labelChoiceReflective.AutoSize = true;
+            this.labelChoiceReflective.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChoiceReflective.Location = new System.Drawing.Point(12, 487);
+            this.labelChoiceReflective.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelChoiceReflective.Name = "labelChoiceReflective";
+            this.labelChoiceReflective.Size = new System.Drawing.Size(182, 30);
+            this.labelChoiceReflective.TabIndex = 327;
+            this.labelChoiceReflective.Text = "Отражающий:";
             // 
             // tabPage3
             // 
@@ -1083,17 +1227,6 @@
             this.label14.TabIndex = 207;
             this.label14.Text = "Положение:";
             // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(1358, 1294);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(6);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(716, 44);
-            this.btnClear.TabIndex = 212;
-            this.btnClear.Text = "Очистить сцену";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -1129,164 +1262,6 @@
             this.dynamicButton.Text = "dynamic_render";
             this.dynamicButton.UseVisualStyleBackColor = true;
             // 
-            // labelChoiceReflective
-            // 
-            this.labelChoiceReflective.AutoSize = true;
-            this.labelChoiceReflective.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChoiceReflective.Location = new System.Drawing.Point(12, 487);
-            this.labelChoiceReflective.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.labelChoiceReflective.Name = "labelChoiceReflective";
-            this.labelChoiceReflective.Size = new System.Drawing.Size(182, 30);
-            this.labelChoiceReflective.TabIndex = 327;
-            this.labelChoiceReflective.Text = "Отражающий:";
-            // 
-            // labelChoiceSpecular
-            // 
-            this.labelChoiceSpecular.AutoSize = true;
-            this.labelChoiceSpecular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChoiceSpecular.Location = new System.Drawing.Point(12, 437);
-            this.labelChoiceSpecular.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.labelChoiceSpecular.Name = "labelChoiceSpecular";
-            this.labelChoiceSpecular.Size = new System.Drawing.Size(156, 30);
-            this.labelChoiceSpecular.TabIndex = 326;
-            this.labelChoiceSpecular.Text = "Блестящий:";
-            // 
-            // btnChange
-            // 
-            this.btnChange.Location = new System.Drawing.Point(18, 546);
-            this.btnChange.Margin = new System.Windows.Forms.Padding(6);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(150, 44);
-            this.btnChange.TabIndex = 324;
-            this.btnChange.Text = "Применить";
-            this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
-            // 
-            // ChoiceColor
-            // 
-            this.ChoiceColor.BackColor = System.Drawing.Color.Red;
-            this.ChoiceColor.Location = new System.Drawing.Point(260, 387);
-            this.ChoiceColor.Margin = new System.Windows.Forms.Padding(6);
-            this.ChoiceColor.Name = "ChoiceColor";
-            this.ChoiceColor.Size = new System.Drawing.Size(116, 38);
-            this.ChoiceColor.TabIndex = 321;
-            this.ChoiceColor.TabStop = false;
-            this.ChoiceColor.Click += new System.EventHandler(this.ChoiceColor_Click);
-            // 
-            // ChoiceSpecular
-            // 
-            this.ChoiceSpecular.Location = new System.Drawing.Point(260, 437);
-            this.ChoiceSpecular.Margin = new System.Windows.Forms.Padding(6);
-            this.ChoiceSpecular.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.ChoiceSpecular.Name = "ChoiceSpecular";
-            this.ChoiceSpecular.Size = new System.Drawing.Size(96, 31);
-            this.ChoiceSpecular.TabIndex = 322;
-            // 
-            // ChoiceReflective
-            // 
-            this.ChoiceReflective.DecimalPlaces = 3;
-            this.ChoiceReflective.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.ChoiceReflective.Location = new System.Drawing.Point(260, 487);
-            this.ChoiceReflective.Margin = new System.Windows.Forms.Padding(6);
-            this.ChoiceReflective.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.ChoiceReflective.Name = "ChoiceReflective";
-            this.ChoiceReflective.Size = new System.Drawing.Size(96, 31);
-            this.ChoiceReflective.TabIndex = 323;
-            // 
-            // labelChoiceColor
-            // 
-            this.labelChoiceColor.AutoSize = true;
-            this.labelChoiceColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChoiceColor.Location = new System.Drawing.Point(12, 387);
-            this.labelChoiceColor.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.labelChoiceColor.Name = "labelChoiceColor";
-            this.labelChoiceColor.Size = new System.Drawing.Size(79, 30);
-            this.labelChoiceColor.TabIndex = 325;
-            this.labelChoiceColor.Text = "Цвет:";
-            // 
-            // checkBox2Render
-            // 
-            this.checkBox2Render.AutoSize = true;
-            this.checkBox2Render.Checked = true;
-            this.checkBox2Render.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2Render.Location = new System.Drawing.Point(184, 554);
-            this.checkBox2Render.Margin = new System.Windows.Forms.Padding(6);
-            this.checkBox2Render.Name = "checkBox2Render";
-            this.checkBox2Render.Size = new System.Drawing.Size(192, 29);
-            this.checkBox2Render.TabIndex = 328;
-            this.checkBox2Render.Text = "с рендерингом";
-            this.checkBox2Render.UseVisualStyleBackColor = true;
-            // 
-            // choiceObject
-            // 
-            this.choiceObject.AutoCompleteCustomSource.AddRange(new string[] {
-            "Сфера",
-            "Цилиндр",
-            "Конус",
-            "Треугольная пирамида",
-            "Четырехугольная пирамида",
-            "Параллелепипед"});
-            this.choiceObject.DisplayMember = "Сфера";
-            this.choiceObject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.choiceObject.FormattingEnabled = true;
-            this.choiceObject.Items.AddRange(new object[] {
-            "Сфера",
-            "Конус",
-            "Четырехугольная пирамида",
-            "Треугольная пирамида",
-            "Цилиндр",
-            "Параллелепипед"});
-            this.choiceObject.Location = new System.Drawing.Point(12, 12);
-            this.choiceObject.Margin = new System.Windows.Forms.Padding(6);
-            this.choiceObject.Name = "choiceObject";
-            this.choiceObject.Size = new System.Drawing.Size(754, 33);
-            this.choiceObject.TabIndex = 329;
-            this.choiceObject.SelectedIndexChanged += new System.EventHandler(this.choiceObject_SelectedIndexChanged);
-            // 
-            // btnDeletePrimitive
-            // 
-            this.btnDeletePrimitive.Location = new System.Drawing.Point(798, 12);
-            this.btnDeletePrimitive.Margin = new System.Windows.Forms.Padding(6);
-            this.btnDeletePrimitive.Name = "btnDeletePrimitive";
-            this.btnDeletePrimitive.Size = new System.Drawing.Size(442, 44);
-            this.btnDeletePrimitive.TabIndex = 452;
-            this.btnDeletePrimitive.Text = "Удалить объект";
-            this.btnDeletePrimitive.UseVisualStyleBackColor = true;
-            this.btnDeletePrimitive.Click += new System.EventHandler(this.btnDeletePrimitive_Click);
-            // 
-            // btnDeleteObject
-            // 
-            this.btnDeleteObject.Controls.Add(this.btnDeletePrimitive);
-            this.btnDeleteObject.Controls.Add(this.choiceObject);
-            this.btnDeleteObject.Controls.Add(this.checkBox2Render);
-            this.btnDeleteObject.Controls.Add(this.labelChoiceColor);
-            this.btnDeleteObject.Controls.Add(this.ChoiceReflective);
-            this.btnDeleteObject.Controls.Add(this.ChoiceSpecular);
-            this.btnDeleteObject.Controls.Add(this.ChoiceColor);
-            this.btnDeleteObject.Controls.Add(this.btnChange);
-            this.btnDeleteObject.Controls.Add(this.labelChoiceSpecular);
-            this.btnDeleteObject.Controls.Add(this.labelChoiceReflective);
-            this.btnDeleteObject.Location = new System.Drawing.Point(8, 39);
-            this.btnDeleteObject.Margin = new System.Windows.Forms.Padding(6);
-            this.btnDeleteObject.Name = "btnDeleteObject";
-            this.btnDeleteObject.Padding = new System.Windows.Forms.Padding(6);
-            this.btnDeleteObject.Size = new System.Drawing.Size(1252, 607);
-            this.btnDeleteObject.TabIndex = 1;
-            this.btnDeleteObject.Text = "Изменить";
-            this.btnDeleteObject.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1295,7 +1270,6 @@
             this.Controls.Add(this.dynamicButton);
             this.Controls.Add(this.checkBoxNebo);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.AddLightIntensity);
             this.Controls.Add(this.btnRender);
             this.Controls.Add(this.AddLightPosZ);
@@ -1315,6 +1289,11 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.btnDeleteObject.ResumeLayout(false);
+            this.btnDeleteObject.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceReflective)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceSpecular)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceColor)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -1336,11 +1315,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.AddLightPosZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddLightPosY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddLightPosX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChoiceColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChoiceSpecular)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChoiceReflective)).EndInit();
-            this.btnDeleteObject.ResumeLayout(false);
-            this.btnDeleteObject.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1415,13 +1389,11 @@
         private System.Windows.Forms.NumericUpDown AddLightPosX;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBoxNebo;
         private System.Windows.Forms.Button dynamicButton;
         private System.Windows.Forms.TabPage btnDeleteObject;
-        private System.Windows.Forms.Button btnDeletePrimitive;
         private System.Windows.Forms.ComboBox choiceObject;
         private System.Windows.Forms.CheckBox checkBox2Render;
         private System.Windows.Forms.Label labelChoiceColor;

@@ -181,14 +181,6 @@ namespace Weatherwane
                     checkBox2Render.Visible = true;
 
                     string selectedObject = this.choiceObject.SelectedItem.ToString();
-                    if (selectedObject == "плоскость основания")
-                    {
-                        btnDeletePrimitive.Visible = false;
-                    }
-                    else
-                    {
-                        btnDeletePrimitive.Visible = true;
-                    }
                 }
                 
                 else
@@ -200,7 +192,6 @@ namespace Weatherwane
                     labelChoiceReflective.Visible = false;
                     labelChoiceSpecular.Visible = false;
                     btnChange.Visible = false;
-                    btnDeletePrimitive.Visible = false;
                     checkBox2Render.Visible = false;
 
 
@@ -376,7 +367,6 @@ namespace Weatherwane
             if (primitive is Sphere)
             {
                 Sphere tmp = (Sphere)primitive;
-                btnDeletePrimitive.Visible = true;
                 ChoiceSpecular.Value = (decimal)tmp.specular;
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
@@ -398,7 +388,6 @@ namespace Weatherwane
                 Cylinder tmp = (Cylinder)primitive;
                 V = tmp.V;
                 
-                btnDeletePrimitive.Visible = true;
 
 
                 ChoiceSpecular.Value = (decimal)tmp.specular;
@@ -409,7 +398,6 @@ namespace Weatherwane
             {
                 Parallelepiped tmp = (Parallelepiped)primitive;
 
-                btnDeletePrimitive.Visible = true;
                 ChoiceSpecular.Value = (decimal)tmp.specular;
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
@@ -419,7 +407,6 @@ namespace Weatherwane
             else if (primitive is Plane)
             {
                 Plane tmp = (Plane)primitive;
-                btnDeletePrimitive.Visible = false;
                 ChoiceSpecular.Value = (decimal)tmp.specular;
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
@@ -611,15 +598,6 @@ namespace Weatherwane
             render();
         }
 
-        private void btnDeletePrimitive_Click(object sender, EventArgs e)
-        {
-            string selectedObject = this.choiceObject.SelectedItem.ToString();
-            Command deletePrimitive = new DeletePrimitiveCommand(selectedObject);
-            facade.executeCommand(deletePrimitive);
-            tabControl1_SelectedIndexChanged(sender, e);
-            render();
-            
-        }
 
         private bool checkTrianglePyramid(Vec3d P, Vec3d A, Vec3d B, Vec3d C)
         {
@@ -658,12 +636,5 @@ namespace Weatherwane
             facade.executeCommand(drawAxes);
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            Command clearScene = new ClearSceneCommand();
-            facade.executeCommand(clearScene);
-            tabControl1_SelectedIndexChanged(sender, e);
-            render();
-        }
     }
 }
