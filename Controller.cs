@@ -5,12 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Weatherwane
 {
+    // Вспомогательный класс для распараллеливания.
+    public class Limit
+    {
+        public Int32 begin;
+        public Int32 end;
+        public Bitmap img;
+        public Limit(Int32 begin, Int32 end, Bitmap img) { this.begin = begin; this.end = end; this.img = img; }
+    }
+
     class Controller
     {
-        private int n = 8;
+        private int n = 3;
         private Scene scene;
         private Scene sceneOXYZ;
         private RayTracer rayTracer;
@@ -21,7 +31,7 @@ namespace Weatherwane
 
         private Bitmap tmp;
         private Bitmap tmp_axes;
-        private Bitmap[] arr;
+        private Bitmap[] arrBitmap;
         public Controller(int canvasWidth, int canvasHeight)
         {
             this.scene = new Scene(canvasWidth, canvasHeight);
@@ -39,7 +49,7 @@ namespace Weatherwane
             this.sceneOXYZ.AddCylinder("OY", new Vec3d(0, 0, 0), new Vec3d(0, 1, 0), 0.05, 500, new Vec3d(0, 255, 0), 0, 0);
             this.sceneOXYZ.AddCylinder("OZ", new Vec3d(0, 0, 0), new Vec3d(0, 0, 1), 0.05, 500, new Vec3d(0, 0, 255), 0, 0);
             this.rayTracerOXYZ = new RayTracer(this.sceneOXYZ);
-            this.arr = new Bitmap[n];
+            this.arrBitmap = new Bitmap[n];
         }
 
         public void yawCamera(double angle)
@@ -103,21 +113,21 @@ namespace Weatherwane
         {
             scene.AddParallelepiped(name, C, E, color, specular, reflective);
         }
-        public void render(ref PictureBox canvas, bool drawAxes, bool drawBackground)
+        public void render(ref PictureBox canvas, bool drawBackground)
         {
             rayTracer.scene = this.scene;
-            tmp = rayTracer.render(drawBackground);        
-
+            tmp = rayTracer.render(drawBackground);
+            
+/*
             this.sceneOXYZ.convertBackgroundReverse(tmp, this.scene.canvasWidth, this.scene.canvasHeight);
             this.sceneOXYZ.camera = this.scene.camera;
-            tmp_axes = rayTracerOXYZ.render(true);
-
-            drawingAxes(ref canvas, drawAxes);
-
+            tmp_axes = rayTracerOXYZ.render(true);*/
+            canvas.Image = tmp;
         }
 
-        public void dynamic_render(ref PictureBox canvas, bool drawAxes, bool drawBackground)
+        public void dynamic_render(ref PictureBox canvas, bool drawBackground)
         {
+
             rayTracer.scene = this.scene;
             Primitive a;
             Vec3d turnPoint = new Vec3d(0, 48.5, 0);
@@ -130,8 +140,9 @@ namespace Weatherwane
                 this.sceneOXYZ.convertBackgroundReverse(tmp, this.scene.canvasWidth, this.scene.canvasHeight);
                 this.sceneOXYZ.camera = this.scene.camera;
                 tmp_axes = rayTracerOXYZ.render(true);
+                canvas.Image = tmp;
+                arrBitmap.Append(tmp);
 
-                drawingAxes(ref canvas, drawAxes);
                 for (int j = 0; j < scene.sceneObjects.Count; j++)
                 {
                     a = scene.sceneObjects[j];
@@ -143,26 +154,84 @@ namespace Weatherwane
                     {
                         continue;
                         //TransformPrimitive.RotateOYCylinder(ref a, ref turnPoint, angle);
+
                     }
-                }    
+                }
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                canvas.Image = arrBitmap[i];
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                canvas.Image = arrBitmap[i];
+            }
+
+        }
+
+/*        private void createArrayImgBox()
+        {
+            double angle = 0.04d;
+            double h = 0.23;
+            DrawScene();
+
+            // Правый шар поднимается.
+            while (_scene[2].Center.Y < h)
+            {
+                Console.WriteLine(_scene[2].Center.Y);
+                _scene[2].Center.RotateNegative(1.6, 5, angle);
+                DrawScene();
+            }
+            // Правый шар опускается.
+            while (_scene[2].Center.Y - 0.2 > 0.001)
+            {
+                Console.WriteLine(_scene[2].Center.Y);
+                _scene[2].Center.RotatePositive(1.6, 5, angle);
+                DrawScene();
+            }
+            // Левый шар поднимается. 
+            while (_scene[0].Center.Y < h)
+            {
+                Console.WriteLine(_scene[0].Center.Y);
+                _scene[0].Center.RotatePositive(-1.6, 5, angle);
+                DrawScene();
+            }
+            // Левый шар опускается. 
+            while (_scene[0].Center.Y - 0.2 > 0.001)
+            {
+                Console.WriteLine(_scene[0].Center.Y);
+                _scene[0].Center.RotateNegative(-1.6, 5, angle);
+                DrawScene();
             }
         }
-
-        public void drawingAxes(ref PictureBox canvas, bool draw)
+        private void DrawScene(int step = 165) // 8 потоков.
         {
-            if (draw == true)
-                canvas.Image = tmp_axes;
-            else
-                canvas.Image = tmp;
-        }
+            Bitmap img = new Bitmap((int)this.scene.canvasWidth, (int)this.scene.canvasHeight);
 
-        public bool CheckFreeNamePrimitive(string name)
-        {
-            for (int i = 0; i < scene.sceneObjects.Count; i++)
-                if (scene.sceneObjects[i].name == name)
-                    return false;
-            return true;
-        }
+            List<Thread> listThread = new List<Thread>();
+
+            for (int i = -(int)this.scene.canvasWidth / 2; i < (int)this.scene.canvasWidth / 2; i += step)
+            {
+                listThread.Add(new Thread(new ParameterizedThreadStart(FuncVertically)));
+                listThread[listThread.Count - 1].Start(new Limit(i, i + step, img));
+            }
+
+            // Join — Это метод синхронизации, который блокирует вызывающий поток (то есть поток, который вызывает метод).
+            // Используйте этот метод, чтобы убедиться, что поток был завершен.
+            // То есть мы не пойдем далее по коду, пока что не выполнятся потоки, вызванные ранее 
+            // (то есть те потоки, которые мы джоиним.).
+            foreach (var elem in listThread)
+            {
+                elem.Join();
+            }
+
+            _arrayBitmap.Add(img);
+
+        }*/
+
+
 
         public List<Primitive> getSceneObjects()
         {

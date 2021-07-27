@@ -11,52 +11,32 @@ namespace Weatherwane
     class RenderCommand : Command
     {
         private PictureBox canvas;
-        private bool drawAxes;
-        private bool drawNebo;
+        private bool drawSea;
 
-        unsafe public RenderCommand(ref PictureBox canvas, bool drawOXYZ, bool drawNebo)
+        unsafe public RenderCommand(ref PictureBox canvas, bool drawSea)
         {
             this.canvas = canvas;
-            this.drawAxes = drawOXYZ;
-            this.drawNebo = drawNebo;
+            this.drawSea = drawSea;
         }
         public override void execute(Controller controller)
         {
-            controller.render(ref canvas, this.drawAxes, this.drawNebo);
+            controller.render(ref canvas, this.drawSea);
         }
     }
 
     class DynamicRenderCommand : Command
     {
         private PictureBox canvas;
-        private bool drawAxes;
-        private bool drawNebo;
+        private bool drawSea;
 
-        unsafe public DynamicRenderCommand(ref PictureBox canvas, bool drawOXYZ, bool drawNebo)
+        unsafe public DynamicRenderCommand(ref PictureBox canvas, bool drawSea)
         {
             this.canvas = canvas;
-            this.drawAxes = drawOXYZ;
-            this.drawNebo = drawNebo;
+            this.drawSea = drawSea;
         }
         public override void execute(Controller controller)
         {
-            controller.dynamic_render(ref canvas, this.drawAxes, this.drawNebo);
-        }
-    }
-
-    class DrawAxesCommand : Command
-    {
-        private PictureBox canvas;
-        private bool drawAxes;
-
-        unsafe public DrawAxesCommand(ref PictureBox canvas, bool draw)
-        {
-            this.canvas = canvas;
-            this.drawAxes = draw;
-        }
-        public override void execute(Controller controller)
-        {
-            controller.drawingAxes(ref canvas, this.drawAxes);
+            controller.dynamic_render(ref canvas, this.drawSea);
         }
     }
 }

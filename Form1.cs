@@ -75,14 +75,14 @@ namespace Weatherwane
 
         void render()
         {
-            Command renderCommand = new RenderCommand(ref canvas, checkBox1.Checked, checkBoxNebo.Checked);
+            Command renderCommand = new RenderCommand(ref canvas, checkBoxNebo.Checked);
             
             facade.executeCommand(renderCommand);
         }
 
         void dynamicButton_Click(object sender, EventArgs e)
         {
-            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, checkBox1.Checked, checkBoxNebo.Checked);
+            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, checkBoxNebo.Checked);
 
             facade.executeCommand(dynamicRenderCommand);
         }
@@ -624,16 +624,6 @@ namespace Weatherwane
             if (Vec3d.Length(vec) == 1)
                 return true;
             return false;
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            Command drawAxes;
-            if (checkBox1.Checked == true)
-                drawAxes = new DrawAxesCommand(ref canvas, true);
-            else
-                drawAxes = new DrawAxesCommand(ref canvas, false);
-            facade.executeCommand(drawAxes);
         }
 
     }

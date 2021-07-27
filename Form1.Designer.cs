@@ -107,7 +107,6 @@
             this.AddLightPosX = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBoxNebo = new System.Windows.Forms.CheckBox();
             this.dynamicButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
@@ -1227,18 +1226,6 @@
             this.label14.TabIndex = 207;
             this.label14.Text = "Положение:";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(1358, 1194);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(176, 29);
-            this.checkBox1.TabIndex = 213;
-            this.checkBox1.Text = "рисовать оси";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // checkBoxNebo
             // 
             this.checkBoxNebo.AutoSize = true;
@@ -1269,7 +1256,6 @@
             this.ClientSize = new System.Drawing.Size(2564, 1362);
             this.Controls.Add(this.dynamicButton);
             this.Controls.Add(this.checkBoxNebo);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.AddLightIntensity);
             this.Controls.Add(this.btnRender);
             this.Controls.Add(this.AddLightPosZ);
@@ -1390,7 +1376,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBoxNebo;
         private System.Windows.Forms.Button dynamicButton;
         private System.Windows.Forms.TabPage btnDeleteObject;
