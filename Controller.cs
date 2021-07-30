@@ -119,7 +119,6 @@ namespace Weatherwane
 
             Console.WriteLine(currImgIndex + "  " + arrBitmap.Count());
             imgBox.Image = arrBitmap[currImgIndex];
-/*            imgBox.Image = Image.FromFile("C:\Users\Eugene\Pictures\12.jpg");*/
 
             currImgIndex++;
         }
@@ -138,16 +137,10 @@ namespace Weatherwane
 
                 for (int j = 0; j < scene.sceneObjects.Count; j++)
                 {
-                    a = scene.sceneObjects[j];
-                    if (a is Sphere)
+                    if (scene.sceneObjects[j].moving)
                     {
-                        TransformPrimitive.RotateOY(ref a.C, ref turnPoint, angle);
-                    }
-                    else if (a is Cylinder)
-                    {
-                        continue;
-                        //TransformPrimitive.RotateOYCylinder(ref a, ref turnPoint, angle);
-
+                        scene.sceneObjects[j].RotateOY(turnPoint, angle);
+                        Console.WriteLine(scene.sceneObjects[j]);
                     }
                 }
             }
@@ -295,7 +288,7 @@ namespace Weatherwane
             }
         }
 
-        public void updateTrianglePyramid(string oldname, string newname, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d color, double specular, double reflective)
+        public void updateTrianglePyramid(string oldname, string newname, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d color, double specular, double reflective, bool moving)
         {
 
             for (int i = 0; i < this.scene.sceneObjects.Count; i++)
@@ -306,10 +299,10 @@ namespace Weatherwane
                     i--;
                 }
             }
-            this.scene.AddTrianglePyramid(newname, P, A, B, C, color, specular, reflective);
+            this.scene.AddTrianglePyramid(newname, P, A, B, C, color, specular, reflective, moving);
         }
 
-        public void updateCylinder(string oldname, string newname, Vec3d C, Vec3d V, double r, double maxm, Vec3d color, double specular, double reflective)
+        public void updateCylinder(string oldname, string newname, Vec3d C, Vec3d V, double r, double maxm, Vec3d color, double specular, double reflective, bool moving)
         {
 
             for (int i = 0; i < this.scene.sceneObjects.Count; i++)
@@ -320,7 +313,7 @@ namespace Weatherwane
                     i--;
                 }
             }
-            this.scene.AddCylinder(newname, C, V, r, maxm, color, specular, reflective);
+            this.scene.AddCylinder(newname, C, V, r, maxm, color, specular, reflective, moving);
         }
 
         public void deletePrimitive(string name)

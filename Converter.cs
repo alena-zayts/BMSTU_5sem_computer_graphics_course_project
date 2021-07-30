@@ -77,19 +77,19 @@ namespace Weatherwane
             scene.sceneObjects.Clear();
 
             for (int i = 0; i < this.spheres.Length; i++)
-                scene.AddSphere(this.spheres[i].name, this.spheres[i].C, this.spheres[i].radius, this.spheres[i].color, this.spheres[i].specular, this.spheres[i].reflective);
+                scene.AddSphere(this.spheres[i].name, this.spheres[i].C, this.spheres[i].radius, this.spheres[i].color, this.spheres[i].specular, this.spheres[i].reflective, this.spheres[i].moving);
 
             for (int i = 0; i < this.cylinders.Length; i++)
-                scene.AddCylinder(this.cylinders[i].name, this.cylinders[i].C, this.cylinders[i].V, this.cylinders[i].radius, this.cylinders[i].maxm, this.cylinders[i].color, this.cylinders[i].specular, this.cylinders[i].reflective);
+                scene.AddCylinder(this.cylinders[i].name, this.cylinders[i].C, this.cylinders[i].V, this.cylinders[i].radius, this.cylinders[i].maxm, this.cylinders[i].color, this.cylinders[i].specular, this.cylinders[i].reflective, this.cylinders[i].moving);
 
             for (int i = 0; i < this.trianglePyramids.Length; i++)
-                scene.AddTrianglePyramid(this.trianglePyramids[i].name, this.trianglePyramids[i].P, this.trianglePyramids[i].A, this.trianglePyramids[i].B, this.trianglePyramids[i].C, this.trianglePyramids[i].color, this.trianglePyramids[i].specular, this.trianglePyramids[i].reflective);
+                scene.AddTrianglePyramid(this.trianglePyramids[i].name, this.trianglePyramids[i].P, this.trianglePyramids[i].A, this.trianglePyramids[i].B, this.trianglePyramids[i].C, this.trianglePyramids[i].color, this.trianglePyramids[i].specular, this.trianglePyramids[i].reflective, this.trianglePyramids[i].moving);
 
             for (int i = 0; i < this.parallelepipeds.Length; i++)
-                scene.AddParallelepiped(this.parallelepipeds[i].name, this.parallelepipeds[i].C, this.parallelepipeds[i].E, this.parallelepipeds[i].color, this.parallelepipeds[i].specular, this.parallelepipeds[i].reflective);
+                scene.AddParallelepiped(this.parallelepipeds[i].name, this.parallelepipeds[i].C, this.parallelepipeds[i].E, this.parallelepipeds[i].color, this.parallelepipeds[i].specular, this.parallelepipeds[i].reflective, this.parallelepipeds[i].moving);
 
             for (int i = 0; i < this.planes.Length; i++)
-                scene.AddPlane(this.planes[i].name, this.planes[i].C, this.planes[i].V, this.planes[i].color, this.planes[i].specular, this.planes[i].reflective);
+                scene.AddPlane(this.planes[i].name, this.planes[i].C, this.planes[i].V, this.planes[i].color, this.planes[i].specular, this.planes[i].reflective, this.parallelepipeds[i].moving);
 
             scene.lights.Clear();
 

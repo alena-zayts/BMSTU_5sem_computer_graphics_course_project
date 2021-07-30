@@ -209,6 +209,7 @@ namespace Weatherwane
                         Sphere tmp = (Sphere)primitives[i];
                         str = "Name: " + tmp.name + ", ";
                         str += "Type: Сфера, ";
+                        str += "Вращается: " + tmp.moving + ", ";
                         str += "Parametrs: C = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
                         str += "R = " + tmp.radius + ", ";
                         str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
@@ -221,6 +222,7 @@ namespace Weatherwane
                         Cylinder tmp = (Cylinder)primitives[i];
                         str = "Name: " + tmp.name + ", ";
                         str += "Type: Цилиндр, ";
+                        str += "Вращается: " + tmp.moving + ", ";
                         str += "Parametrs: Cосн = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
                         str += "Rосн = " + tmp.radius + ", ";
                         str += "V = (" + String.Format("{0:f6}", tmp.V.x) + "; " + String.Format("{0:f6}", tmp.V.y) + "; " + String.Format("{0:f6}", tmp.V.z) + "), ";
@@ -235,6 +237,7 @@ namespace Weatherwane
                         Parallelepiped tmp = (Parallelepiped)primitives[i];
                         str = "Name: " + tmp.name + ", ";
                         str += "Type: Параллелепипед, ";
+                        str += "Вращается: " + tmp.moving + ", ";
                         str += "Parametrs: С = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
                         str += "E = (" + tmp.E.x + "; " + tmp.E.y + "; " + tmp.E.z + "), ";
                         str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
@@ -247,6 +250,7 @@ namespace Weatherwane
                         TrianglePyramid tmp = (TrianglePyramid)primitives[i];
                         str = "Name: " + tmp.name + ", ";
                         str += "Type: Пирамида, ";
+                        str += "Вращается: " + tmp.moving + ", ";
                         str += "Parametrs: P = (" + tmp.P.x + "; " + tmp.P.y + "; " + tmp.P.z + "), ";
                         str += "A = (" + tmp.A.x + "; " + tmp.A.y + "; " + tmp.A.z + "), ";
                         str += "B = (" + tmp.B.x + "; " + tmp.B.y + "; " + tmp.B.z + "), ";
@@ -260,6 +264,7 @@ namespace Weatherwane
                     {
                         Plane tmp = (Plane)primitives[i];
                         str = "Name: " + tmp.name + ", ";
+                        str += "Вращается: " + tmp.moving + ", ";
                         str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
                         str += "specular = " + tmp.specular + ", ";
                         str += "reflective = " + tmp.reflective;

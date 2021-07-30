@@ -93,5 +93,15 @@ namespace Weatherwane
             double length_vec = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
             return new Vec3d(this.x / length_vec, this.y / length_vec, this.z / length_vec);
         }
+
+        public void RotateOY(Vec3d C, double teta)
+        {
+
+            double d = teta * Math.PI / 180;
+            double tmp_x;
+            tmp_x = C.x + (this.x - C.x) * Math.Cos(d) + (this.z - C.z) * Math.Sin(d);
+            this.z = C.z - (this.x - C.x) * Math.Sin(d) + (this.z - C.z) * Math.Cos(d);
+            this.x = tmp_x;
+        }
     }
 }

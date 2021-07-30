@@ -11,10 +11,17 @@ namespace Weatherwane
         public Vec3d A;
         public Vec3d B;
         public Triangle(string name, Vec3d C, Vec3d A, Vec3d B,
-            Vec3d color, double specular, double reflective) : base(name, C, color, specular, reflective)
+            Vec3d color, double specular, double reflective, bool moving) : base(name, C, color, specular, reflective, moving)
         {
             this.A = A;
             this.B = B;
+        }
+
+        public override void RotateOY(Vec3d C, double teta)
+        {
+            this.A.RotateOY(C, teta);
+            this.B.RotateOY(C, teta);
+            this.C.RotateOY(C, teta);
         }
     }
 }
