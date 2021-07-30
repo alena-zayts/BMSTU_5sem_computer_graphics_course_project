@@ -92,12 +92,12 @@ namespace Weatherwane
             canvas.Image = tmp;
         }
 
-        public void dynamic_render(ref PictureBox canvas, bool drawBackground)
+        public void dynamic_render(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar)
         {
             if (!on)
             {
                 this.imgBox = canvas;
-                createArrayBitmap(ref canvas, drawBackground);
+                createArrayBitmap(ref canvas, drawBackground, ref progressBar);
                 timer.Start();
                 on = true;
             }
@@ -120,11 +120,13 @@ namespace Weatherwane
             currImgIndex++;
         }
 
-        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground)
+        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar)
         {
             Primitive a;
             Vec3d turnPoint = new Vec3d(0, 48.5, 0);
             double angle = 360 / n;
+
+            progressBar.Maximum = n;
 
             for (int i = 0; i < n; i++)
             {
@@ -139,6 +141,7 @@ namespace Weatherwane
                         scene.sceneObjects[j].RotateOY(turnPoint, angle);
                     }
                 }
+                progressBar.Value = i + 1;
             }
         }
 

@@ -78,7 +78,7 @@ namespace Weatherwane
 
         void dynamicButton_Click(object sender, EventArgs e)
         {
-            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, checkBoxNebo.Checked);
+            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, checkBoxNebo.Checked, ref this.progressBar);
 
             facade.executeCommand(dynamicRenderCommand);
         }
@@ -92,7 +92,7 @@ namespace Weatherwane
             string filename = saveFileDialog1.FileName;
             Command saveCommand = new SaveCommand(filename);
             facade.executeCommand(saveCommand);
-            MessageBox.Show("Сцена загружена");    
+            MessageBox.Show("Сцена сохранена");    
         }
 
         void aboutItem_Click(object sender, EventArgs e)
@@ -172,7 +172,6 @@ namespace Weatherwane
                     labelChoiceReflective.Visible = true;
                     labelChoiceSpecular.Visible = true;
                     btnChange.Visible = true;
-                    checkBox2Render.Visible = true;
 
                     string selectedObject = this.choiceObject.SelectedItem.ToString();
                 }
@@ -186,7 +185,6 @@ namespace Weatherwane
                     labelChoiceReflective.Visible = false;
                     labelChoiceSpecular.Visible = false;
                     btnChange.Visible = false;
-                    checkBox2Render.Visible = false;
 
 
                 }    
@@ -566,9 +564,7 @@ namespace Weatherwane
                     (double)ChoiceReflective.Value);
                 facade.executeCommand(UpdatePrimitiveCommand);
             }
-
-            if (checkBox2Render.Checked == true)
-                render();
+            render();
         }
 
 
@@ -598,32 +594,10 @@ namespace Weatherwane
         }
 
 
-        private bool checkTrianglePyramid(Vec3d P, Vec3d A, Vec3d B, Vec3d C)
+
+        private void labelChoiceSpecular_Click(object sender, EventArgs e)
         {
-            Vec3d PA = P - A;
-            Vec3d PB = P - B;
-            Vec3d PC = P - C;
 
-            double V = Math.Abs(PA.x * (PB.y * PC.z - PB.z * PC.y) - PA.y * (PB.x * PC.z - PB.z * PC.x) + PA.z * (PB.x * PC.y - PB.y * PC.x));
-
-            if (V < 10e-8)
-                return false;
-            return true;
         }
-        private bool checkParallelepiped(Vec3d C, Vec3d E)
-        {
-         
-            if (C.x < E.x && C.y < E.y && C.z < E.z)
-                return true;
-            return false;
-        }
-
-        private bool isUnitVector(Vec3d vec)
-        {
-            if (Vec3d.Length(vec) == 1)
-                return true;
-            return false;
-        }
-
     }
 }

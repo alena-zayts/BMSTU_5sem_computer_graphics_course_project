@@ -28,15 +28,17 @@ namespace Weatherwane
     {
         private PictureBox canvas;
         private bool drawSea;
+        ProgressBar progressBar;
 
-        unsafe public DynamicRenderCommand(ref PictureBox canvas, bool drawSea)
+        unsafe public DynamicRenderCommand(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar)
         {
             this.canvas = canvas;
             this.drawSea = drawSea;
+            this.progressBar = progressBar;
         }
         public override void execute(Controller controller)
         {
-            controller.dynamic_render(ref canvas, this.drawSea);
+            controller.dynamic_render(ref canvas, this.drawSea, ref this.progressBar);
         }
     }
 }

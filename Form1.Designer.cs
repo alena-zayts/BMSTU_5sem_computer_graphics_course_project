@@ -34,7 +34,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.btnDeleteObject = new System.Windows.Forms.TabPage();
             this.choiceObject = new System.Windows.Forms.ComboBox();
-            this.checkBox2Render = new System.Windows.Forms.CheckBox();
             this.labelChoiceColor = new System.Windows.Forms.Label();
             this.ChoiceReflective = new System.Windows.Forms.NumericUpDown();
             this.ChoiceSpecular = new System.Windows.Forms.NumericUpDown();
@@ -109,6 +108,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.checkBoxNebo = new System.Windows.Forms.CheckBox();
             this.dynamicButton = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.btnDeleteObject.SuspendLayout();
@@ -139,7 +141,7 @@
             // canvas
             // 
             this.canvas.InitialImage = ((System.Drawing.Image)(resources.GetObject("canvas.InitialImage")));
-            this.canvas.Location = new System.Drawing.Point(24, 65);
+            this.canvas.Location = new System.Drawing.Point(1453, 129);
             this.canvas.Margin = new System.Windows.Forms.Padding(6);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(1320, 1269);
@@ -150,18 +152,17 @@
             // 
             this.tabControl1.Controls.Add(this.btnDeleteObject);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(1358, 65);
+            this.tabControl1.Location = new System.Drawing.Point(75, 129);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1268, 654);
+            this.tabControl1.Size = new System.Drawing.Size(1185, 364);
             this.tabControl1.TabIndex = 45;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // btnDeleteObject
             // 
             this.btnDeleteObject.Controls.Add(this.choiceObject);
-            this.btnDeleteObject.Controls.Add(this.checkBox2Render);
             this.btnDeleteObject.Controls.Add(this.labelChoiceColor);
             this.btnDeleteObject.Controls.Add(this.ChoiceReflective);
             this.btnDeleteObject.Controls.Add(this.ChoiceSpecular);
@@ -173,9 +174,9 @@
             this.btnDeleteObject.Margin = new System.Windows.Forms.Padding(6);
             this.btnDeleteObject.Name = "btnDeleteObject";
             this.btnDeleteObject.Padding = new System.Windows.Forms.Padding(6);
-            this.btnDeleteObject.Size = new System.Drawing.Size(1252, 607);
+            this.btnDeleteObject.Size = new System.Drawing.Size(1169, 317);
             this.btnDeleteObject.TabIndex = 1;
-            this.btnDeleteObject.Text = "Изменить";
+            this.btnDeleteObject.Text = "Изменить материал";
             this.btnDeleteObject.UseVisualStyleBackColor = true;
             // 
             // choiceObject
@@ -204,24 +205,11 @@
             this.choiceObject.TabIndex = 329;
             this.choiceObject.SelectedIndexChanged += new System.EventHandler(this.choiceObject_SelectedIndexChanged);
             // 
-            // checkBox2Render
-            // 
-            this.checkBox2Render.AutoSize = true;
-            this.checkBox2Render.Checked = true;
-            this.checkBox2Render.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2Render.Location = new System.Drawing.Point(184, 554);
-            this.checkBox2Render.Margin = new System.Windows.Forms.Padding(6);
-            this.checkBox2Render.Name = "checkBox2Render";
-            this.checkBox2Render.Size = new System.Drawing.Size(192, 29);
-            this.checkBox2Render.TabIndex = 328;
-            this.checkBox2Render.Text = "с рендерингом";
-            this.checkBox2Render.UseVisualStyleBackColor = true;
-            // 
             // labelChoiceColor
             // 
             this.labelChoiceColor.AutoSize = true;
             this.labelChoiceColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChoiceColor.Location = new System.Drawing.Point(12, 387);
+            this.labelChoiceColor.Location = new System.Drawing.Point(16, 67);
             this.labelChoiceColor.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelChoiceColor.Name = "labelChoiceColor";
             this.labelChoiceColor.Size = new System.Drawing.Size(79, 30);
@@ -236,7 +224,7 @@
             0,
             0,
             196608});
-            this.ChoiceReflective.Location = new System.Drawing.Point(260, 487);
+            this.ChoiceReflective.Location = new System.Drawing.Point(349, 167);
             this.ChoiceReflective.Margin = new System.Windows.Forms.Padding(6);
             this.ChoiceReflective.Maximum = new decimal(new int[] {
             1,
@@ -249,7 +237,7 @@
             // 
             // ChoiceSpecular
             // 
-            this.ChoiceSpecular.Location = new System.Drawing.Point(260, 437);
+            this.ChoiceSpecular.Location = new System.Drawing.Point(349, 117);
             this.ChoiceSpecular.Margin = new System.Windows.Forms.Padding(6);
             this.ChoiceSpecular.Maximum = new decimal(new int[] {
             5000,
@@ -263,7 +251,7 @@
             // ChoiceColor
             // 
             this.ChoiceColor.BackColor = System.Drawing.Color.Red;
-            this.ChoiceColor.Location = new System.Drawing.Point(260, 387);
+            this.ChoiceColor.Location = new System.Drawing.Point(349, 67);
             this.ChoiceColor.Margin = new System.Windows.Forms.Padding(6);
             this.ChoiceColor.Name = "ChoiceColor";
             this.ChoiceColor.Size = new System.Drawing.Size(116, 38);
@@ -273,7 +261,7 @@
             // 
             // btnChange
             // 
-            this.btnChange.Location = new System.Drawing.Point(18, 546);
+            this.btnChange.Location = new System.Drawing.Point(22, 226);
             this.btnChange.Margin = new System.Windows.Forms.Padding(6);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(150, 44);
@@ -286,23 +274,24 @@
             // 
             this.labelChoiceSpecular.AutoSize = true;
             this.labelChoiceSpecular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChoiceSpecular.Location = new System.Drawing.Point(12, 437);
+            this.labelChoiceSpecular.Location = new System.Drawing.Point(16, 117);
             this.labelChoiceSpecular.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelChoiceSpecular.Name = "labelChoiceSpecular";
-            this.labelChoiceSpecular.Size = new System.Drawing.Size(156, 30);
+            this.labelChoiceSpecular.Size = new System.Drawing.Size(242, 34);
             this.labelChoiceSpecular.TabIndex = 326;
-            this.labelChoiceSpecular.Text = "Блестящий:";
+            this.labelChoiceSpecular.Text = "Уровень блеска:";
+            this.labelChoiceSpecular.Click += new System.EventHandler(this.labelChoiceSpecular_Click);
             // 
             // labelChoiceReflective
             // 
             this.labelChoiceReflective.AutoSize = true;
             this.labelChoiceReflective.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChoiceReflective.Location = new System.Drawing.Point(12, 487);
+            this.labelChoiceReflective.Location = new System.Drawing.Point(16, 167);
             this.labelChoiceReflective.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelChoiceReflective.Name = "labelChoiceReflective";
-            this.labelChoiceReflective.Size = new System.Drawing.Size(182, 30);
+            this.labelChoiceReflective.Size = new System.Drawing.Size(374, 34);
             this.labelChoiceReflective.TabIndex = 327;
-            this.labelChoiceReflective.Text = "Отражающий:";
+            this.labelChoiceReflective.Text = "Коэффициент отражения:";
             // 
             // tabPage3
             // 
@@ -310,9 +299,9 @@
             this.tabPage3.Location = new System.Drawing.Point(8, 39);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1252, 607);
+            this.tabPage3.Size = new System.Drawing.Size(1169, 317);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Посмотреть";
+            this.tabPage3.Text = "Текущие свойства";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // listBox1
@@ -333,7 +322,7 @@
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Location = new System.Drawing.Point(2088, 723);
+            this.tabControl2.Location = new System.Drawing.Point(852, 522);
             this.tabControl2.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -606,7 +595,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(2564, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(2831, 24);
             this.menuStrip1.TabIndex = 47;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -953,7 +942,7 @@
             // tabControl3
             // 
             this.tabControl3.Controls.Add(this.tabPage6);
-            this.tabControl3.Location = new System.Drawing.Point(1358, 731);
+            this.tabControl3.Location = new System.Drawing.Point(83, 531);
             this.tabControl3.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
@@ -1093,7 +1082,7 @@
             // 
             // btnAddLight
             // 
-            this.btnAddLight.Location = new System.Drawing.Point(2096, 1306);
+            this.btnAddLight.Location = new System.Drawing.Point(756, 1132);
             this.btnAddLight.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddLight.Name = "btnAddLight";
             this.btnAddLight.Size = new System.Drawing.Size(522, 44);
@@ -1104,7 +1093,7 @@
             // 
             // btnRender
             // 
-            this.btnRender.Location = new System.Drawing.Point(1358, 1238);
+            this.btnRender.Location = new System.Drawing.Point(0, 1101);
             this.btnRender.Margin = new System.Windows.Forms.Padding(6);
             this.btnRender.Name = "btnRender";
             this.btnRender.Size = new System.Drawing.Size(716, 44);
@@ -1121,7 +1110,7 @@
             0,
             0,
             196608});
-            this.AddLightIntensity.Location = new System.Drawing.Point(2410, 1196);
+            this.AddLightIntensity.Location = new System.Drawing.Point(1070, 1022);
             this.AddLightIntensity.Margin = new System.Windows.Forms.Padding(6);
             this.AddLightIntensity.Maximum = new decimal(new int[] {
             1,
@@ -1140,7 +1129,7 @@
             0,
             0,
             196608});
-            this.AddLightPosZ.Location = new System.Drawing.Point(2514, 1244);
+            this.AddLightPosZ.Location = new System.Drawing.Point(1174, 1070);
             this.AddLightPosZ.Margin = new System.Windows.Forms.Padding(6);
             this.AddLightPosZ.Maximum = new decimal(new int[] {
             1000,
@@ -1164,7 +1153,7 @@
             0,
             0,
             196608});
-            this.AddLightPosY.Location = new System.Drawing.Point(2410, 1244);
+            this.AddLightPosY.Location = new System.Drawing.Point(1070, 1070);
             this.AddLightPosY.Margin = new System.Windows.Forms.Padding(6);
             this.AddLightPosY.Maximum = new decimal(new int[] {
             1000,
@@ -1188,7 +1177,7 @@
             0,
             0,
             196608});
-            this.AddLightPosX.Location = new System.Drawing.Point(2302, 1244);
+            this.AddLightPosX.Location = new System.Drawing.Point(962, 1070);
             this.AddLightPosX.Margin = new System.Windows.Forms.Padding(6);
             this.AddLightPosX.Maximum = new decimal(new int[] {
             1000,
@@ -1208,7 +1197,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(2102, 1198);
+            this.label13.Location = new System.Drawing.Point(762, 1024);
             this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(202, 30);
@@ -1219,7 +1208,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(2102, 1252);
+            this.label14.Location = new System.Drawing.Point(762, 1078);
             this.label14.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(157, 30);
@@ -1231,7 +1220,7 @@
             this.checkBoxNebo.AutoSize = true;
             this.checkBoxNebo.Checked = true;
             this.checkBoxNebo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxNebo.Location = new System.Drawing.Point(1778, 1194);
+            this.checkBoxNebo.Location = new System.Drawing.Point(246, 1028);
             this.checkBoxNebo.Margin = new System.Windows.Forms.Padding(6);
             this.checkBoxNebo.Name = "checkBoxNebo";
             this.checkBoxNebo.Size = new System.Drawing.Size(189, 29);
@@ -1241,7 +1230,7 @@
             // 
             // dynamicButton
             // 
-            this.dynamicButton.Location = new System.Drawing.Point(1538, 1188);
+            this.dynamicButton.Location = new System.Drawing.Point(28, 1019);
             this.dynamicButton.Margin = new System.Windows.Forms.Padding(6);
             this.dynamicButton.Name = "dynamicButton";
             this.dynamicButton.Size = new System.Drawing.Size(188, 44);
@@ -1249,11 +1238,36 @@
             this.dynamicButton.Text = "dynamic_render";
             this.dynamicButton.UseVisualStyleBackColor = true;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(0, 4);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 217;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(0, 0);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(100, 23);
+            this.progressBar2.TabIndex = 218;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(384, 1212);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(487, 61);
+            this.progressBar.TabIndex = 219;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2564, 1362);
+            this.BackColor = System.Drawing.Color.DarkKhaki;
+            this.ClientSize = new System.Drawing.Size(2831, 1362);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.dynamicButton);
             this.Controls.Add(this.checkBoxNebo);
             this.Controls.Add(this.AddLightIntensity);
@@ -1380,7 +1394,6 @@
         private System.Windows.Forms.Button dynamicButton;
         private System.Windows.Forms.TabPage btnDeleteObject;
         private System.Windows.Forms.ComboBox choiceObject;
-        private System.Windows.Forms.CheckBox checkBox2Render;
         private System.Windows.Forms.Label labelChoiceColor;
         private System.Windows.Forms.NumericUpDown ChoiceReflective;
         private System.Windows.Forms.NumericUpDown ChoiceSpecular;
@@ -1388,6 +1401,9 @@
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Label labelChoiceSpecular;
         private System.Windows.Forms.Label labelChoiceReflective;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
 
