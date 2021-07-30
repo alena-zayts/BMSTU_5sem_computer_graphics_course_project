@@ -18,7 +18,7 @@ namespace Weatherwane
         private SaveScene saverScene;
         private CameraManager cameraManager;
 
-        private int n = 8;
+        private int n = 36;
         private int currImgIndex;
         private bool on;
         private System.Timers.Timer timer; // Частота кадров.
@@ -99,7 +99,7 @@ namespace Weatherwane
         {
             if (!on)
             {
-                imgBox = canvas;
+                this.imgBox = canvas;
                 createArrayBitmap(ref canvas, drawBackground);
                 timer.Start();
                 on = true;
@@ -119,6 +119,7 @@ namespace Weatherwane
 
             Console.WriteLine(currImgIndex + "  " + arrBitmap.Count());
             imgBox.Image = arrBitmap[currImgIndex];
+/*            imgBox.Image = Image.FromFile("C:\Users\Eugene\Pictures\12.jpg");*/
 
             currImgIndex++;
         }
@@ -132,8 +133,8 @@ namespace Weatherwane
             for (int i = 0; i < n; i++)
             {
 
-                tmp = rayTracer.render(drawBackground);
-                arrBitmap.Append(tmp);
+                tmp = new Bitmap(rayTracer.render(drawBackground));
+                arrBitmap[i] = tmp;
 
                 for (int j = 0; j < scene.sceneObjects.Count; j++)
                 {

@@ -39,4 +39,22 @@ namespace Weatherwane
             controller.dynamic_render(ref canvas, this.drawSea);
         }
     }
+
+/*    class CreateArrayBitmap : Command
+    {
+        private PictureBox canvas;
+        private bool drawSea;
+        private int n;
+
+        unsafe public CreateArrayBitmap(ref PictureBox canvas, bool drawSea, int n)
+        {
+            this.canvas = canvas;
+            this.drawSea = drawSea;
+            this.n = n;
+        }
+        public override void execute(Controller controller)
+        {
+            controller.createArrayBitmap(ref canvas, this.drawSea, this.);
+        }
+    }*/
 }
