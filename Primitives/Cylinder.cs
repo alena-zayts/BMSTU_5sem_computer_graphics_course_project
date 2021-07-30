@@ -21,8 +21,9 @@ namespace Weatherwane
 
         public override void RotateOY(Vec3d C, double teta)
         {
+            Vec3d zero = new Vec3d(0, 0, 0);
             this.C.RotateOY(C, teta);
-            this.V.RotateOY(C, teta);
+            this.V.RotateOY(zero, teta);
         }
     }
 }

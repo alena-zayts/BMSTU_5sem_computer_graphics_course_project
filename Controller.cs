@@ -39,9 +39,6 @@ namespace Weatherwane
             this.currImgIndex = 0;
             this.on = false;
 
-            // Image.
-/*            imgBox = new PictureBox();
-            imgBox.Size = new Size((int)canvasWidth, (int)canvasHeight);*/
 
             // Timer
             timer = new System.Timers.Timer(150);
@@ -140,7 +137,6 @@ namespace Weatherwane
                     if (scene.sceneObjects[j].moving)
                     {
                         scene.sceneObjects[j].RotateOY(turnPoint, angle);
-                        Console.WriteLine(scene.sceneObjects[j]);
                     }
                 }
             }
@@ -218,33 +214,7 @@ namespace Weatherwane
                     this.scene.sceneObjects[i].color = color;
                     this.scene.sceneObjects[i].specular = specular;
                     this.scene.sceneObjects[i].reflective = reflective;
-                    break;
                 }
-            }
-        }
-
-        public void updateSphere(string oldname, string newname, Vec3d C, double r, Vec3d color, double specular, double reflective)
-        {
-            int index = -1;
-            
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
-            {
-                if (this.scene.sceneObjects[i].name == oldname)
-                {
-                    index = i;
-                    break;
-                }  
-            }
-            if (index != -1)
-            {
-                Sphere tmp = (Sphere)this.scene.sceneObjects[index];
-                tmp.name = newname;
-                tmp.C = C;
-                tmp.radius = r;
-                tmp.color = color;
-                tmp.specular = specular;
-                tmp.reflective = reflective;
-                this.scene.sceneObjects[index] = tmp;
             }
         }
 
@@ -263,88 +233,9 @@ namespace Weatherwane
             }
         }
 
-        public void updateParallelepiped(string oldname, string newname, Vec3d C, Vec3d E, Vec3d color, double specular, double reflective)
-        {
-            int index = -1;
-
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
-            {
-                if (this.scene.sceneObjects[i].name == oldname)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            if (index != -1)
-            {
-                Parallelepiped tmp = (Parallelepiped)this.scene.sceneObjects[index];
-                tmp.name = newname;
-                tmp.C = C;
-                tmp.E = E;
-                tmp.color = color;
-                tmp.specular = specular;
-                tmp.reflective = reflective;
-                this.scene.sceneObjects[index] = tmp;
-            }
-        }
-
-        public void updateTrianglePyramid(string oldname, string newname, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d color, double specular, double reflective, bool moving)
-        {
-
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
-            {
-                if (this.scene.sceneObjects[i].name == oldname)
-                {
-                    this.scene.sceneObjects.RemoveRange(i, 1);
-                    i--;
-                }
-            }
-            this.scene.AddTrianglePyramid(newname, P, A, B, C, color, specular, reflective, moving);
-        }
-
-        public void updateCylinder(string oldname, string newname, Vec3d C, Vec3d V, double r, double maxm, Vec3d color, double specular, double reflective, bool moving)
-        {
-
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
-            {
-                if (this.scene.sceneObjects[i].name == oldname)
-                {
-                    this.scene.sceneObjects.RemoveRange(i, 1);
-                    i--;
-                }
-            }
-            this.scene.AddCylinder(newname, C, V, r, maxm, color, specular, reflective, moving);
-        }
-
-        public void deletePrimitive(string name)
-        {
-
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
-            {
-                if (this.scene.sceneObjects[i].name == name)
-                {
-                    this.scene.sceneObjects.RemoveRange(i, 1);
-                    i--;
-                }
-            }
-        }
-
         public Camera getCamera()
         {
             return this.scene.camera;
-        }
-
-        public void clearScene()
-        {
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
-            {
-                if (this.scene.sceneObjects[i] is Plane)
-                {
-                    continue;
-                }
-                this.scene.sceneObjects.RemoveRange(i, 1);
-                i--;
-            }
         }
     }
 }

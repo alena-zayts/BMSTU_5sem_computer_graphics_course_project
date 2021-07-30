@@ -19,20 +19,6 @@ namespace Weatherwane
         public List<Light> lights { get; set; }
         public int countPointLights = 0;
 
-
-        public void convertBackgroundReverse(Bitmap bmpBackground, int canvasWidth, int canvasHeight)
-        {
-            for (int i = 0; i < canvasWidth; i++)
-            {
-                for (int j = 0; j < canvasHeight; j++)
-                {
-                    Color color = bmpBackground.GetPixel(i, j);
-
-                    this.background[i, canvasHeight - j - 1] = new Vec3d(color.R, color.G, color.B);
-                }
-            }
-        }
-
         public void convertBackground(Bitmap bmpBackground, int canvasWidth, int canvasHeight)
         {
             for (int i = 0; i < canvasWidth; i++)
@@ -65,8 +51,8 @@ namespace Weatherwane
         {
             Cylinder cylinder = new Cylinder(name, C, V, r, maxm, color, specular, reflective, moving);
             sceneObjects.Add(cylinder);
-            AddDiskPlane(cylinder.name, cylinder.C, -cylinder.V, cylinder.radius, cylinder.color, cylinder.specular, cylinder.reflective, cylinder.moving);
-            AddDiskPlane(cylinder.name, cylinder.C + cylinder.V * maxm, cylinder.V, cylinder.radius, cylinder.color, cylinder.specular, cylinder.reflective, cylinder.moving);
+            AddDiskPlane(name, new Vec3d(C), -V, r, color, specular, reflective, moving);
+            AddDiskPlane(name, C + V * maxm, new Vec3d(V), r, color, specular, reflective, moving);
         }
 
         public void AddParallelepiped(string name, Vec3d C, Vec3d E, Vec3d color, double specular, double reflective, bool moving)
@@ -76,10 +62,10 @@ namespace Weatherwane
 
         public void AddTrianglePyramid(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d color, double specular, double reflective, bool moving)
         {
-            AddTriangle(name, P, A, B, color, specular, reflective, moving);
-            AddTriangle(name, P, B, C, color, specular, reflective, moving);
-            AddTriangle(name, P, C, A, color, specular, reflective, moving);
-            AddTriangle(name, A, B, C, color, specular, reflective, moving);
+            AddTriangle(name, new Vec3d(P), new Vec3d(A), new Vec3d(B), color, specular, reflective, moving);
+            AddTriangle(name, new Vec3d(P), new Vec3d(B), new Vec3d(C), color, specular, reflective, moving);
+            AddTriangle(name, new Vec3d(P), new Vec3d(C), new Vec3d(A), color, specular, reflective, moving);
+            AddTriangle(name, new Vec3d(A), new Vec3d(B), new Vec3d(C), color, specular, reflective, moving);
             sceneObjects.Add(new TrianglePyramid(name, P, A, B, C, color, specular, reflective, moving));
         }
 
@@ -129,30 +115,6 @@ namespace Weatherwane
             }
             countPointLights -= 1;
             UpdateLightPointName();
-        }
-
-        public void ChangeLightIntensity(string name, double intensity)
-        {
-            for (int i = 0; i < lights.Count; i++)
-            {
-                if (lights[i].name == name)
-                {
-                    lights[i].intensity = intensity;
-                    break;
-                }
-            }
-        }
-
-        public void ChangeLightPosition(string name, Vec3d position)
-        {
-            for (int i = 0; i < lights.Count; i++)
-            {
-                if (lights[i].name == name)
-                {
-                    lights[i].position = position;
-                    break;
-                }
-            }
         }
     }
 }
