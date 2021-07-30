@@ -44,8 +44,6 @@ namespace Weatherwane
             }
 
 
-
-
             ToolStripMenuItem fileItem = new ToolStripMenuItem("Файл");
             ToolStripMenuItem loadItem = new ToolStripMenuItem("Загрузить");
             ToolStripMenuItem saveItem = new ToolStripMenuItem("Сохранить");
@@ -59,18 +57,16 @@ namespace Weatherwane
 
             saveItem.Click += saveItem_Click;
             loadItem.Click += loadItem_Click;
-            dynamicButton.Click += dynamicButton_Click;
             menuStrip1.Items.Add(fileItem);
 
             ToolStripMenuItem aboutItem = new ToolStripMenuItem("О программе");
 
             aboutItem.Click += aboutItem_Click;
-
             menuStrip1.Items.Add(aboutItem);
 
-            render();
-           
-          
+            dynamicButton.Click += dynamicButton_Click;
+
+            render(); 
         }
 
         void render()
@@ -96,12 +92,12 @@ namespace Weatherwane
             string filename = saveFileDialog1.FileName;
             Command saveCommand = new SaveCommand(filename);
             facade.executeCommand(saveCommand);
-            MessageBox.Show("Сцена сохранилась успешно");    
+            MessageBox.Show("Сцена загружена");    
         }
 
         void aboutItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Создание собственных сооружений, состоящих из сфер, цилиндров, конусов, параллелепипедов, треугольных и четырехугольных пирамид.");
+            MessageBox.Show("Программа предназначена для моделирования вращения флюгера, состоящего из сфер, цилиндров, параллелепипедов и треугольных пирамид.");
         }
 
 
@@ -119,7 +115,7 @@ namespace Weatherwane
             }
             catch (Exception err)
             {
-                MessageBox.Show("Ошибка загрузки сцены! Некорректный файл!");
+                MessageBox.Show("Ошибка загрузки сцены. Проверьте корректность содержания файля");
                 return;
             }
 
@@ -136,7 +132,7 @@ namespace Weatherwane
             CameraRotOY.Text = tmp.angle.y.ToString();
             CameraRotOZ.Text = tmp.angle.z.ToString();
 
-            MessageBox.Show("Сцена загрузилась успешно");
+            MessageBox.Show("Сцена загружена");
 
         }
 
@@ -157,9 +153,7 @@ namespace Weatherwane
                 
                 for (int i = 0; i < primitives.Count; i++)
                 {
-                    if (primitives[i] is Triangle)
-                        continue;
-                    if (primitives[i] is DiskPlane)
+                    if ((primitives[i] is Triangle) || (primitives[i] is DiskPlane))
                         continue;
                     
                     flag += 1;

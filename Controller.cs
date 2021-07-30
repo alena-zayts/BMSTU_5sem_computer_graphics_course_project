@@ -6,32 +6,26 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
+using System.Timers;
 
 namespace Weatherwane
 {
-    // Вспомогательный класс для распараллеливания.
-    public class Limit
-    {
-        public Int32 begin;
-        public Int32 end;
-        public Bitmap img;
-        public Limit(Int32 begin, Int32 end, Bitmap img) { this.begin = begin; this.end = end; this.img = img; }
-    }
-
     class Controller
     {
-        private int n = 3;
         private Scene scene;
-        private Scene sceneOXYZ;
         private RayTracer rayTracer;
-        private RayTracer rayTracerOXYZ;
         private LoadScene loaderScene;
         private SaveScene saverScene;
         private CameraManager cameraManager;
 
+        private int n = 8;
+        private int currImgIndex;
+        private bool on;
+        private System.Timers.Timer timer; // Частота кадров.
+        private PictureBox imgBox; // Будет сожержать само изображение.
         private Bitmap tmp;
-        private Bitmap tmp_axes;
         private Bitmap[] arrBitmap;
+
         public Controller(int canvasWidth, int canvasHeight)
         {
             this.scene = new Scene(canvasWidth, canvasHeight);
@@ -41,15 +35,17 @@ namespace Weatherwane
             this.cameraManager = new CameraManager();
 
 
-            this.sceneOXYZ = new Scene(canvasWidth, canvasHeight);
-            this.sceneOXYZ.lights.RemoveRange(1, 1);
-            this.sceneOXYZ.lights[0].intensity = 1;
-            this.sceneOXYZ.sceneObjects.Clear();
-            this.sceneOXYZ.AddCylinder("OX", new Vec3d(0, 0, 0), new Vec3d(1, 0, 0), 0.05, 500, new Vec3d(255, 0, 0), 0, 0);
-            this.sceneOXYZ.AddCylinder("OY", new Vec3d(0, 0, 0), new Vec3d(0, 1, 0), 0.05, 500, new Vec3d(0, 255, 0), 0, 0);
-            this.sceneOXYZ.AddCylinder("OZ", new Vec3d(0, 0, 0), new Vec3d(0, 0, 1), 0.05, 500, new Vec3d(0, 0, 255), 0, 0);
-            this.rayTracerOXYZ = new RayTracer(this.sceneOXYZ);
             this.arrBitmap = new Bitmap[n];
+            this.currImgIndex = 0;
+            this.on = false;
+
+            // Image.
+/*            imgBox = new PictureBox();
+            imgBox.Size = new Size((int)canvasWidth, (int)canvasHeight);*/
+
+            // Timer
+            timer = new System.Timers.Timer(150);
+            timer.Elapsed += OnTimedEvent;
         }
 
         public void yawCamera(double angle)
@@ -90,57 +86,53 @@ namespace Weatherwane
             this.saverScene.savingScene(filename, this.scene);
         }
 
-        public void AddSphereToScene(string filename)
-        {
-            this.saverScene.savingScene(filename, this.scene);
-        }
 
-        public void AddSphereToScene(string name, Vec3d C, double radius, Vec3d color, double specular, double reflective)
-        {
-            scene.AddSphere(name, C, radius, color, specular, reflective);
-        }
-        public void AddCylinderToScene(string name, Vec3d C, Vec3d V, double radius, double maxm, Vec3d color, double specular, double reflective)
-        {
-            scene.AddCylinder(name, C, V, radius, maxm, color, specular, reflective);
-        }
-
-        public void AddTrianglePyramidToScene(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d color, double specular, double reflective)
-        {
-            scene.AddTrianglePyramid(name, P, A, B, C, color, specular, reflective);
-        }
-
-        public void AddParallelepipedToScene(string name, Vec3d C, Vec3d E, Vec3d color, double specular, double reflective)
-        {
-            scene.AddParallelepiped(name, C, E, color, specular, reflective);
-        }
         public void render(ref PictureBox canvas, bool drawBackground)
         {
             rayTracer.scene = this.scene;
             tmp = rayTracer.render(drawBackground);
-            
-/*
-            this.sceneOXYZ.convertBackgroundReverse(tmp, this.scene.canvasWidth, this.scene.canvasHeight);
-            this.sceneOXYZ.camera = this.scene.camera;
-            tmp_axes = rayTracerOXYZ.render(true);*/
+        
             canvas.Image = tmp;
         }
 
         public void dynamic_render(ref PictureBox canvas, bool drawBackground)
         {
+            if (!on)
+            {
+                imgBox = canvas;
+                createArrayBitmap(ref canvas, drawBackground);
+                timer.Start();
+                on = true;
+            }
+            else
+            {
+                on = false;
+                timer.Stop();
+            }
 
-            rayTracer.scene = this.scene;
+        }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            if (currImgIndex >= arrBitmap.Count())
+                currImgIndex = 0;
+
+            Console.WriteLine(currImgIndex + "  " + arrBitmap.Count());
+            imgBox.Image = arrBitmap[currImgIndex];
+
+            currImgIndex++;
+        }
+
+        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground)
+        {
             Primitive a;
             Vec3d turnPoint = new Vec3d(0, 48.5, 0);
             double angle = 360 / n;
 
             for (int i = 0; i < n; i++)
             {
-                
+
                 tmp = rayTracer.render(drawBackground);
-                this.sceneOXYZ.convertBackgroundReverse(tmp, this.scene.canvasWidth, this.scene.canvasHeight);
-                this.sceneOXYZ.camera = this.scene.camera;
-                tmp_axes = rayTracerOXYZ.render(true);
-                canvas.Image = tmp;
                 arrBitmap.Append(tmp);
 
                 for (int j = 0; j < scene.sceneObjects.Count; j++)
@@ -158,80 +150,7 @@ namespace Weatherwane
                     }
                 }
             }
-
-            for (int i = 0; i < n; i++)
-            {
-                canvas.Image = arrBitmap[i];
-            }
-
-            for (int i = 0; i < n; i++)
-            {
-                canvas.Image = arrBitmap[i];
-            }
-
         }
-
-/*        private void createArrayImgBox()
-        {
-            double angle = 0.04d;
-            double h = 0.23;
-            DrawScene();
-
-            // Правый шар поднимается.
-            while (_scene[2].Center.Y < h)
-            {
-                Console.WriteLine(_scene[2].Center.Y);
-                _scene[2].Center.RotateNegative(1.6, 5, angle);
-                DrawScene();
-            }
-            // Правый шар опускается.
-            while (_scene[2].Center.Y - 0.2 > 0.001)
-            {
-                Console.WriteLine(_scene[2].Center.Y);
-                _scene[2].Center.RotatePositive(1.6, 5, angle);
-                DrawScene();
-            }
-            // Левый шар поднимается. 
-            while (_scene[0].Center.Y < h)
-            {
-                Console.WriteLine(_scene[0].Center.Y);
-                _scene[0].Center.RotatePositive(-1.6, 5, angle);
-                DrawScene();
-            }
-            // Левый шар опускается. 
-            while (_scene[0].Center.Y - 0.2 > 0.001)
-            {
-                Console.WriteLine(_scene[0].Center.Y);
-                _scene[0].Center.RotateNegative(-1.6, 5, angle);
-                DrawScene();
-            }
-        }
-        private void DrawScene(int step = 165) // 8 потоков.
-        {
-            Bitmap img = new Bitmap((int)this.scene.canvasWidth, (int)this.scene.canvasHeight);
-
-            List<Thread> listThread = new List<Thread>();
-
-            for (int i = -(int)this.scene.canvasWidth / 2; i < (int)this.scene.canvasWidth / 2; i += step)
-            {
-                listThread.Add(new Thread(new ParameterizedThreadStart(FuncVertically)));
-                listThread[listThread.Count - 1].Start(new Limit(i, i + step, img));
-            }
-
-            // Join — Это метод синхронизации, который блокирует вызывающий поток (то есть поток, который вызывает метод).
-            // Используйте этот метод, чтобы убедиться, что поток был завершен.
-            // То есть мы не пойдем далее по коду, пока что не выполнятся потоки, вызванные ранее 
-            // (то есть те потоки, которые мы джоиним.).
-            foreach (var elem in listThread)
-            {
-                elem.Join();
-            }
-
-            _arrayBitmap.Add(img);
-
-        }*/
-
-
 
         public List<Primitive> getSceneObjects()
         {
