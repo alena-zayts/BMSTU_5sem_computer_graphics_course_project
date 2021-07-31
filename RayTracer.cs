@@ -567,12 +567,12 @@ namespace Weatherwane
             }
             
         }
-        public Bitmap render(bool drawSceneBackground)
+        public Bitmap render(bool drawSceneBackground, int numThreads=4)
         {
-            Thread[] threads = new Thread[4];
-            for (int i = 0; i < 4; i++)
+            Thread[] threads = new Thread[numThreads];
+            for (int i = 0; i < numThreads; i++)
             {
-                Params p = new Params(scene.canvasWidth / 4, scene.canvasHeight, -scene.canvasWidth / 2 + scene.canvasWidth / 4 * i, -scene.canvasHeight / 2, drawSceneBackground);
+                Params p = new Params(scene.canvasWidth / numThreads, scene.canvasHeight, -scene.canvasWidth / 2 + scene.canvasWidth / numThreads * i, -scene.canvasHeight / 2, drawSceneBackground);
                 threads[i] = new Thread(rendering);
                 threads[i].Start(p);
             }

@@ -78,7 +78,13 @@ namespace Weatherwane
 
         void dynamicButton_Click(object sender, EventArgs e)
         {
-            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, checkBoxNebo.Checked, ref this.progressBar);
+            bool reverse = this.radioRight.Checked;
+            bool drawNebo = checkBoxNebo.Checked;
+            int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value;
+            int numThreads = (int) this.numericNumThreads.Value;
+            bool createArray = true;
+            int n = this.trackBarN.Value;
+            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, drawNebo, ref this.progressBar, reverse, speed, numThreads, ref this.textBoxTime, createArray, n);
 
             facade.executeCommand(dynamicRenderCommand);
         }
@@ -567,47 +573,21 @@ namespace Weatherwane
             render();
         }
 
-
-
-        private void MultiplyMV(double[,] matr)
+        private void radioRight_CheckedChanged(object sender, EventArgs e)
         {
-            double[] tmp = new double[4] { V.x, V.y, V.z, 1 };
-            double[] result = new double[4] { 0, 0, 0, 0 };
-
-            for (int i = 0; i < 4; i++)
+            if (this.radioRight.Checked)
             {
-                for (int j = 0; j < 4; j++)
-                {
-                    result[i] += tmp[j] * matr[i, j];
-                }
+                this.radioLeft.Checked = false;
             }
-
-            V.x = result[0];
-            V.y = result[1];
-            V.z = result[2];
         }
 
-
-        private void btnRender_Click(object sender, EventArgs e)
+        private void radioLeft_CheckedChanged(object sender, EventArgs e)
         {
-            render();
+            if (this.radioLeft.Checked)
+            {
+                this.radioRight.Checked = false;
+            }
         }
 
-
-
-        private void labelChoiceSpecular_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelLightPos_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

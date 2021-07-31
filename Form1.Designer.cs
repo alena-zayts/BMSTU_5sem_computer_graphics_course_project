@@ -45,17 +45,35 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.AddLightIntensity = new System.Windows.Forms.NumericUpDown();
+            this.btnDeleteLight = new System.Windows.Forms.Button();
+            this.btnAddLight = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.AddLightPosZ = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.ChangeLightIntensity = new System.Windows.Forms.NumericUpDown();
             this.ChangeLightPosZ = new System.Windows.Forms.NumericUpDown();
-            this.btnDeleteLight = new System.Windows.Forms.Button();
             this.btnChangeLightParams = new System.Windows.Forms.Button();
+            this.AddLightPosY = new System.Windows.Forms.NumericUpDown();
             this.ChangeLightPosY = new System.Windows.Forms.NumericUpDown();
             this.label90 = new System.Windows.Forms.Label();
             this.label88 = new System.Windows.Forms.Label();
             this.ChangeLightPosX = new System.Windows.Forms.NumericUpDown();
+            this.AddLightPosX = new System.Windows.Forms.NumericUpDown();
             this.LightPosX = new System.Windows.Forms.TextBox();
             this.LightIntensity = new System.Windows.Forms.TextBox();
             this.label78 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.comboBoxLights = new System.Windows.Forms.ComboBox();
             this.labelLightPos = new System.Windows.Forms.Label();
             this.labelChangeLightPos = new System.Windows.Forms.Label();
@@ -90,6 +108,8 @@
             this.CameraPosZ = new System.Windows.Forms.TextBox();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label72 = new System.Windows.Forms.Label();
             this.label73 = new System.Windows.Forms.Label();
             this.CameraRotOZ = new System.Windows.Forms.TextBox();
@@ -98,34 +118,25 @@
             this.label87 = new System.Windows.Forms.Label();
             this.CameraRotOX = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
-            this.btnAddLight = new System.Windows.Forms.Button();
-            this.AddLightIntensity = new System.Windows.Forms.NumericUpDown();
-            this.AddLightPosZ = new System.Windows.Forms.NumericUpDown();
-            this.AddLightPosY = new System.Windows.Forms.NumericUpDown();
-            this.AddLightPosX = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.checkBoxNebo = new System.Windows.Forms.CheckBox();
             this.dynamicButton = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.radioRight = new System.Windows.Forms.RadioButton();
+            this.radioLeft = new System.Windows.Forms.RadioButton();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBoxTime = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.trackBarSpeed = new System.Windows.Forms.TrackBar();
+            this.numericNumThreads = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.trackBarN = new System.Windows.Forms.TrackBar();
+            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.btnDeleteObject.SuspendLayout();
@@ -135,10 +146,14 @@
             this.tabPage3.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddLightIntensity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightIntensity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rollCamera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pitchCamera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yawCamera)).BeginInit();
@@ -147,12 +162,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.moveCameraDZ)).BeginInit();
             this.tabControl3.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AddLightIntensity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosX)).BeginInit();
             this.tabControl4.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericNumThreads)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarN)).BeginInit();
             this.SuspendLayout();
             // 
             // canvas
@@ -173,7 +187,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(757, 460);
+            this.tabControl1.Size = new System.Drawing.Size(757, 618);
             this.tabControl1.TabIndex = 45;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -191,7 +205,7 @@
             this.btnDeleteObject.Margin = new System.Windows.Forms.Padding(6);
             this.btnDeleteObject.Name = "btnDeleteObject";
             this.btnDeleteObject.Padding = new System.Windows.Forms.Padding(6);
-            this.btnDeleteObject.Size = new System.Drawing.Size(741, 413);
+            this.btnDeleteObject.Size = new System.Drawing.Size(741, 571);
             this.btnDeleteObject.TabIndex = 1;
             this.btnDeleteObject.Text = "Изменение примитивов";
             this.btnDeleteObject.UseVisualStyleBackColor = true;
@@ -294,10 +308,9 @@
             this.labelChoiceSpecular.Location = new System.Drawing.Point(16, 117);
             this.labelChoiceSpecular.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelChoiceSpecular.Name = "labelChoiceSpecular";
-            this.labelChoiceSpecular.Size = new System.Drawing.Size(242, 34);
+            this.labelChoiceSpecular.Size = new System.Drawing.Size(212, 30);
             this.labelChoiceSpecular.TabIndex = 326;
             this.labelChoiceSpecular.Text = "Уровень блеска:";
-            this.labelChoiceSpecular.Click += new System.EventHandler(this.labelChoiceSpecular_Click);
             // 
             // labelChoiceReflective
             // 
@@ -306,7 +319,7 @@
             this.labelChoiceReflective.Location = new System.Drawing.Point(16, 167);
             this.labelChoiceReflective.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelChoiceReflective.Name = "labelChoiceReflective";
-            this.labelChoiceReflective.Size = new System.Drawing.Size(374, 34);
+            this.labelChoiceReflective.Size = new System.Drawing.Size(327, 30);
             this.labelChoiceReflective.TabIndex = 327;
             this.labelChoiceReflective.Text = "Коэффициент отражения:";
             // 
@@ -316,7 +329,7 @@
             this.tabPage3.Location = new System.Drawing.Point(8, 39);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(697, 317);
+            this.tabPage3.Size = new System.Drawing.Size(741, 571);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Просмотр примитивов";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -339,7 +352,7 @@
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Location = new System.Drawing.Point(15, 545);
+            this.tabControl2.Location = new System.Drawing.Point(15, 841);
             this.tabControl2.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -391,6 +404,203 @@
             this.tabPage4.Text = "Освещение";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(540, 448);
+            this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 30);
+            this.label9.TabIndex = 211;
+            this.label9.Text = " Z:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(392, 450);
+            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(36, 30);
+            this.label10.TabIndex = 212;
+            this.label10.Text = "Y:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(240, 451);
+            this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 30);
+            this.label11.TabIndex = 213;
+            this.label11.Text = "X:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(13, 405);
+            this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(450, 30);
+            this.label8.TabIndex = 210;
+            this.label8.Text = "Добавление точечного источника";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(550, 295);
+            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 30);
+            this.label5.TabIndex = 207;
+            this.label5.Text = " Z:";
+            // 
+            // AddLightIntensity
+            // 
+            this.AddLightIntensity.DecimalPlaces = 3;
+            this.AddLightIntensity.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.AddLightIntensity.Location = new System.Drawing.Point(302, 503);
+            this.AddLightIntensity.Margin = new System.Windows.Forms.Padding(6);
+            this.AddLightIntensity.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.AddLightIntensity.Name = "AddLightIntensity";
+            this.AddLightIntensity.Size = new System.Drawing.Size(96, 31);
+            this.AddLightIntensity.TabIndex = 211;
+            // 
+            // btnDeleteLight
+            // 
+            this.btnDeleteLight.Location = new System.Drawing.Point(245, 556);
+            this.btnDeleteLight.Margin = new System.Windows.Forms.Padding(6);
+            this.btnDeleteLight.Name = "btnDeleteLight";
+            this.btnDeleteLight.Size = new System.Drawing.Size(218, 44);
+            this.btnDeleteLight.TabIndex = 202;
+            this.btnDeleteLight.Text = "Удалить";
+            this.btnDeleteLight.UseVisualStyleBackColor = true;
+            this.btnDeleteLight.Click += new System.EventHandler(this.btnDeleteLight_Click);
+            // 
+            // btnAddLight
+            // 
+            this.btnAddLight.Location = new System.Drawing.Point(442, 489);
+            this.btnAddLight.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddLight.Name = "btnAddLight";
+            this.btnAddLight.Size = new System.Drawing.Size(142, 44);
+            this.btnAddLight.TabIndex = 187;
+            this.btnAddLight.Text = "Добавить";
+            this.btnAddLight.UseVisualStyleBackColor = true;
+            this.btnAddLight.Click += new System.EventHandler(this.btnAddLight_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(402, 297);
+            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 30);
+            this.label6.TabIndex = 208;
+            this.label6.Text = "Y:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(250, 298);
+            this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 30);
+            this.label7.TabIndex = 209;
+            this.label7.Text = "X:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(550, 128);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 30);
+            this.label4.TabIndex = 187;
+            this.label4.Text = " Z:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(402, 130);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 30);
+            this.label3.TabIndex = 187;
+            this.label3.Text = "Y:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(250, 131);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 30);
+            this.label2.TabIndex = 187;
+            this.label2.Text = "X:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(85, 503);
+            this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(202, 30);
+            this.label13.TabIndex = 208;
+            this.label13.Text = "Интенсивность:";
+            // 
+            // AddLightPosZ
+            // 
+            this.AddLightPosZ.DecimalPlaces = 3;
+            this.AddLightPosZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.AddLightPosZ.Location = new System.Drawing.Point(589, 446);
+            this.AddLightPosZ.Margin = new System.Windows.Forms.Padding(6);
+            this.AddLightPosZ.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.AddLightPosZ.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.AddLightPosZ.Name = "AddLightPosZ";
+            this.AddLightPosZ.Size = new System.Drawing.Size(96, 31);
+            this.AddLightPosZ.TabIndex = 210;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 83);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(140, 30);
+            this.label1.TabIndex = 206;
+            this.label1.Text = "Просмотр";
+            // 
             // ChangeLightIntensity
             // 
             this.ChangeLightIntensity.DecimalPlaces = 3;
@@ -434,17 +644,6 @@
             this.ChangeLightPosZ.Size = new System.Drawing.Size(96, 31);
             this.ChangeLightPosZ.TabIndex = 204;
             // 
-            // btnDeleteLight
-            // 
-            this.btnDeleteLight.Location = new System.Drawing.Point(245, 556);
-            this.btnDeleteLight.Margin = new System.Windows.Forms.Padding(6);
-            this.btnDeleteLight.Name = "btnDeleteLight";
-            this.btnDeleteLight.Size = new System.Drawing.Size(218, 44);
-            this.btnDeleteLight.TabIndex = 202;
-            this.btnDeleteLight.Text = "Удалить";
-            this.btnDeleteLight.UseVisualStyleBackColor = true;
-            this.btnDeleteLight.Click += new System.EventHandler(this.btnDeleteLight_Click);
-            // 
             // btnChangeLightParams
             // 
             this.btnChangeLightParams.Location = new System.Drawing.Point(442, 349);
@@ -455,6 +654,30 @@
             this.btnChangeLightParams.Text = "Применить";
             this.btnChangeLightParams.UseVisualStyleBackColor = true;
             this.btnChangeLightParams.Click += new System.EventHandler(this.btnChangeLightParams_Click);
+            // 
+            // AddLightPosY
+            // 
+            this.AddLightPosY.DecimalPlaces = 3;
+            this.AddLightPosY.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.AddLightPosY.Location = new System.Drawing.Point(442, 449);
+            this.AddLightPosY.Margin = new System.Windows.Forms.Padding(6);
+            this.AddLightPosY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.AddLightPosY.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.AddLightPosY.Name = "AddLightPosY";
+            this.AddLightPosY.Size = new System.Drawing.Size(96, 31);
+            this.AddLightPosY.TabIndex = 209;
             // 
             // ChangeLightPosY
             // 
@@ -498,7 +721,7 @@
             this.label88.Location = new System.Drawing.Point(13, 243);
             this.label88.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(181, 34);
+            this.label88.Size = new System.Drawing.Size(158, 30);
             this.label88.TabIndex = 195;
             this.label88.Text = "Изменение";
             // 
@@ -525,6 +748,30 @@
             this.ChangeLightPosX.Name = "ChangeLightPosX";
             this.ChangeLightPosX.Size = new System.Drawing.Size(96, 31);
             this.ChangeLightPosX.TabIndex = 192;
+            // 
+            // AddLightPosX
+            // 
+            this.AddLightPosX.DecimalPlaces = 3;
+            this.AddLightPosX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.AddLightPosX.Location = new System.Drawing.Point(302, 450);
+            this.AddLightPosX.Margin = new System.Windows.Forms.Padding(6);
+            this.AddLightPosX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.AddLightPosX.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.AddLightPosX.Name = "AddLightPosX";
+            this.AddLightPosX.Size = new System.Drawing.Size(96, 31);
+            this.AddLightPosX.TabIndex = 206;
             // 
             // LightPosX
             // 
@@ -559,6 +806,17 @@
             this.label78.TabIndex = 165;
             this.label78.Text = "Интенсивность:";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(85, 447);
+            this.label14.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(125, 30);
+            this.label14.TabIndex = 207;
+            this.label14.Text = "Позиция:";
+            // 
             // comboBoxLights
             // 
             this.comboBoxLights.AutoCompleteCustomSource.AddRange(new string[] {
@@ -588,10 +846,9 @@
             this.labelLightPos.Location = new System.Drawing.Point(85, 133);
             this.labelLightPos.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelLightPos.Name = "labelLightPos";
-            this.labelLightPos.Size = new System.Drawing.Size(143, 34);
+            this.labelLightPos.Size = new System.Drawing.Size(125, 30);
             this.labelLightPos.TabIndex = 164;
             this.labelLightPos.Text = "Позиция:";
-            this.labelLightPos.Click += new System.EventHandler(this.labelLightPos_Click);
             // 
             // labelChangeLightPos
             // 
@@ -600,7 +857,7 @@
             this.labelChangeLightPos.Location = new System.Drawing.Point(85, 301);
             this.labelChangeLightPos.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelChangeLightPos.Name = "labelChangeLightPos";
-            this.labelChangeLightPos.Size = new System.Drawing.Size(143, 34);
+            this.labelChangeLightPos.Size = new System.Drawing.Size(125, 30);
             this.labelChangeLightPos.TabIndex = 196;
             this.labelChangeLightPos.Text = "Позиция:";
             // 
@@ -979,7 +1236,7 @@
             // tabControl3
             // 
             this.tabControl3.Controls.Add(this.tabPage6);
-            this.tabControl3.Location = new System.Drawing.Point(745, 545);
+            this.tabControl3.Location = new System.Drawing.Point(745, 833);
             this.tabControl3.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
@@ -1030,6 +1287,28 @@
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "Камера";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Location = new System.Drawing.Point(7, 202);
+            this.label15.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(158, 30);
+            this.label15.TabIndex = 208;
+            this.label15.Text = "Изменение";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(7, 31);
+            this.label12.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(140, 30);
+            this.label12.TabIndex = 207;
+            this.label12.Text = "Просмотр";
             // 
             // label72
             // 
@@ -1119,281 +1398,35 @@
             this.label39.TabIndex = 179;
             this.label39.Text = "Положение";
             // 
-            // btnAddLight
-            // 
-            this.btnAddLight.Location = new System.Drawing.Point(442, 489);
-            this.btnAddLight.Margin = new System.Windows.Forms.Padding(6);
-            this.btnAddLight.Name = "btnAddLight";
-            this.btnAddLight.Size = new System.Drawing.Size(142, 44);
-            this.btnAddLight.TabIndex = 187;
-            this.btnAddLight.Text = "Добавить";
-            this.btnAddLight.UseVisualStyleBackColor = true;
-            this.btnAddLight.Click += new System.EventHandler(this.btnAddLight_Click);
-            // 
-            // AddLightIntensity
-            // 
-            this.AddLightIntensity.DecimalPlaces = 3;
-            this.AddLightIntensity.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.AddLightIntensity.Location = new System.Drawing.Point(302, 503);
-            this.AddLightIntensity.Margin = new System.Windows.Forms.Padding(6);
-            this.AddLightIntensity.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.AddLightIntensity.Name = "AddLightIntensity";
-            this.AddLightIntensity.Size = new System.Drawing.Size(96, 31);
-            this.AddLightIntensity.TabIndex = 211;
-            // 
-            // AddLightPosZ
-            // 
-            this.AddLightPosZ.DecimalPlaces = 3;
-            this.AddLightPosZ.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.AddLightPosZ.Location = new System.Drawing.Point(589, 446);
-            this.AddLightPosZ.Margin = new System.Windows.Forms.Padding(6);
-            this.AddLightPosZ.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.AddLightPosZ.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
-            this.AddLightPosZ.Name = "AddLightPosZ";
-            this.AddLightPosZ.Size = new System.Drawing.Size(96, 31);
-            this.AddLightPosZ.TabIndex = 210;
-            // 
-            // AddLightPosY
-            // 
-            this.AddLightPosY.DecimalPlaces = 3;
-            this.AddLightPosY.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.AddLightPosY.Location = new System.Drawing.Point(442, 449);
-            this.AddLightPosY.Margin = new System.Windows.Forms.Padding(6);
-            this.AddLightPosY.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.AddLightPosY.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
-            this.AddLightPosY.Name = "AddLightPosY";
-            this.AddLightPosY.Size = new System.Drawing.Size(96, 31);
-            this.AddLightPosY.TabIndex = 209;
-            // 
-            // AddLightPosX
-            // 
-            this.AddLightPosX.DecimalPlaces = 3;
-            this.AddLightPosX.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.AddLightPosX.Location = new System.Drawing.Point(302, 450);
-            this.AddLightPosX.Margin = new System.Windows.Forms.Padding(6);
-            this.AddLightPosX.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.AddLightPosX.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
-            this.AddLightPosX.Name = "AddLightPosX";
-            this.AddLightPosX.Size = new System.Drawing.Size(96, 31);
-            this.AddLightPosX.TabIndex = 206;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(85, 503);
-            this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(202, 30);
-            this.label13.TabIndex = 208;
-            this.label13.Text = "Интенсивность:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(85, 447);
-            this.label14.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(125, 30);
-            this.label14.TabIndex = 207;
-            this.label14.Text = "Позиция:";
-            // 
             // checkBoxNebo
             // 
             this.checkBoxNebo.AutoSize = true;
             this.checkBoxNebo.Checked = true;
             this.checkBoxNebo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxNebo.Location = new System.Drawing.Point(23, 172);
+            this.checkBoxNebo.Location = new System.Drawing.Point(245, 338);
             this.checkBoxNebo.Margin = new System.Windows.Forms.Padding(6);
             this.checkBoxNebo.Name = "checkBoxNebo";
-            this.checkBoxNebo.Size = new System.Drawing.Size(182, 29);
+            this.checkBoxNebo.Size = new System.Drawing.Size(277, 29);
             this.checkBoxNebo.TabIndex = 216;
-            this.checkBoxNebo.Text = "рисовать фон";
+            this.checkBoxNebo.Text = "Рисовать изображение";
             this.checkBoxNebo.UseVisualStyleBackColor = true;
             // 
             // dynamicButton
             // 
-            this.dynamicButton.Location = new System.Drawing.Point(23, 233);
+            this.dynamicButton.Location = new System.Drawing.Point(17, 455);
             this.dynamicButton.Margin = new System.Windows.Forms.Padding(6);
             this.dynamicButton.Name = "dynamicButton";
-            this.dynamicButton.Size = new System.Drawing.Size(188, 44);
+            this.dynamicButton.Size = new System.Drawing.Size(668, 71);
             this.dynamicButton.TabIndex = 187;
             this.dynamicButton.Text = "On/Off";
             this.dynamicButton.UseVisualStyleBackColor = true;
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(23, 302);
+            this.progressBar.Location = new System.Drawing.Point(278, 558);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(487, 61);
+            this.progressBar.Size = new System.Drawing.Size(392, 61);
             this.progressBar.TabIndex = 219;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 83);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 34);
-            this.label1.TabIndex = 206;
-            this.label1.Text = "Просмотр";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(250, 131);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 30);
-            this.label2.TabIndex = 187;
-            this.label2.Text = "X:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(402, 130);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 30);
-            this.label3.TabIndex = 187;
-            this.label3.Text = "Y:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(550, 128);
-            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 30);
-            this.label4.TabIndex = 187;
-            this.label4.Text = " Z:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(550, 295);
-            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 30);
-            this.label5.TabIndex = 207;
-            this.label5.Text = " Z:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(402, 297);
-            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 30);
-            this.label6.TabIndex = 208;
-            this.label6.Text = "Y:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(250, 298);
-            this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 30);
-            this.label7.TabIndex = 209;
-            this.label7.Text = "X:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(13, 405);
-            this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(514, 34);
-            this.label8.TabIndex = 210;
-            this.label8.Text = "Добавление точечного источника";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(540, 448);
-            this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(43, 30);
-            this.label9.TabIndex = 211;
-            this.label9.Text = " Z:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(392, 450);
-            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(36, 30);
-            this.label10.TabIndex = 212;
-            this.label10.Text = "Y:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(240, 451);
-            this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 30);
-            this.label11.TabIndex = 213;
-            this.label11.Text = "X:";
             // 
             // tabControl4
             // 
@@ -1402,14 +1435,25 @@
             this.tabControl4.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl4.Name = "tabControl4";
             this.tabControl4.SelectedIndex = 0;
-            this.tabControl4.Size = new System.Drawing.Size(718, 460);
+            this.tabControl4.Size = new System.Drawing.Size(718, 772);
             this.tabControl4.TabIndex = 220;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.trackBarN);
+            this.tabPage1.Controls.Add(this.label21);
+            this.tabPage1.Controls.Add(this.radioRight);
+            this.tabPage1.Controls.Add(this.radioLeft);
+            this.tabPage1.Controls.Add(this.label20);
+            this.tabPage1.Controls.Add(this.textBoxTime);
+            this.tabPage1.Controls.Add(this.label19);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.trackBarSpeed);
+            this.tabPage1.Controls.Add(this.numericNumThreads);
+            this.tabPage1.Controls.Add(this.label16);
             this.tabPage1.Controls.Add(this.label25);
             this.tabPage1.Controls.Add(this.progressBar);
-            this.tabPage1.Controls.Add(this.textBox4);
             this.tabPage1.Controls.Add(this.label29);
             this.tabPage1.Controls.Add(this.dynamicButton);
             this.tabPage1.Controls.Add(this.checkBoxNebo);
@@ -1417,10 +1461,129 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(702, 413);
+            this.tabPage1.Size = new System.Drawing.Size(702, 725);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Запуск флюгера";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // radioRight
+            // 
+            this.radioRight.AutoSize = true;
+            this.radioRight.Location = new System.Drawing.Point(375, 28);
+            this.radioRight.Name = "radioRight";
+            this.radioRight.Size = new System.Drawing.Size(116, 29);
+            this.radioRight.TabIndex = 336;
+            this.radioRight.Text = "Вправо";
+            this.radioRight.UseVisualStyleBackColor = true;
+            this.radioRight.CheckedChanged += new System.EventHandler(this.radioRight_CheckedChanged);
+            // 
+            // radioLeft
+            // 
+            this.radioLeft.AutoSize = true;
+            this.radioLeft.Checked = true;
+            this.radioLeft.Location = new System.Drawing.Point(245, 26);
+            this.radioLeft.Name = "radioLeft";
+            this.radioLeft.Size = new System.Drawing.Size(104, 29);
+            this.radioLeft.TabIndex = 330;
+            this.radioLeft.TabStop = true;
+            this.radioLeft.Text = "Влево";
+            this.radioLeft.UseVisualStyleBackColor = true;
+            this.radioLeft.CheckedChanged += new System.EventHandler(this.radioLeft_CheckedChanged);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label20.Location = new System.Drawing.Point(20, 650);
+            this.label20.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(257, 30);
+            this.label20.TabIndex = 335;
+            this.label20.Text = "Затраченное время:";
+            // 
+            // textBoxTime
+            // 
+            this.textBoxTime.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.textBoxTime.Enabled = false;
+            this.textBoxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxTime.Location = new System.Drawing.Point(314, 650);
+            this.textBoxTime.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxTime.Name = "textBoxTime";
+            this.textBoxTime.Size = new System.Drawing.Size(148, 32);
+            this.textBoxTime.TabIndex = 209;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(12, 576);
+            this.label19.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(238, 30);
+            this.label19.TabIndex = 334;
+            this.label19.Text = "Процесс расчетов:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(20, 380);
+            this.label18.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(197, 30);
+            this.label18.TabIndex = 333;
+            this.label18.Text = "Число потоков:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.Location = new System.Drawing.Point(20, 338);
+            this.label17.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(70, 30);
+            this.label17.TabIndex = 332;
+            this.label17.Text = "Фон:";
+            // 
+            // trackBarSpeed
+            // 
+            this.trackBarSpeed.LargeChange = 51;
+            this.trackBarSpeed.Location = new System.Drawing.Point(245, 104);
+            this.trackBarSpeed.Maximum = 301;
+            this.trackBarSpeed.Name = "trackBarSpeed";
+            this.trackBarSpeed.Size = new System.Drawing.Size(360, 90);
+            this.trackBarSpeed.SmallChange = 10;
+            this.trackBarSpeed.TabIndex = 331;
+            this.trackBarSpeed.Value = 150;
+            // 
+            // numericNumThreads
+            // 
+            this.numericNumThreads.Location = new System.Drawing.Point(245, 379);
+            this.numericNumThreads.Margin = new System.Windows.Forms.Padding(6);
+            this.numericNumThreads.Maximum = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.numericNumThreads.Name = "numericNumThreads";
+            this.numericNumThreads.Size = new System.Drawing.Size(124, 31);
+            this.numericNumThreads.TabIndex = 330;
+            this.numericNumThreads.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label16.Location = new System.Drawing.Point(20, 104);
+            this.label16.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(133, 30);
+            this.label16.TabIndex = 221;
+            this.label16.Text = "Скорость:";
             // 
             // label25
             // 
@@ -1432,49 +1595,37 @@
             this.label25.Size = new System.Drawing.Size(0, 30);
             this.label25.TabIndex = 179;
             // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(570, 23);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(108, 32);
-            this.textBox4.TabIndex = 177;
-            // 
             // label29
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label29.Location = new System.Drawing.Point(524, 27);
+            this.label29.Location = new System.Drawing.Point(20, 22);
             this.label29.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(43, 30);
+            this.label29.Size = new System.Drawing.Size(181, 30);
             this.label29.TabIndex = 147;
-            this.label29.Text = " Z:";
+            this.label29.Text = "Направление:";
             // 
-            // label12
+            // trackBarN
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(7, 31);
-            this.label12.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(140, 30);
-            this.label12.TabIndex = 207;
-            this.label12.Text = "Просмотр";
+            this.trackBarN.Location = new System.Drawing.Point(245, 214);
+            this.trackBarN.Maximum = 72;
+            this.trackBarN.Minimum = 1;
+            this.trackBarN.Name = "trackBarN";
+            this.trackBarN.Size = new System.Drawing.Size(360, 90);
+            this.trackBarN.TabIndex = 338;
+            this.trackBarN.Value = 36;
             // 
-            // label15
+            // label21
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label15.Location = new System.Drawing.Point(7, 202);
-            this.label15.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(158, 30);
-            this.label15.TabIndex = 208;
-            this.label15.Text = "Изменение";
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label21.Location = new System.Drawing.Point(20, 214);
+            this.label21.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(170, 34);
+            this.label21.TabIndex = 337;
+            this.label21.Text = "Плавность:";
             // 
             // Form1
             // 
@@ -1503,10 +1654,14 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddLightIntensity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightIntensity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rollCamera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pitchCamera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yawCamera)).EndInit();
@@ -1516,13 +1671,12 @@
             this.tabControl3.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AddLightIntensity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddLightPosX)).EndInit();
             this.tabControl4.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericNumThreads)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarN)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1623,10 +1777,21 @@
         private System.Windows.Forms.TabControl tabControl4;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TrackBar trackBarSpeed;
+        private System.Windows.Forms.NumericUpDown numericNumThreads;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBoxTime;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.RadioButton radioRight;
+        private System.Windows.Forms.RadioButton radioLeft;
+        private System.Windows.Forms.TrackBar trackBarN;
+        private System.Windows.Forms.Label label21;
     }
 }
 

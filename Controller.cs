@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
 using System.Timers;
+using System.Diagnostics;
 
 namespace Weatherwane
 {
@@ -18,7 +19,8 @@ namespace Weatherwane
         private SaveScene saverScene;
         private CameraManager cameraManager;
 
-        private int n = 36;
+        private int n;
+        private bool reverse;
         private int currImgIndex;
         private bool on;
         private System.Timers.Timer timer; // Частота кадров.
@@ -34,8 +36,6 @@ namespace Weatherwane
             this.saverScene = new SaveScene();
             this.cameraManager = new CameraManager();
 
-
-            this.arrBitmap = new Bitmap[n];
             this.currImgIndex = 0;
             this.on = false;
 
@@ -92,12 +92,31 @@ namespace Weatherwane
             canvas.Image = tmp;
         }
 
-        public void dynamic_render(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar)
+        public void dynamic_render(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n)
         {
             if (!on)
             {
+                this.n = n;
+                this.timer.Interval = speed;
                 this.imgBox = canvas;
-                createArrayBitmap(ref canvas, drawBackground, ref progressBar);
+                this.reverse = reverse;
+
+                if (createArray)
+                {
+                    this.arrBitmap = null;
+                    this.arrBitmap = new Bitmap[n];
+                    this.currImgIndex = 0;
+                    Stopwatch stopWatch = new Stopwatch();
+                    stopWatch.Start();
+                    createArrayBitmap(ref canvas, drawSea, ref progressBar, numThreads);
+                    stopWatch.Stop();
+                    TimeSpan ts = stopWatch.Elapsed;
+                    string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
+                        ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                    Console.WriteLine("RunTime " + elapsedTime);
+                    textBoxTime.Text = elapsedTime;
+                }
+
                 timer.Start();
                 on = true;
             }
@@ -111,16 +130,26 @@ namespace Weatherwane
 
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            if (currImgIndex >= arrBitmap.Count())
-                currImgIndex = 0;
+            Console.WriteLine(currImgIndex);
+            if (!reverse)
+            {
+                if (currImgIndex >= arrBitmap.Count())
+                    currImgIndex = 0;
 
-            Console.WriteLine(currImgIndex + "  " + arrBitmap.Count());
-            imgBox.Image = arrBitmap[currImgIndex];
+                imgBox.Image = arrBitmap[currImgIndex];
+                currImgIndex++;
+            }
+            else
+            {
+                if (currImgIndex < 0)
+                    currImgIndex = arrBitmap.Count() - 1;
 
-            currImgIndex++;
+                imgBox.Image = arrBitmap[currImgIndex];
+                currImgIndex--;
+            }
         }
 
-        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar)
+        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar, int numThreads)
         {
             Primitive a;
             Vec3d turnPoint = new Vec3d(0, 48.5, 0);
@@ -131,7 +160,7 @@ namespace Weatherwane
             for (int i = 0; i < n; i++)
             {
 
-                tmp = new Bitmap(rayTracer.render(drawBackground));
+                tmp = new Bitmap(rayTracer.render(drawBackground, numThreads));
                 arrBitmap[i] = tmp;
 
                 for (int j = 0; j < scene.sceneObjects.Count; j++)
