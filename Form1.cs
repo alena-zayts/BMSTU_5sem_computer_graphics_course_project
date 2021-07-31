@@ -17,9 +17,8 @@ namespace Weatherwane
         FacadeViewer facade;
         List<Primitive> primitives;
         Primitive primitive;
+        bool smthChanged;
         
-
-        Vec3d V = new Vec3d(0, 0, 0);
         public Form1()
         {
             InitializeComponent();
@@ -66,12 +65,15 @@ namespace Weatherwane
 
             dynamicButton.Click += dynamicButton_Click;
 
-            render(); 
+            this.smthChanged = true;
+            render();
+
         }
 
         void render()
         {
-            Command renderCommand = new RenderCommand(ref canvas, checkBoxNebo.Checked);
+            int numThreads = (int)this.numericNumThreads.Value;
+            Command renderCommand = new RenderCommand(ref canvas, checkBoxNebo.Checked, numThreads, ref this.textBoxTime);
             
             facade.executeCommand(renderCommand);
         }
@@ -80,13 +82,16 @@ namespace Weatherwane
         {
             bool reverse = this.radioRight.Checked;
             bool drawNebo = checkBoxNebo.Checked;
-            int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value;
+            int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value + 1;
             int numThreads = (int) this.numericNumThreads.Value;
-            bool createArray = true;
+            bool createArray = this.smthChanged;
             int n = this.trackBarN.Value;
-            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, drawNebo, ref this.progressBar, reverse, speed, numThreads, ref this.textBoxTime, createArray, n);
 
+            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, drawNebo, ref this.progressBar, reverse, speed, numThreads, ref this.textBoxTime, createArray, n);
             facade.executeCommand(dynamicRenderCommand);
+
+            this.smthChanged = false;
+            ableDynamicParametrs(false);
         }
 
 
@@ -297,6 +302,9 @@ namespace Weatherwane
 
 
             CameraRotOZ.Text = camera.angle.z.ToString();
+
+            this.smthChanged = true;
+            render();
         }
 
         private void buttonYawCamera_Click(object sender, EventArgs e)
@@ -314,6 +322,9 @@ namespace Weatherwane
 
 
             CameraRotOX.Text = camera.angle.x.ToString();
+
+            this.smthChanged = true;
+            render();
         }
 
         private void buttonPitchCamera_Click(object sender, EventArgs e)
@@ -331,7 +342,10 @@ namespace Weatherwane
             
             
             CameraRotOY.Text = camera.angle.y.ToString();
-            
+
+            this.smthChanged = true;
+            render();
+
         }
 
         private void buttonMoveCamera_Click(object sender, EventArgs e)
@@ -348,6 +362,9 @@ namespace Weatherwane
             CameraPosX.Text = camera.position.x.ToString();
             CameraPosY.Text = camera.position.y.ToString();
             CameraPosZ.Text = camera.position.z.ToString();
+
+            this.smthChanged = true;
+            render();
 
         }
 
@@ -389,7 +406,7 @@ namespace Weatherwane
             {
 
                 Cylinder tmp = (Cylinder)primitive;
-                V = tmp.V;
+/*                V = tmp.V;*/
                 
 
 
@@ -431,6 +448,25 @@ namespace Weatherwane
 
             LightPosZ.Visible = isVisible;
             ChangeLightPosZ.Visible = isVisible;
+        }
+
+        private void ableDynamicParametrs(bool isAble)
+        {
+            trackBarN.Enabled = isAble;
+            checkBoxNebo.Enabled = isAble;
+            numericNumThreads.Enabled = isAble;
+            dynamicButton.Enabled = isAble;
+
+            btnChange.Enabled = isAble;
+
+            btnDeleteLight.Enabled = isAble;
+            btnAddLight.Enabled = isAble;
+            btnChangeLightParams.Enabled = isAble;
+
+            buttonRollCamera.Enabled = isAble;
+            buttonPitchCamera.Enabled = isAble;
+            buttonYawCamera.Enabled = isAble;
+            buttonMoveCamera.Enabled = isAble;
         }
 
         private void comboBoxLights_SelectedIndexChanged(object sender, EventArgs e)
@@ -488,19 +524,10 @@ namespace Weatherwane
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Text = "3DConstructor";
+            this.Text = "Weatherwane";
             UpdateLightsName();
             comboBoxLights.SelectedIndex = 1;
             tabControl1.SelectedIndex = 1;
-
-            CameraPosX.Text = "0";
-            CameraPosY.Text = "0";
-            CameraPosZ.Text = "0";
-            CameraRotOX.Text = "0";
-            CameraRotOY.Text = "0";
-            CameraRotOZ.Text = "0";
-
-
         }
 
         private void btnChangeLightParams_Click(object sender, EventArgs e)
@@ -518,7 +545,9 @@ namespace Weatherwane
                    new Vec3d((double)ChangeLightPosX.Value, (double)ChangeLightPosY.Value, (double)ChangeLightPosZ.Value), (double)ChangeLightIntensity.Value);
             }
             facade.executeCommand(changeLightCommand);
+            this.smthChanged = true;
             render();
+
             LightIntensity.Text = ChangeLightIntensity.Value.ToString();
             LightPosX.Text = ChangeLightPosX.Value.ToString();
             LightPosY.Text = ChangeLightPosY.Value.ToString();
@@ -529,7 +558,10 @@ namespace Weatherwane
         {
             AddLightCommand addLightCommand = new AddLightCommand(new Vec3d((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), (double)AddLightIntensity.Value);
             facade.executeCommand(addLightCommand);
+
+            this.smthChanged = true;
             render();
+
             UpdateLightsName();
             comboBoxLights.SelectedIndex = 1;
         }
@@ -539,6 +571,7 @@ namespace Weatherwane
             string selectedLight = this.comboBoxLights.SelectedItem.ToString();
             DeleteLightCommand deleteLightCommand = new DeleteLightCommand(selectedLight);
             facade.executeCommand(deleteLightCommand);
+            this.smthChanged = true;
             render();
             UpdateLightsName();
             comboBoxLights.SelectedIndex = 1;
@@ -570,6 +603,7 @@ namespace Weatherwane
                     (double)ChoiceReflective.Value);
                 facade.executeCommand(UpdatePrimitiveCommand);
             }
+            this.smthChanged = true;
             render();
         }
 
@@ -578,6 +612,12 @@ namespace Weatherwane
             if (this.radioRight.Checked)
             {
                 this.radioLeft.Checked = false;
+
+                bool reverse = this.radioRight.Checked;
+                int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value + 1;
+
+                ChangeParamsCommand ChangeParamsCommand = new ChangeParamsCommand(reverse, speed);
+                facade.executeCommand(ChangeParamsCommand);
             }
         }
 
@@ -586,8 +626,34 @@ namespace Weatherwane
             if (this.radioLeft.Checked)
             {
                 this.radioRight.Checked = false;
+
+                bool reverse = this.radioRight.Checked;
+                int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value + 1;
+
+                ChangeParamsCommand ChangeParamsCommand = new ChangeParamsCommand(reverse, speed);
+                facade.executeCommand(ChangeParamsCommand);
             }
         }
 
+        private void offButton_Click(object sender, EventArgs e)
+        {
+            StopRenderCommand StopRenderCommand = new StopRenderCommand();
+            facade.executeCommand(StopRenderCommand);
+            ableDynamicParametrs(true);
+        }
+
+        private void trackBarSpeed_Scroll(object sender, EventArgs e)
+        {
+            bool reverse = this.radioRight.Checked;
+            int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value + 1;
+
+            ChangeParamsCommand ChangeParamsCommand = new ChangeParamsCommand(reverse, speed);
+            facade.executeCommand(ChangeParamsCommand);
+        }
+
+        private void checkBoxNebo_CheckedChanged(object sender, EventArgs e)
+        {
+            smthChanged = true;
+        }
     }
 }

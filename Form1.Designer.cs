@@ -123,6 +123,9 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.offButton = new System.Windows.Forms.Button();
+            this.trackBarN = new System.Windows.Forms.TrackBar();
+            this.label21 = new System.Windows.Forms.Label();
             this.radioRight = new System.Windows.Forms.RadioButton();
             this.radioLeft = new System.Windows.Forms.RadioButton();
             this.label20 = new System.Windows.Forms.Label();
@@ -135,8 +138,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.trackBarN = new System.Windows.Forms.TrackBar();
-            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.btnDeleteObject.SuspendLayout();
@@ -164,15 +165,15 @@
             this.tabPage6.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericNumThreads)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarN)).BeginInit();
             this.SuspendLayout();
             // 
             // canvas
             // 
             this.canvas.InitialImage = ((System.Drawing.Image)(resources.GetObject("canvas.InitialImage")));
-            this.canvas.Location = new System.Drawing.Point(1542, 96);
+            this.canvas.Location = new System.Drawing.Point(1571, 96);
             this.canvas.Margin = new System.Windows.Forms.Padding(6);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(1320, 1269);
@@ -187,7 +188,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(757, 618);
+            this.tabControl1.Size = new System.Drawing.Size(785, 772);
             this.tabControl1.TabIndex = 45;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -205,7 +206,7 @@
             this.btnDeleteObject.Margin = new System.Windows.Forms.Padding(6);
             this.btnDeleteObject.Name = "btnDeleteObject";
             this.btnDeleteObject.Padding = new System.Windows.Forms.Padding(6);
-            this.btnDeleteObject.Size = new System.Drawing.Size(741, 571);
+            this.btnDeleteObject.Size = new System.Drawing.Size(769, 725);
             this.btnDeleteObject.TabIndex = 1;
             this.btnDeleteObject.Text = "Изменение примитивов";
             this.btnDeleteObject.UseVisualStyleBackColor = true;
@@ -329,7 +330,7 @@
             this.tabPage3.Location = new System.Drawing.Point(8, 39);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(741, 571);
+            this.tabPage3.Size = new System.Drawing.Size(741, 725);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Просмотр примитивов";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -346,7 +347,7 @@
             this.listBox1.Location = new System.Drawing.Point(10, 10);
             this.listBox1.Margin = new System.Windows.Forms.Padding(6);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(1176, 579);
+            this.listBox1.Size = new System.Drawing.Size(725, 704);
             this.listBox1.TabIndex = 1;
             // 
             // tabControl2
@@ -1236,11 +1237,11 @@
             // tabControl3
             // 
             this.tabControl3.Controls.Add(this.tabPage6);
-            this.tabControl3.Location = new System.Drawing.Point(745, 833);
+            this.tabControl3.Location = new System.Drawing.Point(745, 841);
             this.tabControl3.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(757, 669);
+            this.tabControl3.Size = new System.Drawing.Size(790, 669);
             this.tabControl3.TabIndex = 178;
             // 
             // tabPage6
@@ -1283,7 +1284,7 @@
             this.tabPage6.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage6.Size = new System.Drawing.Size(741, 622);
+            this.tabPage6.Size = new System.Drawing.Size(774, 622);
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "Камера";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1410,15 +1411,16 @@
             this.checkBoxNebo.TabIndex = 216;
             this.checkBoxNebo.Text = "Рисовать изображение";
             this.checkBoxNebo.UseVisualStyleBackColor = true;
+            this.checkBoxNebo.CheckedChanged += new System.EventHandler(this.checkBoxNebo_CheckedChanged);
             // 
             // dynamicButton
             // 
             this.dynamicButton.Location = new System.Drawing.Point(17, 455);
             this.dynamicButton.Margin = new System.Windows.Forms.Padding(6);
             this.dynamicButton.Name = "dynamicButton";
-            this.dynamicButton.Size = new System.Drawing.Size(668, 71);
+            this.dynamicButton.Size = new System.Drawing.Size(332, 71);
             this.dynamicButton.TabIndex = 187;
-            this.dynamicButton.Text = "On/Off";
+            this.dynamicButton.Text = "Запуск";
             this.dynamicButton.UseVisualStyleBackColor = true;
             // 
             // progressBar
@@ -1440,6 +1442,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.offButton);
             this.tabPage1.Controls.Add(this.trackBarN);
             this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.radioRight);
@@ -1465,6 +1468,38 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Запуск флюгера";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // offButton
+            // 
+            this.offButton.Location = new System.Drawing.Point(361, 455);
+            this.offButton.Margin = new System.Windows.Forms.Padding(6);
+            this.offButton.Name = "offButton";
+            this.offButton.Size = new System.Drawing.Size(332, 71);
+            this.offButton.TabIndex = 339;
+            this.offButton.Text = "Останов";
+            this.offButton.UseVisualStyleBackColor = true;
+            this.offButton.Click += new System.EventHandler(this.offButton_Click);
+            // 
+            // trackBarN
+            // 
+            this.trackBarN.Location = new System.Drawing.Point(245, 214);
+            this.trackBarN.Maximum = 144;
+            this.trackBarN.Minimum = 5;
+            this.trackBarN.Name = "trackBarN";
+            this.trackBarN.Size = new System.Drawing.Size(360, 90);
+            this.trackBarN.TabIndex = 338;
+            this.trackBarN.Value = 36;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label21.Location = new System.Drawing.Point(20, 214);
+            this.label21.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(149, 30);
+            this.label21.TabIndex = 337;
+            this.label21.Text = "Плавность:";
             // 
             // radioRight
             // 
@@ -1549,12 +1584,13 @@
             // 
             this.trackBarSpeed.LargeChange = 51;
             this.trackBarSpeed.Location = new System.Drawing.Point(245, 104);
-            this.trackBarSpeed.Maximum = 301;
+            this.trackBarSpeed.Maximum = 299;
             this.trackBarSpeed.Name = "trackBarSpeed";
             this.trackBarSpeed.Size = new System.Drawing.Size(360, 90);
             this.trackBarSpeed.SmallChange = 10;
             this.trackBarSpeed.TabIndex = 331;
             this.trackBarSpeed.Value = 150;
+            this.trackBarSpeed.Scroll += new System.EventHandler(this.trackBarSpeed_Scroll);
             // 
             // numericNumThreads
             // 
@@ -1606,27 +1642,6 @@
             this.label29.TabIndex = 147;
             this.label29.Text = "Направление:";
             // 
-            // trackBarN
-            // 
-            this.trackBarN.Location = new System.Drawing.Point(245, 214);
-            this.trackBarN.Maximum = 72;
-            this.trackBarN.Minimum = 1;
-            this.trackBarN.Name = "trackBarN";
-            this.trackBarN.Size = new System.Drawing.Size(360, 90);
-            this.trackBarN.TabIndex = 338;
-            this.trackBarN.Value = 36;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label21.Location = new System.Drawing.Point(20, 214);
-            this.label21.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(170, 34);
-            this.label21.TabIndex = 337;
-            this.label21.Text = "Плавность:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1641,7 +1656,8 @@
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Флюгер";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1674,9 +1690,9 @@
             this.tabControl4.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericNumThreads)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarN)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1792,6 +1808,7 @@
         private System.Windows.Forms.RadioButton radioLeft;
         private System.Windows.Forms.TrackBar trackBarN;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button offButton;
     }
 }
 

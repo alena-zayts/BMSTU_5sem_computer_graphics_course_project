@@ -84,48 +84,66 @@ namespace Weatherwane
         }
 
 
-        public void render(ref PictureBox canvas, bool drawBackground)
+        public void render(ref PictureBox canvas, bool drawBackground, int numThreads, ref TextBox textBoxTime)
         {
             rayTracer.scene = this.scene;
-            tmp = rayTracer.render(drawBackground);
-        
+
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            tmp = rayTracer.render(drawBackground, numThreads);
+
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
+                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            textBoxTime.Text = elapsedTime;
+
             canvas.Image = tmp;
         }
 
         public void dynamic_render(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n)
         {
+            this.n = n;
+            this.timer.Interval = speed;
+            this.imgBox = canvas;
+            this.reverse = reverse;
+
+            if (createArray)
+            {
+                this.arrBitmap = null;
+                this.arrBitmap = new Bitmap[n];
+                this.currImgIndex = 0;
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+                createArrayBitmap(ref canvas, drawSea, ref progressBar, numThreads);
+                stopWatch.Stop();
+                TimeSpan ts = stopWatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
+                    ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                textBoxTime.Text = elapsedTime;
+            }
+
             if (!on)
             {
-                this.n = n;
-                this.timer.Interval = speed;
-                this.imgBox = canvas;
-                this.reverse = reverse;
-
-                if (createArray)
-                {
-                    this.arrBitmap = null;
-                    this.arrBitmap = new Bitmap[n];
-                    this.currImgIndex = 0;
-                    Stopwatch stopWatch = new Stopwatch();
-                    stopWatch.Start();
-                    createArrayBitmap(ref canvas, drawSea, ref progressBar, numThreads);
-                    stopWatch.Stop();
-                    TimeSpan ts = stopWatch.Elapsed;
-                    string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
-                        ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                    Console.WriteLine("RunTime " + elapsedTime);
-                    textBoxTime.Text = elapsedTime;
-                }
-
                 timer.Start();
                 on = true;
             }
-            else
-            {
+        }
+
+        public void changeParams(bool reverse, int speed)
+        {
+            this.timer.Interval = speed;
+            this.reverse = reverse;
+        }
+
+        public void stopRender()
+        {
+            if (on)
+            { 
                 on = false;
                 timer.Stop();
             }
-
         }
 
         private void OnTimedEvent(Object source, ElapsedEventArgs e)

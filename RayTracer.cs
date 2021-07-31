@@ -567,7 +567,7 @@ namespace Weatherwane
             }
             
         }
-        public Bitmap render(bool drawSceneBackground, int numThreads=4)
+        public Bitmap render(bool drawSceneBackground, int numThreads)
         {
             Thread[] threads = new Thread[numThreads];
             for (int i = 0; i < numThreads; i++)

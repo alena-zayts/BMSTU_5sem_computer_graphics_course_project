@@ -12,15 +12,27 @@ namespace Weatherwane
     {
         private PictureBox canvas;
         private bool drawSea;
+        private int numThreads;
+        TextBox textBoxTime;
 
-        unsafe public RenderCommand(ref PictureBox canvas, bool drawSea)
+        unsafe public RenderCommand(ref PictureBox canvas, bool drawSea, int numThreads, ref TextBox textBoxTime)
         {
             this.canvas = canvas;
             this.drawSea = drawSea;
+            this.numThreads = numThreads;
+            this.textBoxTime = textBoxTime;
         }
         public override void execute(Controller controller)
         {
-            controller.render(ref canvas, this.drawSea);
+            controller.render(ref canvas, this.drawSea, this.numThreads, ref this.textBoxTime);
+        }
+    }
+
+    class StopRenderCommand : Command
+    {
+        public override void execute(Controller controller)
+        {
+            controller.stopRender();
         }
     }
 
@@ -52,6 +64,23 @@ namespace Weatherwane
         public override void execute(Controller controller)
         {
             controller.dynamic_render(ref canvas, this.drawSea, ref this.progressBar, this.reverse, this.speed, this.numThreads, ref this.textBoxTime, createArray, n);
+        }
+    }
+
+    class ChangeParamsCommand : Command
+    {
+        private bool reverse;
+        private int speed;
+
+
+        unsafe public ChangeParamsCommand(bool reverse, int speed)
+        {
+            this.reverse = reverse;
+            this.speed = speed;
+        }
+        public override void execute(Controller controller)
+        {
+            controller.changeParams(this.reverse, this.speed);
         }
     }
 }
