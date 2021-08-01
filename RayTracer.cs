@@ -522,6 +522,10 @@ namespace Weatherwane
                             intensity += sceneLight[i].intensity * Math.Pow(r_dot_v / (Vec3d.Length(R) * Vec3d.Length(V)), specular);
                         }
                     }
+                    else
+                    {
+                        Console.WriteLine("SOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                    }
                 }
             }
             return intensity;

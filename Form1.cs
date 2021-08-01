@@ -368,14 +368,13 @@ namespace Weatherwane
 
         }
 
-        private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
+private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedObject = this.choiceObject.SelectedItem.ToString();
+            string info = "";
             for (int i = 0; i < primitives.Count; i++)
             {
-                if (primitives[i] is DiskPlane)
-                    continue;
-                if (primitives[i] is Triangle)
+                if ((primitives[i] is DiskPlane) || (primitives[i] is Triangle))
                     continue;
 
                 if (primitives[i].name == selectedObject )
@@ -391,6 +390,10 @@ namespace Weatherwane
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
 
+                info = "Тип: Сфера, ";
+                info += "Вращается: " + tmp.moving + ", ";
+                info += "Центр (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
+                info += "Радиус: = " + tmp.radius;
 
             }
             else if (primitive is TrianglePyramid)
@@ -401,18 +404,28 @@ namespace Weatherwane
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
 
+                info = "Тип: Пирамида, ";
+                info += "Вращается: " + tmp.moving + ", ";
+                info += "P = (" + tmp.P.x + "; " + tmp.P.y + "; " + tmp.P.z + "), ";
+                info += "A = (" + tmp.A.x + "; " + tmp.A.y + "; " + tmp.A.z + "), ";
+                info += "B = (" + tmp.B.x + "; " + tmp.B.y + "; " + tmp.B.z + "), ";
+                info += "C = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + ")";
+
             }
             else if (primitive is Cylinder)
             {
-
                 Cylinder tmp = (Cylinder)primitive;
-/*                V = tmp.V;*/
-                
-
 
                 ChoiceSpecular.Value = (decimal)tmp.specular;
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
+
+                info = "Тип: Цилиндр, ";
+                info += "Вращается: " + tmp.moving + ", ";
+                info += "Центр основания = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
+                info += "Радиус = " + tmp.radius + ", ";
+                info += "Вектор оси = (" + String.Format("{0:f6}", tmp.V.x) + "; " + String.Format("{0:f6}", tmp.V.y) + "; " + String.Format("{0:f6}", tmp.V.z) + "), ";
+                info += "Высота = " + tmp.maxm;
             }
             else if (primitive is Parallelepiped)
             {
@@ -422,6 +435,10 @@ namespace Weatherwane
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
 
+                info = "Тип: Параллелепипед, ";
+                info += "Вращается: " + tmp.moving + ", ";
+                info += "'минимальная' вершина = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
+                info += "'максимальная' вершина  = (" + tmp.E.x + "; " + tmp.E.y + "; " + tmp.E.z + ")";
 
             }
             else if (primitive is Plane)
@@ -431,8 +448,10 @@ namespace Weatherwane
                 ChoiceReflective.Value = (decimal)tmp.reflective;
                 ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
 
-
+                info = "Вращается: " + tmp.moving;
             }
+            listBox2.Items.Clear();
+            listBox2.Items.Add(info);
         }
 
         private void VisibleLightParametrs(bool isVisible)

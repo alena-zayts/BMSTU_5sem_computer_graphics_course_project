@@ -138,6 +138,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.btnDeleteObject.SuspendLayout();
@@ -194,6 +196,8 @@
             // 
             // btnDeleteObject
             // 
+            this.btnDeleteObject.Controls.Add(this.listBox2);
+            this.btnDeleteObject.Controls.Add(this.label22);
             this.btnDeleteObject.Controls.Add(this.choiceObject);
             this.btnDeleteObject.Controls.Add(this.labelChoiceColor);
             this.btnDeleteObject.Controls.Add(this.ChoiceReflective);
@@ -256,7 +260,7 @@
             0,
             0,
             196608});
-            this.ChoiceReflective.Location = new System.Drawing.Point(349, 167);
+            this.ChoiceReflective.Location = new System.Drawing.Point(462, 123);
             this.ChoiceReflective.Margin = new System.Windows.Forms.Padding(6);
             this.ChoiceReflective.Maximum = new decimal(new int[] {
             1,
@@ -269,7 +273,7 @@
             // 
             // ChoiceSpecular
             // 
-            this.ChoiceSpecular.Location = new System.Drawing.Point(349, 117);
+            this.ChoiceSpecular.Location = new System.Drawing.Point(462, 173);
             this.ChoiceSpecular.Margin = new System.Windows.Forms.Padding(6);
             this.ChoiceSpecular.Maximum = new decimal(new int[] {
             5000,
@@ -283,17 +287,17 @@
             // ChoiceColor
             // 
             this.ChoiceColor.BackColor = System.Drawing.Color.Red;
-            this.ChoiceColor.Location = new System.Drawing.Point(349, 67);
+            this.ChoiceColor.Location = new System.Drawing.Point(462, 73);
             this.ChoiceColor.Margin = new System.Windows.Forms.Padding(6);
             this.ChoiceColor.Name = "ChoiceColor";
-            this.ChoiceColor.Size = new System.Drawing.Size(116, 38);
+            this.ChoiceColor.Size = new System.Drawing.Size(96, 38);
             this.ChoiceColor.TabIndex = 321;
             this.ChoiceColor.TabStop = false;
             this.ChoiceColor.Click += new System.EventHandler(this.ChoiceColor_Click);
             // 
             // btnChange
             // 
-            this.btnChange.Location = new System.Drawing.Point(22, 226);
+            this.btnChange.Location = new System.Drawing.Point(21, 366);
             this.btnChange.Margin = new System.Windows.Forms.Padding(6);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(150, 44);
@@ -306,18 +310,18 @@
             // 
             this.labelChoiceSpecular.AutoSize = true;
             this.labelChoiceSpecular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChoiceSpecular.Location = new System.Drawing.Point(16, 117);
+            this.labelChoiceSpecular.Location = new System.Drawing.Point(18, 173);
             this.labelChoiceSpecular.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelChoiceSpecular.Name = "labelChoiceSpecular";
-            this.labelChoiceSpecular.Size = new System.Drawing.Size(212, 30);
+            this.labelChoiceSpecular.Size = new System.Drawing.Size(459, 34);
             this.labelChoiceSpecular.TabIndex = 326;
-            this.labelChoiceSpecular.Text = "Уровень блеска:";
+            this.labelChoiceSpecular.Text = "Коэффициент блеска (степень):";
             // 
             // labelChoiceReflective
             // 
             this.labelChoiceReflective.AutoSize = true;
             this.labelChoiceReflective.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChoiceReflective.Location = new System.Drawing.Point(16, 167);
+            this.labelChoiceReflective.Location = new System.Drawing.Point(18, 124);
             this.labelChoiceReflective.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelChoiceReflective.Name = "labelChoiceReflective";
             this.labelChoiceReflective.Size = new System.Drawing.Size(327, 30);
@@ -330,7 +334,7 @@
             this.tabPage3.Location = new System.Drawing.Point(8, 39);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(741, 725);
+            this.tabPage3.Size = new System.Drawing.Size(769, 725);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Просмотр примитивов";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1642,6 +1646,27 @@
             this.label29.TabIndex = 147;
             this.label29.Text = "Направление:";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label22.Location = new System.Drawing.Point(17, 225);
+            this.label22.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(254, 34);
+            this.label22.TabIndex = 341;
+            this.label22.Text = "Другие свойства:";
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.HorizontalScrollbar = true;
+            this.listBox2.ItemHeight = 25;
+            this.listBox2.Location = new System.Drawing.Point(269, 225);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(475, 79);
+            this.listBox2.TabIndex = 342;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1809,6 +1834,8 @@
         private System.Windows.Forms.TrackBar trackBarN;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button offButton;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 
