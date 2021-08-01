@@ -149,10 +149,8 @@ namespace Weatherwane
 
 
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void initTabControl1()
         {
-            if (tabControl1.SelectedIndex == 0)
-            {
                 GetSceneObjectsCommand getSceneObjectsCommand = new GetSceneObjectsCommand();
                 facade.executeCommand(getSceneObjectsCommand);
 
@@ -173,118 +171,9 @@ namespace Weatherwane
                     tmp = tmp.Replace("System.Windows.Forms.TextBox, Text: ", "");
                     choiceObject.Items[flag - 1] = tmp;
                 }
-                if (flag > 0)
-                {
-                    choiceObject.SelectedIndex = 0;
-                    
-                    ChoiceColor.Visible = true;
-                    ChoiceReflective.Visible = true;
-                    ChoiceSpecular.Visible = true;
-                    labelChoiceReflective.Visible = true;
-                    labelChoiceSpecular.Visible = true;
-                    btnChange.Visible = true;
-
-                    string selectedObject = this.choiceObject.SelectedItem.ToString();
-                }
-                
-                else
-                {
-                    ChoiceColor.Visible = false;
-                    ChoiceReflective.Visible = false;
-                    ChoiceSpecular.Visible = false;
-                    labelChoiceColor.Visible = false;
-                    labelChoiceReflective.Visible = false;
-                    labelChoiceSpecular.Visible = false;
-                    btnChange.Visible = false;
-
-
-                }    
-                
-            }
-            if (tabControl1.SelectedIndex == 1)
-            {
-                GetSceneObjectsCommand getSceneObjectsCommand = new GetSceneObjectsCommand();
-                facade.executeCommand(getSceneObjectsCommand);
-
-                primitives = getSceneObjectsCommand.getResult();
-                listBox1.Items.Clear();
-                string str = "";
-                int flag;
-                for (int i = 0; i < primitives.Count; i++)
-                {
-                    flag = 0;
-                    if (primitives[i] is Sphere)
-                    {
-                        Sphere tmp = (Sphere)primitives[i];
-                        str = "Name: " + tmp.name + ", ";
-                        str += "Type: Сфера, ";
-                        str += "Вращается: " + tmp.moving + ", ";
-                        str += "Parametrs: C = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
-                        str += "R = " + tmp.radius + ", ";
-                        str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
-                        str += "specular = " + tmp.specular + ", ";
-                        str += "reflective = " + tmp.reflective;
-                        flag = 1;
-                    }
-                    else if (primitives[i] is Cylinder)
-                    {
-                        Cylinder tmp = (Cylinder)primitives[i];
-                        str = "Name: " + tmp.name + ", ";
-                        str += "Type: Цилиндр, ";
-                        str += "Вращается: " + tmp.moving + ", ";
-                        str += "Parametrs: Cосн = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
-                        str += "Rосн = " + tmp.radius + ", ";
-                        str += "V = (" + String.Format("{0:f6}", tmp.V.x) + "; " + String.Format("{0:f6}", tmp.V.y) + "; " + String.Format("{0:f6}", tmp.V.z) + "), ";
-                        str += "H = " + tmp.maxm + ", ";
-                        str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
-                        str += "specular = " + tmp.specular + ", ";
-                        str += "reflective = " + tmp.reflective;
-                        flag = 1;
-                    }
-                    else if (primitives[i] is Parallelepiped)
-                    {
-                        Parallelepiped tmp = (Parallelepiped)primitives[i];
-                        str = "Name: " + tmp.name + ", ";
-                        str += "Type: Параллелепипед, ";
-                        str += "Вращается: " + tmp.moving + ", ";
-                        str += "Parametrs: С = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
-                        str += "E = (" + tmp.E.x + "; " + tmp.E.y + "; " + tmp.E.z + "), ";
-                        str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
-                        str += "specular = " + tmp.specular + ", ";
-                        str += "reflective = " + tmp.reflective;
-                        flag = 1;
-                    }
-                    else if (primitives[i] is TrianglePyramid)
-                    {
-                        TrianglePyramid tmp = (TrianglePyramid)primitives[i];
-                        str = "Name: " + tmp.name + ", ";
-                        str += "Type: Пирамида, ";
-                        str += "Вращается: " + tmp.moving + ", ";
-                        str += "Parametrs: P = (" + tmp.P.x + "; " + tmp.P.y + "; " + tmp.P.z + "), ";
-                        str += "A = (" + tmp.A.x + "; " + tmp.A.y + "; " + tmp.A.z + "), ";
-                        str += "B = (" + tmp.B.x + "; " + tmp.B.y + "; " + tmp.B.z + "), ";
-                        str += "C = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
-                        str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
-                        str += "specular = " + tmp.specular + ", ";
-                        str += "reflective = " + tmp.reflective;
-                        flag = 1;
-                    }
-                    else if (primitives[i] is Plane)
-                    {
-                        Plane tmp = (Plane)primitives[i];
-                        str = "Name: " + tmp.name + ", ";
-                        str += "Вращается: " + tmp.moving + ", ";
-                        str += "color = (" + tmp.color.x + "; " + tmp.color.y + "; " + tmp.color.z + "), ";
-                        str += "specular = " + tmp.specular + ", ";
-                        str += "reflective = " + tmp.reflective;
-                        flag = 1;
-                    }
-                    if (flag == 1)
-                        listBox1.Items.Add(str);
-
-                }
-
-            }
+            choiceObject.SelectedIndex = 0;
+            
+            string selectedObject = this.choiceObject.SelectedItem.ToString();
         }
 
         private void buttonRollCamera_Click(object sender, EventArgs e)
@@ -467,6 +356,13 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
             LightPosZ.Visible = isVisible;
             ChangeLightPosZ.Visible = isVisible;
+
+            label2.Visible = isVisible;
+            label3.Visible = isVisible;
+            label4.Visible = isVisible;
+            label5.Visible = isVisible;
+            label6.Visible = isVisible;
+            label7.Visible = isVisible;
         }
 
         private void ableDynamicParametrs(bool isAble)
@@ -514,8 +410,8 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
                 else
                 {
                     btnDeleteLight.Visible = true;
-                    labelLightPos.Text = "Положение:";
-                    labelChangeLightPos.Text = "Положение:";
+                    labelLightPos.Text = "Позиция:";
+                    labelChangeLightPos.Text = "Позиция:";
                 }
                 LightPosX.Text = light.position.x.ToString();
                 LightPosY.Text = light.position.y.ToString();
@@ -545,8 +441,8 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.Text = "Weatherwane";
             UpdateLightsName();
+            initTabControl1();
             comboBoxLights.SelectedIndex = 1;
-            tabControl1.SelectedIndex = 1;
         }
 
         private void btnChangeLightParams_Click(object sender, EventArgs e)
@@ -671,6 +567,11 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         }
 
         private void checkBoxNebo_CheckedChanged(object sender, EventArgs e)
+        {
+            smthChanged = true;
+        }
+
+        private void trackBarN_Scroll(object sender, EventArgs e)
         {
             smthChanged = true;
         }
