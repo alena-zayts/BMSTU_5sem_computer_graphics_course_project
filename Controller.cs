@@ -86,6 +86,22 @@ namespace Weatherwane
 
         public void render(ref PictureBox canvas, bool drawBackground, int numThreads, ref TextBox textBoxTime)
         {
+            if (this.n > 0 & currImgIndex > 1)
+            {
+                double cur_angle = (this.currImgIndex - 1) * 360 / this.n;
+                Vec3d turnPoint = new Vec3d(0, 48.5, 0);
+
+                for (int j = 0; j < scene.sceneObjects.Count; j++)
+                {
+                    if (scene.sceneObjects[j].moving)
+                    {
+                        scene.sceneObjects[j].RotateOY(turnPoint, cur_angle);
+                    }
+                }
+
+                currImgIndex = 0;
+            }
+
             rayTracer.scene = this.scene;
 
             Stopwatch stopWatch = new Stopwatch();
@@ -169,7 +185,6 @@ namespace Weatherwane
 
         public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar, int numThreads)
         {
-            Primitive a;
             Vec3d turnPoint = new Vec3d(0, 48.5, 0);
             double angle = 360 / n;
 

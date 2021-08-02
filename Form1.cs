@@ -126,7 +126,7 @@ namespace Weatherwane
             }
             catch (Exception err)
             {
-                MessageBox.Show("Ошибка загрузки сцены. Проверьте корректность содержания файля");
+                MessageBox.Show("Ошибка загрузки.");
                 return;
             }
 

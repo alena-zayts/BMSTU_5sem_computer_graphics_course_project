@@ -26,8 +26,8 @@ namespace Weatherwane
                 for (int j = 0; j < canvasHeight; j++)
                 {
                     Color color = bmpBackground.GetPixel(i, j);
-                    
-                    this.background[i, j] = new Vec3d(color.R, color.G, color.B);
+
+                    this.background[i, canvasHeight - j - 1] = new Vec3d(color.R, color.G, color.B);
                 }
             }
         }

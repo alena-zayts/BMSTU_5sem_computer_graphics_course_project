@@ -1468,7 +1468,7 @@
             this.trackBarN.Size = new System.Drawing.Size(360, 90);
             this.trackBarN.SmallChange = 2;
             this.trackBarN.TabIndex = 338;
-            this.trackBarN.Value = 36;
+            this.trackBarN.Value = 18;
             this.trackBarN.Scroll += new System.EventHandler(this.trackBarN_Scroll);
             // 
             // label21
@@ -1586,7 +1586,7 @@
             this.numericNumThreads.Size = new System.Drawing.Size(124, 31);
             this.numericNumThreads.TabIndex = 330;
             this.numericNumThreads.Value = new decimal(new int[] {
-            8,
+            4,
             0,
             0,
             0});

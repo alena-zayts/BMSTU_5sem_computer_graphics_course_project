@@ -420,9 +420,18 @@ namespace Weatherwane
             {
                 if (drawSceneBackground)
                 {
-                    x += 330;
-                    y += 330;
-                    return scene.background[x, y];
+                    try
+                    {
+                        
+                        x += 330;
+                        y += 330;
+                        return scene.background[x, y];
+                    }
+                    catch (Exception err)
+                    {
+                        Console.WriteLine("had" + - (y + 329) + "got" + y);
+                        return new Vec3d(0, 0, 0);
+                    }
                 }
                 return new Vec3d(0, 0, 0);
             }
