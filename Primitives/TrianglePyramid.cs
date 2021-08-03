@@ -12,7 +12,7 @@ namespace Weatherwane
         public Vec3d B;
         public Vec3d P;
         public TrianglePyramid(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C,
-            Vec3d color, double specular, double reflective, bool moving) : base(name, C, color, specular, reflective, moving)
+            Material material, bool moving) : base(name, C, material, moving)
         {
             this.A = A;
             this.B = B;

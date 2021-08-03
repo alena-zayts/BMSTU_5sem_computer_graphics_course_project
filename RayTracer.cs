@@ -463,11 +463,11 @@ namespace Weatherwane
 
             N = N / Vec3d.Length(N); 
 
-            double intensity = ComputeLighting(P, N, -D, closest_object.specular);
+            double intensity = ComputeLighting(P, N, -D, closest_object.material.specular);
 
-            Vec3d localColor = intensity * closest_object.color; 
+            Vec3d localColor = intensity * closest_object.material.color; 
 
-            double r = closest_object.reflective;
+            double r = closest_object.material.reflective;
 
             if (depth <= 0 || r <= 0)
                 return localColor;

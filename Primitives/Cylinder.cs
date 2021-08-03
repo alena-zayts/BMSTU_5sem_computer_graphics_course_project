@@ -12,7 +12,7 @@ namespace Weatherwane
         public double radius;
         public double maxm;
         public Cylinder(string name, Vec3d C, Vec3d V, double radius, double maxm,
-            Vec3d color, double specular, double reflective, bool moving) : base (name, C, color, specular, reflective, moving)
+            Material material, bool moving) : base (name, C, material, moving)
         {
             this.V = V;
             this.radius = radius;

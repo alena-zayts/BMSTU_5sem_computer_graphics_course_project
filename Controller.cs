@@ -276,24 +276,7 @@ namespace Weatherwane
                 if (this.scene.sceneObjects[i].name == name)
                 {
                     this.scene.sceneObjects[i].name = name;
-                    this.scene.sceneObjects[i].color = color;
-                    this.scene.sceneObjects[i].specular = specular;
-                    this.scene.sceneObjects[i].reflective = reflective;
-                }
-            }
-        }
-
-        public void updateBasePlane(Vec3d color, double specular, double reflective)
-        {
-
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
-            {
-                if (this.scene.sceneObjects[i].name == "плоскость основания")
-                {
-                    this.scene.sceneObjects[i].color = color;
-                    this.scene.sceneObjects[i].specular = specular;
-                    this.scene.sceneObjects[i].reflective = reflective;
-                    break;
+                    this.scene.sceneObjects[i].material.update(color, specular, reflective);
                 }
             }
         }

@@ -25,22 +25,4 @@ namespace Weatherwane
             controller.updatePrimitive(this.name, this.color, this.specular, this.reflective);
         }
     }
-
-    class UpdateBasePlaneCommand : Command
-    {
-        private double specular;
-        private double reflective;
-        private Vec3d color;
-
-        public UpdateBasePlaneCommand(Vec3d color, double specular, double reflective)
-        {
-            this.color = color;
-            this.specular = specular;
-            this.reflective = reflective;
-        }
-        public override void execute(Controller controller)
-        {
-            controller.updateBasePlane(this.color, this.specular, this.reflective);
-        }
-    }
 }

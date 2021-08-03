@@ -64,6 +64,7 @@
     <Compile Include="LoadScene.cs" />
     <Compile Include="Commands\RenderCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
+    <Compile Include="Primitives\Material.cs" />
     <Compile Include="SaveScene.cs" />
     <Compile Include="Primitives\Triangle.cs" />
     <Compile Include="Primitives\TrianglePyramid.cs" />

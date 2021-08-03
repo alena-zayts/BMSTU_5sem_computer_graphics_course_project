@@ -272,12 +272,13 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
                     break;
                 }
             }
+            Material material_tmp = primitive.material;
+            ChoiceSpecular.Value = (decimal)material_tmp.specular;
+            ChoiceReflective.Value = (decimal)material_tmp.reflective;
+            ChoiceColor.BackColor = Color.FromArgb((int)material_tmp.color.x, (int)material_tmp.color.y, (int)material_tmp.color.z);
             if (primitive is Sphere)
             {
                 Sphere tmp = (Sphere)primitive;
-                ChoiceSpecular.Value = (decimal)tmp.specular;
-                ChoiceReflective.Value = (decimal)tmp.reflective;
-                ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
 
                 info = "Тип: Сфера, ";
                 info += "Вращается: " + tmp.moving + ", ";
@@ -288,10 +289,6 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             else if (primitive is TrianglePyramid)
             {
                 TrianglePyramid tmp = (TrianglePyramid)primitive;
-
-                ChoiceSpecular.Value = (decimal)tmp.specular;
-                ChoiceReflective.Value = (decimal)tmp.reflective;
-                ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
 
                 info = "Тип: Пирамида, ";
                 info += "Вращается: " + tmp.moving + ", ";
@@ -305,10 +302,6 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             {
                 Cylinder tmp = (Cylinder)primitive;
 
-                ChoiceSpecular.Value = (decimal)tmp.specular;
-                ChoiceReflective.Value = (decimal)tmp.reflective;
-                ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
-
                 info = "Тип: Цилиндр, ";
                 info += "Вращается: " + tmp.moving + ", ";
                 info += "Центр основания = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
@@ -320,10 +313,6 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             {
                 Parallelepiped tmp = (Parallelepiped)primitive;
 
-                ChoiceSpecular.Value = (decimal)tmp.specular;
-                ChoiceReflective.Value = (decimal)tmp.reflective;
-                ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
-
                 info = "Тип: Параллелепипед, ";
                 info += "Вращается: " + tmp.moving + ", ";
                 info += "'минимальная' вершина = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
@@ -333,9 +322,6 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             else if (primitive is Plane)
             {
                 Plane tmp = (Plane)primitive;
-                ChoiceSpecular.Value = (decimal)tmp.specular;
-                ChoiceReflective.Value = (decimal)tmp.reflective;
-                ChoiceColor.BackColor = Color.FromArgb((int)tmp.color.x, (int)tmp.color.y, (int)tmp.color.z);
 
                 info = "Вращается: " + tmp.moving;
             }
@@ -502,22 +488,14 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
         private void btnChange_Click(object sender, EventArgs e)
         {
-            if (primitive is Plane && primitive.name == "плоскость основания")
-            {
-                Color color = ChoiceColor.BackColor;
-                UpdateBasePlaneCommand updateBasePlaneCommand = new UpdateBasePlaneCommand(new Vec3d((double)color.R, (double)color.G, (double)color.B), (double)ChoiceSpecular.Value, (double)ChoiceReflective.Value);
-                facade.executeCommand(updateBasePlaneCommand);
-            }
-            else
-            {
-                Color color = ChoiceColor.BackColor;
-                UpdatePrimitiveCommand UpdatePrimitiveCommand = new UpdatePrimitiveCommand(
-                    primitive.name,
-                    new Vec3d((double)color.R, (double)color.G, (double)color.B),
-                    (double)ChoiceSpecular.Value,
-                    (double)ChoiceReflective.Value);
-                facade.executeCommand(UpdatePrimitiveCommand);
-            }
+            Color color = ChoiceColor.BackColor;
+            UpdatePrimitiveCommand UpdatePrimitiveCommand = new UpdatePrimitiveCommand(
+                primitive.name,
+                new Vec3d((double)color.R, (double)color.G, (double)color.B),
+                (double)ChoiceSpecular.Value,
+                (double)ChoiceReflective.Value);
+            facade.executeCommand(UpdatePrimitiveCommand);
+
             this.smthChanged = true;
             render();
         }

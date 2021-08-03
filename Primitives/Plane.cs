@@ -10,7 +10,7 @@ namespace Weatherwane
     {
         
         public Vec3d V;
-        public Plane(string name, Vec3d C, Vec3d V, Vec3d color, double specular, double reflective, bool moving) : base (name, C, color, specular, reflective, moving)
+        public Plane(string name, Vec3d C, Vec3d V, Material material, bool moving) : base (name, C, material, moving)
         {
             this.V = V;
         }
@@ -27,7 +27,7 @@ namespace Weatherwane
 
         public Vec3d V;
         public double r;
-        public DiskPlane(string name, Vec3d C, Vec3d V, double r, Vec3d color, double specular, double reflective, bool moving) : base(name, C, color, specular, reflective, moving)
+        public DiskPlane(string name, Vec3d C, Vec3d V, double r, Material material, bool moving) : base(name, C, material, moving)
         {
             this.V = V;
             this.r = r;

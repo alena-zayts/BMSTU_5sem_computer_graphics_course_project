@@ -10,7 +10,7 @@ namespace Weatherwane
     {
         public Vec3d E;
         public Parallelepiped(string name, Vec3d C, Vec3d E,
-            Vec3d color, double specular, double reflective, bool moving) : base(name, C, color, specular, reflective, moving)
+            Material material, bool moving) : base(name, C, material, moving)
         {
             this.E = E;
         }
