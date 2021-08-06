@@ -25,5 +25,15 @@ namespace Weatherwane
         {
             this.C.RotateOY(C, teta);
         }
+
+        public virtual void intersectRay(Vec3d O, Vec3d D, ref double t1, ref double t2)
+        {
+
+        }
+
+        public virtual Vec3d findNormal(Vec3d P)
+        {
+            return null;
+        }
     }
 }

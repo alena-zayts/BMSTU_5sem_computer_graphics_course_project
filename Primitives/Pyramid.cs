@@ -28,5 +28,16 @@ namespace Weatherwane
             this.D.RotateOY(C, teta);
             this.P.RotateOY(C, teta);
         }
+
+        public override void intersectRay(Vec3d O, Vec3d D, ref double t1, ref double t2)
+        {
+
+        }
+
+        public override Vec3d findNormal(Vec3d P)
+        {
+            Vec3d N = P - this.C;
+            return N;
+        }
     }
 }
