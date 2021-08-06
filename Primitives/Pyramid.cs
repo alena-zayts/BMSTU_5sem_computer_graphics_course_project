@@ -24,11 +24,7 @@ namespace Weatherwane
         }
         public override void RotateOY(Vec3d turn_point, double teta)
         {
-            this.A.RotateOY(turn_point, teta);
-            this.B.RotateOY(turn_point, teta);
-            this.C.RotateOY(turn_point, teta);
-            this.D.RotateOY(turn_point, teta);
-            this.P.RotateOY(turn_point, teta);
+
         }
 
         public override void intersectRay(Vec3d camera_point, Vec3d view_vector, ref double t1, ref double t2)

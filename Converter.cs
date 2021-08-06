@@ -86,7 +86,7 @@ namespace Weatherwane
                 scene.AddPyramid(this.pyramids[i].name, this.pyramids[i].material, this.pyramids[i].moving, this.pyramids[i].P, this.pyramids[i].A, this.pyramids[i].B, this.pyramids[i].C, this.pyramids[i].D);
 
             for (int i = 0; i < this.parallelepipeds.Length; i++)
-                scene.AddParallelepiped(this.parallelepipeds[i].name, this.parallelepipeds[i].material, this.parallelepipeds[i].moving, this.parallelepipeds[i].C, this.parallelepipeds[i].E);
+                scene.AddParallelepiped(this.parallelepipeds[i].name, this.parallelepipeds[i].material, this.parallelepipeds[i].moving, this.parallelepipeds[i].xl, this.parallelepipeds[i].xr, this.parallelepipeds[i].yu, this.parallelepipeds[i].yd, this.parallelepipeds[i].zf, this.parallelepipeds[i].zn);
 
             for (int i = 0; i < this.planes.Length; i++)
                 scene.AddPlane(this.planes[i].name, this.planes[i].material, this.parallelepipeds[i].moving, this.planes[i].C, this.planes[i].V);

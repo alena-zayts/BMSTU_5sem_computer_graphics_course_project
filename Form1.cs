@@ -25,7 +25,7 @@ namespace Weatherwane
 
             this.facade = new FacadeViewer(canvas.Width, canvas.Height);
             {
-                Command command = new LoadCommand("C:/msys64/home/alena/last_course/weatherwane1.json");
+                Command command = new LoadCommand("C:/msys64/home/alena/last_course/weatherwane3.json");
                 facade.executeCommand(command);
 
                 render();
@@ -315,8 +315,12 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
                 info = "Тип: Параллелепипед, ";
                 info += "Вращается: " + tmp.moving + ", ";
-                info += "'минимальная' вершина = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
-                info += "'максимальная' вершина  = (" + tmp.E.x + "; " + tmp.E.y + "; " + tmp.E.z + ")";
+                info += "xл: " + tmp.xl + ", ";
+                info += "xп: " + tmp.xr + ", ";
+                info += "yв: " + tmp.yu + ", ";
+                info += "yн: " + tmp.yd + ", ";
+                info += "zд: " + tmp.zf + ", ";
+                info += "zб: " + tmp.zn ;
 
             }
             else if (primitive is Plane)

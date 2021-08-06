@@ -55,9 +55,38 @@ namespace Weatherwane
             AddDiskPlane(name, material, moving, centre + V * height, new Vec3d(V), radius);
         }
 
-        public void AddParallelepiped(string name, Material material, bool moving, Vec3d C, Vec3d E)
+        public void AddParallelepiped(string name, Material material, bool moving, double xl, double xr, double yu, double yd, double zf, double zn)
         {
-            sceneObjects.Add(new Parallelepiped(name, material, moving, C, E));
+            Vec3d A = new Vec3d(xl, yd, zn);
+            Vec3d B = new Vec3d(xl, yd, zf);
+            Vec3d C = new Vec3d(xr, yd, zf);
+            Vec3d D = new Vec3d(xr, yd, zn);
+
+            Vec3d E = new Vec3d(xl, yu, zn);
+            Vec3d F = new Vec3d(xl, yu, zf);
+            Vec3d G = new Vec3d(xr, yu, zf);
+            Vec3d H = new Vec3d(xr, yu, zn);
+
+            // down
+            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(B), new Vec3d(C));
+            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(C), new Vec3d(D));
+            //up
+            AddTriangle(name, material, moving, new Vec3d(E), new Vec3d(F), new Vec3d(G));
+            AddTriangle(name, material, moving, new Vec3d(E), new Vec3d(G), new Vec3d(H));
+            //left
+            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(E), new Vec3d(F));
+            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(F), new Vec3d(B));
+            //right
+            AddTriangle(name, material, moving, new Vec3d(D), new Vec3d(H), new Vec3d(G));
+            AddTriangle(name, material, moving, new Vec3d(D), new Vec3d(G), new Vec3d(C));
+            //near
+            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(E), new Vec3d(H));
+            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(H), new Vec3d(D));
+            //far
+            AddTriangle(name, material, moving, new Vec3d(B), new Vec3d(G), new Vec3d(F));
+            AddTriangle(name, material, moving, new Vec3d(B), new Vec3d(C), new Vec3d(G));
+
+            sceneObjects.Add(new Parallelepiped(name, material, moving, xl, xr, yu, yd, zf, zn));
         }
 
         public void AddPyramid(string name, Material material, bool moving, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D)
