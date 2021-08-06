@@ -25,7 +25,7 @@ namespace Weatherwane
 
             this.facade = new FacadeViewer(canvas.Width, canvas.Height);
             {
-                Command command = new LoadCommand("C:/msys64/home/alena/last_course/weatherwane.json");
+                Command command = new LoadCommand("C:/msys64/home/alena/last_course/weatherwane1.json");
                 facade.executeCommand(command);
 
                 render();
@@ -286,9 +286,9 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
                 info += "Радиус: = " + tmp.radius;
 
             }
-            else if (primitive is TrianglePyramid)
+            else if (primitive is Pyramid)
             {
-                TrianglePyramid tmp = (TrianglePyramid)primitive;
+                Pyramid tmp = (Pyramid)primitive;
 
                 info = "Тип: Пирамида, ";
                 info += "Вращается: " + tmp.moving + ", ";

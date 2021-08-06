@@ -60,13 +60,16 @@ namespace Weatherwane
             sceneObjects.Add(new Parallelepiped(name, C, E, material, moving));
         }
 
-        public void AddTrianglePyramid(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Material material, bool moving)
+        public void AddPyramid(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D, Material material, bool moving)
         {
+
             AddTriangle(name, new Vec3d(P), new Vec3d(A), new Vec3d(B), material, moving);
             AddTriangle(name, new Vec3d(P), new Vec3d(B), new Vec3d(C), material, moving);
-            AddTriangle(name, new Vec3d(P), new Vec3d(C), new Vec3d(A), material, moving);
-            AddTriangle(name, new Vec3d(A), new Vec3d(B), new Vec3d(C), material, moving);
-            sceneObjects.Add(new TrianglePyramid(name, P, A, B, C, material, moving));
+            AddTriangle(name, new Vec3d(P), new Vec3d(C), new Vec3d(D), material, moving);
+            AddTriangle(name, new Vec3d(P), new Vec3d(D), new Vec3d(A), material, moving);
+            AddTriangle(name, new Vec3d(A), new Vec3d(B), new Vec3d(D), material, moving);
+            AddTriangle(name, new Vec3d(B), new Vec3d(C), new Vec3d(D), material, moving);
+            sceneObjects.Add(new Pyramid(name, P, A, B, C, D, material, moving));
         }
 
         public void AddTriangle(string name, Vec3d P, Vec3d A, Vec3d B, Material material, bool moving)

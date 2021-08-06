@@ -19,8 +19,8 @@ namespace Weatherwane
         [JsonProperty("cylinders")]
         private Cylinder[] cylinders;
 
-        [JsonProperty("trianglePyramids")]
-        private TrianglePyramid[] trianglePyramids;
+        [JsonProperty("quadPyramids")]
+        private Pyramid[] pyramids;
 
         [JsonProperty("parallelepipeds")]
         private Parallelepiped[] parallelepipeds;
@@ -39,7 +39,7 @@ namespace Weatherwane
 
             List<Sphere> spheres = new List<Sphere>();
             List<Cylinder> cylinders = new List<Cylinder>();
-            List<TrianglePyramid> trianglePyramids = new List<TrianglePyramid>();
+            List<Pyramid> pyramids = new List<Pyramid>();
             List<Parallelepiped> parallelepipeds = new List<Parallelepiped>();
             List<Plane> planes = new List<Plane>();
 
@@ -51,8 +51,8 @@ namespace Weatherwane
                 else if (scene.sceneObjects[i] is Cylinder)
                     cylinders.Add((Cylinder)scene.sceneObjects[i]);
 
-                else if (scene.sceneObjects[i] is TrianglePyramid)
-                    trianglePyramids.Add((TrianglePyramid)scene.sceneObjects[i]);
+                else if (scene.sceneObjects[i] is Pyramid)
+                    pyramids.Add((Pyramid)scene.sceneObjects[i]);
 
                 else if (scene.sceneObjects[i] is Parallelepiped)
                     parallelepipeds.Add((Parallelepiped)scene.sceneObjects[i]);
@@ -63,7 +63,7 @@ namespace Weatherwane
 
             this.spheres = spheres.ToArray();
             this.cylinders = cylinders.ToArray();
-            this.trianglePyramids = trianglePyramids.ToArray();
+            this.pyramids = pyramids.ToArray();
             this.parallelepipeds = parallelepipeds.ToArray();
             this.planes = planes.ToArray();
 
@@ -82,8 +82,8 @@ namespace Weatherwane
             for (int i = 0; i < this.cylinders.Length; i++)
                 scene.AddCylinder(this.cylinders[i].name, this.cylinders[i].C, this.cylinders[i].V, this.cylinders[i].radius, this.cylinders[i].maxm, this.cylinders[i].material, this.cylinders[i].moving);
 
-            for (int i = 0; i < this.trianglePyramids.Length; i++)
-                scene.AddTrianglePyramid(this.trianglePyramids[i].name, this.trianglePyramids[i].P, this.trianglePyramids[i].A, this.trianglePyramids[i].B, this.trianglePyramids[i].C, this.trianglePyramids[i].material, this.trianglePyramids[i].moving);
+            for (int i = 0; i < this.pyramids.Length; i++)
+                scene.AddPyramid(this.pyramids[i].name, this.pyramids[i].P, this.pyramids[i].A, this.pyramids[i].B, this.pyramids[i].C, this.pyramids[i].D, this.pyramids[i].material, this.pyramids[i].moving);
 
             for (int i = 0; i < this.parallelepipeds.Length; i++)
                 scene.AddParallelepiped(this.parallelepipeds[i].name, this.parallelepipeds[i].C, this.parallelepipeds[i].E, this.parallelepipeds[i].material, this.parallelepipeds[i].moving);

@@ -67,7 +67,7 @@
     <Compile Include="Primitives\Material.cs" />
     <Compile Include="SaveScene.cs" />
     <Compile Include="Primitives\Triangle.cs" />
-    <Compile Include="Primitives\TrianglePyramid.cs" />
+    <Compile Include="Primitives\Pyramid.cs" />
     <Compile Include="Primitives\Parallelepiped.cs" />
     <Compile Include="Primitives\Cylinder.cs" />
     <Compile Include="Primitives\Plane.cs" />
