@@ -8,28 +8,30 @@ namespace Weatherwane
 {
     class Parallelepiped : Primitive
     {
+        public Vec3d C;
         public Vec3d E;
-        public Parallelepiped(string name, Vec3d C, Vec3d E,
-            Material material, bool moving) : base(name, C, material, moving)
+        public Parallelepiped(string name, Material material, bool moving, 
+            Vec3d C, Vec3d E) : base(name, material, moving)
         {
+            this.C = C;
             this.E = E;
         }
 
-        public override void RotateOY(Vec3d C, double teta)
+        public override void RotateOY(Vec3d turn_point, double teta)
         {
-            this.C.RotateOY(C, teta);
-            this.E.RotateOY(C, teta);
+            this.C.RotateOY(turn_point, teta);
+            this.E.RotateOY(turn_point, teta);
         }
 
-        public override void intersectRay(Vec3d O, Vec3d D, ref double t1ret, ref double t2ret)
+        public override void intersectRay(Vec3d camera_point, Vec3d view_direction, ref double t1ret, ref double t2ret)
         {
             double t1, t2;
             double tnear = Double.NegativeInfinity;
             double tfar = Double.PositiveInfinity;
 
-            if (Math.Abs(D.x) < 0.001)
+            if (Math.Abs(view_direction.x) < 0.001)
             {
-                if (O.x < this.C.x || O.x > this.E.x)
+                if (camera_point.x < this.C.x || camera_point.x > this.E.x)
                 {
                     t1ret = Double.PositiveInfinity;
                     t2ret = Double.NegativeInfinity;
@@ -40,8 +42,8 @@ namespace Weatherwane
             else
             {
 
-                t1 = (this.C.x - O.x) / D.x;
-                t2 = (this.E.x - O.x) / D.x;
+                t1 = (this.C.x - camera_point.x) / view_direction.x;
+                t2 = (this.E.x - camera_point.x) / view_direction.x;
                 if (t1 > t2)
                 {
                     double tmp = t1;
@@ -64,9 +66,9 @@ namespace Weatherwane
                 }
             }
 
-            if (Math.Abs(D.y) < 0.001)
+            if (Math.Abs(view_direction.y) < 0.001)
             {
-                if (O.y < this.C.y || O.y > this.E.y)
+                if (camera_point.y < this.C.y || camera_point.y > this.E.y)
                 {
                     t1ret = Double.PositiveInfinity;
                     t2ret = Double.NegativeInfinity;
@@ -76,8 +78,8 @@ namespace Weatherwane
             else
             {
 
-                t1 = (this.C.y - O.y) / D.y;
-                t2 = (this.E.y - O.y) / D.y;
+                t1 = (this.C.y - camera_point.y) / view_direction.y;
+                t2 = (this.E.y - camera_point.y) / view_direction.y;
                 if (t1 > t2)
                 {
                     double tmp = t1;
@@ -99,9 +101,9 @@ namespace Weatherwane
                     return;
                 }
             }
-            if (Math.Abs(D.z) < 0.001)
+            if (Math.Abs(view_direction.z) < 0.001)
             {
-                if (O.z < this.C.z || O.z > this.E.z)
+                if (camera_point.z < this.C.z || camera_point.z > this.E.z)
                 {
                     t1ret = Double.PositiveInfinity;
                     t2ret = Double.NegativeInfinity;
@@ -111,8 +113,8 @@ namespace Weatherwane
             else
             {
 
-                t1 = (this.C.z - O.z) / D.z;
-                t2 = (this.E.z - O.z) / D.z;
+                t1 = (this.C.z - camera_point.z) / view_direction.z;
+                t2 = (this.E.z - camera_point.z) / view_direction.z;
                 if (t1 > t2)
                 {
                     double tmp = t1;

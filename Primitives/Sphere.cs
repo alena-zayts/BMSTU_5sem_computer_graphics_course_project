@@ -9,17 +9,25 @@ namespace Weatherwane
 {
     class Sphere : Primitive
     {
+        public Vec3d centre;
         public double radius;
-        public Sphere(string name, Vec3d C, double r, Material material, bool moving) : base (name, C, material, moving)
+        public Sphere(string name, Material material, bool moving, Vec3d centre, double r) : base (name, material, moving)
         {
+            this.centre = centre;
             this.radius = r;   
         }
-        public override void intersectRay(Vec3d O, Vec3d D, ref double t1, ref double t2)
-        {
-            Vec3d CO = O - this.C;
 
-            double a = Vec3d.ScalarMultiplication(D, D);
-            double b = 2 * Vec3d.ScalarMultiplication(CO, D);
+        public override void RotateOY(Vec3d turn_point, double teta)
+        {
+            this.centre.RotateOY(turn_point, teta);
+        }
+
+        public override void intersectRay(Vec3d camera_point, Vec3d view_vector, ref double t1, ref double t2)
+        {
+            Vec3d CO = camera_point - this.centre;
+
+            double a = Vec3d.ScalarMultiplication(view_vector, view_vector);
+            double b = 2 * Vec3d.ScalarMultiplication(CO, view_vector);
             double c = Vec3d.ScalarMultiplication(CO, CO) - this.radius * this.radius;
 
 
@@ -38,7 +46,7 @@ namespace Weatherwane
 
         public override Vec3d findNormal(Vec3d P)
         {
-            Vec3d N = P - this.C;
+            Vec3d N = P - this.centre;
             return N;
         }
     }

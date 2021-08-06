@@ -8,32 +8,35 @@ namespace Weatherwane
 {
     class Cylinder : Primitive
     {
+        public Vec3d centre;
         public Vec3d V;
         public double radius;
-        public double maxm;
-        public Cylinder(string name, Vec3d C, Vec3d V, double radius, double maxm,
-            Material material, bool moving) : base (name, C, material, moving)
+        public double height;
+        public Cylinder(string name, Material material, bool moving, 
+            Vec3d centre, Vec3d V, double radius, double height) : base (name, material, moving)
         {
+            this.centre = centre;
             this.V = V;
             this.radius = radius;
-            this.maxm = maxm;
+            this.height = height;
         }
 
-        public override void RotateOY(Vec3d C, double teta)
+        public override void RotateOY(Vec3d turn_point, double teta)
         {
-            Vec3d zero = new Vec3d(0, 0, 0);
-            this.C.RotateOY(C, teta);
-            this.V.RotateOY(zero, teta);
+            Vec3d zero_point = new Vec3d(0, 0, 0);
+            this.V.RotateOY(zero_point, teta);
+
+            this.centre.RotateOY(turn_point, teta);
         }
 
-        public override void intersectRay(Vec3d O, Vec3d D, ref double t1, ref double t2)
+        public override void intersectRay(Vec3d camera_point, Vec3d view_direction, ref double t1, ref double t2)
         {
-            Vec3d CO = O - this.C;
+            Vec3d CO = camera_point - this.centre;
 
-            double d_d = Vec3d.ScalarMultiplication(D, D);
-            double d_co = Vec3d.ScalarMultiplication(D, CO);
+            double d_d = Vec3d.ScalarMultiplication(view_direction, view_direction);
+            double d_co = Vec3d.ScalarMultiplication(view_direction, CO);
             double co_co = Vec3d.ScalarMultiplication(CO, CO);
-            double d_v = Vec3d.ScalarMultiplication(D, this.V);
+            double d_v = Vec3d.ScalarMultiplication(view_direction, this.V);
             double co_v = Vec3d.ScalarMultiplication(CO, this.V);
 
             double a = d_d - d_v * d_v;
@@ -57,11 +60,11 @@ namespace Weatherwane
             double m1 = d_v * t1 + co_v;
             double m2 = d_v * t2 + co_v;
 
-            if (m1 < 0 || m1 > this.maxm)
+            if (m1 < 0 || m1 > this.height)
             {
                 t1 = Double.PositiveInfinity;
             }
-            if (m2 < 0 || m2 > this.maxm)
+            if (m2 < 0 || m2 > this.height)
             {
                 t2 = Double.PositiveInfinity;
             }

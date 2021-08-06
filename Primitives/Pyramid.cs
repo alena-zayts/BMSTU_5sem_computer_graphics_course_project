@@ -10,34 +10,35 @@ namespace Weatherwane
     {
         public Vec3d A;
         public Vec3d B;
+        public Vec3d C;
         public Vec3d D;
         public Vec3d P;
-        public Pyramid(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D,
-            Material material, bool moving) : base(name, C, material, moving)
+        public Pyramid(string name, Material material, bool moving, 
+            Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D) : base(name, material, moving)
         {
             this.A = A;
             this.B = B;
+            this.C = C;
             this.D = D;
             this.P = P;
         }
-        public override void RotateOY(Vec3d C, double teta)
+        public override void RotateOY(Vec3d turn_point, double teta)
         {
-            this.A.RotateOY(C, teta);
-            this.B.RotateOY(C, teta);
-            this.C.RotateOY(C, teta);
-            this.D.RotateOY(C, teta);
-            this.P.RotateOY(C, teta);
+            this.A.RotateOY(turn_point, teta);
+            this.B.RotateOY(turn_point, teta);
+            this.C.RotateOY(turn_point, teta);
+            this.D.RotateOY(turn_point, teta);
+            this.P.RotateOY(turn_point, teta);
         }
 
-        public override void intersectRay(Vec3d O, Vec3d D, ref double t1, ref double t2)
+        public override void intersectRay(Vec3d camera_point, Vec3d view_vector, ref double t1, ref double t2)
         {
 
         }
 
         public override Vec3d findNormal(Vec3d P)
         {
-            Vec3d N = P - this.C;
-            return N;
+            return null;
         }
     }
 }

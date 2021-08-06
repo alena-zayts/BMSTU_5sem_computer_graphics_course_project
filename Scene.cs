@@ -43,48 +43,48 @@ namespace Weatherwane
             lights = new List<Light>();
         }
 
-        public void AddSphere(string name, Vec3d C, double r, Material material, bool moving)
+        public void AddSphere(string name, Material material, bool moving, Vec3d centre, double radius)
         {
-            sceneObjects.Add(new Sphere(name, C, r, material, moving));
+            sceneObjects.Add(new Sphere(name, material, moving, centre, radius));
         }
-        public void AddCylinder(string name, Vec3d C, Vec3d V, double r, double maxm, Material material, bool moving)
+        public void AddCylinder(string name, Material material, bool moving, Vec3d centre, Vec3d V, double radius, double height)
         {
-            Cylinder cylinder = new Cylinder(name, C, V, r, maxm, material, moving);
+            Cylinder cylinder = new Cylinder(name, material, moving, centre, V, radius, height);
             sceneObjects.Add(cylinder);
-            AddDiskPlane(name, new Vec3d(C), -V, r, material, moving);
-            AddDiskPlane(name, C + V * maxm, new Vec3d(V), r, material, moving);
+            AddDiskPlane(name, material, moving, new Vec3d(centre), -V, radius);
+            AddDiskPlane(name, material, moving, centre + V * height, new Vec3d(V), radius);
         }
 
-        public void AddParallelepiped(string name, Vec3d C, Vec3d E, Material material, bool moving)
+        public void AddParallelepiped(string name, Material material, bool moving, Vec3d C, Vec3d E)
         {
-            sceneObjects.Add(new Parallelepiped(name, C, E, material, moving));
+            sceneObjects.Add(new Parallelepiped(name, material, moving, C, E));
         }
 
-        public void AddPyramid(string name, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D, Material material, bool moving)
+        public void AddPyramid(string name, Material material, bool moving, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D)
         {
 
-            AddTriangle(name, new Vec3d(P), new Vec3d(A), new Vec3d(B), material, moving);
-            AddTriangle(name, new Vec3d(P), new Vec3d(B), new Vec3d(C), material, moving);
-            AddTriangle(name, new Vec3d(P), new Vec3d(C), new Vec3d(D), material, moving);
-            AddTriangle(name, new Vec3d(P), new Vec3d(D), new Vec3d(A), material, moving);
-            AddTriangle(name, new Vec3d(A), new Vec3d(B), new Vec3d(D), material, moving);
-            AddTriangle(name, new Vec3d(B), new Vec3d(C), new Vec3d(D), material, moving);
-            sceneObjects.Add(new Pyramid(name, P, A, B, C, D, material, moving));
+            AddTriangle(name, material, moving, new Vec3d(P), new Vec3d(A), new Vec3d(B));
+            AddTriangle(name, material, moving, new Vec3d(P), new Vec3d(B), new Vec3d(C));
+            AddTriangle(name, material, moving, new Vec3d(P), new Vec3d(C), new Vec3d(D));
+            AddTriangle(name, material, moving, new Vec3d(P), new Vec3d(D), new Vec3d(A));
+            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(B), new Vec3d(D));
+            AddTriangle(name, material, moving, new Vec3d(B), new Vec3d(C), new Vec3d(D));
+            sceneObjects.Add(new Pyramid(name, material, moving, P, A, B, C, D));
         }
 
-        public void AddTriangle(string name, Vec3d P, Vec3d A, Vec3d B, Material material, bool moving)
+        public void AddTriangle(string name, Material material, bool moving, Vec3d P, Vec3d A, Vec3d B)
         {
-            sceneObjects.Add(new Triangle(name, P, A, B, material, moving));
+            sceneObjects.Add(new Triangle(name, material, moving, P, A, B));
         }
 
-        public void AddPlane(string name, Vec3d C, Vec3d V, Material material, bool moving)
+        public void AddPlane(string name, Material material, bool moving, Vec3d C, Vec3d V)
         {
-            sceneObjects.Add(new Plane(name, C, V, material, moving));
+            sceneObjects.Add(new Plane(name, material, moving, C, V));
         }
 
-        public void AddDiskPlane(string name, Vec3d C, Vec3d V, double r, Material material, bool moving)
+        public void AddDiskPlane(string name, Material material, bool moving, Vec3d C, Vec3d V, double radius)
         {
-            sceneObjects.Add(new DiskPlane(name, C, V, r, material, moving));
+            sceneObjects.Add(new DiskPlane(name, material, moving, C, V, radius));
         }
 
         public void AddLightPoint(Vec3d position, double intensity)

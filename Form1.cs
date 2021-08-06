@@ -282,7 +282,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
                 info = "Тип: Сфера, ";
                 info += "Вращается: " + tmp.moving + ", ";
-                info += "Центр (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
+                info += "Центр (" + tmp.centre.x + "; " + tmp.centre.y + "; " + tmp.centre.z + "), ";
                 info += "Радиус: = " + tmp.radius;
 
             }
@@ -304,10 +304,10 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
                 info = "Тип: Цилиндр, ";
                 info += "Вращается: " + tmp.moving + ", ";
-                info += "Центр основания = (" + tmp.C.x + "; " + tmp.C.y + "; " + tmp.C.z + "), ";
+                info += "Центр основания = (" + tmp.centre.x + "; " + tmp.centre.y + "; " + tmp.centre.z + "), ";
                 info += "Радиус = " + tmp.radius + ", ";
                 info += "Вектор оси = (" + String.Format("{0:f6}", tmp.V.x) + "; " + String.Format("{0:f6}", tmp.V.y) + "; " + String.Format("{0:f6}", tmp.V.z) + "), ";
-                info += "Высота = " + tmp.maxm;
+                info += "Высота = " + tmp.height;
             }
             else if (primitive is Parallelepiped)
             {

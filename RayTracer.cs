@@ -67,7 +67,7 @@ namespace Weatherwane
         private Vec3d Vec3dNormalCylinder(Vec3d P, double closest_t, Cylinder cylinder, Vec3d O, Vec3d D)
         {
 
-            Vec3d CO = O - cylinder.C;
+            Vec3d CO = O - cylinder.centre;
 
 
             double d_v = Vec3d.ScalarMultiplication(D, cylinder.V);
@@ -75,7 +75,7 @@ namespace Weatherwane
 
             double m = d_v * closest_t + co_v;
             Vec3d normal = P;
-            normal = normal - cylinder.C;
+            normal = normal - cylinder.centre;
             normal = normal - cylinder.V * m;
             return normal;
 

@@ -77,19 +77,19 @@ namespace Weatherwane
             scene.sceneObjects.Clear();
 
             for (int i = 0; i < this.spheres.Length; i++)
-                scene.AddSphere(this.spheres[i].name, this.spheres[i].C, this.spheres[i].radius, this.spheres[i].material, this.spheres[i].moving);
+                scene.AddSphere(this.spheres[i].name, this.spheres[i].material, this.spheres[i].moving, this.spheres[i].centre, this.spheres[i].radius);
 
             for (int i = 0; i < this.cylinders.Length; i++)
-                scene.AddCylinder(this.cylinders[i].name, this.cylinders[i].C, this.cylinders[i].V, this.cylinders[i].radius, this.cylinders[i].maxm, this.cylinders[i].material, this.cylinders[i].moving);
+                scene.AddCylinder(this.cylinders[i].name, this.cylinders[i].material, this.cylinders[i].moving, this.cylinders[i].centre, this.cylinders[i].V, this.cylinders[i].radius, this.cylinders[i].height);
 
             for (int i = 0; i < this.pyramids.Length; i++)
-                scene.AddPyramid(this.pyramids[i].name, this.pyramids[i].P, this.pyramids[i].A, this.pyramids[i].B, this.pyramids[i].C, this.pyramids[i].D, this.pyramids[i].material, this.pyramids[i].moving);
+                scene.AddPyramid(this.pyramids[i].name, this.pyramids[i].material, this.pyramids[i].moving, this.pyramids[i].P, this.pyramids[i].A, this.pyramids[i].B, this.pyramids[i].C, this.pyramids[i].D);
 
             for (int i = 0; i < this.parallelepipeds.Length; i++)
-                scene.AddParallelepiped(this.parallelepipeds[i].name, this.parallelepipeds[i].C, this.parallelepipeds[i].E, this.parallelepipeds[i].material, this.parallelepipeds[i].moving);
+                scene.AddParallelepiped(this.parallelepipeds[i].name, this.parallelepipeds[i].material, this.parallelepipeds[i].moving, this.parallelepipeds[i].C, this.parallelepipeds[i].E);
 
             for (int i = 0; i < this.planes.Length; i++)
-                scene.AddPlane(this.planes[i].name, this.planes[i].C, this.planes[i].V, this.planes[i].material, this.parallelepipeds[i].moving);
+                scene.AddPlane(this.planes[i].name, this.planes[i].material, this.parallelepipeds[i].moving, this.planes[i].C, this.planes[i].V);
 
             scene.lights.Clear();
 

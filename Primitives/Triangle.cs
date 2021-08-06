@@ -10,29 +10,33 @@ namespace Weatherwane
     {
         public Vec3d A;
         public Vec3d B;
-        public Triangle(string name, Vec3d C, Vec3d A, Vec3d B,
-            Material material, bool moving) : base(name, C, material, moving)
+        public Vec3d C;
+
+        public Triangle(string name, Material material, bool moving, 
+            Vec3d A, Vec3d B, Vec3d C) : base(name, material, moving)
         {
             this.A = A;
             this.B = B;
+            this.C = C;
         }
 
-        public override void RotateOY(Vec3d C, double teta)
+        public override void RotateOY(Vec3d turn_point, double teta)
         {
-            this.A.RotateOY(C, teta);
-            this.B.RotateOY(C, teta);
-            this.C.RotateOY(C, teta);
+            this.A.RotateOY(turn_point, teta);
+            this.B.RotateOY(turn_point, teta);
+            this.C.RotateOY(turn_point, teta);
         }
 
-        public override void intersectRay(Vec3d O, Vec3d D, ref double t1, ref double t2)
+        public override void intersectRay(Vec3d camera_point, Vec3d view_vector, ref double t1, ref double t2)
         {
             Vec3d e1 = this.A - this.C;
             Vec3d e2 = this.B - this.C;
 
-            Vec3d pvec = new Vec3d(D.y * e2.z - D.z * e2.y, D.z * e2.x - D.x * e2.z, D.x * e2.y - D.y * e2.x);
+            Vec3d pvec = new Vec3d(view_vector.y * e2.z - view_vector.z * e2.y, view_vector.z * e2.x - view_vector.x * e2.z, view_vector.x * e2.y - view_vector.y * e2.x);
             double det = Vec3d.ScalarMultiplication(e1, pvec);
 
-            // Луч параллелен плоскости
+            // Луч параллелен пло
+            // кости
             if (det < 1e-8 && det > -1e-8)
             {
                 t1 = Double.PositiveInfinity;
@@ -41,7 +45,7 @@ namespace Weatherwane
             }
 
             double inv_det = 1 / det;
-            Vec3d tvec = O - this.C;
+            Vec3d tvec = camera_point - this.C;
             double u = Vec3d.ScalarMultiplication(tvec, pvec) * inv_det;
             if (u < 0 || u > 1)
             {
@@ -51,7 +55,7 @@ namespace Weatherwane
             }
             Vec3d qvec = new Vec3d(tvec.y * e1.z - tvec.z * e1.y, tvec.z * e1.x - tvec.x * e1.z, tvec.x * e1.y - tvec.y * e1.x);
 
-            double v = Vec3d.ScalarMultiplication(D, qvec) * inv_det;
+            double v = Vec3d.ScalarMultiplication(view_vector, qvec) * inv_det;
 
             if (v < 0 || u + v > 1)
             {
