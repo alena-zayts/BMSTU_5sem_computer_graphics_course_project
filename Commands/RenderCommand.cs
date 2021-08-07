@@ -14,17 +14,19 @@ namespace Weatherwane
         private bool drawSea;
         private int numThreads;
         TextBox textBoxTime;
+        private int recursion_depth;
 
-        unsafe public RenderCommand(ref PictureBox canvas, bool drawSea, int numThreads, ref TextBox textBoxTime)
+        unsafe public RenderCommand(ref PictureBox canvas, bool drawSea, int numThreads, ref TextBox textBoxTime, int recursion_depth)
         {
             this.canvas = canvas;
             this.drawSea = drawSea;
             this.numThreads = numThreads;
             this.textBoxTime = textBoxTime;
+            this.recursion_depth = recursion_depth;
         }
         public override void execute(Controller controller)
         {
-            controller.render(ref canvas, this.drawSea, this.numThreads, ref this.textBoxTime);
+            controller.render(ref canvas, this.drawSea, this.numThreads, ref this.textBoxTime, recursion_depth);
         }
     }
 
@@ -47,9 +49,10 @@ namespace Weatherwane
         TextBox textBoxTime;
         bool createArray;
         int n;
+        private int recursion_depth;
 
 
-        unsafe public DynamicRenderCommand(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n)
+        unsafe public DynamicRenderCommand(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n, int recursion_depth)
         {
             this.canvas = canvas;
             this.drawSea = drawSea;
@@ -60,10 +63,11 @@ namespace Weatherwane
             this.textBoxTime = textBoxTime;
             this.createArray = createArray;
             this.n = n;
+            this.recursion_depth = recursion_depth;
         }
         public override void execute(Controller controller)
         {
-            controller.dynamic_render(ref canvas, this.drawSea, ref this.progressBar, this.reverse, this.speed, this.numThreads, ref this.textBoxTime, createArray, n);
+            controller.dynamic_render(ref canvas, this.drawSea, ref this.progressBar, this.reverse, this.speed, this.numThreads, ref this.textBoxTime, createArray, n, recursion_depth);
         }
     }
 

@@ -84,7 +84,7 @@ namespace Weatherwane
         }
 
 
-        public void render(ref PictureBox canvas, bool drawBackground, int numThreads, ref TextBox textBoxTime)
+        public void render(ref PictureBox canvas, bool drawBackground, int numThreads, ref TextBox textBoxTime, int recursion_depth)
         {
             if (this.n > 0 & currImgIndex > 1)
             {
@@ -107,7 +107,7 @@ namespace Weatherwane
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
 
-            tmp = rayTracer.render(drawBackground, numThreads);
+            tmp = rayTracer.render(drawBackground, numThreads, recursion_depth);
 
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
@@ -118,7 +118,7 @@ namespace Weatherwane
             canvas.Image = tmp;
         }
 
-        public void dynamic_render(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n)
+        public void dynamic_render(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n, int recursion_depth)
         {
             this.n = n;
             this.timer.Interval = speed;
@@ -132,7 +132,7 @@ namespace Weatherwane
                 this.currImgIndex = 0;
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
-                createArrayBitmap(ref canvas, drawSea, ref progressBar, numThreads);
+                createArrayBitmap(ref canvas, drawSea, ref progressBar, numThreads, recursion_depth);
                 stopWatch.Stop();
                 TimeSpan ts = stopWatch.Elapsed;
                 string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
@@ -183,7 +183,7 @@ namespace Weatherwane
             }
         }
 
-        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar, int numThreads)
+        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar, int numThreads, int recursion_depth)
         {
             Vec3d turnPoint = new Vec3d(0, 48.5, 0);
             double angle = 360 / n;
@@ -193,7 +193,7 @@ namespace Weatherwane
             for (int i = 0; i < n; i++)
             {
 
-                tmp = new Bitmap(rayTracer.render(drawBackground, numThreads));
+                tmp = new Bitmap(rayTracer.render(drawBackground, numThreads, recursion_depth));
                 arrBitmap[i] = tmp;
 
                 for (int j = 0; j < scene.sceneObjects.Count; j++)

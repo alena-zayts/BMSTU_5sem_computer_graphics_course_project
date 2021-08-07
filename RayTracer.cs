@@ -24,6 +24,7 @@ namespace Weatherwane
         private int viewport_width = 1;
         private int viewport_height = 1;
         private int projection_plane_d = 1;
+        private int recursion_depth;
 
         private Color[,] buffer;
 
@@ -34,7 +35,7 @@ namespace Weatherwane
             this.buffer = new Color[scene.canvasWidth, scene.canvasHeight];
         }
 
-        private void ClosestIntersection(ref Primitive closest_object, ref double closest_t, Vec3d O, Vec3d D, double t_min, double t_max)
+        private void ClosestIntersection(ref Primitive closest_object, ref double closest_t, Vec3d camera_position, Vec3d view_vector, double t_min, double t_max)
         {
 
             double t1 = 0;
@@ -42,7 +43,7 @@ namespace Weatherwane
 
             for (int i = 0; i < this.scene.sceneObjects.Count; i++)
             {
-                this.scene.sceneObjects[i].intersectRay(O, D, ref t1, ref t2);
+                this.scene.sceneObjects[i].intersectRay(camera_position, view_vector, ref t1, ref t2);
                 
                 if (t1 < closest_t && t_min < t1 && t1 < t_max)
                 {
@@ -64,10 +65,10 @@ namespace Weatherwane
         }
 
 
-        private Vec3d Vec3dNormalCylinder(Vec3d P, double closest_t, Cylinder cylinder, Vec3d O, Vec3d D)
+        private Vec3d Vec3dNormalCylinder(Vec3d P, double closest_t, Cylinder cylinder, Vec3d camera_position, Vec3d D)
         {
 
-            Vec3d CO = O - cylinder.centre;
+            Vec3d CO = camera_position - cylinder.centre;
 
 
             double d_v = Vec3d.ScalarMultiplication(D, cylinder.V);
@@ -82,58 +83,50 @@ namespace Weatherwane
         }
 
 
-        private Vec3d TraceRay(Vec3d O, Vec3d D, double t_min, double t_max, int depth, int x, int y, bool drawSceneBackground)
+        private Vec3d TraceRay(Vec3d camera_position, Vec3d view_vector, double t_min, double t_max, int depth, int x, int y, bool drawSceneBackground)
         {
             double closest_t = Double.PositiveInfinity;
             Primitive closest_object = null;
 
-            ClosestIntersection(ref closest_object, ref closest_t, O, D, t_min, t_max);
+            ClosestIntersection(ref closest_object, ref closest_t, camera_position, view_vector, t_min, t_max);
 
             if (closest_object == null)
             {
                 if (drawSceneBackground)
                 {
-                    try
-                    {
-                        x += 330;
-                        y += 330;
-                        return scene.background[x, y];
-                    }
-                    catch (Exception err)
-                    {
-                        Console.WriteLine("had" + - (y + 329) + "got" + y);
-                        return new Vec3d(0, 0, 0);
-                    }
+                    x += 330;
+                    y += 330;
+                    return scene.background[x, y];
                 }
-                return new Vec3d(0, 0, 0);
+                else
+                {
+                    return new Vec3d(0, 0, 0);
+                }
             }
 
 
-            Vec3d P = O + closest_t * D;
+            Vec3d intersection_point = camera_position + closest_t * view_vector;
             Vec3d N;
             if (closest_object is Cylinder)
-                N = Vec3dNormalCylinder(P, closest_t, (Cylinder)closest_object, O, D);
+                N = Vec3dNormalCylinder(intersection_point, closest_t, (Cylinder)closest_object, camera_position, view_vector).Normalize();
             else
-                N = closest_object.findNormal(P);
+                N = closest_object.findNormal(intersection_point).Normalize();
                
 
-
-            N /= Vec3d.Length(N); 
-
-            double intensity = ComputeLighting(P, N, -D, closest_object.material.specular);
+            double intensity = ComputeLighting(intersection_point, N, -view_vector, closest_object.material.specular);
 
             Vec3d localColor = intensity * closest_object.material.color; 
 
-            double r = closest_object.material.reflective;
+            double reflective = closest_object.material.reflective;
 
-            if (depth <= 0 || r <= 0)
+            if (depth <= 0 || reflective <= 0)
                 return localColor;
 
-            Vec3d R = ReflectRay(-D, N);
-            Vec3d reflectedColor = TraceRay(P, R, 0.001, Double.PositiveInfinity, depth - 1, x, y, drawSceneBackground);
+            Vec3d reflected_vector = ReflectRay(-view_vector, N);
+            Vec3d reflectedColor = TraceRay(intersection_point, reflected_vector, 0.001, Double.PositiveInfinity, depth - 1, x, y, drawSceneBackground);
 
-            Vec3d kLocalColor = (1 - r) * localColor;
-            Vec3d rReflectedColor = r * reflectedColor;
+            Vec3d kLocalColor = (1 - reflective) * localColor;
+            Vec3d rReflectedColor = reflective * reflectedColor;
 
             return kLocalColor+rReflectedColor;
         }
@@ -222,23 +215,23 @@ namespace Weatherwane
         {
             Params p = (Params)obj;
             Camera camera = scene.camera;
-            Vec3d D = null;
+            Vec3d view_vector = null;
             Vec3d color = null;
-            int recursion_depth = 3;
             for (int x = p.start_x; x < p.start_x + p.width; x++)
             {
                 for (int y = p.start_y; y < p.start_y + p.height; y++)
                 {
-                    D = CanvasToViewport(x, y) * camera.rotation;
-                    color = TraceRay(camera.position, D, 1, Double.PositiveInfinity, recursion_depth, x, y, p.drawSceneBackground);
+                    view_vector = CanvasToViewport(x, y) * camera.rotation;
+                    color = TraceRay(camera.position, view_vector, 1, Double.PositiveInfinity, recursion_depth, x, y, p.drawSceneBackground);
                     PutPixel(x, y, Clamp(color));
 
                 }
             }
             
         }
-        public Bitmap render(bool drawSceneBackground, int numThreads)
+        public Bitmap render(bool drawSceneBackground, int numThreads, int recursion_depth)
         {
+            this.recursion_depth = recursion_depth;
             Thread[] threads = new Thread[numThreads];
             for (int i = 0; i < numThreads; i++)
             {

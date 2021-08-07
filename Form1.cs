@@ -73,7 +73,8 @@ namespace Weatherwane
         void render()
         {
             int numThreads = (int)this.numericNumThreads.Value;
-            Command renderCommand = new RenderCommand(ref canvas, checkBoxNebo.Checked, numThreads, ref this.textBoxTime);
+            int recursion_depth = (int)this.numericRecursion.Value;
+            Command renderCommand = new RenderCommand(ref canvas, checkBoxNebo.Checked, numThreads, ref this.textBoxTime, recursion_depth);
             
             facade.executeCommand(renderCommand);
         }
@@ -86,8 +87,9 @@ namespace Weatherwane
             int numThreads = (int) this.numericNumThreads.Value;
             bool createArray = this.smthChanged;
             int n = this.trackBarN.Value;
+            int recursion_depth = (int)this.numericRecursion.Value;
 
-            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, drawNebo, ref this.progressBar, reverse, speed, numThreads, ref this.textBoxTime, createArray, n);
+            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, drawNebo, ref this.progressBar, reverse, speed, numThreads, ref this.textBoxTime, createArray, n, recursion_depth);
             facade.executeCommand(dynamicRenderCommand);
 
             this.smthChanged = false;
