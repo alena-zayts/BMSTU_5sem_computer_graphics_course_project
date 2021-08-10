@@ -1,0 +1,740 @@
+{
+  "camera": {
+    "position": {
+      "x": -110,
+      "y": 72,
+      "z": -198
+    },
+    "angle": {
+      "x": 0,
+      "y": -23,
+      "z": 0
+    },
+    "rotation": [
+      [
+        0.9205048534524406,
+        6.938893903907228e-18,
+        0.3907311284892737,
+        0
+      ],
+      [
+        2.3570575132647865e-18,
+        0.9999999999999999,
+        5.441696044663592e-19,
+        0
+      ],
+      [
+        -0.3907311284892738,
+        0,
+        0.92050485345244,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  "spheres": [
+    {
+      "centre": {
+        "x": 0,
+        "y": -98.5,
+        "z": 0
+      },
+      "radius": 100,
+      "name": "сфера_основание",
+      "material": {
+        "color": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "specular": 0,
+        "reflective": 0.2
+      },
+      "moving": false
+    },
+    {
+      "centre": {
+        "x": 0,
+        "y": 82.5,
+        "z": 44
+      },
+      "radius": 7,
+      "name": "верхняя_дальняя_сфера",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 0,
+          "z": 0
+        },
+        "specular": 10,
+        "reflective": 0.3
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0,
+        "y": 82.5,
+        "z": -44
+      },
+      "radius": 7,
+      "name": "верхняя_ближняя_сфера",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 0,
+          "z": 0
+        },
+        "specular": 10,
+        "reflective": 0.3
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0,
+        "y": 48.5,
+        "z": 0
+      },
+      "radius": 7,
+      "name": "нижняя_центральная_сфера",
+      "material": {
+        "color": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "specular": 10,
+        "reflective": 0.3
+      },
+      "moving": false
+    },
+    {
+      "centre": {
+        "x": -44.0,
+        "y": 48.5,
+        "z": 0.0
+      },
+      "radius": 7,
+      "name": "нижняя_левая_сфера",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 255,
+          "z": 0
+        },
+        "specular": 10,
+        "reflective": 0.3
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 44,
+        "y": 48.5,
+        "z": 0.0
+      },
+      "radius": 7,
+      "name": "нижняя_правая_сфера",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 255,
+          "z": 0
+        },
+        "specular": 10,
+        "reflective": 0.3
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0.0,
+        "y": 48.5,
+        "z": 44.0
+      },
+      "radius": 7,
+      "name": "нижняя_дальняя_сфера",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 255,
+          "z": 0
+        },
+        "specular": 10,
+        "reflective": 0.3
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0.0,
+        "y": 48.5,
+        "z": -44.0
+      },
+      "radius": 7,
+      "name": "нижняя_ближняя_сфера",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 255,
+          "z": 0
+        },
+        "specular": 10,
+        "reflective": 0.3
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0,
+        "y": 82.5,
+        "z": 0
+      },
+      "radius": 7,
+      "name": "верхняя_центральная_сфера",
+      "material": {
+        "color": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "specular": 10,
+        "reflective": 0.3
+      },
+      "moving": false
+    }
+  ],
+  "cylinders": [
+    {
+      "centre": {
+        "x": 7.0,
+        "y": 48.5,
+        "z": 0.0
+      },
+      "V": {
+        "x": 1.0,
+        "y": 0,
+        "z": 0.0
+      },
+      "radius": 2,
+      "height": 30,
+      "name": "нижний_правый_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 128,
+          "z": 192
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0.0,
+        "y": 48.5,
+        "z": -7.0
+      },
+      "V": {
+        "x": 0.0,
+        "y": 0,
+        "z": -1.0
+      },
+      "radius": 2,
+      "height": 30,
+      "name": "нижний_ближний_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 128,
+          "z": 192
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0.0,
+        "y": 48.5,
+        "z": 7.0
+      },
+      "V": {
+        "x": 0.0,
+        "y": 0,
+        "z": 1.0
+      },
+      "radius": 2,
+      "height": 30,
+      "name": "нижний_дальний_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 128,
+          "z": 192
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": -44,
+        "y": 55.5,
+        "z": 0
+      },
+      "V": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "radius": 2,
+      "height": 20,
+      "name": "левый_вертикальный_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 128,
+          "z": 255
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 44,
+        "y": 55.5,
+        "z": 0
+      },
+      "V": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "radius": 2,
+      "height": 20,
+      "name": "правый_вертикальный_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 128,
+          "z": 255
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0,
+        "y": 55.5,
+        "z": 44
+      },
+      "V": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "radius": 2,
+      "height": 20,
+      "name": "дальний_вертикальный_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 128,
+          "z": 255
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0,
+        "y": 55.5,
+        "z": -44
+      },
+      "V": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "radius": 2,
+      "height": 20,
+      "name": "ближний_вертикальный_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 128,
+          "z": 255
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0,
+        "y": 1.5,
+        "z": 0
+      },
+      "V": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "radius": 5,
+      "height": 40,
+      "name": "нижний_центральный_цилиндр",
+      "material": {
+        "color": {
+          "x": 192,
+          "y": 192,
+          "z": 192
+        },
+        "specular": 50,
+        "reflective": 0
+      },
+      "moving": false
+    },
+    {
+      "centre": {
+        "x": 0,
+        "y": 55.5,
+        "z": 0
+      },
+      "V": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "radius": 5,
+      "height": 20,
+      "name": "верхний_центральный_цилиндр",
+      "material": {
+        "color": {
+          "x": 192,
+          "y": 192,
+          "z": 192
+        },
+        "specular": 50,
+        "reflective": 0
+      },
+      "moving": false
+    },
+    {
+      "centre": {
+        "x": -7.0,
+        "y": 48.5,
+        "z": 0.0
+      },
+      "V": {
+        "x": -1.0,
+        "y": 0,
+        "z": 0.0
+      },
+      "radius": 2,
+      "height": 30,
+      "name": "нижний_левый_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 128,
+          "z": 192
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": -7.0,
+        "y": 82.5,
+        "z": 0.0
+      },
+      "V": {
+        "x": -1.0,
+        "y": 0,
+        "z": 0.0
+      },
+      "radius": 2,
+      "height": 30,
+      "name": "верхний_левый_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 0,
+          "z": 255
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 7.0,
+        "y": 82.5,
+        "z": 0.0
+      },
+      "V": {
+        "x": 1.0,
+        "y": 0,
+        "z": 0.0
+      },
+      "radius": 2,
+      "height": 30,
+      "name": "верхний_правый_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 0,
+          "z": 255
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0.0,
+        "y": 82.5,
+        "z": 7.0
+      },
+      "V": {
+        "x": 0.0,
+        "y": 0,
+        "z": 1.0
+      },
+      "radius": 2,
+      "height": 30,
+      "name": "верхний_дальний_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 0,
+          "z": 255
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "centre": {
+        "x": 0.0,
+        "y": 82.5,
+        "z": -7.0
+      },
+      "V": {
+        "x": 0.0,
+        "y": 0,
+        "z": -1.0
+      },
+      "radius": 2,
+      "height": 30,
+      "name": "верхний_ближний_цилиндр",
+      "material": {
+        "color": {
+          "x": 255,
+          "y": 0,
+          "z": 255
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    }
+  ],
+  "quadPyramids": [
+    {
+      "A": {
+        "x": -51,
+        "y": 89.5,
+        "z": 7
+      },
+      "B": {
+        "x": -37,
+        "y": 89.5,
+        "z": 7
+      },
+      "C": {
+        "x": -37,
+        "y": 89.5,
+        "z": -7
+      },
+      "D": {
+        "x": -51,
+        "y": 89.5,
+        "z": -7
+      },
+      "P": {
+        "x": -44,
+        "y": 103.5,
+        "z": 0
+      },
+      "name": "верхняя_левая_пирамида",
+      "material": {
+        "color": {
+          "x": 0,
+          "y": 0,
+          "z": 255
+        },
+        "specular": 10,
+        "reflective": 0
+      },
+      "moving": true
+    },
+    {
+      "A": {
+        "x": 37,
+        "y": 89.5,
+        "z": 7
+      },
+      "B": {
+        "x": 51,
+        "y": 89.5,
+        "z": 7
+      },
+      "C": {
+        "x": 51,
+        "y": 89.5,
+        "z": -7
+      },
+      "D": {
+        "x": 37,
+        "y": 89.5,
+        "z": -7
+      },
+      "P": {
+        "x": 44,
+        "y": 103.5,
+        "z": 0
+      },
+      "name": "верхняя_правая_пирамида",
+      "material": {
+        "color": {
+          "x": 0,
+          "y": 0,
+          "z": 255
+        },
+        "specular": 0,
+        "reflective": 0
+      },
+      "moving": true
+    }
+  ],
+  "parallelepipeds": [
+    {
+      "xl": -51,
+      "xr": -37,
+      "yu": 89.5,
+      "yd": 75.5,
+      "zf": 7,
+      "zn": -7,
+      "name": "левый_куб",
+      "material": {
+        "color": {
+          "x": 0,
+          "y": 255,
+          "z": 0
+        },
+        "specular": 0,
+        "reflective": 0.2
+      },
+      "moving": true
+    },
+    {
+      "xl": 37,
+      "xr": 51,
+      "yu": 89.5,
+      "yd": 75.5,
+      "zf": 7,
+      "zn": -7,
+      "name": "правый_куб",
+      "material": {
+        "color": {
+          "x": 0,
+          "y": 255,
+          "z": 0
+        },
+        "specular": 0,
+        "reflective": 0.2
+      },
+      "moving": true
+    }
+  ],
+  "plane": [
+    {
+      "C": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "V": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "name": "плоскость основания",
+      "material": {
+        "color": {
+          "x": 248,
+          "y": 191,
+          "z": 86
+        },
+        "specular": 1,
+        "reflective": 0
+      },
+      "moving": true
+    }
+  ],
+  "lights": [
+    {
+      "name": "фоновое освещение",
+      "ltype": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "intensity": 0.2
+    },
+    {
+      "name": "направленный (Солнце)",
+      "ltype": 2,
+      "position": {
+        "x": -15,
+        "y": 25,
+        "z": 33
+      },
+      "intensity": 0.4
+    },
+    {
+      "name": "точечный_-1",
+      "ltype": 1,
+      "position": {
+        "x": 5,
+        "y": 100,
+        "z": -15
+      },
+      "intensity": 0.3
+    }
+  ]
+}
