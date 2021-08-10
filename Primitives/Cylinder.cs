@@ -29,18 +29,19 @@ namespace Weatherwane
             this.centre.RotateOY(turn_point, teta);
         }
 
-        public override void intersectRay(Vec3d camera_point, Vec3d view_direction, ref double t1, ref double t2)
+        public override void intersectRay(Vec3d O, Vec3d view_direction, ref double t1, ref double t2)
         {
-            Vec3d CO = camera_point - this.centre;
+            Vec3d CO = O - this.centre;
 
             double d_d = Vec3d.ScalarMultiplication(view_direction, view_direction);
-            double d_co = Vec3d.ScalarMultiplication(view_direction, CO);
-            double co_co = Vec3d.ScalarMultiplication(CO, CO);
             double d_v = Vec3d.ScalarMultiplication(view_direction, this.V);
+            double co_d = Vec3d.ScalarMultiplication(CO, view_direction);
             double co_v = Vec3d.ScalarMultiplication(CO, this.V);
+            double co_co = Vec3d.ScalarMultiplication(CO, CO);
+
 
             double a = d_d - d_v * d_v;
-            double b = 2 * (d_co - d_v * co_v);
+            double b = 2 * (co_d - co_v * d_v);
             double c = co_co - co_v * co_v - this.radius * this.radius;
 
 
@@ -57,14 +58,14 @@ namespace Weatherwane
             t2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
 
 
-            double m1 = d_v * t1 + co_v;
-            double m2 = d_v * t2 + co_v;
+            double h1 = d_v * t1 + co_v;
+            double h2 = d_v * t2 + co_v;
 
-            if (m1 < 0 || m1 > this.height)
+            if (h1 < 0 || h1 > this.height)
             {
                 t1 = Double.PositiveInfinity;
             }
-            if (m2 < 0 || m2 > this.height)
+            if (h2 < 0 || h2 > this.height)
             {
                 t2 = Double.PositiveInfinity;
             }

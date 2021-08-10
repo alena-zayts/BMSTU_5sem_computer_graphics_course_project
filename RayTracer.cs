@@ -115,17 +115,17 @@ namespace Weatherwane
 
             double intensity = ComputeLighting(intersection_point, N, -view_vector, closest_object.material.specular);
 
-            Vec3d localColor = intensity * closest_object.material.color; 
+            Vec3d currentColor = intensity * closest_object.material.color; 
 
             double reflective = closest_object.material.reflective;
 
             if (depth <= 0 || reflective <= 0)
-                return localColor;
+                return currentColor;
 
             Vec3d reflected_vector = ReflectRay(-view_vector, N);
-            Vec3d reflectedColor = TraceRay(intersection_point, reflected_vector, 0.001, Double.PositiveInfinity, depth - 1, x, y, drawSceneBackground);
+            Vec3d reflectedColor = TraceRay(intersection_point, reflected_vector, 0.01, Double.PositiveInfinity, depth - 1, x, y, drawSceneBackground);
 
-            Vec3d kLocalColor = (1 - reflective) * localColor;
+            Vec3d kLocalColor = (1 - reflective) * currentColor;
             Vec3d rReflectedColor = reflective * reflectedColor;
 
             return kLocalColor+rReflectedColor;
@@ -138,42 +138,45 @@ namespace Weatherwane
             
             for (int i = 0; i < sceneLight.Count; i++)
             {
+                // фоновое освещение
                 if (sceneLight[i].ltype == LightType.Ambient)
                 {
                     intensity += sceneLight[i].intensity;
                 }
                 else
                 {
-                    Vec3d L;
+                    Vec3d light_vector; 
                     double t_max;
                     if (sceneLight[i].ltype == LightType.Point)
                     {
-                        L = sceneLight[i].position - P;
+                        light_vector = sceneLight[i].position - P;
                         t_max = 1;                    
                     }
-                    else
+                    else // (sceneLight[i].ltype == LightType.Directional)
                     {
-                        L = sceneLight[i].position;
+                        light_vector = sceneLight[i].position;
                         t_max = Double.MaxValue;
                     }
 
+                    // проверка на нахождение в тени
                     double shadow_t = Double.PositiveInfinity;
                     Primitive shadow_object = null;
-                    ClosestIntersection(ref shadow_object, ref shadow_t, P, L, 0.001, t_max);
+                    ClosestIntersection(ref shadow_object, ref shadow_t, P, light_vector, 0.001, t_max);
                     if (shadow_object != null)
                         continue;
 
-                    double n_dot_l = Vec3d.ScalarMultiplication(N, L);
+                    // рассеянное освещение
+                    double NL = Vec3d.ScalarMultiplication(N, light_vector);
 
-                    if (n_dot_l > 0)
+                    if (NL > 0)
                     {
-                        intensity += sceneLight[i].intensity * n_dot_l / (Vec3d.Length(N) * Vec3d.Length(L));
+                        intensity += sceneLight[i].intensity * NL / (Vec3d.Length(N) * Vec3d.Length(light_vector));
                     }
 
                     if (specular != -1) 
                     {
 
-                        Vec3d R = ReflectRay(L, N);
+                        Vec3d R = ReflectRay(light_vector, N);
                         double r_dot_v = Vec3d.ScalarMultiplication(R, V);
 
                         if (r_dot_v > 0)
@@ -222,7 +225,7 @@ namespace Weatherwane
                 for (int y = p.start_y; y < p.start_y + p.height; y++)
                 {
                     view_vector = CanvasToViewport(x, y) * camera.rotation;
-                    color = TraceRay(camera.position, view_vector, 1, Double.PositiveInfinity, recursion_depth, x, y, p.drawSceneBackground);
+                    color = TraceRay(camera.position, view_vector, projection_plane_d, Double.PositiveInfinity, recursion_depth, x, y, p.drawSceneBackground);
                     PutPixel(x, y, Clamp(color));
 
                 }

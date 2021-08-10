@@ -22,9 +22,9 @@ namespace Weatherwane
             this.centre.RotateOY(turn_point, teta);
         }
 
-        public override void intersectRay(Vec3d camera_point, Vec3d view_vector, ref double t1, ref double t2)
+        public override void intersectRay(Vec3d O, Vec3d view_vector, ref double t1, ref double t2)
         {
-            Vec3d CO = camera_point - this.centre;
+            Vec3d CO = O - this.centre;
 
             double a = Vec3d.ScalarMultiplication(view_vector, view_vector);
             double b = 2 * Vec3d.ScalarMultiplication(CO, view_vector);
@@ -33,15 +33,17 @@ namespace Weatherwane
 
             double discriminant = b * b - 4 * a * c;
 
+            // нет пересечений
             if (discriminant < 0)
             {
                 t1 = Double.PositiveInfinity;
                 t2 = Double.PositiveInfinity;
                 return;
             }
+            double discriminant_sqrt = Math.Sqrt(discriminant);
 
-            t1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
-            t2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+            t1 = (-b + discriminant_sqrt) / (2 * a);
+            t2 = (-b - discriminant_sqrt) / (2 * a);
         }
 
         public override Vec3d findNormal(Vec3d P)

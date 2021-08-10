@@ -230,7 +230,10 @@ namespace Weatherwane
             {
                 if (this.scene.lights[i].name == name)
                 {
-                    this.scene.lights[i].position = position;
+                    if (this.scene.lights[i].ltype == LightType.Directional)
+                        this.scene.lights[i].position = position.Normalize();
+                    else
+                        this.scene.lights[i].position = position;
                     this.scene.lights[i].intensity = intensity;
                     break;
                 }

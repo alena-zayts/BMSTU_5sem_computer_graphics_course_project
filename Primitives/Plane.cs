@@ -24,20 +24,22 @@ namespace Weatherwane
             this.C.RotateOY(turn_point, teta);
         }
 
-        public override void intersectRay(Vec3d camera_point, Vec3d view_vector, ref double t1, ref double t2)
+        public override void intersectRay(Vec3d O, Vec3d view_vector, ref double t1, ref double t2)
         {
-            Vec3d CO = camera_point - this.C;
+            Vec3d OC = this.C - O;
 
-            double d_v = Vec3d.ScalarMultiplication(view_vector, this.V);
-            double co_v = Vec3d.ScalarMultiplication(CO, this.V);
+            double v_d = Vec3d.ScalarMultiplication(this.V, view_vector);
+            double v_oc = Vec3d.ScalarMultiplication(this.V, OC);
 
-            if (d_v < 0 || d_v > 0)
+            if (v_d < 0 || v_d > 0)
             {
-                t1 = -co_v / d_v;
+                t1 = v_oc / v_d;
+                // пересечение за камерой
                 if (t1 < 0)
                     t1 = Double.PositiveInfinity;
 
             }
+            // пересечений нет
             else
             {
                 t1 = Double.PositiveInfinity;
@@ -67,22 +69,18 @@ namespace Weatherwane
             this.C.RotateOY(turn_point, teta);
         }
 
-        public override void intersectRay(Vec3d camera_point, Vec3d view_vector, ref double t1, ref double t2)
+        public override void intersectRay(Vec3d O, Vec3d view_vector, ref double t1, ref double t2)
         {
             Plane tmp = new Plane("", this.material, this.moving, this.C, this.V);
-            tmp.intersectRay(camera_point, view_vector, ref t1, ref t2);
+            tmp.intersectRay(O, view_vector, ref t1, ref t2);
 
             if (t1 != Double.PositiveInfinity)
             {
-                Vec3d P = camera_point + view_vector * t1;
-                Vec3d v = P - this.C;
-                double d2 = Vec3d.ScalarMultiplication(v, v);
+                Vec3d intersection_point = O + view_vector * t1;
+                Vec3d dist = intersection_point - this.C;
+                double d2 = Vec3d.ScalarMultiplication(dist, dist);
                 if (Math.Sqrt(d2) > r)
                     t1 = Double.PositiveInfinity;
-            }
-            else
-            {
-                t1 = Double.PositiveInfinity;
             }
             t2 = t1;
         }

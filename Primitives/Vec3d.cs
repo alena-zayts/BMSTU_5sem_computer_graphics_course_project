@@ -83,6 +83,16 @@ namespace Weatherwane
             return a.x * b.x + a.y * b.y + a.z * b.z;
         }
 
+        public static Vec3d VecMultiplication(Vec3d a, Vec3d b)
+        {
+            Vec3d result = new Vec3d();
+            result.x = a.y * b.z - a.z * b.y;
+            result.y = a.z * b.x - a.x * b.z;
+            result.z = a.x * b.y - a.y * b.x;
+            return result;
+
+        }
+
         public static double Length(Vec3d vec)
         {
             return Math.Sqrt(vec.x * vec.x + vec.y*vec.y + vec.z * vec.z);

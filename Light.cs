@@ -20,7 +20,13 @@ namespace Weatherwane
         {
             this.name = name;
             this.ltype = ltype;
+
+            /*            if (ltype == LightType.Directional)
+                            this.position = position.Normalize();
+                        else
+                            this.position = position;*/
             this.position = position;
+
             this.intensity = intensity;
         }
     }
