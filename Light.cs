@@ -14,20 +14,16 @@ namespace Weatherwane
         public LightType ltype;
         public Vec3d position;
         public double intensity;
+        public Vec3d H;
         
 
         public Light(string name, LightType ltype, Vec3d position, double intensity)
         {
             this.name = name;
             this.ltype = ltype;
-
-            /*            if (ltype == LightType.Directional)
-                            this.position = position.Normalize();
-                        else
-                            this.position = position;*/
             this.position = position;
-
             this.intensity = intensity;
+            this.H = null;
         }
     }
 }

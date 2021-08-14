@@ -131,67 +131,81 @@ namespace Weatherwane
             return kLocalColor+rReflectedColor;
         }
 
-        private double ComputeLighting(Vec3d P, Vec3d N, Vec3d V, double specular)
+        private double ComputeLighting(Vec3d P, Vec3d N, Vec3d V, double specular, bool BF_model=false, double coef=1.0)
         {
             double intensity = 0;
-            List<Light> sceneLight = scene.lights;
-            
-            for (int i = 0; i < sceneLight.Count; i++)
+            double length_n = Vec3d.Length(N);
+            double length_v = Vec3d.Length(V);
+
+            foreach (var light in scene.lights)
             {
-                // фоновое освещение
-                if (sceneLight[i].ltype == LightType.Ambient)
+                // фоновая составляющая
+                if (light.ltype == LightType.Ambient)
                 {
-                    intensity += sceneLight[i].intensity;
+                    intensity += light.intensity;
                 }
                 else
                 {
-                    Vec3d light_vector; 
+                    Vec3d light_vector;
                     double t_max;
-                    if (sceneLight[i].ltype == LightType.Point)
+                    
+                    if (light.ltype == LightType.Point) // точечный источник
                     {
-                        light_vector = sceneLight[i].position - P;
-                        t_max = 1;                    
+                        light_vector = light.position - P;
+                        t_max = 1.0;
                     }
-                    else // (sceneLight[i].ltype == LightType.Directional)
+                    else // направленный источник
                     {
-                        light_vector = sceneLight[i].position;
-                        t_max = Double.MaxValue;
+                        light_vector = light.position;
+                        t_max = Double.PositiveInfinity;
                     }
 
                     // проверка на нахождение в тени
                     double shadow_t = Double.PositiveInfinity;
                     Primitive shadow_object = null;
+
                     ClosestIntersection(ref shadow_object, ref shadow_t, P, light_vector, 0.001, t_max);
                     if (shadow_object != null)
                         continue;
 
-                    // рассеянное освещение
+                    // Диффузная составляющая
                     double NL = Vec3d.ScalarMultiplication(N, light_vector);
-
+                    // Если NL < 0, значит свет достигает только заднюю (невидимую) части поверхности,
                     if (NL > 0)
                     {
-                        intensity += sceneLight[i].intensity * NL / (Vec3d.Length(N) * Vec3d.Length(light_vector));
+                        intensity += light.intensity * NL / (length_n * Vec3d.Length(light_vector));
                     }
 
-                    if (specular != -1) 
+                    // Зеркальная составляющая
+
+                    // по модели Фонга
+                    if (!BF_model)
                     {
-
                         Vec3d R = ReflectRay(light_vector, N);
-                        double r_dot_v = Vec3d.ScalarMultiplication(R, V);
+                        double RV = Vec3d.ScalarMultiplication(R, V);
 
-                        if (r_dot_v > 0)
+                        if (RV > 0)
                         {
-                            intensity += sceneLight[i].intensity * Math.Pow(r_dot_v / (Vec3d.Length(R) * Vec3d.Length(V)), specular);
+                            intensity += light.intensity * Math.Pow(RV / (Vec3d.Length(R) * length_v), specular);
                         }
                     }
+                    // по модели Блинна-Фонга
                     else
                     {
-                        Console.WriteLine("SOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                        Vec3d H = (light_vector + V);
+                        double HN = Vec3d.ScalarMultiplication(H, N);
+
+                        if (HN > 0)
+                        {
+                            intensity += light.intensity * Math.Pow(HN / (Vec3d.Length(H) * length_n), specular * coef);
+                        }
                     }
                 }
             }
+
             return intensity;
         }
+
         private void PutPixel(int x, int y, Color color)
         {
             int x_ = scene.canvasWidth / 2 + x;

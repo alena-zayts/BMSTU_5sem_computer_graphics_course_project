@@ -39,7 +39,6 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.labelChoiceColor = new System.Windows.Forms.Label();
             this.ChoiceReflective = new System.Windows.Forms.NumericUpDown();
-            this.ChoiceSpecular = new System.Windows.Forms.NumericUpDown();
             this.ChoiceColor = new System.Windows.Forms.PictureBox();
             this.btnChange = new System.Windows.Forms.Button();
             this.labelChoiceSpecular = new System.Windows.Forms.Label();
@@ -125,6 +124,8 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
+            this.numericRecursion = new System.Windows.Forms.NumericUpDown();
             this.offButton = new System.Windows.Forms.Button();
             this.trackBarN = new System.Windows.Forms.TrackBar();
             this.label21 = new System.Windows.Forms.Label();
@@ -140,13 +141,16 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.numericRecursion = new System.Windows.Forms.NumericUpDown();
+            this.ChoiceSpecular = new System.Windows.Forms.NumericUpDown();
+            this.modelBF = new System.Windows.Forms.RadioButton();
+            this.modelF = new System.Windows.Forms.RadioButton();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.numericCoef = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.btnDeleteObject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceReflective)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChoiceSpecular)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceColor)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -168,10 +172,12 @@
             this.tabPage6.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericRecursion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericNumThreads)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericRecursion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceSpecular)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCoef)).BeginInit();
             this.SuspendLayout();
             // 
             // canvas
@@ -191,18 +197,18 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(720, 741);
+            this.tabControl1.Size = new System.Drawing.Size(720, 829);
             this.tabControl1.TabIndex = 45;
             // 
             // btnDeleteObject
             // 
+            this.btnDeleteObject.Controls.Add(this.ChoiceSpecular);
             this.btnDeleteObject.Controls.Add(this.label24);
             this.btnDeleteObject.Controls.Add(this.label23);
             this.btnDeleteObject.Controls.Add(this.label22);
             this.btnDeleteObject.Controls.Add(this.listBox2);
             this.btnDeleteObject.Controls.Add(this.labelChoiceColor);
             this.btnDeleteObject.Controls.Add(this.ChoiceReflective);
-            this.btnDeleteObject.Controls.Add(this.ChoiceSpecular);
             this.btnDeleteObject.Controls.Add(this.ChoiceColor);
             this.btnDeleteObject.Controls.Add(this.btnChange);
             this.btnDeleteObject.Controls.Add(this.labelChoiceSpecular);
@@ -212,7 +218,7 @@
             this.btnDeleteObject.Margin = new System.Windows.Forms.Padding(6);
             this.btnDeleteObject.Name = "btnDeleteObject";
             this.btnDeleteObject.Padding = new System.Windows.Forms.Padding(6);
-            this.btnDeleteObject.Size = new System.Drawing.Size(712, 704);
+            this.btnDeleteObject.Size = new System.Drawing.Size(712, 792);
             this.btnDeleteObject.TabIndex = 1;
             this.btnDeleteObject.Text = "Примитивы";
             this.btnDeleteObject.UseVisualStyleBackColor = true;
@@ -290,19 +296,6 @@
             this.ChoiceReflective.Size = new System.Drawing.Size(88, 29);
             this.ChoiceReflective.TabIndex = 323;
             // 
-            // ChoiceSpecular
-            // 
-            this.ChoiceSpecular.Location = new System.Drawing.Point(458, 441);
-            this.ChoiceSpecular.Margin = new System.Windows.Forms.Padding(6);
-            this.ChoiceSpecular.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.ChoiceSpecular.Name = "ChoiceSpecular";
-            this.ChoiceSpecular.Size = new System.Drawing.Size(88, 29);
-            this.ChoiceSpecular.TabIndex = 322;
-            // 
             // ChoiceColor
             // 
             this.ChoiceColor.BackColor = System.Drawing.Color.Red;
@@ -376,7 +369,7 @@
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Location = new System.Drawing.Point(14, 807);
+            this.tabControl2.Location = new System.Drawing.Point(13, 896);
             this.tabControl2.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -883,7 +876,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(2350, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(2350, 24);
             this.menuStrip1.TabIndex = 47;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1218,7 +1211,7 @@
             // tabControl3
             // 
             this.tabControl3.Controls.Add(this.tabPage6);
-            this.tabControl3.Location = new System.Drawing.Point(683, 807);
+            this.tabControl3.Location = new System.Drawing.Point(683, 896);
             this.tabControl3.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
@@ -1385,7 +1378,7 @@
             this.checkBoxNebo.AutoSize = true;
             this.checkBoxNebo.Checked = true;
             this.checkBoxNebo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxNebo.Location = new System.Drawing.Point(255, 294);
+            this.checkBoxNebo.Location = new System.Drawing.Point(291, 297);
             this.checkBoxNebo.Margin = new System.Windows.Forms.Padding(6);
             this.checkBoxNebo.Name = "checkBoxNebo";
             this.checkBoxNebo.Size = new System.Drawing.Size(255, 29);
@@ -1396,7 +1389,7 @@
             // 
             // dynamicButton
             // 
-            this.dynamicButton.Location = new System.Drawing.Point(16, 437);
+            this.dynamicButton.Location = new System.Drawing.Point(19, 556);
             this.dynamicButton.Margin = new System.Windows.Forms.Padding(6);
             this.dynamicButton.Name = "dynamicButton";
             this.dynamicButton.Size = new System.Drawing.Size(304, 68);
@@ -1407,7 +1400,7 @@
             // progressBar
             // 
             this.progressBar.ForeColor = System.Drawing.SystemColors.Control;
-            this.progressBar.Location = new System.Drawing.Point(255, 536);
+            this.progressBar.Location = new System.Drawing.Point(258, 655);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(359, 59);
             this.progressBar.TabIndex = 219;
@@ -1419,11 +1412,16 @@
             this.tabControl4.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl4.Name = "tabControl4";
             this.tabControl4.SelectedIndex = 0;
-            this.tabControl4.Size = new System.Drawing.Size(658, 741);
+            this.tabControl4.Size = new System.Drawing.Size(658, 829);
             this.tabControl4.TabIndex = 220;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.numericCoef);
+            this.tabPage1.Controls.Add(this.label28);
+            this.tabPage1.Controls.Add(this.modelBF);
+            this.tabPage1.Controls.Add(this.modelF);
+            this.tabPage1.Controls.Add(this.label27);
             this.tabPage1.Controls.Add(this.label26);
             this.tabPage1.Controls.Add(this.numericRecursion);
             this.tabPage1.Controls.Add(this.offButton);
@@ -1448,14 +1446,43 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(650, 704);
+            this.tabPage1.Size = new System.Drawing.Size(650, 792);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Запуск флюгера";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label26.Location = new System.Drawing.Point(18, 391);
+            this.label26.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(223, 29);
+            this.label26.TabIndex = 341;
+            this.label26.Text = "Глубина рекурсии:";
+            // 
+            // numericRecursion
+            // 
+            this.numericRecursion.Location = new System.Drawing.Point(291, 394);
+            this.numericRecursion.Margin = new System.Windows.Forms.Padding(6);
+            this.numericRecursion.Maximum = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.numericRecursion.Name = "numericRecursion";
+            this.numericRecursion.Size = new System.Drawing.Size(114, 29);
+            this.numericRecursion.TabIndex = 340;
+            this.numericRecursion.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
             // offButton
             // 
-            this.offButton.Location = new System.Drawing.Point(331, 437);
+            this.offButton.Location = new System.Drawing.Point(334, 556);
             this.offButton.Margin = new System.Windows.Forms.Padding(6);
             this.offButton.Name = "offButton";
             this.offButton.Size = new System.Drawing.Size(304, 68);
@@ -1515,7 +1542,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label20.Location = new System.Drawing.Point(18, 624);
+            this.label20.Location = new System.Drawing.Point(21, 743);
             this.label20.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(249, 29);
@@ -1527,7 +1554,7 @@
             this.textBoxTime.BackColor = System.Drawing.SystemColors.HighlightText;
             this.textBoxTime.Enabled = false;
             this.textBoxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxTime.Location = new System.Drawing.Point(288, 624);
+            this.textBoxTime.Location = new System.Drawing.Point(291, 743);
             this.textBoxTime.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxTime.Name = "textBoxTime";
             this.textBoxTime.Size = new System.Drawing.Size(136, 29);
@@ -1537,7 +1564,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(11, 553);
+            this.label19.Location = new System.Drawing.Point(14, 672);
             this.label19.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(226, 29);
@@ -1580,7 +1607,7 @@
             // 
             // numericNumThreads
             // 
-            this.numericNumThreads.Location = new System.Drawing.Point(255, 335);
+            this.numericNumThreads.Location = new System.Drawing.Point(291, 338);
             this.numericNumThreads.Margin = new System.Windows.Forms.Padding(6);
             this.numericNumThreads.Maximum = new decimal(new int[] {
             64,
@@ -1628,34 +1655,77 @@
             this.label29.TabIndex = 147;
             this.label29.Text = "Направление:";
             // 
-            // label26
+            // ChoiceSpecular
             // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label26.Location = new System.Drawing.Point(18, 391);
-            this.label26.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(223, 29);
-            this.label26.TabIndex = 341;
-            this.label26.Text = "Глубина рекурсии:";
-            // 
-            // numericRecursion
-            // 
-            this.numericRecursion.Location = new System.Drawing.Point(255, 391);
-            this.numericRecursion.Margin = new System.Windows.Forms.Padding(6);
-            this.numericRecursion.Maximum = new decimal(new int[] {
-            64,
+            this.ChoiceSpecular.DecimalPlaces = 2;
+            this.ChoiceSpecular.Location = new System.Drawing.Point(458, 441);
+            this.ChoiceSpecular.Margin = new System.Windows.Forms.Padding(6);
+            this.ChoiceSpecular.Maximum = new decimal(new int[] {
+            5000,
             0,
             0,
             0});
-            this.numericRecursion.Name = "numericRecursion";
-            this.numericRecursion.Size = new System.Drawing.Size(114, 29);
-            this.numericRecursion.TabIndex = 340;
-            this.numericRecursion.Value = new decimal(new int[] {
-            3,
+            this.ChoiceSpecular.Name = "ChoiceSpecular";
+            this.ChoiceSpecular.Size = new System.Drawing.Size(88, 29);
+            this.ChoiceSpecular.TabIndex = 344;
+            // 
+            // modelBF
+            // 
+            this.modelBF.AutoSize = true;
+            this.modelBF.Location = new System.Drawing.Point(418, 455);
+            this.modelBF.Name = "modelBF";
+            this.modelBF.Size = new System.Drawing.Size(170, 29);
+            this.modelBF.TabIndex = 344;
+            this.modelBF.Text = "Блинна-Фонга";
+            this.modelBF.UseVisualStyleBackColor = true;
+            // 
+            // modelF
+            // 
+            this.modelF.AutoSize = true;
+            this.modelF.Checked = true;
+            this.modelF.Location = new System.Drawing.Point(289, 455);
+            this.modelF.Name = "modelF";
+            this.modelF.Size = new System.Drawing.Size(96, 29);
+            this.modelF.TabIndex = 343;
+            this.modelF.TabStop = true;
+            this.modelF.Text = "Фонга";
+            this.modelF.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label27.Location = new System.Drawing.Point(18, 453);
+            this.label27.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(239, 29);
+            this.label27.TabIndex = 342;
+            this.label27.Text = "Модель освещения:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label28.Location = new System.Drawing.Point(18, 507);
+            this.label28.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(422, 29);
+            this.label28.TabIndex = 345;
+            this.label28.Text = "Коэффициент увеличения степени:";
+            // 
+            // numericCoef
+            // 
+            this.numericCoef.DecimalPlaces = 2;
+            this.numericCoef.Location = new System.Drawing.Point(467, 509);
+            this.numericCoef.Margin = new System.Windows.Forms.Padding(6);
+            this.numericCoef.Maximum = new decimal(new int[] {
+            5000,
             0,
             0,
             0});
+            this.numericCoef.Name = "numericCoef";
+            this.numericCoef.Size = new System.Drawing.Size(88, 29);
+            this.numericCoef.TabIndex = 345;
             // 
             // Form1
             // 
@@ -1679,7 +1749,6 @@
             this.btnDeleteObject.ResumeLayout(false);
             this.btnDeleteObject.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceReflective)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChoiceSpecular)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceColor)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -1704,10 +1773,12 @@
             this.tabControl4.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericRecursion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericNumThreads)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericRecursion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceSpecular)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCoef)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1786,7 +1857,6 @@
         private System.Windows.Forms.ComboBox choiceObject;
         private System.Windows.Forms.Label labelChoiceColor;
         private System.Windows.Forms.NumericUpDown ChoiceReflective;
-        private System.Windows.Forms.NumericUpDown ChoiceSpecular;
         private System.Windows.Forms.PictureBox ChoiceColor;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Label labelChoiceSpecular;
@@ -1828,6 +1898,12 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.NumericUpDown numericRecursion;
+        private System.Windows.Forms.NumericUpDown ChoiceSpecular;
+        private System.Windows.Forms.NumericUpDown numericCoef;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.RadioButton modelBF;
+        private System.Windows.Forms.RadioButton modelF;
+        private System.Windows.Forms.Label label27;
     }
 }
 

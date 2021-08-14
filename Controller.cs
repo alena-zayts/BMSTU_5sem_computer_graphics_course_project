@@ -203,6 +203,7 @@ namespace Weatherwane
                         scene.sceneObjects[j].RotateOY(turnPoint, angle);
                     }
                 }
+
                 progressBar.Value = i + 1;
             }
         }
