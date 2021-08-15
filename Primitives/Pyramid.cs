@@ -8,13 +8,13 @@ namespace Weatherwane
 {
     class Pyramid : Primitive
     {
-        public Vec3d A;
-        public Vec3d B;
-        public Vec3d C;
-        public Vec3d D;
-        public Vec3d P;
+        public Vec3 A;
+        public Vec3 B;
+        public Vec3 C;
+        public Vec3 D;
+        public Vec3 P;
         public Pyramid(string name, Material material, bool moving, 
-            Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D) : base(name, material, moving)
+            Vec3 P, Vec3 A, Vec3 B, Vec3 C, Vec3 D) : base(name, material, moving)
         {
             this.A = A;
             this.B = B;
@@ -22,17 +22,17 @@ namespace Weatherwane
             this.D = D;
             this.P = P;
         }
-        public override void RotateOY(Vec3d turn_point, double teta)
+        public override void RotateOY(Vec3 turn_point, double teta)
         {
 
         }
 
-        public override void intersectRay(Vec3d camera_point, Vec3d view_vector, ref double t1, ref double t2)
+        public override void intersectRay(Vec3 camera_point, Vec3 view_vector, ref double t1, ref double t2)
         {
 
         }
 
-        public override Vec3d findNormal(Vec3d P)
+        public override Vec3 findNormal(Vec3 P)
         {
             return null;
         }

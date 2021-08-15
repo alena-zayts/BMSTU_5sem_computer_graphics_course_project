@@ -8,14 +8,14 @@ namespace Weatherwane
 {
     class Camera
     {
-        public Vec3d position;
-        public Vec3d angle;
+        public Vec3 position;
+        public Vec3 angle;
         public double[,] rotation;
 
         public Camera()
         {
-            this.position = new Vec3d(0, 0, 0);
-            this.angle = new Vec3d(0, 0, 0);
+            this.position = new Vec3(0, 0, 0);
+            this.angle = new Vec3(0, 0, 0);
             this.rotation = new double[4, 4] { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 1 } };
         }
 

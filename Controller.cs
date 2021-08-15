@@ -89,7 +89,7 @@ namespace Weatherwane
             if (this.n > 0 & currImgIndex > 1)
             {
                 double cur_angle = (this.currImgIndex - 1) * 360 / this.n;
-                Vec3d turnPoint = new Vec3d(0, 48.5, 0);
+                Vec3 turnPoint = new Vec3(0, 48.5, 0);
 
                 for (int j = 0; j < scene.sceneObjects.Count; j++)
                 {
@@ -185,7 +185,7 @@ namespace Weatherwane
 
         public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar, int numThreads, int recursion_depth)
         {
-            Vec3d turnPoint = new Vec3d(0, 48.5, 0);
+            Vec3 turnPoint = new Vec3(0, 48.5, 0);
             double angle = 360 / n;
 
             progressBar.Maximum = n;
@@ -225,7 +225,7 @@ namespace Weatherwane
             }
         }
 
-        public void changeLight(string name, Vec3d position, double intensity)
+        public void changeLight(string name, Vec3 position, double intensity)
         {
             for (int i = 0; i < this.scene.lights.Count; i++)
             {
@@ -263,7 +263,7 @@ namespace Weatherwane
             return lightsName;
         }
 
-        public void addLight(Vec3d position, double intensity)
+        public void addLight(Vec3 position, double intensity)
         {
             this.scene.AddLightPoint(position, intensity);
         }
@@ -273,7 +273,7 @@ namespace Weatherwane
             this.scene.RemoveLightPoint(name);
         }
 
-        public void updatePrimitive(string name, Vec3d color, double specular, double reflective)
+        public void updatePrimitive(string name, Vec3 color, double specular, double reflective)
         {
             for (int i = 0; i < this.scene.sceneObjects.Count; i++)
             {

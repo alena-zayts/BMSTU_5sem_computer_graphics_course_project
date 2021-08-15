@@ -8,12 +8,12 @@ namespace Weatherwane
 {
     class Cylinder : Primitive
     {
-        public Vec3d centre;
-        public Vec3d V;
+        public Vec3 centre;
+        public Vec3 V;
         public double radius;
         public double height;
         public Cylinder(string name, Material material, bool moving, 
-            Vec3d centre, Vec3d V, double radius, double height) : base (name, material, moving)
+            Vec3 centre, Vec3 V, double radius, double height) : base (name, material, moving)
         {
             this.centre = centre;
             this.V = V;
@@ -21,23 +21,23 @@ namespace Weatherwane
             this.height = height;
         }
 
-        public override void RotateOY(Vec3d turn_point, double teta)
+        public override void RotateOY(Vec3 turn_point, double teta)
         {
-            Vec3d zero_point = new Vec3d(0, 0, 0);
+            Vec3 zero_point = new Vec3(0, 0, 0);
             this.V.RotateOY(zero_point, teta);
 
             this.centre.RotateOY(turn_point, teta);
         }
 
-        public override void intersectRay(Vec3d O, Vec3d view_direction, ref double t1, ref double t2)
+        public override void intersectRay(Vec3 O, Vec3 view_direction, ref double t1, ref double t2)
         {
-            Vec3d CO = O - this.centre;
+            Vec3 CO = O - this.centre;
 
-            double d_d = Vec3d.ScalarMultiplication(view_direction, view_direction);
-            double d_v = Vec3d.ScalarMultiplication(view_direction, this.V);
-            double co_d = Vec3d.ScalarMultiplication(CO, view_direction);
-            double co_v = Vec3d.ScalarMultiplication(CO, this.V);
-            double co_co = Vec3d.ScalarMultiplication(CO, CO);
+            double d_d = Vec3.ScalarMultiplication(view_direction, view_direction);
+            double d_v = Vec3.ScalarMultiplication(view_direction, this.V);
+            double co_d = Vec3.ScalarMultiplication(CO, view_direction);
+            double co_v = Vec3.ScalarMultiplication(CO, this.V);
+            double co_co = Vec3.ScalarMultiplication(CO, CO);
 
 
             double a = d_d - d_v * d_v;

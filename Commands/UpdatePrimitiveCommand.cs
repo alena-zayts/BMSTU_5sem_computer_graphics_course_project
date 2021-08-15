@@ -11,9 +11,9 @@ namespace Weatherwane
         private string name;
         private double specular;
         private double reflective;
-        private Vec3d color;
+        private Vec3 color;
 
-        public UpdatePrimitiveCommand(string name, Vec3d color, double specular, double reflective)
+        public UpdatePrimitiveCommand(string name, Vec3 color, double specular, double reflective)
         {
             this.name = name;
             this.color = color;

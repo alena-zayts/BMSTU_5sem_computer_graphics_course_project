@@ -35,7 +35,7 @@ namespace Weatherwane
             this.buffer = new Color[scene.canvasWidth, scene.canvasHeight];
         }
 
-        private void ClosestIntersection(ref Primitive closest_object, ref double closest_t, Vec3d camera_position, Vec3d view_vector, double t_min, double t_max)
+        private void ClosestIntersection(ref Primitive closest_object, ref double closest_t, Vec3 camera_position, Vec3 view_vector, double t_min, double t_max)
         {
 
             double t1 = 0;
@@ -57,25 +57,29 @@ namespace Weatherwane
                 }
             }
         }
-        private Vec3d ReflectRay(Vec3d R, Vec3d N)
+
+        private Vec3 ReflectRay(Vec3 L, Vec3 N)
         {
-            double n_dot_r = Vec3d.ScalarMultiplication(N, R);
-            Vec3d res = 2 * N * n_dot_r - R;
-            return res;
+/*            L = L.Normalize();
+            N = N.Normalize();*/
+
+            double LN = Vec3.ScalarMultiplication(L, N);
+            Vec3 R = -L + 2 * LN * N;
+            return R;
         }
 
 
-        private Vec3d Vec3dNormalCylinder(Vec3d P, double closest_t, Cylinder cylinder, Vec3d camera_position, Vec3d D)
+        private Vec3 Vec3dNormalCylinder(Vec3 P, double closest_t, Cylinder cylinder, Vec3 camera_position, Vec3 D)
         {
 
-            Vec3d CO = camera_position - cylinder.centre;
+            Vec3 CO = camera_position - cylinder.centre;
 
 
-            double d_v = Vec3d.ScalarMultiplication(D, cylinder.V);
-            double co_v = Vec3d.ScalarMultiplication(CO, cylinder.V);
+            double d_v = Vec3.ScalarMultiplication(D, cylinder.V);
+            double co_v = Vec3.ScalarMultiplication(CO, cylinder.V);
 
             double m = d_v * closest_t + co_v;
-            Vec3d normal = P;
+            Vec3 normal = P;
             normal = normal - cylinder.centre;
             normal = normal - cylinder.V * m;
             return normal;
@@ -83,7 +87,7 @@ namespace Weatherwane
         }
 
 
-        private Vec3d TraceRay(Vec3d camera_position, Vec3d view_vector, double t_min, double t_max, int depth, int x, int y, bool drawSceneBackground)
+        private Vec3 TraceRay(Vec3 camera_position, Vec3 view_vector, double t_min, double t_max, int depth, int x, int y, bool drawSceneBackground)
         {
             double closest_t = Double.PositiveInfinity;
             Primitive closest_object = null;
@@ -100,42 +104,39 @@ namespace Weatherwane
                 }
                 else
                 {
-                    return new Vec3d(0, 0, 0);
+                    return new Vec3(0, 0, 0);
                 }
             }
 
 
-            Vec3d intersection_point = camera_position + closest_t * view_vector;
-            Vec3d N;
+            Vec3 intersection_point = camera_position + closest_t * view_vector;
+            Vec3 N;
             if (closest_object is Cylinder)
                 N = Vec3dNormalCylinder(intersection_point, closest_t, (Cylinder)closest_object, camera_position, view_vector).Normalize();
             else
                 N = closest_object.findNormal(intersection_point).Normalize();
                
 
-            double intensity = ComputeLighting(intersection_point, N, -view_vector, closest_object.material.specular);
+            double intensity = FindIntensity(intersection_point, N, -view_vector, closest_object.material.specular);
 
-            Vec3d currentColor = intensity * closest_object.material.color; 
+            Vec3 currentColor = intensity * closest_object.material.color * (1 - closest_object.material.reflective); 
 
-            double reflective = closest_object.material.reflective;
-
-            if (depth <= 0 || reflective <= 0)
+            if (depth <= 0 || closest_object.material.reflective <= 0)
                 return currentColor;
 
-            Vec3d reflected_vector = ReflectRay(-view_vector, N);
-            Vec3d reflectedColor = TraceRay(intersection_point, reflected_vector, 0.01, Double.PositiveInfinity, depth - 1, x, y, drawSceneBackground);
+            Vec3 reflected_vector = ReflectRay(-view_vector, N);
+            Vec3 reflectedColor = TraceRay(intersection_point, reflected_vector, 0.01, Double.PositiveInfinity, depth - 1, x, y, drawSceneBackground);
 
-            Vec3d kLocalColor = (1 - reflective) * currentColor;
-            Vec3d rReflectedColor = reflective * reflectedColor;
+            currentColor += reflectedColor * closest_object.material.reflective;
 
-            return kLocalColor+rReflectedColor;
+            return currentColor;
         }
 
-        private double ComputeLighting(Vec3d P, Vec3d N, Vec3d V, double specular, bool BF_model=false, double coef=1.0)
+        private double FindIntensity(Vec3 P, Vec3 N, Vec3 V, double specular, bool BF_model=false, double coef=1.0)
         {
             double intensity = 0;
-            double length_n = Vec3d.Length(N);
-            double length_v = Vec3d.Length(V);
+            double length_n = Vec3.Length(N);
+            double length_v = Vec3.Length(V);
 
             foreach (var light in scene.lights)
             {
@@ -146,7 +147,7 @@ namespace Weatherwane
                 }
                 else
                 {
-                    Vec3d light_vector;
+                    Vec3 light_vector;
                     double t_max;
                     
                     if (light.ltype == LightType.Point) // точечный источник
@@ -169,11 +170,11 @@ namespace Weatherwane
                         continue;
 
                     // Диффузная составляющая
-                    double NL = Vec3d.ScalarMultiplication(N, light_vector);
+                    double NL = Vec3.ScalarMultiplication(N, light_vector);
                     // Если NL < 0, значит свет достигает только заднюю (невидимую) части поверхности,
                     if (NL > 0)
                     {
-                        intensity += light.intensity * NL / (length_n * Vec3d.Length(light_vector));
+                        intensity += light.intensity * NL / (length_n * Vec3.Length(light_vector));
                     }
 
                     // Зеркальная составляющая
@@ -181,23 +182,23 @@ namespace Weatherwane
                     // по модели Фонга
                     if (!BF_model)
                     {
-                        Vec3d R = ReflectRay(light_vector, N);
-                        double RV = Vec3d.ScalarMultiplication(R, V);
+                        Vec3 R = ReflectRay(light_vector, N);
+                        double RV = Vec3.ScalarMultiplication(R, V);
 
                         if (RV > 0)
                         {
-                            intensity += light.intensity * Math.Pow(RV / (Vec3d.Length(R) * length_v), specular);
+                            intensity += light.intensity * Math.Pow(RV / (Vec3.Length(R) * length_v), specular);
                         }
                     }
                     // по модели Блинна-Фонга
                     else
                     {
-                        Vec3d H = (light_vector + V);
-                        double HN = Vec3d.ScalarMultiplication(H, N);
+                        Vec3 H = (light_vector.Normalize() + V.Normalize());
+                        double HN = Vec3.ScalarMultiplication(H, N);
 
                         if (HN > 0)
                         {
-                            intensity += light.intensity * Math.Pow(HN / (Vec3d.Length(H) * length_n), specular * coef);
+                            intensity += light.intensity * Math.Pow(HN / (Vec3.Length(H) * length_n), specular * coef);
                         }
                     }
                 }
@@ -219,7 +220,7 @@ namespace Weatherwane
             this.buffer[x_,y_] = color;    
         }
 
-        private Color Clamp(Vec3d color)
+        private Color Clamp(Vec3 color)
         {
             int color_x = Math.Min(255, Math.Max(0, (int)color.x));
             int color_y = Math.Min(255, Math.Max(0, (int)color.y));
@@ -232,8 +233,8 @@ namespace Weatherwane
         {
             Params p = (Params)obj;
             Camera camera = scene.camera;
-            Vec3d view_vector = null;
-            Vec3d color = null;
+            Vec3 view_vector = null;
+            Vec3 color = null;
             for (int x = p.start_x; x < p.start_x + p.width; x++)
             {
                 for (int y = p.start_y; y < p.start_y + p.height; y++)
@@ -272,9 +273,9 @@ namespace Weatherwane
         }
 
 
-        private Vec3d CanvasToViewport(int x, int y)
+        private Vec3 CanvasToViewport(int x, int y)
         {
-            return new Vec3d(x * (double)viewport_width / scene.canvasWidth, y * (double)viewport_height / scene.canvasHeight, projection_plane_d);
+            return new Vec3(x * (double)viewport_width / scene.canvasWidth, y * (double)viewport_height / scene.canvasHeight, projection_plane_d);
         }
     }
 

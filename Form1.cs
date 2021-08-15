@@ -449,7 +449,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             else
             {
                 changeLightCommand = new ChangeLightCommand(selectedLight,
-                   new Vec3d((double)ChangeLightPosX.Value, (double)ChangeLightPosY.Value, (double)ChangeLightPosZ.Value), (double)ChangeLightIntensity.Value);
+                   new Vec3((double)ChangeLightPosX.Value, (double)ChangeLightPosY.Value, (double)ChangeLightPosZ.Value), (double)ChangeLightIntensity.Value);
             }
             facade.executeCommand(changeLightCommand);
             this.smthChanged = true;
@@ -463,7 +463,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
         private void btnAddLight_Click(object sender, EventArgs e)
         {
-            AddLightCommand addLightCommand = new AddLightCommand(new Vec3d((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), (double)AddLightIntensity.Value);
+            AddLightCommand addLightCommand = new AddLightCommand(new Vec3((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), (double)AddLightIntensity.Value);
             facade.executeCommand(addLightCommand);
 
             this.smthChanged = true;
@@ -497,7 +497,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             Color color = ChoiceColor.BackColor;
             UpdatePrimitiveCommand UpdatePrimitiveCommand = new UpdatePrimitiveCommand(
                 primitive.name,
-                new Vec3d((double)color.R, (double)color.G, (double)color.B),
+                new Vec3((double)color.R, (double)color.G, (double)color.B),
                 (double)ChoiceSpecular.Value,
                 (double)ChoiceReflective.Value);
             facade.executeCommand(UpdatePrimitiveCommand);

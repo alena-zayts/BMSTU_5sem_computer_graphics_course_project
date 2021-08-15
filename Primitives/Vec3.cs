@@ -6,54 +6,54 @@ using System.Threading.Tasks;
 
 namespace Weatherwane
 {
-    class Vec3d
+    class Vec3
     {
         public double x, y, z;
         
-        public Vec3d()
+        public Vec3()
         {
             this.x = 0;
             this.y = 0;
             this.z = 0;
         }
-        public Vec3d(Vec3d vec)
+        public Vec3(Vec3 vec)
         {
             this.x = vec.x;
             this.y = vec.y;
             this.z = vec.z;
         }
-        public Vec3d(double x, double y, double z)
+        public Vec3(double x, double y, double z)
         {
             this.x = x;
             this.y = y;
             this.z = z;
         }
 
-        public static Vec3d operator +(Vec3d v1, Vec3d v2)
+        public static Vec3 operator +(Vec3 v1, Vec3 v2)
         {
-            return new Vec3d { x = v1.x + v2.x, y = v1.y + v2.y, z = v1.z + v2.z };
+            return new Vec3 { x = v1.x + v2.x, y = v1.y + v2.y, z = v1.z + v2.z };
         }
 
-        public static Vec3d operator / (Vec3d v1, double k)
+        public static Vec3 operator / (Vec3 v1, double k)
         {
-            return new Vec3d { x = v1.x / k, y = v1.y / k, z = v1.z / k };
+            return new Vec3 { x = v1.x / k, y = v1.y / k, z = v1.z / k };
         }
 
-        public static Vec3d operator -(Vec3d v1, Vec3d v2)
+        public static Vec3 operator -(Vec3 v1, Vec3 v2)
         {
-            return new Vec3d { x = v1.x - v2.x, y = v1.y - v2.y, z = v1.z - v2.z };
+            return new Vec3 { x = v1.x - v2.x, y = v1.y - v2.y, z = v1.z - v2.z };
         }
-        public static Vec3d operator -(Vec3d v)
+        public static Vec3 operator -(Vec3 v)
         {
-            return new Vec3d { x = -v.x, y = -v.y, z = -v.z };
-        }
-
-        public static Vec3d operator *(Vec3d v, double k)
-        {
-            return new Vec3d { x = v.x * k, y = v.y * k, z = v.z * k };
+            return new Vec3 { x = -v.x, y = -v.y, z = -v.z };
         }
 
-        public static Vec3d operator *(Vec3d v, double[,] mtr)
+        public static Vec3 operator *(Vec3 v, double k)
+        {
+            return new Vec3 { x = v.x * k, y = v.y * k, z = v.z * k };
+        }
+
+        public static Vec3 operator *(Vec3 v, double[,] mtr)
         {
             double[] tmp = new double[4] { v.x, v.y, v.z, 1 };
             double[] result = new double[4] { 0, 0, 0, 0 };
@@ -66,26 +66,26 @@ namespace Weatherwane
                 }
             }
 
-            return new Vec3d { x = result[0], y = result[1], z = result[2] };
+            return new Vec3 { x = result[0], y = result[1], z = result[2] };
         }
-        public static Vec3d operator *(double k, Vec3d v)
+        public static Vec3 operator *(double k, Vec3 v)
         {
-            return new Vec3d { x = v.x * k, y = v.y * k, z = v.z * k };
+            return new Vec3 { x = v.x * k, y = v.y * k, z = v.z * k };
         }
 
-        public static double operator *(Vec3d a, Vec3d b)
+        public static double operator *(Vec3 a, Vec3 b)
         {
             return a.x* b.x + a.y * b.y + a.z * b.z;
         }
 
-        public static double ScalarMultiplication(Vec3d a, Vec3d b)
+        public static double ScalarMultiplication(Vec3 a, Vec3 b)
         {
             return a.x * b.x + a.y * b.y + a.z * b.z;
         }
 
-        public static Vec3d VecMultiplication(Vec3d a, Vec3d b)
+        public static Vec3 VecMultiplication(Vec3 a, Vec3 b)
         {
-            Vec3d result = new Vec3d();
+            Vec3 result = new Vec3();
             result.x = a.y * b.z - a.z * b.y;
             result.y = a.z * b.x - a.x * b.z;
             result.z = a.x * b.y - a.y * b.x;
@@ -93,18 +93,18 @@ namespace Weatherwane
 
         }
 
-        public static double Length(Vec3d vec)
+        public static double Length(Vec3 vec)
         {
             return Math.Sqrt(vec.x * vec.x + vec.y*vec.y + vec.z * vec.z);
         }
 
-        public Vec3d Normalize()
+        public Vec3 Normalize()
         {
             double length_vec = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
-            return new Vec3d(this.x / length_vec, this.y / length_vec, this.z / length_vec);
+            return new Vec3(this.x / length_vec, this.y / length_vec, this.z / length_vec);
         }
 
-        public void RotateOY(Vec3d C, double teta)
+        public void RotateOY(Vec3 C, double teta)
         {
 
             double d = teta * Math.PI / 180;

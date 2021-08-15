@@ -12,7 +12,7 @@ namespace Weatherwane
         public int canvasWidth { get; private set; }
         public int canvasHeight { get; private set; }
         public Bitmap bmpBackground = new Bitmap(@"C:\msys64\home\alena\last_course\nebo.png", true);
-        public Vec3d[,] background;
+        public Vec3[,] background;
 
         public Camera camera { get; set; }
         public List<Primitive> sceneObjects { get; set; }
@@ -27,7 +27,7 @@ namespace Weatherwane
                 {
                     Color color = bmpBackground.GetPixel(i, j);
 
-                    this.background[i, canvasHeight - j - 1] = new Vec3d(color.R, color.G, color.B);
+                    this.background[i, canvasHeight - j - 1] = new Vec3(color.R, color.G, color.B);
                 }
             }
         }
@@ -35,7 +35,7 @@ namespace Weatherwane
         {
             this.canvasWidth = canvasWidth;
             this.canvasHeight = canvasHeight;
-            background = new Vec3d[canvasWidth, canvasHeight];
+            background = new Vec3[canvasWidth, canvasHeight];
             convertBackground(this.bmpBackground, canvasWidth, canvasHeight);
 
             camera = new Camera();
@@ -43,80 +43,80 @@ namespace Weatherwane
             lights = new List<Light>();
         }
 
-        public void AddSphere(string name, Material material, bool moving, Vec3d centre, double radius)
+        public void AddSphere(string name, Material material, bool moving, Vec3 centre, double radius)
         {
             sceneObjects.Add(new Sphere(name, material, moving, centre, radius));
         }
-        public void AddCylinder(string name, Material material, bool moving, Vec3d centre, Vec3d V, double radius, double height)
+        public void AddCylinder(string name, Material material, bool moving, Vec3 centre, Vec3 V, double radius, double height)
         {
             Cylinder cylinder = new Cylinder(name, material, moving, centre, V, radius, height);
             sceneObjects.Add(cylinder);
-            AddDiskPlane(name, material, moving, new Vec3d(centre), -V, radius);
-            AddDiskPlane(name, material, moving, centre + V * height, new Vec3d(V), radius);
+            AddDiskPlane(name, material, moving, new Vec3(centre), -V, radius);
+            AddDiskPlane(name, material, moving, centre + V * height, new Vec3(V), radius);
         }
 
         public void AddParallelepiped(string name, Material material, bool moving, double xl, double xr, double yu, double yd, double zf, double zn)
         {
-            Vec3d A = new Vec3d(xl, yd, zn);
-            Vec3d B = new Vec3d(xl, yd, zf);
-            Vec3d C = new Vec3d(xr, yd, zf);
-            Vec3d D = new Vec3d(xr, yd, zn);
+            Vec3 A = new Vec3(xl, yd, zn);
+            Vec3 B = new Vec3(xl, yd, zf);
+            Vec3 C = new Vec3(xr, yd, zf);
+            Vec3 D = new Vec3(xr, yd, zn);
 
-            Vec3d E = new Vec3d(xl, yu, zn);
-            Vec3d F = new Vec3d(xl, yu, zf);
-            Vec3d G = new Vec3d(xr, yu, zf);
-            Vec3d H = new Vec3d(xr, yu, zn);
+            Vec3 E = new Vec3(xl, yu, zn);
+            Vec3 F = new Vec3(xl, yu, zf);
+            Vec3 G = new Vec3(xr, yu, zf);
+            Vec3 H = new Vec3(xr, yu, zn);
 
             // down
-            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(B), new Vec3d(C));
-            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(C), new Vec3d(D));
+            AddTriangle(name, material, moving, new Vec3(A), new Vec3(B), new Vec3(C));
+            AddTriangle(name, material, moving, new Vec3(A), new Vec3(C), new Vec3(D));
             //up
-            AddTriangle(name, material, moving, new Vec3d(E), new Vec3d(F), new Vec3d(G));
-            AddTriangle(name, material, moving, new Vec3d(E), new Vec3d(G), new Vec3d(H));
+            AddTriangle(name, material, moving, new Vec3(E), new Vec3(F), new Vec3(G));
+            AddTriangle(name, material, moving, new Vec3(E), new Vec3(G), new Vec3(H));
             //left
-            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(E), new Vec3d(F));
-            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(F), new Vec3d(B));
+            AddTriangle(name, material, moving, new Vec3(A), new Vec3(E), new Vec3(F));
+            AddTriangle(name, material, moving, new Vec3(A), new Vec3(F), new Vec3(B));
             //right
-            AddTriangle(name, material, moving, new Vec3d(D), new Vec3d(H), new Vec3d(G));
-            AddTriangle(name, material, moving, new Vec3d(D), new Vec3d(G), new Vec3d(C));
+            AddTriangle(name, material, moving, new Vec3(D), new Vec3(H), new Vec3(G));
+            AddTriangle(name, material, moving, new Vec3(D), new Vec3(G), new Vec3(C));
             //near
-            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(E), new Vec3d(H));
-            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(H), new Vec3d(D));
+            AddTriangle(name, material, moving, new Vec3(A), new Vec3(E), new Vec3(H));
+            AddTriangle(name, material, moving, new Vec3(A), new Vec3(H), new Vec3(D));
             //far
-            AddTriangle(name, material, moving, new Vec3d(B), new Vec3d(G), new Vec3d(F));
-            AddTriangle(name, material, moving, new Vec3d(B), new Vec3d(C), new Vec3d(G));
+            AddTriangle(name, material, moving, new Vec3(B), new Vec3(G), new Vec3(F));
+            AddTriangle(name, material, moving, new Vec3(B), new Vec3(C), new Vec3(G));
 
             sceneObjects.Add(new Parallelepiped(name, material, moving, xl, xr, yu, yd, zf, zn));
         }
 
-        public void AddPyramid(string name, Material material, bool moving, Vec3d P, Vec3d A, Vec3d B, Vec3d C, Vec3d D)
+        public void AddPyramid(string name, Material material, bool moving, Vec3 P, Vec3 A, Vec3 B, Vec3 C, Vec3 D)
         {
 
-            AddTriangle(name, material, moving, new Vec3d(P), new Vec3d(A), new Vec3d(B));
-            AddTriangle(name, material, moving, new Vec3d(P), new Vec3d(B), new Vec3d(C));
-            AddTriangle(name, material, moving, new Vec3d(P), new Vec3d(C), new Vec3d(D));
-            AddTriangle(name, material, moving, new Vec3d(P), new Vec3d(D), new Vec3d(A));
-            AddTriangle(name, material, moving, new Vec3d(A), new Vec3d(B), new Vec3d(D));
-            AddTriangle(name, material, moving, new Vec3d(B), new Vec3d(C), new Vec3d(D));
+            AddTriangle(name, material, moving, new Vec3(P), new Vec3(A), new Vec3(B));
+            AddTriangle(name, material, moving, new Vec3(P), new Vec3(B), new Vec3(C));
+            AddTriangle(name, material, moving, new Vec3(P), new Vec3(C), new Vec3(D));
+            AddTriangle(name, material, moving, new Vec3(P), new Vec3(D), new Vec3(A));
+            AddTriangle(name, material, moving, new Vec3(A), new Vec3(B), new Vec3(D));
+            AddTriangle(name, material, moving, new Vec3(B), new Vec3(C), new Vec3(D));
             sceneObjects.Add(new Pyramid(name, material, moving, P, A, B, C, D));
         }
 
-        public void AddTriangle(string name, Material material, bool moving, Vec3d P, Vec3d A, Vec3d B)
+        public void AddTriangle(string name, Material material, bool moving, Vec3 P, Vec3 A, Vec3 B)
         {
             sceneObjects.Add(new Triangle(name, material, moving, P, A, B));
         }
 
-        public void AddPlane(string name, Material material, bool moving, Vec3d C, Vec3d V)
+        public void AddPlane(string name, Material material, bool moving, Vec3 C, Vec3 V)
         {
             sceneObjects.Add(new Plane(name, material, moving, C, V));
         }
 
-        public void AddDiskPlane(string name, Material material, bool moving, Vec3d C, Vec3d V, double radius)
+        public void AddDiskPlane(string name, Material material, bool moving, Vec3 C, Vec3 V, double radius)
         {
             sceneObjects.Add(new DiskPlane(name, material, moving, C, V, radius));
         }
 
-        public void AddLightPoint(Vec3d position, double intensity)
+        public void AddLightPoint(Vec3 position, double intensity)
         {
             countPointLights += 1;
             lights.Add(new Light("точечный_" + countPointLights, LightType.Point, position, intensity));

@@ -19,17 +19,17 @@ namespace Weatherwane
             this.moving = moving;
         }
 
-        public virtual void RotateOY(Vec3d turn_point, double teta)
+        public virtual void RotateOY(Vec3 turn_point, double teta)
         {
             
         }
 
-        public virtual void intersectRay(Vec3d camera_point, Vec3d view_vector, ref double t1, ref double t2)
+        public virtual void intersectRay(Vec3 camera_point, Vec3 view_vector, ref double t1, ref double t2)
         {
 
         }
 
-        public virtual Vec3d findNormal(Vec3d P)
+        public virtual Vec3 findNormal(Vec3 P)
         {
             return null;
         }

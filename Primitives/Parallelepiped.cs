@@ -23,17 +23,17 @@ namespace Weatherwane
             this.zn = zn;
         }
 
-        public override void RotateOY(Vec3d turn_point, double teta)
+        public override void RotateOY(Vec3 turn_point, double teta)
         {
 
         }
 
-        public override void intersectRay(Vec3d camera_point, Vec3d view_direction, ref double t1ret, ref double t2ret)
+        public override void intersectRay(Vec3 camera_point, Vec3 view_direction, ref double t1ret, ref double t2ret)
         { 
 
         }
 
-        public override Vec3d findNormal(Vec3d P)
+        public override Vec3 findNormal(Vec3 P)
         {
             return null;
         }

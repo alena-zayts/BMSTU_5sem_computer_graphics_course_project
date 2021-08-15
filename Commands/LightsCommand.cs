@@ -29,10 +29,10 @@ namespace Weatherwane
     class ChangeLightCommand : Command
     {
         private string name;
-        Vec3d position;
+        Vec3 position;
         double intensity;
 
-        public ChangeLightCommand(string name, Vec3d position, double intensity)
+        public ChangeLightCommand(string name, Vec3 position, double intensity)
         {
             this.name = name;
             this.position = position;
@@ -75,10 +75,10 @@ namespace Weatherwane
     class AddLightCommand : Command
     {
 
-        Vec3d position;
+        Vec3 position;
         double intensity;
 
-        public AddLightCommand(Vec3d position, double intensity)
+        public AddLightCommand(Vec3 position, double intensity)
         {
             this.position = position;
             this.intensity = intensity;

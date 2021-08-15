@@ -12,12 +12,12 @@ namespace Weatherwane
     {
         public string name;
         public LightType ltype;
-        public Vec3d position;
+        public Vec3 position;
         public double intensity;
-        public Vec3d H;
+        public Vec3 H;
         
 
-        public Light(string name, LightType ltype, Vec3d position, double intensity)
+        public Light(string name, LightType ltype, Vec3 position, double intensity)
         {
             this.name = name;
             this.ltype = ltype;
