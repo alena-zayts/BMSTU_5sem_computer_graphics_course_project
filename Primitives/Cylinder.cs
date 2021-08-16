@@ -70,5 +70,20 @@ namespace Weatherwane
                 t2 = Double.PositiveInfinity;
             }
         }
+        public override Vec3 findNormal(Vec3 P)
+        {
+            double zn = Vec3.ScalarMultiplication(V, V);
+
+            Vec3 CP = P - centre;
+            double ch = Vec3.ScalarMultiplication(V, CP);
+
+            double t = ch / zn;
+
+            Vec3 inters_point = t * V + centre;
+
+            Vec3 N = P - inters_point;
+
+            return N;
+        }
     }
 }

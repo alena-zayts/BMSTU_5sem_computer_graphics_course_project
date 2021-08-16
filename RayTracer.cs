@@ -68,25 +68,6 @@ namespace Weatherwane
             return R;
         }
 
-
-        private Vec3 Vec3dNormalCylinder(Vec3 P, double closest_t, Cylinder cylinder, Vec3 camera_position, Vec3 D)
-        {
-
-            Vec3 CO = camera_position - cylinder.centre;
-
-
-            double d_v = Vec3.ScalarMultiplication(D, cylinder.V);
-            double co_v = Vec3.ScalarMultiplication(CO, cylinder.V);
-
-            double m = d_v * closest_t + co_v;
-            Vec3 normal = P;
-            normal = normal - cylinder.centre;
-            normal = normal - cylinder.V * m;
-            return normal;
-
-        }
-
-
         private Vec3 TraceRay(Vec3 camera_position, Vec3 view_vector, double t_min, double t_max, int depth, int x, int y, bool drawSceneBackground)
         {
             double closest_t = Double.PositiveInfinity;
@@ -110,11 +91,7 @@ namespace Weatherwane
 
 
             Vec3 intersection_point = camera_position + closest_t * view_vector;
-            Vec3 N;
-            if (closest_object is Cylinder)
-                N = Vec3dNormalCylinder(intersection_point, closest_t, (Cylinder)closest_object, camera_position, view_vector).Normalize();
-            else
-                N = closest_object.findNormal(intersection_point).Normalize();
+            Vec3 N = closest_object.findNormal(intersection_point).Normalize();
                
 
             double intensity = FindIntensity(intersection_point, N, -view_vector, closest_object.material.specular);
