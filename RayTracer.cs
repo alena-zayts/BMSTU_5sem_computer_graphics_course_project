@@ -68,7 +68,7 @@ namespace Weatherwane
             return R;
         }
 
-        private Vec3 TraceRay(Vec3 camera_position, Vec3 view_vector, double t_min, double t_max, int depth, int x, int y, bool drawSceneBackground)
+        private Vec3 TraceRay(Vec3 camera_position, Vec3 view_vector, double t_min, double t_max, int depth, int x, int y, bool drawSceneBackground, bool BF_model, double coef)
         {
             double closest_t = Double.PositiveInfinity;
             Primitive closest_object = null;
@@ -94,7 +94,7 @@ namespace Weatherwane
             Vec3 N = closest_object.findNormal(intersection_point).Normalize();
                
 
-            double intensity = FindIntensity(intersection_point, N, -view_vector, closest_object.material.specular);
+            double intensity = FindIntensity(intersection_point, N, -view_vector, closest_object.material.specular, BF_model, coef);
 
             Vec3 currentColor = intensity * closest_object.material.color * (1 - closest_object.material.reflective); 
 
@@ -102,14 +102,14 @@ namespace Weatherwane
                 return currentColor;
 
             Vec3 reflected_vector = ReflectRay(-view_vector, N);
-            Vec3 reflectedColor = TraceRay(intersection_point, reflected_vector, 0.01, Double.PositiveInfinity, depth - 1, x, y, drawSceneBackground);
+            Vec3 reflectedColor = TraceRay(intersection_point, reflected_vector, 0.01, Double.PositiveInfinity, depth - 1, x, y, drawSceneBackground, BF_model, coef);
 
             currentColor += reflectedColor * closest_object.material.reflective;
 
             return currentColor;
         }
 
-        private double FindIntensity(Vec3 P, Vec3 N, Vec3 V, double specular, bool BF_model=false, double coef=1.0)
+        private double FindIntensity(Vec3 P, Vec3 N, Vec3 V, double specular, bool BF_model, double coef)
         {
             double intensity = 0;
             double length_n = Vec3.Length(N);
@@ -217,20 +217,20 @@ namespace Weatherwane
                 for (int y = p.start_y; y < p.start_y + p.height; y++)
                 {
                     view_vector = CanvasToViewport(x, y) * camera.rotation;
-                    color = TraceRay(camera.position, view_vector, projection_plane_d, Double.PositiveInfinity, recursion_depth, x, y, p.drawSceneBackground);
+                    color = TraceRay(camera.position, view_vector, projection_plane_d, Double.PositiveInfinity, recursion_depth, x, y, p.drawSceneBackground, p.BF_model, p.coef);
                     PutPixel(x, y, Clamp(color));
 
                 }
             }
             
         }
-        public Bitmap render(bool drawSceneBackground, int numThreads, int recursion_depth)
+        public Bitmap render(bool drawSceneBackground, int numThreads, int recursion_depth, bool BF_model, double coef)
         {
             this.recursion_depth = recursion_depth;
             Thread[] threads = new Thread[numThreads];
             for (int i = 0; i < numThreads; i++)
             {
-                Params p = new Params(scene.canvasWidth / numThreads, scene.canvasHeight, -scene.canvasWidth / 2 + scene.canvasWidth / numThreads * i, -scene.canvasHeight / 2, drawSceneBackground);
+                Params p = new Params(scene.canvasWidth / numThreads, scene.canvasHeight, -scene.canvasWidth / 2 + scene.canvasWidth / numThreads * i, -scene.canvasHeight / 2, drawSceneBackground, BF_model, coef);
                 threads[i] = new Thread(rendering);
                 threads[i].Start(p);
             }
@@ -263,13 +263,18 @@ namespace Weatherwane
         public int start_x;
         public int start_y;
         public bool drawSceneBackground;
-        public Params(int width, int height, int start_x, int start_y, bool drawSceneBackground)
+        public bool BF_model;
+        public double coef;
+
+        public Params(int width, int height, int start_x, int start_y, bool drawSceneBackground, bool BF_model, double coef)
         {
             this.width = width;
             this.height = height;
             this.start_x = start_x;
             this.start_y = start_y;
             this.drawSceneBackground = drawSceneBackground;
+            this.BF_model = BF_model;
+            this.coef = coef;
         }
     }
 }

@@ -74,7 +74,10 @@ namespace Weatherwane
         {
             int numThreads = (int)this.numericNumThreads.Value;
             int recursion_depth = (int)this.numericRecursion.Value;
-            Command renderCommand = new RenderCommand(ref canvas, checkBoxNebo.Checked, numThreads, ref this.textBoxTime, recursion_depth);
+            bool BF_model = this.modelBF.Checked;
+            double coef = (double)this.numericCoef.Value;
+            Command renderCommand = new RenderCommand(ref canvas, checkBoxNebo.Checked, numThreads, ref this.textBoxTime, recursion_depth, 
+                BF_model, coef);
             
             facade.executeCommand(renderCommand);
         }
@@ -88,8 +91,12 @@ namespace Weatherwane
             bool createArray = this.smthChanged;
             int n = this.trackBarN.Value;
             int recursion_depth = (int)this.numericRecursion.Value;
+            bool BF_model = this.modelBF.Checked;
+            double coef = (double) this.numericCoef.Value;
 
-            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, drawNebo, ref this.progressBar, reverse, speed, numThreads, ref this.textBoxTime, createArray, n, recursion_depth);
+            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, drawNebo, ref this.progressBar, 
+                reverse, speed, numThreads, ref this.textBoxTime, createArray, n, recursion_depth,
+                BF_model, coef);
             facade.executeCommand(dynamicRenderCommand);
 
             this.smthChanged = false;
@@ -374,6 +381,10 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             buttonPitchCamera.Enabled = isAble;
             buttonYawCamera.Enabled = isAble;
             buttonMoveCamera.Enabled = isAble;
+
+            modelBF.Enabled = isAble;
+            modelF.Enabled = isAble;
+            numericCoef.Enabled = isAble;
         }
 
         private void comboBoxLights_SelectedIndexChanged(object sender, EventArgs e)
@@ -506,34 +517,6 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             render();
         }
 
-        private void radioRight_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.radioRight.Checked)
-            {
-                this.radioLeft.Checked = false;
-
-                bool reverse = this.radioRight.Checked;
-                int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value + 1;
-
-                ChangeParamsCommand ChangeParamsCommand = new ChangeParamsCommand(reverse, speed);
-                facade.executeCommand(ChangeParamsCommand);
-            }
-        }
-
-        private void radioLeft_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.radioLeft.Checked)
-            {
-                this.radioRight.Checked = false;
-
-                bool reverse = this.radioRight.Checked;
-                int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value + 1;
-
-                ChangeParamsCommand ChangeParamsCommand = new ChangeParamsCommand(reverse, speed);
-                facade.executeCommand(ChangeParamsCommand);
-            }
-        }
-
         private void offButton_Click(object sender, EventArgs e)
         {
             StopRenderCommand StopRenderCommand = new StopRenderCommand();
@@ -545,8 +528,10 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool reverse = this.radioRight.Checked;
             int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value + 1;
+            bool BF_model = this.modelBF.Checked;
+            double coef = (double)this.numericCoef.Value;
 
-            ChangeParamsCommand ChangeParamsCommand = new ChangeParamsCommand(reverse, speed);
+            ChangeParamsCommand ChangeParamsCommand = new ChangeParamsCommand(reverse, speed, BF_model, coef);
             facade.executeCommand(ChangeParamsCommand);
         }
 
@@ -556,6 +541,48 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         }
 
         private void trackBarN_Scroll(object sender, EventArgs e)
+        {
+            smthChanged = true;
+        }
+
+        private void radioLeft_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (this.radioLeft.Checked)
+            {
+                this.radioRight.Checked = false;
+
+                bool reverse = this.radioRight.Checked;
+                int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value + 1;
+                bool BF_model = this.modelBF.Checked;
+                double coef = (double)this.numericCoef.Value;
+
+                ChangeParamsCommand ChangeParamsCommand = new ChangeParamsCommand(reverse, speed, BF_model, coef);
+                facade.executeCommand(ChangeParamsCommand);
+            }
+        }
+
+        private void radioRight_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (this.radioRight.Checked)
+            {
+                this.radioLeft.Checked = false;
+
+                bool reverse = this.radioRight.Checked;
+                int speed = this.trackBarSpeed.Maximum - this.trackBarSpeed.Value + 1;
+                bool BF_model = this.modelBF.Checked;
+                double coef = (double)this.numericCoef.Value;
+
+                ChangeParamsCommand ChangeParamsCommand = new ChangeParamsCommand(reverse, speed, BF_model, coef);
+                facade.executeCommand(ChangeParamsCommand);
+            }
+        }
+
+        private void modelBF_CheckedChanged(object sender, EventArgs e)
+        {
+            smthChanged = true;
+        }
+
+        private void numericCoef_ValueChanged(object sender, EventArgs e)
         {
             smthChanged = true;
         }

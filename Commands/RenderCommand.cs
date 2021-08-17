@@ -15,18 +15,23 @@ namespace Weatherwane
         private int numThreads;
         TextBox textBoxTime;
         private int recursion_depth;
+        private bool BF_model;
+        private double coef;
 
-        unsafe public RenderCommand(ref PictureBox canvas, bool drawSea, int numThreads, ref TextBox textBoxTime, int recursion_depth)
+        unsafe public RenderCommand(ref PictureBox canvas, bool drawSea, int numThreads, ref TextBox textBoxTime, int recursion_depth,
+            bool BF_model, double coef)
         {
             this.canvas = canvas;
             this.drawSea = drawSea;
             this.numThreads = numThreads;
             this.textBoxTime = textBoxTime;
             this.recursion_depth = recursion_depth;
+            this.BF_model = BF_model;
+            this.coef = coef;
         }
         public override void execute(Controller controller)
         {
-            controller.render(ref canvas, this.drawSea, this.numThreads, ref this.textBoxTime, recursion_depth);
+            controller.render(ref canvas, this.drawSea, this.numThreads, ref this.textBoxTime, recursion_depth, BF_model, coef);
         }
     }
 
@@ -47,12 +52,16 @@ namespace Weatherwane
         private int speed;
         private int numThreads;
         TextBox textBoxTime;
-        bool createArray;
-        int n;
+        private bool createArray;
+        private int n;
         private int recursion_depth;
+        private bool BF_model;
+        private double coef;
 
 
-        unsafe public DynamicRenderCommand(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n, int recursion_depth)
+        unsafe public DynamicRenderCommand(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, 
+            bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n, int recursion_depth,
+            bool BF_model, double coef)
         {
             this.canvas = canvas;
             this.drawSea = drawSea;
@@ -64,10 +73,12 @@ namespace Weatherwane
             this.createArray = createArray;
             this.n = n;
             this.recursion_depth = recursion_depth;
+            this.BF_model = BF_model;
+            this.coef = coef;
         }
         public override void execute(Controller controller)
         {
-            controller.dynamic_render(ref canvas, this.drawSea, ref this.progressBar, this.reverse, this.speed, this.numThreads, ref this.textBoxTime, createArray, n, recursion_depth);
+            controller.dynamic_render(ref canvas, this.drawSea, ref this.progressBar, this.reverse, this.speed, this.numThreads, ref this.textBoxTime, createArray, n, recursion_depth, BF_model, coef);
         }
     }
 
@@ -75,16 +86,20 @@ namespace Weatherwane
     {
         private bool reverse;
         private int speed;
+        private bool BF_model;
+        private double coef;
 
 
-        unsafe public ChangeParamsCommand(bool reverse, int speed)
+        unsafe public ChangeParamsCommand(bool reverse, int speed, bool BF_model, double coef)
         {
             this.reverse = reverse;
             this.speed = speed;
+            this.BF_model = BF_model;
+            this.coef = coef;
         }
         public override void execute(Controller controller)
         {
-            controller.changeParams(this.reverse, this.speed);
+            controller.changeParams(this.reverse, this.speed, BF_model, coef);
         }
     }
 }

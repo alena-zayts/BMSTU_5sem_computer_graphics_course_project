@@ -27,6 +27,8 @@ namespace Weatherwane
         private PictureBox imgBox; // Будет сожержать само изображение.
         private Bitmap tmp;
         private Bitmap[] arrBitmap;
+        private bool BF_model;
+        private double coef;
 
         public Controller(int canvasWidth, int canvasHeight)
         {
@@ -84,7 +86,7 @@ namespace Weatherwane
         }
 
 
-        public void render(ref PictureBox canvas, bool drawBackground, int numThreads, ref TextBox textBoxTime, int recursion_depth)
+        public void render(ref PictureBox canvas, bool drawBackground, int numThreads, ref TextBox textBoxTime, int recursion_depth, bool BF_model, double coef)
         {
             if (this.n > 0 & currImgIndex > 1)
             {
@@ -107,7 +109,7 @@ namespace Weatherwane
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
 
-            tmp = rayTracer.render(drawBackground, numThreads, recursion_depth);
+            tmp = rayTracer.render(drawBackground, numThreads, recursion_depth, BF_model, coef);
 
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
@@ -118,7 +120,7 @@ namespace Weatherwane
             canvas.Image = tmp;
         }
 
-        public void dynamic_render(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n, int recursion_depth)
+        public void dynamic_render(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n, int recursion_depth, bool BF_model, double coef)
         {
             this.n = n;
             this.timer.Interval = speed;
@@ -132,7 +134,7 @@ namespace Weatherwane
                 this.currImgIndex = 0;
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
-                createArrayBitmap(ref canvas, drawSea, ref progressBar, numThreads, recursion_depth);
+                createArrayBitmap(ref canvas, drawSea, ref progressBar, numThreads, recursion_depth, BF_model, coef);
                 stopWatch.Stop();
                 TimeSpan ts = stopWatch.Elapsed;
                 string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
@@ -147,10 +149,12 @@ namespace Weatherwane
             }
         }
 
-        public void changeParams(bool reverse, int speed)
+        public void changeParams(bool reverse, int speed, bool BF_model, double coef)
         {
             this.timer.Interval = speed;
             this.reverse = reverse;
+            this.BF_model = BF_model;
+            this.coef = coef;
         }
 
         public void stopRender()
@@ -183,7 +187,7 @@ namespace Weatherwane
             }
         }
 
-        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar, int numThreads, int recursion_depth)
+        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar, int numThreads, int recursion_depth, bool BF_model, double coef)
         {
             Vec3 turnPoint = new Vec3(0, 48.5, 0);
             double angle = 360 / n;
@@ -193,7 +197,7 @@ namespace Weatherwane
             for (int i = 0; i < n; i++)
             {
 
-                tmp = new Bitmap(rayTracer.render(drawBackground, numThreads, recursion_depth));
+                tmp = new Bitmap(rayTracer.render(drawBackground, numThreads, recursion_depth, BF_model, coef));
                 arrBitmap[i] = tmp;
 
                 for (int j = 0; j < scene.sceneObjects.Count; j++)

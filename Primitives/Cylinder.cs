@@ -12,6 +12,7 @@ namespace Weatherwane
         public Vec3 V;
         public double radius;
         public double height;
+
         public Cylinder(string name, Material material, bool moving, 
             Vec3 centre, Vec3 V, double radius, double height) : base (name, material, moving)
         {
