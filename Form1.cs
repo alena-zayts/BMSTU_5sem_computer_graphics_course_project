@@ -14,7 +14,7 @@ namespace Weatherwane
 {
     public partial class Form1 : Form
     {
-        FacadeViewer facade;
+        Facade facade;
         List<Primitive> primitives;
         Primitive primitive;
         bool smthChanged;
@@ -23,7 +23,7 @@ namespace Weatherwane
         {
             InitializeComponent();
 
-            this.facade = new FacadeViewer(canvas.Width, canvas.Height);
+            this.facade = new Facade(canvas.Width, canvas.Height);
             {
                 Command command = new LoadCommand("C:/msys64/home/alena/last_course/weatherwane4.json");
                 facade.executeCommand(command);
@@ -187,67 +187,6 @@ namespace Weatherwane
             string selectedObject = this.choiceObject.SelectedItem.ToString();
         }
 
-        private void buttonRollCamera_Click(object sender, EventArgs e)
-        {
-            if ((double)rollCamera.Value != 360 || (double)rollCamera.Value != -360)
-            {
-                Command rollCameraCommand = new RollCameraCommand((double)rollCamera.Value);
-                facade.executeCommand(rollCameraCommand);
-
-                render();
-            }
-            GetCameraCommand getCameraCommand = new GetCameraCommand();
-            facade.executeCommand(getCameraCommand);
-            Camera camera = getCameraCommand.getResult();
-
-
-            CameraRotOZ.Text = camera.angle.z.ToString();
-
-            this.smthChanged = true;
-            render();
-        }
-
-        private void buttonYawCamera_Click(object sender, EventArgs e)
-        {
-            if ((double)yawCamera.Value != 360 || (double)yawCamera.Value != -360)
-            {
-                Command yawCameraCommand = new YawCameraCommand((double)yawCamera.Value);
-                facade.executeCommand(yawCameraCommand);
-
-                render();
-            }
-            GetCameraCommand getCameraCommand = new GetCameraCommand();
-            facade.executeCommand(getCameraCommand);
-            Camera camera = getCameraCommand.getResult();
-
-
-            CameraRotOX.Text = camera.angle.x.ToString();
-
-            this.smthChanged = true;
-            render();
-        }
-
-        private void buttonPitchCamera_Click(object sender, EventArgs e)
-        {
-            if ((double)pitchCamera.Value != 360 || (double)pitchCamera.Value != -360)
-            {
-                Command pitchCameraCommand = new PitchCameraCommand((double)pitchCamera.Value);
-                facade.executeCommand(pitchCameraCommand);
-
-                render();
-            }
-            GetCameraCommand getCameraCommand = new GetCameraCommand();
-            facade.executeCommand(getCameraCommand);
-            Camera camera = getCameraCommand.getResult();
-            
-            
-            CameraRotOY.Text = camera.angle.y.ToString();
-
-            this.smthChanged = true;
-            render();
-
-        }
-
         private void buttonMoveCamera_Click(object sender, EventArgs e)
         {
 
@@ -380,9 +319,9 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             btnAddLight.Enabled = isAble;
             btnChangeLightParams.Enabled = isAble;
 
-            buttonRollCamera.Enabled = isAble;
-            buttonPitchCamera.Enabled = isAble;
-            buttonYawCamera.Enabled = isAble;
+            buttonTurnZCamera.Enabled = isAble;
+            buttonTurnYCamera.Enabled = isAble;
+            buttonTurnXCamera.Enabled = isAble;
             buttonMoveCamera.Enabled = isAble;
 
             modelBF.Enabled = isAble;
@@ -583,6 +522,54 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         private void modelF_CheckedChanged(object sender, EventArgs e)
         {
             smthChanged = true;
+        }
+
+        private void buttonTurnXCamera_Click(object sender, EventArgs e)
+        {
+            Command tunXCameraCommand = new TurnXCameraCommand((double)TurnXCamera.Value);
+            facade.executeCommand(tunXCameraCommand);
+
+            GetCameraCommand getCameraCommand = new GetCameraCommand();
+            facade.executeCommand(getCameraCommand);
+            Camera camera = getCameraCommand.getResult();
+
+
+            CameraRotOX.Text = camera.angle.x.ToString();
+
+            this.smthChanged = true;
+            render();
+        }
+
+        private void buttonTurnYCamera_Click(object sender, EventArgs e)
+        {
+            Command turnYCameraCommand = new TurnYCameraCommand((double)TurnYCamera.Value);
+            facade.executeCommand(turnYCameraCommand);
+
+            GetCameraCommand getCameraCommand = new GetCameraCommand();
+            facade.executeCommand(getCameraCommand);
+            Camera camera = getCameraCommand.getResult();
+
+
+            CameraRotOY.Text = camera.angle.y.ToString();
+
+            this.smthChanged = true;
+            render();
+        }
+
+        private void buttonTurnZCamera_Click(object sender, EventArgs e)
+        {
+            Command turnZ = new TurnZCameraCommand((double)TurnZCamera.Value);
+            facade.executeCommand(turnZ);
+
+            GetCameraCommand getCameraCommand = new GetCameraCommand();
+            facade.executeCommand(getCameraCommand);
+            Camera camera = getCameraCommand.getResult();
+
+
+            CameraRotOZ.Text = camera.angle.z.ToString();
+
+            this.smthChanged = true;
+            render();
         }
     }
 }

@@ -84,12 +84,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.buttonRollCamera = new System.Windows.Forms.Button();
-            this.rollCamera = new System.Windows.Forms.NumericUpDown();
-            this.pitchCamera = new System.Windows.Forms.NumericUpDown();
-            this.buttonPitchCamera = new System.Windows.Forms.Button();
-            this.yawCamera = new System.Windows.Forms.NumericUpDown();
-            this.buttonYawCamera = new System.Windows.Forms.Button();
+            this.buttonTurnZCamera = new System.Windows.Forms.Button();
+            this.TurnZCamera = new System.Windows.Forms.NumericUpDown();
+            this.TurnYCamera = new System.Windows.Forms.NumericUpDown();
+            this.buttonTurnYCamera = new System.Windows.Forms.Button();
+            this.TurnXCamera = new System.Windows.Forms.NumericUpDown();
+            this.buttonTurnXCamera = new System.Windows.Forms.Button();
             this.moveCameraDX = new System.Windows.Forms.NumericUpDown();
             this.moveCameraDY = new System.Windows.Forms.NumericUpDown();
             this.moveCameraDZ = new System.Windows.Forms.NumericUpDown();
@@ -163,9 +163,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddLightPosX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rollCamera)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pitchCamera)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.yawCamera)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TurnZCamera)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TurnYCamera)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TurnXCamera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveCameraDX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveCameraDY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveCameraDZ)).BeginInit();
@@ -898,107 +898,107 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // buttonRollCamera
+            // buttonTurnZCamera
             // 
-            this.buttonRollCamera.Location = new System.Drawing.Point(523, 397);
-            this.buttonRollCamera.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonRollCamera.Name = "buttonRollCamera";
-            this.buttonRollCamera.Size = new System.Drawing.Size(138, 42);
-            this.buttonRollCamera.TabIndex = 49;
-            this.buttonRollCamera.Text = "Повернуть";
-            this.buttonRollCamera.UseVisualStyleBackColor = true;
-            this.buttonRollCamera.Click += new System.EventHandler(this.buttonRollCamera_Click);
+            this.buttonTurnZCamera.Location = new System.Drawing.Point(523, 397);
+            this.buttonTurnZCamera.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonTurnZCamera.Name = "buttonTurnZCamera";
+            this.buttonTurnZCamera.Size = new System.Drawing.Size(138, 42);
+            this.buttonTurnZCamera.TabIndex = 49;
+            this.buttonTurnZCamera.Text = "Вращать";
+            this.buttonTurnZCamera.UseVisualStyleBackColor = true;
+            this.buttonTurnZCamera.Click += new System.EventHandler(this.buttonTurnZCamera_Click);
             // 
-            // rollCamera
+            // TurnZCamera
             // 
-            this.rollCamera.Increment = new decimal(new int[] {
+            this.TurnZCamera.Increment = new decimal(new int[] {
             15,
             0,
             0,
             0});
-            this.rollCamera.Location = new System.Drawing.Point(405, 403);
-            this.rollCamera.Margin = new System.Windows.Forms.Padding(6);
-            this.rollCamera.Maximum = new decimal(new int[] {
-            360,
+            this.TurnZCamera.Location = new System.Drawing.Point(405, 403);
+            this.TurnZCamera.Margin = new System.Windows.Forms.Padding(6);
+            this.TurnZCamera.Maximum = new decimal(new int[] {
+            359,
             0,
             0,
             0});
-            this.rollCamera.Minimum = new decimal(new int[] {
-            360,
+            this.TurnZCamera.Minimum = new decimal(new int[] {
+            359,
             0,
             0,
             -2147483648});
-            this.rollCamera.Name = "rollCamera";
-            this.rollCamera.Size = new System.Drawing.Size(106, 29);
-            this.rollCamera.TabIndex = 50;
+            this.TurnZCamera.Name = "TurnZCamera";
+            this.TurnZCamera.Size = new System.Drawing.Size(106, 29);
+            this.TurnZCamera.TabIndex = 50;
             // 
-            // pitchCamera
+            // TurnYCamera
             // 
-            this.pitchCamera.Increment = new decimal(new int[] {
+            this.TurnYCamera.Increment = new decimal(new int[] {
             15,
             0,
             0,
             0});
-            this.pitchCamera.Location = new System.Drawing.Point(405, 355);
-            this.pitchCamera.Margin = new System.Windows.Forms.Padding(6);
-            this.pitchCamera.Maximum = new decimal(new int[] {
-            360,
+            this.TurnYCamera.Location = new System.Drawing.Point(405, 355);
+            this.TurnYCamera.Margin = new System.Windows.Forms.Padding(6);
+            this.TurnYCamera.Maximum = new decimal(new int[] {
+            359,
             0,
             0,
             0});
-            this.pitchCamera.Minimum = new decimal(new int[] {
-            360,
+            this.TurnYCamera.Minimum = new decimal(new int[] {
+            359,
             0,
             0,
             -2147483648});
-            this.pitchCamera.Name = "pitchCamera";
-            this.pitchCamera.Size = new System.Drawing.Size(106, 29);
-            this.pitchCamera.TabIndex = 52;
+            this.TurnYCamera.Name = "TurnYCamera";
+            this.TurnYCamera.Size = new System.Drawing.Size(106, 29);
+            this.TurnYCamera.TabIndex = 52;
             // 
-            // buttonPitchCamera
+            // buttonTurnYCamera
             // 
-            this.buttonPitchCamera.Location = new System.Drawing.Point(523, 349);
-            this.buttonPitchCamera.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonPitchCamera.Name = "buttonPitchCamera";
-            this.buttonPitchCamera.Size = new System.Drawing.Size(138, 42);
-            this.buttonPitchCamera.TabIndex = 51;
-            this.buttonPitchCamera.Text = "Повернуть";
-            this.buttonPitchCamera.UseVisualStyleBackColor = true;
-            this.buttonPitchCamera.Click += new System.EventHandler(this.buttonPitchCamera_Click);
+            this.buttonTurnYCamera.Location = new System.Drawing.Point(523, 349);
+            this.buttonTurnYCamera.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonTurnYCamera.Name = "buttonTurnYCamera";
+            this.buttonTurnYCamera.Size = new System.Drawing.Size(138, 42);
+            this.buttonTurnYCamera.TabIndex = 51;
+            this.buttonTurnYCamera.Text = "Вращать";
+            this.buttonTurnYCamera.UseVisualStyleBackColor = true;
+            this.buttonTurnYCamera.Click += new System.EventHandler(this.buttonTurnYCamera_Click);
             // 
-            // yawCamera
+            // TurnXCamera
             // 
-            this.yawCamera.Increment = new decimal(new int[] {
+            this.TurnXCamera.Increment = new decimal(new int[] {
             15,
             0,
             0,
             0});
-            this.yawCamera.Location = new System.Drawing.Point(405, 307);
-            this.yawCamera.Margin = new System.Windows.Forms.Padding(6);
-            this.yawCamera.Maximum = new decimal(new int[] {
-            360,
+            this.TurnXCamera.Location = new System.Drawing.Point(405, 307);
+            this.TurnXCamera.Margin = new System.Windows.Forms.Padding(6);
+            this.TurnXCamera.Maximum = new decimal(new int[] {
+            359,
             0,
             0,
             0});
-            this.yawCamera.Minimum = new decimal(new int[] {
-            360,
+            this.TurnXCamera.Minimum = new decimal(new int[] {
+            359,
             0,
             0,
             -2147483648});
-            this.yawCamera.Name = "yawCamera";
-            this.yawCamera.Size = new System.Drawing.Size(106, 29);
-            this.yawCamera.TabIndex = 54;
+            this.TurnXCamera.Name = "TurnXCamera";
+            this.TurnXCamera.Size = new System.Drawing.Size(106, 29);
+            this.TurnXCamera.TabIndex = 54;
             // 
-            // buttonYawCamera
+            // buttonTurnXCamera
             // 
-            this.buttonYawCamera.Location = new System.Drawing.Point(523, 301);
-            this.buttonYawCamera.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonYawCamera.Name = "buttonYawCamera";
-            this.buttonYawCamera.Size = new System.Drawing.Size(138, 42);
-            this.buttonYawCamera.TabIndex = 53;
-            this.buttonYawCamera.Text = "Повернуть";
-            this.buttonYawCamera.UseVisualStyleBackColor = true;
-            this.buttonYawCamera.Click += new System.EventHandler(this.buttonYawCamera_Click);
+            this.buttonTurnXCamera.Location = new System.Drawing.Point(523, 301);
+            this.buttonTurnXCamera.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonTurnXCamera.Name = "buttonTurnXCamera";
+            this.buttonTurnXCamera.Size = new System.Drawing.Size(138, 42);
+            this.buttonTurnXCamera.TabIndex = 53;
+            this.buttonTurnXCamera.Text = "Вращать";
+            this.buttonTurnXCamera.UseVisualStyleBackColor = true;
+            this.buttonTurnXCamera.Click += new System.EventHandler(this.buttonTurnXCamera_Click);
             // 
             // moveCameraDX
             // 
@@ -1261,13 +1261,13 @@
             this.tabPage6.Controls.Add(this.label76);
             this.tabPage6.Controls.Add(this.CameraPosY);
             this.tabPage6.Controls.Add(this.label77);
-            this.tabPage6.Controls.Add(this.yawCamera);
+            this.tabPage6.Controls.Add(this.TurnXCamera);
             this.tabPage6.Controls.Add(this.CameraPosX);
-            this.tabPage6.Controls.Add(this.buttonYawCamera);
-            this.tabPage6.Controls.Add(this.buttonRollCamera);
-            this.tabPage6.Controls.Add(this.pitchCamera);
-            this.tabPage6.Controls.Add(this.rollCamera);
-            this.tabPage6.Controls.Add(this.buttonPitchCamera);
+            this.tabPage6.Controls.Add(this.buttonTurnXCamera);
+            this.tabPage6.Controls.Add(this.buttonTurnZCamera);
+            this.tabPage6.Controls.Add(this.TurnYCamera);
+            this.tabPage6.Controls.Add(this.TurnZCamera);
+            this.tabPage6.Controls.Add(this.buttonTurnYCamera);
             this.tabPage6.Location = new System.Drawing.Point(4, 33);
             this.tabPage6.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage6.Name = "tabPage6";
@@ -1777,9 +1777,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeLightPosX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddLightPosX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rollCamera)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pitchCamera)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.yawCamera)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TurnZCamera)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TurnYCamera)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TurnXCamera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveCameraDX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveCameraDY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveCameraDZ)).EndInit();
@@ -1809,12 +1809,12 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Button buttonRollCamera;
-        private System.Windows.Forms.NumericUpDown rollCamera;
-        private System.Windows.Forms.NumericUpDown pitchCamera;
-        private System.Windows.Forms.Button buttonPitchCamera;
-        private System.Windows.Forms.NumericUpDown yawCamera;
-        private System.Windows.Forms.Button buttonYawCamera;
+        private System.Windows.Forms.Button buttonTurnZCamera;
+        private System.Windows.Forms.NumericUpDown TurnZCamera;
+        private System.Windows.Forms.NumericUpDown TurnYCamera;
+        private System.Windows.Forms.Button buttonTurnYCamera;
+        private System.Windows.Forms.NumericUpDown TurnXCamera;
+        private System.Windows.Forms.Button buttonTurnXCamera;
         private System.Windows.Forms.NumericUpDown moveCameraDX;
         private System.Windows.Forms.NumericUpDown moveCameraDY;
         private System.Windows.Forms.NumericUpDown moveCameraDZ;

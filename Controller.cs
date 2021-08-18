@@ -144,24 +144,24 @@ namespace Weatherwane
             this.rayTracer.UpdateParams(drawBackground, numThreads, recursion_depth, BF_model, coef);
         }
 
-        public void yawCamera(double angle)
+        public void turnXCamera(double angle)
         {
             Camera tmp_camera = this.scene.camera;
-            this.cameraManager.yawCamera(ref tmp_camera, angle);
+            this.cameraManager.turnXCamera(ref tmp_camera, angle);
             this.scene.camera = tmp_camera;
         }
 
-        public void pitchCamera(double angle)
+        public void turnYCamera(double angle)
         {
             Camera tmp_camera = this.scene.camera;
-            this.cameraManager.pitchCamera(ref tmp_camera, angle);
+            this.cameraManager.turnYCamera(ref tmp_camera, angle);
             this.scene.camera = tmp_camera;
         }
 
-        public void rollCamera(double angle)
+        public void turnZCamera(double angle)
         {
             Camera tmp_camera = this.scene.camera;
-            this.cameraManager.rollCamera(ref tmp_camera, angle);
+            this.cameraManager.turnZCamera(ref tmp_camera, angle);
             this.scene.camera = tmp_camera;
         }
 

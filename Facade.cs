@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Weatherwane
 {
-    class FacadeViewer
+    class Facade
     {
         private Controller controller;
-        public FacadeViewer(int canvasWidth, int canvasHeight)
+        public Facade(int canvasWidth, int canvasHeight)
         {
             this.controller = new Controller(canvasWidth, canvasHeight);
         }

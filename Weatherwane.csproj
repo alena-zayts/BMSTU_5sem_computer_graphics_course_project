@@ -58,7 +58,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Converter.cs" />
-    <Compile Include="FacadeViewer.cs" />
+    <Compile Include="Facade.cs" />
     <Compile Include="Commands\GetSceneObjectsCommand.cs" />
     <Compile Include="Commands\LightsCommand.cs" />
     <Compile Include="Commands\LoadCommand.cs" />

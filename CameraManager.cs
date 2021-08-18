@@ -23,7 +23,7 @@ namespace Weatherwane
             return result;
         }
 
-        public void yawCamera(ref Camera camera, double angle)
+        public void turnXCamera(ref Camera camera, double angle)
         {
             double[,] RMtr = new double[4, 4] { { 1, 0, 0, 0 },
                                                 { 0, Math.Cos(angle * Math.PI / 180), -Math.Sin(angle * Math.PI / 180), 0 },
@@ -33,7 +33,7 @@ namespace Weatherwane
             camera.rotation = tmp;
             camera.angle.x += angle;
         }
-        public void pitchCamera(ref Camera camera, double angle)
+        public void turnYCamera(ref Camera camera, double angle)
         {
             double[,] RMtr = new double[4, 4] { { Math.Cos(angle * Math.PI / 180), 0, -Math.Sin(angle * Math.PI / 180), 0 },
                                                 { 0, 1, 0, 0 },
@@ -43,7 +43,7 @@ namespace Weatherwane
             camera.rotation = tmp;
             camera.angle.y += angle;
         }
-        public void rollCamera(ref Camera camera, double angle)
+        public void turnZCamera(ref Camera camera, double angle)
         {
             double[,] RMtr = new double[4, 4] { { Math.Cos(angle * Math.PI / 180), -Math.Sin(angle * Math.PI / 180), 0, 0 },
                                                 { Math.Sin(angle * Math.PI / 180), Math.Cos(angle * Math.PI / 180), 0, 0 },
