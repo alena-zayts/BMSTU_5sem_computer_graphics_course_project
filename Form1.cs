@@ -316,7 +316,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             btnChange.Enabled = isAble;
 
             btnDeleteLight.Enabled = isAble;
-            btnAddLight.Enabled = isAble;
+            btnAddLightT.Enabled = isAble;
             btnChangeLightParams.Enabled = isAble;
 
             buttonTurnZCamera.Enabled = isAble;
@@ -414,17 +414,6 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             LightPosZ.Text = ChangeLightPosZ.Value.ToString();
         }
 
-        private void btnAddLight_Click(object sender, EventArgs e)
-        {
-            AddLightCommand addLightCommand = new AddLightCommand(new Vec3((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), (double)AddLightIntensity.Value);
-            facade.executeCommand(addLightCommand);
-
-            this.smthChanged = true;
-            render();
-
-            UpdateLightsName();
-            comboBoxLights.SelectedIndex = 1;
-        }
 
         private void btnDeleteLight_Click(object sender, EventArgs e)
         {
@@ -570,6 +559,30 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
             this.smthChanged = true;
             render();
+        }
+
+        private void btnAddLightT_Click(object sender, EventArgs e)
+        {
+            AddLightTCommand addLightTCommand = new AddLightTCommand(new Vec3((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), (double)AddLightIntensity.Value);
+            facade.executeCommand(addLightTCommand);
+
+            this.smthChanged = true;
+            render();
+
+            UpdateLightsName();
+            comboBoxLights.SelectedIndex = 1;
+        }
+
+        private void btnAddLightN_Click(object sender, EventArgs e)
+        {
+            AddLightNCommand addLightNCommand = new AddLightNCommand(new Vec3((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), (double)AddLightIntensity.Value);
+            facade.executeCommand(addLightNCommand);
+
+            this.smthChanged = true;
+            render();
+
+            UpdateLightsName();
+            comboBoxLights.SelectedIndex = 1;
         }
     }
 }

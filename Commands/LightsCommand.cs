@@ -72,20 +72,37 @@ namespace Weatherwane
         }
     }
 
-    class AddLightCommand : Command
+    class AddLightTCommand : Command
     {
 
         Vec3 position;
         double intensity;
 
-        public AddLightCommand(Vec3 position, double intensity)
+        public AddLightTCommand(Vec3 position, double intensity)
         {
             this.position = position;
             this.intensity = intensity;
         }
         public override void execute(Controller controller)
         {
-            controller.addLight(this.position, this.intensity);
+            controller.addLightT(this.position, this.intensity);
+        }
+    }
+
+    class AddLightNCommand : Command
+    {
+
+        Vec3 position;
+        double intensity;
+
+        public AddLightNCommand(Vec3 position, double intensity)
+        {
+            this.position = position;
+            this.intensity = intensity;
+        }
+        public override void execute(Controller controller)
+        {
+            controller.addLightN(this.position, this.intensity);
         }
     }
 

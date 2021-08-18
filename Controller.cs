@@ -267,14 +267,19 @@ namespace Weatherwane
             return lightsName;
         }
 
-        public void addLight(Vec3 position, double intensity)
+        public void addLightT(Vec3 position, double intensity)
         {
             this.scene.AddLightPoint(position, intensity);
         }
 
+        public void addLightN(Vec3 position, double intensity)
+        {
+            this.scene.AddLightDirectional(position, intensity);
+        }
+
         public void deleteLight(string name)
         {
-            this.scene.RemoveLightPoint(name);
+            this.scene.RemoveLight(name);
         }
 
         public void updatePrimitive(string name, Vec3 color, double specular, double reflective)

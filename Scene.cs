@@ -18,6 +18,7 @@ namespace Weatherwane
         public List<Primitive> sceneObjects { get; set; }
         public List<Light> lights { get; set; }
         public int countPointLights = 0;
+        public int countDirectionalLights = 0;
 
         public void convertBackground(Bitmap bmpBackground, int canvasWidth, int canvasHeight)
         {
@@ -122,6 +123,12 @@ namespace Weatherwane
             lights.Add(new Light("точечный_" + countPointLights, LightType.Point, position, intensity));
         }
 
+        public void AddLightDirectional(Vec3 position, double intensity)
+        {
+            countDirectionalLights += 1;
+            lights.Add(new Light("направленный_" + countDirectionalLights, LightType.Point, position, intensity));
+        }
+
         public void UpdateLightPointName()
         {
             int j = 1;
@@ -135,18 +142,42 @@ namespace Weatherwane
             }
         }
 
-        public void RemoveLightPoint(string name)
+        public void UpdateLightDirectionalName()
+        {
+            int j = 1;
+            for (int i = 0; i < lights.Count; i++)
+            {
+                if (lights[i].ltype == LightType.Directional)
+                {
+                    lights[i].name = "направленный_" + j;
+                    j++;
+                }
+            }
+        }
+
+        public void RemoveLight(string name)
         {
             for (int i = 0; i < lights.Count; i++)
             {
                 if (lights[i].name == name)
                 {
                     lights.RemoveRange(i, 1);
+                    if (lights[i].ltype == LightType.Point)
+                    {
+                        countPointLights -= 1;
+                        UpdateLightPointName();
+                    }
+                    else
+                    {
+                        countDirectionalLights -= 1;
+                        UpdateLightDirectionalName();
+                    }
+
+
                     break;
                 }
             }
-            countPointLights -= 1;
-            UpdateLightPointName();
+
         }
     }
 }

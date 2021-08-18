@@ -54,7 +54,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.AddLightIntensity = new System.Windows.Forms.NumericUpDown();
             this.btnDeleteLight = new System.Windows.Forms.Button();
-            this.btnAddLight = new System.Windows.Forms.Button();
+            this.btnAddLightT = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -147,6 +147,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.btnAddLightN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.btnDeleteObject.SuspendLayout();
@@ -392,6 +394,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnAddLightN);
+            this.tabPage4.Controls.Add(this.label30);
             this.tabPage4.Controls.Add(this.label9);
             this.tabPage4.Controls.Add(this.label10);
             this.tabPage4.Controls.Add(this.label11);
@@ -399,7 +403,7 @@
             this.tabPage4.Controls.Add(this.label5);
             this.tabPage4.Controls.Add(this.AddLightIntensity);
             this.tabPage4.Controls.Add(this.btnDeleteLight);
-            this.tabPage4.Controls.Add(this.btnAddLight);
+            this.tabPage4.Controls.Add(this.btnAddLightT);
             this.tabPage4.Controls.Add(this.label6);
             this.tabPage4.Controls.Add(this.label7);
             this.tabPage4.Controls.Add(this.label4);
@@ -475,9 +479,9 @@
             this.label8.Location = new System.Drawing.Point(12, 389);
             this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(432, 29);
+            this.label8.Size = new System.Drawing.Size(165, 29);
             this.label8.TabIndex = 210;
-            this.label8.Text = "Добавление точечного источника";
+            this.label8.Text = "Добавление";
             // 
             // label5
             // 
@@ -498,7 +502,7 @@
             0,
             0,
             65536});
-            this.AddLightIntensity.Location = new System.Drawing.Point(277, 493);
+            this.AddLightIntensity.Location = new System.Drawing.Point(277, 502);
             this.AddLightIntensity.Margin = new System.Windows.Forms.Padding(6);
             this.AddLightIntensity.Maximum = new decimal(new int[] {
             1,
@@ -511,7 +515,7 @@
             // 
             // btnDeleteLight
             // 
-            this.btnDeleteLight.Location = new System.Drawing.Point(225, 549);
+            this.btnDeleteLight.Location = new System.Drawing.Point(401, 175);
             this.btnDeleteLight.Margin = new System.Windows.Forms.Padding(6);
             this.btnDeleteLight.Name = "btnDeleteLight";
             this.btnDeleteLight.Size = new System.Drawing.Size(200, 42);
@@ -520,16 +524,16 @@
             this.btnDeleteLight.UseVisualStyleBackColor = true;
             this.btnDeleteLight.Click += new System.EventHandler(this.btnDeleteLight_Click);
             // 
-            // btnAddLight
+            // btnAddLightT
             // 
-            this.btnAddLight.Location = new System.Drawing.Point(404, 486);
-            this.btnAddLight.Margin = new System.Windows.Forms.Padding(6);
-            this.btnAddLight.Name = "btnAddLight";
-            this.btnAddLight.Size = new System.Drawing.Size(130, 42);
-            this.btnAddLight.TabIndex = 187;
-            this.btnAddLight.Text = "Добавить";
-            this.btnAddLight.UseVisualStyleBackColor = true;
-            this.btnAddLight.Click += new System.EventHandler(this.btnAddLight_Click);
+            this.btnAddLightT.Location = new System.Drawing.Point(16, 551);
+            this.btnAddLightT.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddLightT.Name = "btnAddLightT";
+            this.btnAddLightT.Size = new System.Drawing.Size(295, 42);
+            this.btnAddLightT.TabIndex = 187;
+            this.btnAddLightT.Text = "Добавить точечный";
+            this.btnAddLightT.UseVisualStyleBackColor = true;
+            this.btnAddLightT.Click += new System.EventHandler(this.btnAddLightT_Click);
             // 
             // label6
             // 
@@ -590,7 +594,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(40, 494);
+            this.label13.Location = new System.Drawing.Point(40, 503);
             this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(191, 29);
@@ -1742,12 +1746,34 @@
             this.label29.TabIndex = 147;
             this.label29.Text = "Направление:";
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label30.Location = new System.Drawing.Point(40, 461);
+            this.label30.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(176, 29);
+            this.label30.TabIndex = 214;
+            this.label30.Text = "(направление)";
+            // 
+            // btnAddLightN
+            // 
+            this.btnAddLightN.Location = new System.Drawing.Point(329, 551);
+            this.btnAddLightN.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddLightN.Name = "btnAddLightN";
+            this.btnAddLightN.Size = new System.Drawing.Size(315, 42);
+            this.btnAddLightN.TabIndex = 215;
+            this.btnAddLightN.Text = "Добавить направленный";
+            this.btnAddLightN.UseVisualStyleBackColor = true;
+            this.btnAddLightN.Click += new System.EventHandler(this.btnAddLightN_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkKhaki;
-            this.ClientSize = new System.Drawing.Size(2350, 1501);
+            this.ClientSize = new System.Drawing.Size(2350, 1653);
             this.Controls.Add(this.tabControl4);
             this.Controls.Add(this.tabControl3);
             this.Controls.Add(this.tabControl2);
@@ -1844,7 +1870,7 @@
         private System.Windows.Forms.Label label87;
         private System.Windows.Forms.TextBox CameraRotOX;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Button btnAddLight;
+        private System.Windows.Forms.Button btnAddLightT;
         private System.Windows.Forms.NumericUpDown ChangeLightIntensity;
         private System.Windows.Forms.NumericUpDown ChangeLightPosZ;
         private System.Windows.Forms.NumericUpDown ChangeLightPosY;
@@ -1919,6 +1945,8 @@
         private System.Windows.Forms.RadioButton modelBF;
         private System.Windows.Forms.CheckBox radioLeft;
         private System.Windows.Forms.CheckBox radioRight;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button btnAddLightN;
     }
 }
 

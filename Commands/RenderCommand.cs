@@ -35,17 +35,8 @@ namespace Weatherwane
     class DynamicRenderCommand : Command
     {
         private PictureBox canvas;
-        private bool drawSea;
         ProgressBar progressBar;
-        private bool reverse;
-        private int speed;
-        private int numThreads;
         TextBox textBoxTime;
-        private bool createArray;
-        private int n;
-        private int recursion_depth;
-        private bool BF_model;
-        private double coef;
 
 
         unsafe public DynamicRenderCommand(ref PictureBox canvas, ref ProgressBar progressBar, ref TextBox textBoxTime)
