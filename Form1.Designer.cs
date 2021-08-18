@@ -1498,6 +1498,7 @@
             this.modelF.TabIndex = 347;
             this.modelF.Text = "Фонга";
             this.modelF.UseVisualStyleBackColor = true;
+            this.modelF.CheckedChanged += new System.EventHandler(this.modelF_CheckedChanged);
             // 
             // modelBF
             // 
@@ -1587,6 +1588,7 @@
             0,
             0,
             0});
+            this.numericRecursion.ValueChanged += new System.EventHandler(this.numericRecursion_ValueChanged);
             // 
             // offButton
             // 
@@ -1706,6 +1708,7 @@
             0,
             0,
             0});
+            this.numericNumThreads.ValueChanged += new System.EventHandler(this.numericNumThreads_ValueChanged);
             // 
             // label16
             // 

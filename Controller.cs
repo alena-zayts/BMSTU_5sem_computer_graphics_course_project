@@ -19,16 +19,17 @@ namespace Weatherwane
         private SaveScene saverScene;
         private CameraManager cameraManager;
 
-        private int n;
-        private bool reverse;
-        private int currImgIndex;
-        private bool on;
-        private System.Timers.Timer timer; // Частота кадров.
         private PictureBox imgBox; // Будет сожержать само изображение.
         private Bitmap tmp;
         private Bitmap[] arrBitmap;
-        private bool BF_model;
-        private double coef;
+        private bool on;
+        private int currImgIndex;
+
+        private int picturesNum;
+        private bool reverse;
+        private System.Timers.Timer timer; // Частота кадров.
+        private bool createArray;
+
 
         public Controller(int canvasWidth, int canvasHeight)
         {
@@ -43,8 +44,104 @@ namespace Weatherwane
 
 
             // Timer
-            timer = new System.Timers.Timer(150);
+            timer = new System.Timers.Timer();
             timer.Elapsed += OnTimedEvent;
+        }
+
+        public void render(ref PictureBox canvas, ref TextBox textBoxTime)
+        {
+            // возврат к начальному состоянию
+            if (this.picturesNum > 0 & currImgIndex > 1)
+            {
+                double cur_angle = (this.currImgIndex - 1) * 360 / this.picturesNum;
+                Vec3 turnPoint = new Vec3(0, 48.5, 0);
+
+                for (int j = 0; j < scene.sceneObjects.Count; j++)
+                {
+                    if (scene.sceneObjects[j].moving)
+                    {
+                        scene.sceneObjects[j].RotateOY(turnPoint, cur_angle);
+                    }
+                }
+
+                currImgIndex = 0;
+            }
+
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            tmp = rayTracer.render();
+
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}", ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            textBoxTime.Text = elapsedTime;
+
+            canvas.Image = tmp;
+        }
+
+        public void dynamic_render(ref PictureBox canvas, ref ProgressBar progressBar, ref TextBox textBoxTime)
+        {
+            this.imgBox = canvas;
+
+            if (createArray)
+            {
+                this.arrBitmap = null;
+                this.arrBitmap = new Bitmap[this.picturesNum];
+                this.currImgIndex = 0;
+
+
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+
+                createArrayBitmap(ref canvas, ref progressBar);
+
+                stopWatch.Stop();
+                TimeSpan ts = stopWatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}", ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                textBoxTime.Text = elapsedTime;
+            }
+
+            if (!on)
+            {
+                timer.Start();
+                on = true;
+            }
+        }
+
+        public void createArrayBitmap(ref PictureBox canvas, ref ProgressBar progressBar)
+        {
+            Vec3 turnPoint = new Vec3(0, 48.5, 0);
+            double angle = 360 / picturesNum;
+
+            progressBar.Maximum = picturesNum;
+
+            for (int i = 0; i < picturesNum; i++)
+            {
+
+                tmp = new Bitmap(rayTracer.render());
+                arrBitmap[i] = tmp;
+
+                for (int j = 0; j < scene.sceneObjects.Count; j++)
+                {
+                    if (scene.sceneObjects[j].moving)
+                    {
+                        scene.sceneObjects[j].RotateOY(turnPoint, angle);
+                    }
+                }
+
+                progressBar.Value = i + 1;
+            }
+        }
+
+        public void UpdateParams(bool reverse, int speed, bool createArray, int picturesNum, bool BF_model, double coef, bool drawBackground, int numThreads, int recursion_depth)
+        {
+            this.reverse = reverse;
+            this.picturesNum = picturesNum;
+            this.timer.Interval = speed;
+            this.createArray = createArray;
+
+            this.rayTracer.UpdateParams(drawBackground, numThreads, recursion_depth, BF_model, coef);
         }
 
         public void yawCamera(double angle)
@@ -85,78 +182,6 @@ namespace Weatherwane
             this.saverScene.savingScene(filename, this.scene);
         }
 
-
-        public void render(ref PictureBox canvas, bool drawBackground, int numThreads, ref TextBox textBoxTime, int recursion_depth, bool BF_model, double coef)
-        {
-            if (this.n > 0 & currImgIndex > 1)
-            {
-                double cur_angle = (this.currImgIndex - 1) * 360 / this.n;
-                Vec3 turnPoint = new Vec3(0, 48.5, 0);
-
-                for (int j = 0; j < scene.sceneObjects.Count; j++)
-                {
-                    if (scene.sceneObjects[j].moving)
-                    {
-                        scene.sceneObjects[j].RotateOY(turnPoint, cur_angle);
-                    }
-                }
-
-                currImgIndex = 0;
-            }
-
-            rayTracer.scene = this.scene;
-
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-
-            tmp = rayTracer.render(drawBackground, numThreads, recursion_depth, BF_model, coef);
-
-            stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
-                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-            textBoxTime.Text = elapsedTime;
-
-            canvas.Image = tmp;
-        }
-
-        public void dynamic_render(ref PictureBox canvas, bool drawSea, ref ProgressBar progressBar, bool reverse, int speed, int numThreads, ref TextBox textBoxTime, bool createArray, int n, int recursion_depth, bool BF_model, double coef)
-        {
-            this.n = n;
-            this.timer.Interval = speed;
-            this.imgBox = canvas;
-            this.reverse = reverse;
-
-            if (createArray)
-            {
-                this.arrBitmap = null;
-                this.arrBitmap = new Bitmap[n];
-                this.currImgIndex = 0;
-                Stopwatch stopWatch = new Stopwatch();
-                stopWatch.Start();
-                createArrayBitmap(ref canvas, drawSea, ref progressBar, numThreads, recursion_depth, BF_model, coef);
-                stopWatch.Stop();
-                TimeSpan ts = stopWatch.Elapsed;
-                string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
-                    ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                textBoxTime.Text = elapsedTime;
-            }
-
-            if (!on)
-            {
-                timer.Start();
-                on = true;
-            }
-        }
-
-        public void changeParams(bool reverse, int speed, bool BF_model, double coef)
-        {
-            this.timer.Interval = speed;
-            this.reverse = reverse;
-            this.BF_model = BF_model;
-            this.coef = coef;
-        }
-
         public void stopRender()
         {
             if (on)
@@ -184,31 +209,6 @@ namespace Weatherwane
 
                 imgBox.Image = arrBitmap[currImgIndex];
                 currImgIndex--;
-            }
-        }
-
-        public void createArrayBitmap(ref PictureBox canvas, bool drawBackground, ref ProgressBar progressBar, int numThreads, int recursion_depth, bool BF_model, double coef)
-        {
-            Vec3 turnPoint = new Vec3(0, 48.5, 0);
-            double angle = 360 / n;
-
-            progressBar.Maximum = n;
-
-            for (int i = 0; i < n; i++)
-            {
-
-                tmp = new Bitmap(rayTracer.render(drawBackground, numThreads, recursion_depth, BF_model, coef));
-                arrBitmap[i] = tmp;
-
-                for (int j = 0; j < scene.sceneObjects.Count; j++)
-                {
-                    if (scene.sceneObjects[j].moving)
-                    {
-                        scene.sceneObjects[j].RotateOY(turnPoint, angle);
-                    }
-                }
-
-                progressBar.Value = i + 1;
             }
         }
 

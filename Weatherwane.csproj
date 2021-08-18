@@ -54,6 +54,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Commands\CameraCommands.cs" />
     <Compile Include="CameraManager.cs" />
+    <Compile Include="Commands\UpdateParamsCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Converter.cs" />
