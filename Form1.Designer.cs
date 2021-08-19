@@ -149,6 +149,8 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.btnAddLightN = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.btnDeleteObject.SuspendLayout();
@@ -394,6 +396,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label32);
+            this.tabPage4.Controls.Add(this.label31);
             this.tabPage4.Controls.Add(this.btnAddLightN);
             this.tabPage4.Controls.Add(this.label30);
             this.tabPage4.Controls.Add(this.label9);
@@ -515,7 +519,7 @@
             // 
             // btnDeleteLight
             // 
-            this.btnDeleteLight.Location = new System.Drawing.Point(401, 175);
+            this.btnDeleteLight.Location = new System.Drawing.Point(394, 189);
             this.btnDeleteLight.Margin = new System.Windows.Forms.Padding(6);
             this.btnDeleteLight.Name = "btnDeleteLight";
             this.btnDeleteLight.Size = new System.Drawing.Size(200, 42);
@@ -639,7 +643,7 @@
             0,
             0,
             65536});
-            this.ChangeLightIntensity.Location = new System.Drawing.Point(277, 334);
+            this.ChangeLightIntensity.Location = new System.Drawing.Point(277, 346);
             this.ChangeLightIntensity.Margin = new System.Windows.Forms.Padding(6);
             this.ChangeLightIntensity.Maximum = new decimal(new int[] {
             1,
@@ -671,7 +675,7 @@
             // 
             // btnChangeLightParams
             // 
-            this.btnChangeLightParams.Location = new System.Drawing.Point(405, 326);
+            this.btnChangeLightParams.Location = new System.Drawing.Point(405, 338);
             this.btnChangeLightParams.Margin = new System.Windows.Forms.Padding(6);
             this.btnChangeLightParams.Name = "btnChangeLightParams";
             this.btnChangeLightParams.Size = new System.Drawing.Size(138, 42);
@@ -722,7 +726,7 @@
             // 
             this.label90.AutoSize = true;
             this.label90.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label90.Location = new System.Drawing.Point(40, 334);
+            this.label90.Location = new System.Drawing.Point(40, 346);
             this.label90.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(191, 29);
@@ -794,7 +798,7 @@
             this.LightIntensity.BackColor = System.Drawing.SystemColors.HighlightText;
             this.LightIntensity.Enabled = false;
             this.LightIntensity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LightIntensity.Location = new System.Drawing.Point(277, 179);
+            this.LightIntensity.Location = new System.Drawing.Point(270, 193);
             this.LightIntensity.Margin = new System.Windows.Forms.Padding(6);
             this.LightIntensity.Name = "LightIntensity";
             this.LightIntensity.Size = new System.Drawing.Size(81, 29);
@@ -804,7 +808,7 @@
             // 
             this.label78.AutoSize = true;
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label78.Location = new System.Drawing.Point(40, 183);
+            this.label78.Location = new System.Drawing.Point(33, 197);
             this.label78.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(191, 29);
@@ -1768,6 +1772,28 @@
             this.btnAddLightN.UseVisualStyleBackColor = true;
             this.btnAddLightN.Click += new System.EventHandler(this.btnAddLightN_Click);
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label31.Location = new System.Drawing.Point(40, 312);
+            this.label31.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(176, 29);
+            this.label31.TabIndex = 216;
+            this.label31.Text = "(направление)";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label32.Location = new System.Drawing.Point(40, 160);
+            this.label32.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(176, 29);
+            this.label32.TabIndex = 217;
+            this.label32.Text = "(направление)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -1947,6 +1973,8 @@
         private System.Windows.Forms.CheckBox radioRight;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Button btnAddLightN;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label31;
     }
 }
 

@@ -7,13 +7,13 @@ using Newtonsoft.Json;
 
 namespace Weatherwane
 {
-    class LoadScene
+    class SceneLoader
     {
-        public void loadingScene(string filename, ref Scene scene)
+        public void loadScene(string filename, ref Scene scene)
         {
             string input = System.IO.File.ReadAllText(filename);
             Converter convert = JsonConvert.DeserializeObject<Converter>(input);
-            convert.JsonToSceneObject(ref scene);
+            convert.FromJson(ref scene);
         }
     }
 }

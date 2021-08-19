@@ -11,16 +11,29 @@ namespace Weatherwane
     {
         public int canvasWidth { get; private set; }
         public int canvasHeight { get; private set; }
-        public Bitmap bmpBackground = new Bitmap(@"C:\msys64\home\alena\last_course\nebo.png", true);
         public Vec3[,] background;
 
         public Camera camera { get; set; }
-        public List<Primitive> sceneObjects { get; set; }
+        public List<Primitive> Primitives { get; set; }
         public List<Light> lights { get; set; }
-        public int countPointLights = 0;
-        public int countDirectionalLights = 0;
 
-        public void convertBackground(Bitmap bmpBackground, int canvasWidth, int canvasHeight)
+        private int countPointLights = 0;
+        private int countDirectionalLights = 0;
+        private Bitmap bmpBackground = new Bitmap(@"C:\msys64\home\alena\last_course\nebo.png", true);
+
+        public Scene(int canvasWidth, int canvasHeight)
+        {
+            this.canvasWidth = canvasWidth;
+            this.canvasHeight = canvasHeight;
+            background = new Vec3[canvasWidth, canvasHeight];
+            convertBackground(this.bmpBackground, canvasWidth, canvasHeight);
+
+            camera = new Camera();
+            Primitives = new List<Primitive>();
+            lights = new List<Light>();
+        }
+
+        private void convertBackground(Bitmap bmpBackground, int canvasWidth, int canvasHeight)
         {
             for (int i = 0; i < canvasWidth; i++)
             {
@@ -32,26 +45,32 @@ namespace Weatherwane
                 }
             }
         }
-        public Scene(int canvasWidth, int canvasHeight)
-        {
-            this.canvasWidth = canvasWidth;
-            this.canvasHeight = canvasHeight;
-            background = new Vec3[canvasWidth, canvasHeight];
-            convertBackground(this.bmpBackground, canvasWidth, canvasHeight);
 
-            camera = new Camera();
-            sceneObjects = new List<Primitive>();
-            lights = new List<Light>();
+        private void UpdateLightsName()
+        {
+            int p = 1;
+            int d = 1;
+            for (int i = 0; i < lights.Count; i++)
+            {
+                if (lights[i].ltype == LightTypes.Point)
+                {
+                    lights[i].name = "точечный_" + p++;
+                }
+                else if (lights[i].ltype == LightTypes.Directional)
+                {
+                    lights[i].name = "направленный_" + d++;
+                }
+            }
         }
 
         public void AddSphere(string name, Material material, bool moving, Vec3 centre, double radius)
         {
-            sceneObjects.Add(new Sphere(name, material, moving, centre, radius));
+            Primitives.Add(new Sphere(name, material, moving, centre, radius));
         }
         public void AddCylinder(string name, Material material, bool moving, Vec3 centre, Vec3 V, double radius, double height)
         {
             Cylinder cylinder = new Cylinder(name, material, moving, centre, V, radius, height);
-            sceneObjects.Add(cylinder);
+            Primitives.Add(cylinder);
             AddDiskPlane(name, material, moving, new Vec3(centre), -V, radius);
             AddDiskPlane(name, material, moving, centre + V * height, new Vec3(V), radius);
         }
@@ -87,7 +106,7 @@ namespace Weatherwane
             AddTriangle(name, material, moving, new Vec3(B), new Vec3(G), new Vec3(F));
             AddTriangle(name, material, moving, new Vec3(B), new Vec3(C), new Vec3(G));
 
-            sceneObjects.Add(new Parallelepiped(name, material, moving, xl, xr, yu, yd, zf, zn));
+            Primitives.Add(new Parallelepiped(name, material, moving, xl, xr, yu, yd, zf, zn));
         }
 
         public void AddPyramid(string name, Material material, bool moving, Vec3 P, Vec3 A, Vec3 B, Vec3 C, Vec3 D)
@@ -99,59 +118,35 @@ namespace Weatherwane
             AddTriangle(name, material, moving, new Vec3(P), new Vec3(D), new Vec3(A));
             AddTriangle(name, material, moving, new Vec3(A), new Vec3(B), new Vec3(D));
             AddTriangle(name, material, moving, new Vec3(B), new Vec3(C), new Vec3(D));
-            sceneObjects.Add(new Pyramid(name, material, moving, P, A, B, C, D));
+            Primitives.Add(new Pyramid(name, material, moving, P, A, B, C, D));
         }
 
-        public void AddTriangle(string name, Material material, bool moving, Vec3 P, Vec3 A, Vec3 B)
+        private void AddTriangle(string name, Material material, bool moving, Vec3 P, Vec3 A, Vec3 B)
         {
-            sceneObjects.Add(new Triangle(name, material, moving, P, A, B));
+            Primitives.Add(new Triangle(name, material, moving, P, A, B));
         }
 
         public void AddPlane(string name, Material material, bool moving, Vec3 C, Vec3 V)
         {
-            sceneObjects.Add(new Plane(name, material, moving, C, V));
+            Primitives.Add(new Plane(name, material, moving, C, V));
         }
 
-        public void AddDiskPlane(string name, Material material, bool moving, Vec3 C, Vec3 V, double radius)
+        private void AddDiskPlane(string name, Material material, bool moving, Vec3 C, Vec3 V, double radius)
         {
-            sceneObjects.Add(new DiskPlane(name, material, moving, C, V, radius));
+            Primitives.Add(new DiskPlane(name, material, moving, C, V, radius));
         }
 
-        public void AddLightPoint(Vec3 position, double intensity)
+        public void AddLight(Vec3 position, double intensity, LightTypes ltype)
         {
-            countPointLights += 1;
-            lights.Add(new Light("точечный_" + countPointLights, LightType.Point, position, intensity));
-        }
-
-        public void AddLightDirectional(Vec3 position, double intensity)
-        {
-            countDirectionalLights += 1;
-            lights.Add(new Light("направленный_" + countDirectionalLights, LightType.Point, position, intensity));
-        }
-
-        public void UpdateLightPointName()
-        {
-            int j = 1;
-            for (int i = 0; i < lights.Count; i++)
+            if (ltype == LightTypes.Point)
             {
-                if (lights[i].ltype == LightType.Point)
-                {
-                    lights[i].name = "точечный_" + j;
-                    j++;
-                }
+                countPointLights += 1;
+                lights.Add(new Light("точечный_" + countPointLights, LightTypes.Point, position, intensity));
             }
-        }
-
-        public void UpdateLightDirectionalName()
-        {
-            int j = 1;
-            for (int i = 0; i < lights.Count; i++)
+            else if (ltype == LightTypes.Directional)
             {
-                if (lights[i].ltype == LightType.Directional)
-                {
-                    lights[i].name = "направленный_" + j;
-                    j++;
-                }
+                countDirectionalLights += 1;
+                lights.Add(new Light("направленный_" + countDirectionalLights, LightTypes.Directional, position, intensity));
             }
         }
 
@@ -161,20 +156,17 @@ namespace Weatherwane
             {
                 if (lights[i].name == name)
                 {
-                    lights.RemoveRange(i, 1);
-                    if (lights[i].ltype == LightType.Point)
+                    if (lights[i].ltype == LightTypes.Point)
                     {
                         countPointLights -= 1;
-                        UpdateLightPointName();
                     }
                     else
                     {
                         countDirectionalLights -= 1;
-                        UpdateLightDirectionalName();
                     }
-
-
-                    break;
+                    lights.RemoveRange(i, 1);
+                    UpdateLightsName();
+                    return;
                 }
             }
 

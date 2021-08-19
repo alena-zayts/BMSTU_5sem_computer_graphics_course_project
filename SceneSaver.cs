@@ -7,12 +7,12 @@ using Newtonsoft.Json;
 
 namespace Weatherwane
 {
-    class SaveScene
+    class SceneSaver
     {
-        public void savingScene(string filename, Scene scene)
+        public void saveScene(string filename, Scene scene)
         {
             Converter convert = new Converter();
-            convert.SceneObjectToJson(scene);
+            convert.ToJson(scene);
             string output = JsonConvert.SerializeObject(convert);
             System.IO.File.WriteAllText(filename, output);
         }

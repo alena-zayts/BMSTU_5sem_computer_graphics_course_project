@@ -53,7 +53,6 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="Commands\CameraCommands.cs" />
-    <Compile Include="CameraManager.cs" />
     <Compile Include="Commands\UpdateParamsCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Controller.cs" />
@@ -62,11 +61,11 @@
     <Compile Include="Commands\GetSceneObjectsCommand.cs" />
     <Compile Include="Commands\LightsCommand.cs" />
     <Compile Include="Commands\LoadCommand.cs" />
-    <Compile Include="LoadScene.cs" />
+    <Compile Include="SceneLoader.cs" />
     <Compile Include="Commands\RenderCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Primitives\Material.cs" />
-    <Compile Include="SaveScene.cs" />
+    <Compile Include="SceneSaver.cs" />
     <Compile Include="Primitives\Triangle.cs" />
     <Compile Include="Primitives\Pyramid.cs" />
     <Compile Include="Primitives\Parallelepiped.cs" />

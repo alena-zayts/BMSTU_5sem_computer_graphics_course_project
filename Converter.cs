@@ -31,9 +31,7 @@ namespace Weatherwane
         [JsonProperty("lights")]
         private Light[] lights;
 
-
-        
-        public void SceneObjectToJson(Scene scene)
+        public void ToJson(Scene scene)
         {
             this.camera = scene.camera;
 
@@ -43,22 +41,22 @@ namespace Weatherwane
             List<Parallelepiped> parallelepipeds = new List<Parallelepiped>();
             List<Plane> planes = new List<Plane>();
 
-            for (int i = 0; i < scene.sceneObjects.Count; i++)
+            for (int i = 0; i < scene.Primitives.Count; i++)
             {
-                if (scene.sceneObjects[i] is Sphere)
-                    spheres.Add((Sphere)scene.sceneObjects[i]);
+                if (scene.Primitives[i] is Sphere)
+                    spheres.Add((Sphere)scene.Primitives[i]);
 
-                else if (scene.sceneObjects[i] is Cylinder)
-                    cylinders.Add((Cylinder)scene.sceneObjects[i]);
+                else if (scene.Primitives[i] is Cylinder)
+                    cylinders.Add((Cylinder)scene.Primitives[i]);
 
-                else if (scene.sceneObjects[i] is Pyramid)
-                    pyramids.Add((Pyramid)scene.sceneObjects[i]);
+                else if (scene.Primitives[i] is Pyramid)
+                    pyramids.Add((Pyramid)scene.Primitives[i]);
 
-                else if (scene.sceneObjects[i] is Parallelepiped)
-                    parallelepipeds.Add((Parallelepiped)scene.sceneObjects[i]);
+                else if (scene.Primitives[i] is Parallelepiped)
+                    parallelepipeds.Add((Parallelepiped)scene.Primitives[i]);
 
-                else if (scene.sceneObjects[i] is Plane)
-                    planes.Add((Plane)scene.sceneObjects[i]);
+                else if (scene.Primitives[i] is Plane)
+                    planes.Add((Plane)scene.Primitives[i]);
             }
 
             this.spheres = spheres.ToArray();
@@ -70,11 +68,11 @@ namespace Weatherwane
             this.lights = scene.lights.ToArray();
 
         }
-        public void JsonToSceneObject(ref Scene scene)
+        public void FromJson(ref Scene scene)
         {
             scene.camera = this.camera;
 
-            scene.sceneObjects.Clear();
+            scene.Primitives.Clear();
 
             for (int i = 0; i < this.spheres.Length; i++)
                 scene.AddSphere(this.spheres[i].name, this.spheres[i].material, this.spheres[i].moving, this.spheres[i].centre, this.spheres[i].radius);

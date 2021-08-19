@@ -190,7 +190,7 @@ namespace Weatherwane
         private void buttonMoveCamera_Click(object sender, EventArgs e)
         {
 
-            Command moveCameraCommand = new MoveCameraCommand((double)moveCameraDX.Value, (double)moveCameraDY.Value, (double)moveCameraDZ.Value);
+            Command moveCameraCommand = new MoveCameraCommand(new Vec3((double)moveCameraDX.Value, (double)moveCameraDY.Value, (double)moveCameraDZ.Value));
             facade.executeCommand(moveCameraCommand);
 
             
@@ -303,6 +303,9 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             label5.Visible = isVisible;
             label6.Visible = isVisible;
             label7.Visible = isVisible;
+            btnDeleteLight.Visible = isVisible;
+            label32.Visible = isVisible;
+            label31.Visible = isVisible;
         }
 
         private void ableDynamicParametrs(bool isAble)
@@ -340,24 +343,11 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             if (comboBoxLights.SelectedIndex == 0)
             {
                 VisibleLightParametrs(false);
-                btnDeleteLight.Visible = false;
             }
             else
             {
                 VisibleLightParametrs(true);
-                if (comboBoxLights.SelectedIndex == 1)
-                {
-                    btnDeleteLight.Visible = false;
-                    labelLightPos.Text = "Направление:";
-                    labelChangeLightPos.Text = "Направление:";
 
-                }
-                else
-                {
-                    btnDeleteLight.Visible = true;
-                    labelLightPos.Text = "Позиция:";
-                    labelChangeLightPos.Text = "Позиция:";
-                }
                 LightPosX.Text = light.position.x.ToString();
                 LightPosY.Text = light.position.y.ToString();
                 LightPosZ.Text = light.position.z.ToString();
@@ -374,10 +364,12 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
         private void UpdateLightsName()
         {
-            GetLightsNameCommand getLightsNameCommand = new GetLightsNameCommand();
-            facade.executeCommand(getLightsNameCommand);
+            GetLightsNamesCommand getLightsNamesCommand = new GetLightsNamesCommand();
+            facade.executeCommand(getLightsNamesCommand);
+            List<string> lightsName = getLightsNamesCommand.getResult();
+
             comboBoxLights.Items.Clear();
-            List<string> lightsName = getLightsNameCommand.getResult();
+
             for (int i = 0; i < lightsName.Count; i++)
                 comboBoxLights.Items.Add(lightsName[i]);
         }
@@ -393,18 +385,19 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         private void btnChangeLightParams_Click(object sender, EventArgs e)
         {
             string selectedLight = this.comboBoxLights.SelectedItem.ToString();
-            ChangeLightCommand changeLightCommand;
+            UpdateLightCommand updateLightCommand;
+
             if (comboBoxLights.SelectedIndex == 0)
             {
                 VisibleLightParametrs(false);
-                changeLightCommand = new ChangeLightCommand(selectedLight, (double)ChangeLightIntensity.Value);
+                updateLightCommand = new UpdateLightCommand(selectedLight, (double)ChangeLightIntensity.Value);
             }
             else
             {
-                changeLightCommand = new ChangeLightCommand(selectedLight,
-                   new Vec3((double)ChangeLightPosX.Value, (double)ChangeLightPosY.Value, (double)ChangeLightPosZ.Value), (double)ChangeLightIntensity.Value);
+                updateLightCommand = new UpdateLightCommand(selectedLight, (double)ChangeLightIntensity.Value,
+                   new Vec3((double)ChangeLightPosX.Value, (double)ChangeLightPosY.Value, (double)ChangeLightPosZ.Value));
             }
-            facade.executeCommand(changeLightCommand);
+            facade.executeCommand(updateLightCommand);
             this.smthChanged = true;
             render();
 
@@ -418,12 +411,15 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         private void btnDeleteLight_Click(object sender, EventArgs e)
         {
             string selectedLight = this.comboBoxLights.SelectedItem.ToString();
+
             DeleteLightCommand deleteLightCommand = new DeleteLightCommand(selectedLight);
             facade.executeCommand(deleteLightCommand);
+
             this.smthChanged = true;
             render();
+
             UpdateLightsName();
-            comboBoxLights.SelectedIndex = 1;
+            comboBoxLights.SelectedIndex = 0;
         }
 
         private void ChoiceColor_Click(object sender, EventArgs e)
@@ -463,6 +459,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         private void checkBoxNebo_CheckedChanged(object sender, EventArgs e)
         {
             smthChanged = true;
+            render();
         }
 
         private void trackBarN_Scroll(object sender, EventArgs e)
@@ -491,26 +488,31 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
         private void modelBF_CheckedChanged(object sender, EventArgs e)
         {
             smthChanged = true;
+            render();
         }
 
         private void numericCoef_ValueChanged(object sender, EventArgs e)
         {
             smthChanged = true;
+            render();
         }
 
         private void numericRecursion_ValueChanged(object sender, EventArgs e)
         {
             smthChanged = true;
+            render();
         }
 
         private void numericNumThreads_ValueChanged(object sender, EventArgs e)
         {
             smthChanged = true;
+            render();
         }
 
         private void modelF_CheckedChanged(object sender, EventArgs e)
         {
             smthChanged = true;
+            render();
         }
 
         private void buttonTurnXCamera_Click(object sender, EventArgs e)
@@ -563,8 +565,9 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
         private void btnAddLightT_Click(object sender, EventArgs e)
         {
-            AddLightTCommand addLightTCommand = new AddLightTCommand(new Vec3((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), (double)AddLightIntensity.Value);
-            facade.executeCommand(addLightTCommand);
+            AddLightCommand addLightCommand = new AddLightCommand(new Vec3((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), 
+                (double)AddLightIntensity.Value, LightTypes.Point);
+            facade.executeCommand(addLightCommand);
 
             this.smthChanged = true;
             render();
@@ -575,8 +578,9 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
         private void btnAddLightN_Click(object sender, EventArgs e)
         {
-            AddLightNCommand addLightNCommand = new AddLightNCommand(new Vec3((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), (double)AddLightIntensity.Value);
-            facade.executeCommand(addLightNCommand);
+            AddLightCommand addLightCommand = new AddLightCommand(new Vec3((double)AddLightPosX.Value, (double)AddLightPosY.Value, (double)AddLightPosZ.Value), 
+                (double)AddLightIntensity.Value, LightTypes.Directional);
+            facade.executeCommand(addLightCommand);
 
             this.smthChanged = true;
             render();

@@ -6,20 +6,6 @@ using System.Threading.Tasks;
 
 namespace Weatherwane
 {
-    class TurnZCameraCommand : Command
-    {
-        private double angle;
-
-        public TurnZCameraCommand(double angle)
-        {
-            this.angle = angle;
-        }
-        public override void execute(Controller controller)
-        {
-            controller.turnZCamera(angle);
-        }
-    }
-
     class TurnXCameraCommand : Command
     {
         private double angle;
@@ -47,22 +33,31 @@ namespace Weatherwane
             controller.turnYCamera(angle);
         }
     }
-
-    class MoveCameraCommand : Command
+    class TurnZCameraCommand : Command
     {
-        private double dx;
-        private double dy;
-        private double dz;
+        private double angle;
 
-        public MoveCameraCommand(double dx, double dy, double dz)
+        public TurnZCameraCommand(double angle)
         {
-            this.dx = dx;
-            this.dy = dy;
-            this.dz = dz;
+            this.angle = angle;
         }
         public override void execute(Controller controller)
         {
-            controller.moveCamera(this.dx, this.dy, this.dz);
+            controller.turnZCamera(angle);
+        }
+    }
+
+    class MoveCameraCommand : Command
+    {
+        private Vec3 d;
+
+        public MoveCameraCommand(Vec3 d)
+        {
+            this.d = d;
+        }
+        public override void execute(Controller controller)
+        {
+            controller.moveCamera(d);
         }
     }
 

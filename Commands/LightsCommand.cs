@@ -26,41 +26,11 @@ namespace Weatherwane
         }
     }
 
-    class ChangeLightCommand : Command
+    class GetLightsNamesCommand : Command
     {
-        private string name;
-        Vec3 position;
-        double intensity;
 
-        public ChangeLightCommand(string name, Vec3 position, double intensity)
-        {
-            this.name = name;
-            this.position = position;
-            this.intensity = intensity;
-        }
-
-        public ChangeLightCommand(string name, double intensity)
-        {
-            this.name = name;
-            this.position = null;
-            this.intensity = intensity;
-        }
-
-        public override void execute(Controller controller)
-        {
-            if (this.position == null)
-                controller.changeLight(this.name, this.intensity);
-            else
-                controller.changeLight(this.name, this.position, this.intensity);
-
-        }
-    }
-
-    class GetLightsNameCommand : Command
-    {
-        
         List<string> lights;
-        
+
         public override void execute(Controller controller)
         {
             this.lights = controller.getLightsName();
@@ -72,37 +42,41 @@ namespace Weatherwane
         }
     }
 
-    class AddLightTCommand : Command
+    class UpdateLightCommand : Command
     {
-
+        private string name;
         Vec3 position;
         double intensity;
 
-        public AddLightTCommand(Vec3 position, double intensity)
+        public UpdateLightCommand(string name, double intensity, Vec3 position=null)
         {
+            this.name = name;
             this.position = position;
             this.intensity = intensity;
         }
+
         public override void execute(Controller controller)
-        {
-            controller.addLightT(this.position, this.intensity);
+        { 
+            controller.updateLight(this.name, this.intensity, this.position);
         }
     }
 
-    class AddLightNCommand : Command
+    class AddLightCommand : Command
     {
 
         Vec3 position;
         double intensity;
+        LightTypes ltype;
 
-        public AddLightNCommand(Vec3 position, double intensity)
+        public AddLightCommand(Vec3 position, double intensity, LightTypes ltype)
         {
             this.position = position;
             this.intensity = intensity;
+            this.ltype = ltype;
         }
         public override void execute(Controller controller)
         {
-            controller.addLightN(this.position, this.intensity);
+            controller.addLight(this.position, this.intensity, this.ltype);
         }
     }
 

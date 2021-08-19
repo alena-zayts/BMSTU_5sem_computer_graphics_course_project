@@ -67,7 +67,7 @@ namespace Weatherwane
             foreach (var light in scene.lights)
             {
                 // фоновая составляющая
-                if (light.ltype == LightType.Ambient)
+                if (light.ltype == LightTypes.Ambient)
                 {
                     intensity += light.intensity;
                 }
@@ -76,7 +76,7 @@ namespace Weatherwane
                     Vec3 light_vector;
                     double t_max;
 
-                    if (light.ltype == LightType.Point) // точечный источник
+                    if (light.ltype == LightTypes.Point) // точечный источник
                     {
                         light_vector = light.position - P;
                         t_max = 1.0;
@@ -180,19 +180,19 @@ namespace Weatherwane
             double t1 = 0;
             double t2 = 0;
 
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
+            for (int i = 0; i < this.scene.Primitives.Count; i++)
             {
-                this.scene.sceneObjects[i].intersectRay(camera_position, view_vector, ref t1, ref t2);
+                this.scene.Primitives[i].intersectRay(camera_position, view_vector, ref t1, ref t2);
 
                 if (t1 < closest_t && t_min < t1 && t1 < t_max)
                 {
                     closest_t = t1;
-                    closest_object = this.scene.sceneObjects[i];
+                    closest_object = this.scene.Primitives[i];
                 }
                 if (t2 < closest_t && t_min < t2 && t2 < t_max)
                 {
                     closest_t = t2;
-                    closest_object = this.scene.sceneObjects[i];
+                    closest_object = this.scene.Primitives[i];
                 }
             }
         }
@@ -272,7 +272,7 @@ namespace Weatherwane
             {
                 for (int y = p.start_y; y < p.start_y + p.height; y++)
                 {
-                    view_vector = ProjectPix(x, y) * camera.rotation;
+                    view_vector = ProjectPix(x, y) * camera.rotation_mtrx;
                     color = TraceRay(camera.position, view_vector, projection_plane_d, Double.PositiveInfinity, recursion_depth, x, y);
                     SetPixel(x, y, CountColor(color));
 

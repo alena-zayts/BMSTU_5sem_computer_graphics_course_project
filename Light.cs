@@ -1,29 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Weatherwane
+﻿namespace Weatherwane
 {
 
-    enum LightType { Ambient, Point, Directional};
+    enum LightTypes { Ambient, Point, Directional};
     class Light
     {
         public string name;
-        public LightType ltype;
+        public LightTypes ltype;
+
         public Vec3 position;
         public double intensity;
-        public Vec3 H;
         
 
-        public Light(string name, LightType ltype, Vec3 position, double intensity)
+        public Light(string name, LightTypes ltype, Vec3 position, double intensity)
         {
             this.name = name;
             this.ltype = ltype;
+
             this.position = position;
             this.intensity = intensity;
-            this.H = null;
+        }
+
+        public void update(double intensity, Vec3 position)
+        {
+            if (this.ltype == LightTypes.Directional)
+            {
+                this.position = position.Normalize();
+            }
+            else
+            {
+                this.position = position;
+            }
+
+            this.intensity = intensity;
         }
     }
 }

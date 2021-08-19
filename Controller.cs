@@ -15,9 +15,8 @@ namespace Weatherwane
     {
         private Scene scene;
         private RayTracer rayTracer;
-        private LoadScene loaderScene;
-        private SaveScene saverScene;
-        private CameraManager cameraManager;
+        private SceneLoader loaderScene;
+        private SceneSaver saverScene;
 
         private PictureBox imgBox; // Будет сожержать само изображение.
         private Bitmap tmp;
@@ -35,9 +34,8 @@ namespace Weatherwane
         {
             this.scene = new Scene(canvasWidth, canvasHeight);
             this.rayTracer = new RayTracer(this.scene);
-            this.loaderScene = new LoadScene();
-            this.saverScene = new SaveScene();
-            this.cameraManager = new CameraManager();
+            this.loaderScene = new SceneLoader();
+            this.saverScene = new SceneSaver();
 
             this.currImgIndex = 0;
             this.on = false;
@@ -56,11 +54,11 @@ namespace Weatherwane
                 double cur_angle = (this.currImgIndex - 1) * 360 / this.picturesNum;
                 Vec3 turnPoint = new Vec3(0, 48.5, 0);
 
-                for (int j = 0; j < scene.sceneObjects.Count; j++)
+                for (int j = 0; j < scene.Primitives.Count; j++)
                 {
-                    if (scene.sceneObjects[j].moving)
+                    if (scene.Primitives[j].moving)
                     {
-                        scene.sceneObjects[j].RotateOY(turnPoint, cur_angle);
+                        scene.Primitives[j].RotateOY(turnPoint, cur_angle);
                     }
                 }
 
@@ -122,11 +120,11 @@ namespace Weatherwane
                 tmp = new Bitmap(rayTracer.render());
                 arrBitmap[i] = tmp;
 
-                for (int j = 0; j < scene.sceneObjects.Count; j++)
+                for (int j = 0; j < scene.Primitives.Count; j++)
                 {
-                    if (scene.sceneObjects[j].moving)
+                    if (scene.Primitives[j].moving)
                     {
-                        scene.sceneObjects[j].RotateOY(turnPoint, angle);
+                        scene.Primitives[j].RotateOY(turnPoint, angle);
                     }
                 }
 
@@ -146,40 +144,32 @@ namespace Weatherwane
 
         public void turnXCamera(double angle)
         {
-            Camera tmp_camera = this.scene.camera;
-            this.cameraManager.turnXCamera(ref tmp_camera, angle);
-            this.scene.camera = tmp_camera;
+            this.scene.camera.turnX(angle);
         }
 
         public void turnYCamera(double angle)
         {
-            Camera tmp_camera = this.scene.camera;
-            this.cameraManager.turnYCamera(ref tmp_camera, angle);
-            this.scene.camera = tmp_camera;
+            this.scene.camera.turnY(angle);
         }
 
         public void turnZCamera(double angle)
         {
-            Camera tmp_camera = this.scene.camera;
-            this.cameraManager.turnZCamera(ref tmp_camera, angle);
-            this.scene.camera = tmp_camera;
+            this.scene.camera.turnZ(angle);
         }
 
-        public void moveCamera(double dx, double dy, double dz)
+        public void moveCamera(Vec3 d)
         {
-            Camera tmp_camera = this.scene.camera;
-            this.cameraManager.moveCamera(ref tmp_camera, dx, dy, dz);
-            this.scene.camera = tmp_camera;
+            this.scene.camera.move(d);
         }
 
         public void loadScene(string filename)
         {
-            this.loaderScene.loadingScene(filename, ref this.scene);
+            this.loaderScene.loadScene(filename, ref this.scene);
         }
 
         public void saveScene(string filename)
         {
-            this.saverScene.savingScene(filename, this.scene);
+            this.saverScene.saveScene(filename, this.scene);
         }
 
         public void stopRender()
@@ -214,7 +204,7 @@ namespace Weatherwane
 
         public List<Primitive> getSceneObjects()
         {
-            return this.scene.sceneObjects;
+            return this.scene.Primitives;
         }
 
         public void getLight(string name, ref Light light)
@@ -229,29 +219,14 @@ namespace Weatherwane
             }
         }
 
-        public void changeLight(string name, Vec3 position, double intensity)
+        public void updateLight(string name, double intensity, Vec3 position = null)
         {
             for (int i = 0; i < this.scene.lights.Count; i++)
             {
                 if (this.scene.lights[i].name == name)
                 {
-                    if (this.scene.lights[i].ltype == LightType.Directional)
-                        this.scene.lights[i].position = position.Normalize();
-                    else
-                        this.scene.lights[i].position = position;
-                    this.scene.lights[i].intensity = intensity;
-                    break;
-                }
-            }
-        }
-        public void changeLight(string name, double intensity)
-        {
-            for (int i = 0; i < this.scene.lights.Count; i++)
-            {
-                if (this.scene.lights[i].name == name)
-                {
-                    this.scene.lights[i].intensity = intensity;
-                    break;
+                    this.scene.lights[i].update(intensity, position);
+                    return;
                 }
             }
         }
@@ -267,14 +242,9 @@ namespace Weatherwane
             return lightsName;
         }
 
-        public void addLightT(Vec3 position, double intensity)
+        public void addLight(Vec3 position, double intensity, LightTypes ltype)
         {
-            this.scene.AddLightPoint(position, intensity);
-        }
-
-        public void addLightN(Vec3 position, double intensity)
-        {
-            this.scene.AddLightDirectional(position, intensity);
+            this.scene.AddLight(position, intensity, ltype);
         }
 
         public void deleteLight(string name)
@@ -284,12 +254,12 @@ namespace Weatherwane
 
         public void updatePrimitive(string name, Vec3 color, double specular, double reflective)
         {
-            for (int i = 0; i < this.scene.sceneObjects.Count; i++)
+            for (int i = 0; i < this.scene.Primitives.Count; i++)
             {
-                if (this.scene.sceneObjects[i].name == name)
+                if (this.scene.Primitives[i].name == name)
                 {
-                    this.scene.sceneObjects[i].name = name;
-                    this.scene.sceneObjects[i].material.update(color, specular, reflective);
+                    this.scene.Primitives[i].name = name;
+                    this.scene.Primitives[i].material.update(color, specular, reflective);
                 }
             }
         }
