@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 
@@ -41,22 +37,22 @@ namespace Weatherwane
             List<Parallelepiped> parallelepipeds = new List<Parallelepiped>();
             List<Plane> planes = new List<Plane>();
 
-            for (int i = 0; i < scene.Primitives.Count; i++)
+            for (int i = 0; i < scene.primitives.Count; i++)
             {
-                if (scene.Primitives[i] is Sphere)
-                    spheres.Add((Sphere)scene.Primitives[i]);
+                if (scene.primitives[i] is Sphere)
+                    spheres.Add((Sphere)scene.primitives[i]);
 
-                else if (scene.Primitives[i] is Cylinder)
-                    cylinders.Add((Cylinder)scene.Primitives[i]);
+                else if (scene.primitives[i] is Cylinder)
+                    cylinders.Add((Cylinder)scene.primitives[i]);
 
-                else if (scene.Primitives[i] is Pyramid)
-                    pyramids.Add((Pyramid)scene.Primitives[i]);
+                else if (scene.primitives[i] is Pyramid)
+                    pyramids.Add((Pyramid)scene.primitives[i]);
 
-                else if (scene.Primitives[i] is Parallelepiped)
-                    parallelepipeds.Add((Parallelepiped)scene.Primitives[i]);
+                else if (scene.primitives[i] is Parallelepiped)
+                    parallelepipeds.Add((Parallelepiped)scene.primitives[i]);
 
-                else if (scene.Primitives[i] is Plane)
-                    planes.Add((Plane)scene.Primitives[i]);
+                else if (scene.primitives[i] is Plane)
+                    planes.Add((Plane)scene.primitives[i]);
             }
 
             this.spheres = spheres.ToArray();
@@ -72,7 +68,7 @@ namespace Weatherwane
         {
             scene.camera = this.camera;
 
-            scene.Primitives.Clear();
+            scene.primitives.Clear();
 
             for (int i = 0; i < this.spheres.Length; i++)
                 scene.AddSphere(this.spheres[i].name, this.spheres[i].material, this.spheres[i].moving, this.spheres[i].centre, this.spheres[i].radius);

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Weatherwane
 {
-    class GetLightCommand : Command
+    class GetLightCommand : BaseCommand
     {
         private string name;
-        Light light;
+        private Light light;
 
         public GetLightCommand(string name)
         {
@@ -26,7 +22,7 @@ namespace Weatherwane
         }
     }
 
-    class GetLightsNamesCommand : Command
+    class GetLightsNamesCommand : BaseCommand
     {
 
         List<string> lights;
@@ -42,11 +38,11 @@ namespace Weatherwane
         }
     }
 
-    class UpdateLightCommand : Command
+    class UpdateLightCommand : BaseCommand
     {
         private string name;
-        Vec3 position;
-        double intensity;
+        private Vec3 position;
+        private double intensity;
 
         public UpdateLightCommand(string name, double intensity, Vec3 position=null)
         {
@@ -61,7 +57,7 @@ namespace Weatherwane
         }
     }
 
-    class AddLightCommand : Command
+    class AddLightCommand : BaseCommand
     {
 
         Vec3 position;
@@ -80,7 +76,7 @@ namespace Weatherwane
         }
     }
 
-    class DeleteLightCommand : Command
+    class DeleteLightCommand : BaseCommand
     {
         private string name;
         public DeleteLightCommand(string name)

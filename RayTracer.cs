@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Collections;
-using System.Runtime.CompilerServices;
 using System.Threading;
 
 
@@ -35,12 +24,12 @@ namespace Weatherwane
 
     class RayTracer
     {
-        public Bitmap bmp;
-        public Scene scene;
+        private Bitmap bmp;
+        private Scene scene;
 
         private bool BF_model;
         private double coef;
-        private bool drawSceneBackground;
+        private bool drawBackground;
         private int recursion_depth;
         private int numThreads;
 
@@ -142,7 +131,7 @@ namespace Weatherwane
 
             if (closest_object == null)
             {
-                if (drawSceneBackground)
+                if (drawBackground)
                 {
                     x += 330;
                     y += 330;
@@ -180,19 +169,19 @@ namespace Weatherwane
             double t1 = 0;
             double t2 = 0;
 
-            for (int i = 0; i < this.scene.Primitives.Count; i++)
+            for (int i = 0; i < this.scene.primitives.Count; i++)
             {
-                this.scene.Primitives[i].intersectRay(camera_position, view_vector, ref t1, ref t2);
+                this.scene.primitives[i].intersectRay(camera_position, view_vector, ref t1, ref t2);
 
                 if (t1 < closest_t && t_min < t1 && t1 < t_max)
                 {
                     closest_t = t1;
-                    closest_object = this.scene.Primitives[i];
+                    closest_object = this.scene.primitives[i];
                 }
                 if (t2 < closest_t && t_min < t2 && t2 < t_max)
                 {
                     closest_t = t2;
-                    closest_object = this.scene.Primitives[i];
+                    closest_object = this.scene.primitives[i];
                 }
             }
         }
@@ -226,7 +215,7 @@ namespace Weatherwane
             return Color.FromArgb(color_x, color_y, color_z);
         }
 
-        private Vec3 ProjectPix(int x, int y)
+        private Vec3 ProjectPixel(int x, int y)
         {
             return new Vec3(x * (double)viewport_width / scene.canvasWidth, y * (double)viewport_height / scene.canvasHeight, projection_plane_d);
         }
@@ -234,7 +223,7 @@ namespace Weatherwane
         public void UpdateParams(bool drawSceneBackground, int numThreads, int recursion_depth, bool BF_model, double coef)
         {
             this.recursion_depth = recursion_depth;
-            this.drawSceneBackground = drawSceneBackground;
+            this.drawBackground = drawSceneBackground;
             this.BF_model = BF_model;
             this.coef = coef;
             this.numThreads = numThreads;
@@ -272,7 +261,7 @@ namespace Weatherwane
             {
                 for (int y = p.start_y; y < p.start_y + p.height; y++)
                 {
-                    view_vector = ProjectPix(x, y) * camera.rotation_mtrx;
+                    view_vector = ProjectPixel(x, y) * camera.rotation_mtrx;
                     color = TraceRay(camera.position, view_vector, projection_plane_d, Double.PositiveInfinity, recursion_depth, x, y);
                     SetPixel(x, y, CountColor(color));
 

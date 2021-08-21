@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Weatherwane
+﻿namespace Weatherwane
 {
-    class TurnXCameraCommand : Command
+    class TurnXCameraCommand : BaseCommand
     {
         private double angle;
 
@@ -19,8 +13,7 @@ namespace Weatherwane
             controller.turnXCamera(angle);
         }
     }
-
-    class TurnYCameraCommand : Command
+    class TurnYCameraCommand : BaseCommand
     {
         private double angle;
 
@@ -33,7 +26,7 @@ namespace Weatherwane
             controller.turnYCamera(angle);
         }
     }
-    class TurnZCameraCommand : Command
+    class TurnZCameraCommand : BaseCommand
     {
         private double angle;
 
@@ -47,7 +40,7 @@ namespace Weatherwane
         }
     }
 
-    class MoveCameraCommand : Command
+    class MoveCameraCommand : BaseCommand
     {
         private Vec3 d;
 
@@ -61,7 +54,7 @@ namespace Weatherwane
         }
     }
 
-    class GetCameraCommand : Command
+    class GetCameraCommand : BaseCommand
     {
         private Camera camera;
   

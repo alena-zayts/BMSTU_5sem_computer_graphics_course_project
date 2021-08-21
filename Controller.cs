@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Threading;
 using System.Timers;
 using System.Diagnostics;
 
@@ -15,8 +12,7 @@ namespace Weatherwane
     {
         private Scene scene;
         private RayTracer rayTracer;
-        private SceneLoader loaderScene;
-        private SceneSaver saverScene;
+        private SceneManager sceneManager;
 
         private PictureBox imgBox; // Будет сожержать само изображение.
         private Bitmap tmp;
@@ -34,8 +30,7 @@ namespace Weatherwane
         {
             this.scene = new Scene(canvasWidth, canvasHeight);
             this.rayTracer = new RayTracer(this.scene);
-            this.loaderScene = new SceneLoader();
-            this.saverScene = new SceneSaver();
+            this.sceneManager = new SceneManager();
 
             this.currImgIndex = 0;
             this.on = false;
@@ -54,11 +49,11 @@ namespace Weatherwane
                 double cur_angle = (this.currImgIndex - 1) * 360 / this.picturesNum;
                 Vec3 turnPoint = new Vec3(0, 48.5, 0);
 
-                for (int j = 0; j < scene.Primitives.Count; j++)
+                for (int j = 0; j < scene.primitives.Count; j++)
                 {
-                    if (scene.Primitives[j].moving)
+                    if (scene.primitives[j].moving)
                     {
-                        scene.Primitives[j].RotateOY(turnPoint, cur_angle);
+                        scene.primitives[j].RotateOY(turnPoint, cur_angle);
                     }
                 }
 
@@ -92,7 +87,7 @@ namespace Weatherwane
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
 
-                createArrayBitmap(ref canvas, ref progressBar);
+                createArrayBitmap(ref progressBar);
 
                 stopWatch.Stop();
                 TimeSpan ts = stopWatch.Elapsed;
@@ -107,7 +102,7 @@ namespace Weatherwane
             }
         }
 
-        public void createArrayBitmap(ref PictureBox canvas, ref ProgressBar progressBar)
+        private void createArrayBitmap(ref ProgressBar progressBar)
         {
             Vec3 turnPoint = new Vec3(0, 48.5, 0);
             double angle = 360 / picturesNum;
@@ -120,11 +115,11 @@ namespace Weatherwane
                 tmp = new Bitmap(rayTracer.render());
                 arrBitmap[i] = tmp;
 
-                for (int j = 0; j < scene.Primitives.Count; j++)
+                for (int j = 0; j < scene.primitives.Count; j++)
                 {
-                    if (scene.Primitives[j].moving)
+                    if (scene.primitives[j].moving)
                     {
-                        scene.Primitives[j].RotateOY(turnPoint, angle);
+                        scene.primitives[j].RotateOY(turnPoint, angle);
                     }
                 }
 
@@ -164,12 +159,12 @@ namespace Weatherwane
 
         public void loadScene(string filename)
         {
-            this.loaderScene.loadScene(filename, ref this.scene);
+            this.sceneManager.loadScene(filename, ref this.scene);
         }
 
         public void saveScene(string filename)
         {
-            this.saverScene.saveScene(filename, this.scene);
+            this.sceneManager.saveScene(filename, this.scene);
         }
 
         public void stopRender()
@@ -202,9 +197,9 @@ namespace Weatherwane
             }
         }
 
-        public List<Primitive> getSceneObjects()
+        public List<Primitive> getPrimitives()
         {
-            return this.scene.Primitives;
+            return this.scene.primitives;
         }
 
         public void getLight(string name, ref Light light)
@@ -254,12 +249,12 @@ namespace Weatherwane
 
         public void updatePrimitive(string name, Vec3 color, double specular, double reflective)
         {
-            for (int i = 0; i < this.scene.Primitives.Count; i++)
+            for (int i = 0; i < this.scene.primitives.Count; i++)
             {
-                if (this.scene.Primitives[i].name == name)
+                if (this.scene.primitives[i].name == name)
                 {
-                    this.scene.Primitives[i].name = name;
-                    this.scene.Primitives[i].material.update(color, specular, reflective);
+                    this.scene.primitives[i].name = name;
+                    this.scene.primitives[i].material.update(color, specular, reflective);
                 }
             }
         }

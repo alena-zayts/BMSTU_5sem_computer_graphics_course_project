@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Weatherwane
 {
     class Facade
@@ -14,7 +9,7 @@ namespace Weatherwane
             this.controller = new Controller(canvasWidth, canvasHeight);
         }
 
-        public void executeCommand(Command command)
+        public void executeCommand(BaseCommand command)
         {
             command.execute(controller);
         }

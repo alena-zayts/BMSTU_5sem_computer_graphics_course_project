@@ -25,7 +25,7 @@ namespace Weatherwane
 
             this.facade = new Facade(canvas.Width, canvas.Height);
             {
-                Command command = new LoadCommand("C:/msys64/home/alena/last_course/weatherwane4.json");
+                BaseCommand command = new LoadSceneCommand("C:/msys64/home/alena/last_course/weatherwane4.json");
                 facade.executeCommand(command);
 
                 render();
@@ -37,9 +37,9 @@ namespace Weatherwane
                 CameraPosX.Text = tmp.position.x.ToString();
                 CameraPosY.Text = tmp.position.y.ToString();
                 CameraPosZ.Text = tmp.position.z.ToString();
-                CameraRotOX.Text = tmp.angle.x.ToString();
-                CameraRotOY.Text = tmp.angle.y.ToString();
-                CameraRotOZ.Text = tmp.angle.z.ToString();
+                CameraRotOX.Text = tmp.angles.x.ToString();
+                CameraRotOY.Text = tmp.angles.y.ToString();
+                CameraRotOZ.Text = tmp.angles.z.ToString();
             }
 
 
@@ -82,7 +82,7 @@ namespace Weatherwane
             bool BF_model = this.modelBF.Checked;
             double coef = (double)this.numericCoef.Value;
 
-            Command updateCommand = new UpdateParamsCommand(reverse, speed, createArray, n, BF_model, coef, drawNebo, numThreads, recursion_depth);
+            BaseCommand updateCommand = new UpdateRenderCommand(reverse, speed, createArray, n, BF_model, coef, drawNebo, numThreads, recursion_depth);
             facade.executeCommand(updateCommand);
         }
 
@@ -90,7 +90,7 @@ namespace Weatherwane
         {
             updateParams();
 
-            Command renderCommand = new RenderCommand(ref canvas, ref this.textBoxTime);
+            BaseCommand renderCommand = new RenderCommand(ref canvas, ref this.textBoxTime);
             facade.executeCommand(renderCommand);
         }
 
@@ -98,7 +98,7 @@ namespace Weatherwane
         {
             updateParams();
 
-            Command dynamicRenderCommand = new DynamicRenderCommand(ref canvas, ref this.progressBar, ref this.textBoxTime);
+            BaseCommand dynamicRenderCommand = new DynamicRenderCommand(ref canvas, ref this.progressBar, ref this.textBoxTime);
             facade.executeCommand(dynamicRenderCommand);
 
             this.smthChanged = false;
@@ -112,7 +112,7 @@ namespace Weatherwane
                 return;
 
             string filename = saveFileDialog1.FileName;
-            Command saveCommand = new SaveCommand(filename);
+            BaseCommand saveCommand = new SaveSceneCommand(filename);
             facade.executeCommand(saveCommand);
             MessageBox.Show("Сцена сохранена");    
         }
@@ -132,7 +132,7 @@ namespace Weatherwane
 
             try
             {
-                Command loadCommand = new LoadCommand(filename);
+                BaseCommand loadCommand = new LoadSceneCommand(filename);
                 facade.executeCommand(loadCommand);
             }
             catch (Exception err)
@@ -150,9 +150,9 @@ namespace Weatherwane
             CameraPosX.Text = tmp.position.x.ToString();
             CameraPosY.Text = tmp.position.y.ToString();
             CameraPosZ.Text = tmp.position.z.ToString();
-            CameraRotOX.Text = tmp.angle.x.ToString();
-            CameraRotOY.Text = tmp.angle.y.ToString();
-            CameraRotOZ.Text = tmp.angle.z.ToString();
+            CameraRotOX.Text = tmp.angles.x.ToString();
+            CameraRotOY.Text = tmp.angles.y.ToString();
+            CameraRotOZ.Text = tmp.angles.z.ToString();
 
             MessageBox.Show("Сцена загружена");
 
@@ -162,7 +162,7 @@ namespace Weatherwane
 
         private void initTabControl1()
         {
-                GetSceneObjectsCommand getSceneObjectsCommand = new GetSceneObjectsCommand();
+                GetPrimitivesCommand getSceneObjectsCommand = new GetPrimitivesCommand();
                 facade.executeCommand(getSceneObjectsCommand);
 
                 primitives = getSceneObjectsCommand.getResult();
@@ -190,7 +190,7 @@ namespace Weatherwane
         private void buttonMoveCamera_Click(object sender, EventArgs e)
         {
 
-            Command moveCameraCommand = new MoveCameraCommand(new Vec3((double)moveCameraDX.Value, (double)moveCameraDY.Value, (double)moveCameraDZ.Value));
+            BaseCommand moveCameraCommand = new MoveCameraCommand(new Vec3((double)moveCameraDX.Value, (double)moveCameraDY.Value, (double)moveCameraDZ.Value));
             facade.executeCommand(moveCameraCommand);
 
             
@@ -517,7 +517,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
         private void buttonTurnXCamera_Click(object sender, EventArgs e)
         {
-            Command tunXCameraCommand = new TurnXCameraCommand((double)TurnXCamera.Value);
+            BaseCommand tunXCameraCommand = new TurnXCameraCommand((double)TurnXCamera.Value);
             facade.executeCommand(tunXCameraCommand);
 
             GetCameraCommand getCameraCommand = new GetCameraCommand();
@@ -525,7 +525,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             Camera camera = getCameraCommand.getResult();
 
 
-            CameraRotOX.Text = camera.angle.x.ToString();
+            CameraRotOX.Text = camera.angles.x.ToString();
 
             this.smthChanged = true;
             render();
@@ -533,7 +533,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
         private void buttonTurnYCamera_Click(object sender, EventArgs e)
         {
-            Command turnYCameraCommand = new TurnYCameraCommand((double)TurnYCamera.Value);
+            BaseCommand turnYCameraCommand = new TurnYCameraCommand((double)TurnYCamera.Value);
             facade.executeCommand(turnYCameraCommand);
 
             GetCameraCommand getCameraCommand = new GetCameraCommand();
@@ -541,7 +541,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             Camera camera = getCameraCommand.getResult();
 
 
-            CameraRotOY.Text = camera.angle.y.ToString();
+            CameraRotOY.Text = camera.angles.y.ToString();
 
             this.smthChanged = true;
             render();
@@ -549,7 +549,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
 
         private void buttonTurnZCamera_Click(object sender, EventArgs e)
         {
-            Command turnZ = new TurnZCameraCommand((double)TurnZCamera.Value);
+            BaseCommand turnZ = new TurnZCameraCommand((double)TurnZCamera.Value);
             facade.executeCommand(turnZ);
 
             GetCameraCommand getCameraCommand = new GetCameraCommand();
@@ -557,7 +557,7 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             Camera camera = getCameraCommand.getResult();
 
 
-            CameraRotOZ.Text = camera.angle.z.ToString();
+            CameraRotOZ.Text = camera.angles.z.ToString();
 
             this.smthChanged = true;
             render();

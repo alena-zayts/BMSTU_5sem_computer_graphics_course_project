@@ -1,6 +1,5 @@
 ﻿namespace Weatherwane
 {
-
     enum LightTypes { Ambient, Point, Directional};
     class Light
     {

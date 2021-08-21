@@ -53,19 +53,15 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="Commands\CameraCommands.cs" />
-    <Compile Include="Commands\UpdateParamsCommand.cs" />
-    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="Facade.cs" />
-    <Compile Include="Commands\GetSceneObjectsCommand.cs" />
     <Compile Include="Commands\LightsCommand.cs" />
-    <Compile Include="Commands\LoadCommand.cs" />
-    <Compile Include="SceneLoader.cs" />
-    <Compile Include="Commands\RenderCommand.cs" />
-    <Compile Include="Commands\SaveCommand.cs" />
+    <Compile Include="Commands\RenderCommands.cs" />
+    <Compile Include="Commands\SceneCommands.cs" />
     <Compile Include="Primitives\Material.cs" />
-    <Compile Include="SceneSaver.cs" />
+    <Compile Include="SceneManager.cs" />
     <Compile Include="Primitives\Triangle.cs" />
     <Compile Include="Primitives\Pyramid.cs" />
     <Compile Include="Primitives\Parallelepiped.cs" />
@@ -84,7 +80,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Primitives\Sphere.cs" />
-    <Compile Include="Commands\UpdatePrimitiveCommand.cs" />
+    <Compile Include="Commands\PrimitivesCommands.cs" />
     <Compile Include="Primitives\Vec3.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

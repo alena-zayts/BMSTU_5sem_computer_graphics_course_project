@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Weatherwane
 {
-    class UpdatePrimitiveCommand : Command
+    class UpdatePrimitiveCommand : BaseCommand
     {
         private string name;
         private double specular;
@@ -23,6 +19,20 @@ namespace Weatherwane
         public override void execute(Controller controller)
         {
             controller.updatePrimitive(this.name, this.color, this.specular, this.reflective);
+        }
+    }
+    class GetPrimitivesCommand : BaseCommand
+    {
+        private List<Primitive> primitives;
+
+        public override void execute(Controller controller)
+        {
+            primitives = controller.getPrimitives();
+        }
+
+        public List<Primitive> getResult()
+        {
+            return this.primitives;
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Drawing;
 
 namespace Weatherwane
@@ -14,7 +10,7 @@ namespace Weatherwane
         public Vec3[,] background;
 
         public Camera camera { get; set; }
-        public List<Primitive> Primitives { get; set; }
+        public List<Primitive> primitives { get; set; }
         public List<Light> lights { get; set; }
 
         private int countPointLights = 0;
@@ -29,7 +25,7 @@ namespace Weatherwane
             convertBackground(this.bmpBackground, canvasWidth, canvasHeight);
 
             camera = new Camera();
-            Primitives = new List<Primitive>();
+            primitives = new List<Primitive>();
             lights = new List<Light>();
         }
 
@@ -65,12 +61,12 @@ namespace Weatherwane
 
         public void AddSphere(string name, Material material, bool moving, Vec3 centre, double radius)
         {
-            Primitives.Add(new Sphere(name, material, moving, centre, radius));
+            primitives.Add(new Sphere(name, material, moving, centre, radius));
         }
         public void AddCylinder(string name, Material material, bool moving, Vec3 centre, Vec3 V, double radius, double height)
         {
             Cylinder cylinder = new Cylinder(name, material, moving, centre, V, radius, height);
-            Primitives.Add(cylinder);
+            primitives.Add(cylinder);
             AddDiskPlane(name, material, moving, new Vec3(centre), -V, radius);
             AddDiskPlane(name, material, moving, centre + V * height, new Vec3(V), radius);
         }
@@ -106,7 +102,7 @@ namespace Weatherwane
             AddTriangle(name, material, moving, new Vec3(B), new Vec3(G), new Vec3(F));
             AddTriangle(name, material, moving, new Vec3(B), new Vec3(C), new Vec3(G));
 
-            Primitives.Add(new Parallelepiped(name, material, moving, xl, xr, yu, yd, zf, zn));
+            primitives.Add(new Parallelepiped(name, material, moving, xl, xr, yu, yd, zf, zn));
         }
 
         public void AddPyramid(string name, Material material, bool moving, Vec3 P, Vec3 A, Vec3 B, Vec3 C, Vec3 D)
@@ -118,22 +114,22 @@ namespace Weatherwane
             AddTriangle(name, material, moving, new Vec3(P), new Vec3(D), new Vec3(A));
             AddTriangle(name, material, moving, new Vec3(A), new Vec3(B), new Vec3(D));
             AddTriangle(name, material, moving, new Vec3(B), new Vec3(C), new Vec3(D));
-            Primitives.Add(new Pyramid(name, material, moving, P, A, B, C, D));
+            primitives.Add(new Pyramid(name, material, moving, P, A, B, C, D));
         }
 
         private void AddTriangle(string name, Material material, bool moving, Vec3 P, Vec3 A, Vec3 B)
         {
-            Primitives.Add(new Triangle(name, material, moving, P, A, B));
+            primitives.Add(new Triangle(name, material, moving, P, A, B));
         }
 
         public void AddPlane(string name, Material material, bool moving, Vec3 C, Vec3 V)
         {
-            Primitives.Add(new Plane(name, material, moving, C, V));
+            primitives.Add(new Plane(name, material, moving, C, V));
         }
 
         private void AddDiskPlane(string name, Material material, bool moving, Vec3 C, Vec3 V, double radius)
         {
-            Primitives.Add(new DiskPlane(name, material, moving, C, V, radius));
+            primitives.Add(new DiskPlane(name, material, moving, C, V, radius));
         }
 
         public void AddLight(Vec3 position, double intensity, LightTypes ltype)

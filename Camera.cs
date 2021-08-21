@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Weatherwane
 {
     class Camera
     {
         public Vec3 position;
-        public Vec3 angle;
+        public Vec3 angles;
         public double[,] rotation_mtrx;
 
         public Camera()
         {
             this.position = new Vec3(0, 0, 0);
-            this.angle = new Vec3(0, 0, 0);
+            this.angles = new Vec3(0, 0, 0);
             this.rotation_mtrx = new double[4, 4] { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 1 } };
         }
         private double[,] multMatrix(double[,] A, double[,] B)
@@ -41,7 +37,7 @@ namespace Weatherwane
                                                 { 0, 0, 0, 1 } };
             double[,] tmp = multMatrix(this.rotation_mtrx, RMtr);
             this.rotation_mtrx = tmp;
-            this.angle.x += angle;
+            this.angles.x += angle;
         }
         public void turnY(double angle)
         {
@@ -51,7 +47,7 @@ namespace Weatherwane
                                                 { 0, 0, 0, 1 } };
             double[,] tmp = multMatrix(this.rotation_mtrx, RMtr);
             this.rotation_mtrx = tmp;
-            this.angle.y += angle;
+            this.angles.y += angle;
         }
         public void turnZ(double angle)
         {
@@ -62,7 +58,7 @@ namespace Weatherwane
 
             double[,] tmp = multMatrix(this.rotation_mtrx, RMtr);
             this.rotation_mtrx = tmp;
-            this.angle.z += angle;
+            this.angles.z += angle;
         }
 
         public void move(Vec3 d)
