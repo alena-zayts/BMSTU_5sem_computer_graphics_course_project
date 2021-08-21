@@ -137,12 +137,12 @@ namespace Weatherwane
             if (ltype == LightTypes.Point)
             {
                 countPointLights += 1;
-                lights.Add(new Light("точечный_" + countPointLights, LightTypes.Point, position, intensity));
+                lights.Add(new Light("точечный_" + countPointLights + 1, LightTypes.Point, position, intensity));
             }
             else if (ltype == LightTypes.Directional)
             {
                 countDirectionalLights += 1;
-                lights.Add(new Light("направленный_" + countDirectionalLights, LightTypes.Directional, position, intensity));
+                lights.Add(new Light("направленный_" + countDirectionalLights + 1, LightTypes.Directional, position, intensity));
             }
         }
 

@@ -57,9 +57,7 @@ namespace Weatherwane
             {
                 // фоновая составляющая
                 if (light.ltype == LightTypes.Ambient)
-                {
                     intensity += light.intensity;
-                }
                 else
                 {
                     Vec3 light_vector;
@@ -86,14 +84,10 @@ namespace Weatherwane
 
                     // Диффузная составляющая
                     double NL = Vec3.ScalarMultiplication(N, light_vector);
-                    // Если NL < 0, значит свет достигает только заднюю (невидимую) части поверхности,
                     if (NL > 0)
-                    {
                         intensity += light.intensity * NL / (length_n * Vec3.Length(light_vector));
-                    }
 
                     // Зеркальная составляющая
-
                     // по модели Фонга
                     if (!BF_model)
                     {
@@ -101,9 +95,7 @@ namespace Weatherwane
                         double RV = Vec3.ScalarMultiplication(R, V);
 
                         if (RV > 0)
-                        {
                             intensity += light.intensity * Math.Pow(RV / (Vec3.Length(R) * length_v), specular);
-                        }
                     }
                     // по модели Блинна-Фонга
                     else
@@ -112,13 +104,10 @@ namespace Weatherwane
                         double HN = Vec3.ScalarMultiplication(H, N);
 
                         if (HN > 0)
-                        {
                             intensity += light.intensity * Math.Pow(HN / (Vec3.Length(H) * length_n), specular * coef);
-                        }
                     }
                 }
             }
-
             return intensity;
         }
 
@@ -132,24 +121,15 @@ namespace Weatherwane
             if (closest_object == null)
             {
                 if (drawBackground)
-                {
-                    x += 330;
-                    y += 330;
-                    return scene.background[x, y];
-                }
+                    return scene.background[x + scene.canvasWidth / 2, y  + scene.canvasHeight / 2];
                 else
-                {
                     return new Vec3(0, 0, 0);
-                }
             }
-
 
             Vec3 intersection_point = camera_position + closest_t * view_vector;
             Vec3 N = closest_object.findNormal(intersection_point).Normalize();
 
-
             double intensity = FindIntensity(intersection_point, N, -view_vector, closest_object.material.specular);
-
             Vec3 currentColor = intensity * closest_object.material.color * (1 - closest_object.material.reflective);
 
             if (depth <= 0 || closest_object.material.reflective <= 0)

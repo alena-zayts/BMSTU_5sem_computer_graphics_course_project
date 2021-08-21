@@ -21,15 +21,7 @@
 
         public void update(double intensity, Vec3 position)
         {
-            if (this.ltype == LightTypes.Directional)
-            {
-                this.position = position.Normalize();
-            }
-            else
-            {
-                this.position = position;
-            }
-
+            this.position = position;
             this.intensity = intensity;
         }
     }

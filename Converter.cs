@@ -51,7 +51,7 @@ namespace Weatherwane
                 else if (scene.primitives[i] is Parallelepiped)
                     parallelepipeds.Add((Parallelepiped)scene.primitives[i]);
 
-                else if (scene.primitives[i] is Plane)
+                else if ((scene.primitives[i] is Plane) && !(scene.primitives[i] is DiskPlane))
                     planes.Add((Plane)scene.primitives[i]);
             }
 
