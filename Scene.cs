@@ -15,7 +15,7 @@ namespace Weatherwane
 
         private int countPointLights = 0;
         private int countDirectionalLights = 0;
-        private Bitmap bmpBackground = new Bitmap(@"C:\msys64\home\alena\last_course\nebo.png", true);
+        private Bitmap bmpBackground = new Bitmap(@"C:\msys64\home\alena\last_course\Weatherwane\meta\nebo.png", true);
 
         public Scene(int canvasWidth, int canvasHeight)
         {
@@ -50,11 +50,11 @@ namespace Weatherwane
             {
                 if (lights[i].ltype == LightTypes.Point)
                 {
-                    lights[i].name = "точечный_" + p++;
+                    lights[i].name = "точечный_" + ++p;
                 }
                 else if (lights[i].ltype == LightTypes.Directional)
                 {
-                    lights[i].name = "направленный_" + d++;
+                    lights[i].name = "направленный_" + ++d;
                 }
             }
         }
@@ -137,12 +137,12 @@ namespace Weatherwane
             if (ltype == LightTypes.Point)
             {
                 countPointLights += 1;
-                lights.Add(new Light("точечный_" + countPointLights + 1, LightTypes.Point, position, intensity));
+                lights.Add(new Light("точечный_" + (countPointLights + 1), LightTypes.Point, position, intensity));
             }
             else if (ltype == LightTypes.Directional)
             {
                 countDirectionalLights += 1;
-                lights.Add(new Light("направленный_" + countDirectionalLights + 1, LightTypes.Directional, position, intensity));
+                lights.Add(new Light("направленный_" + (countDirectionalLights + 1), LightTypes.Directional, position, intensity));
             }
         }
 

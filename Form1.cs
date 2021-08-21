@@ -18,7 +18,7 @@ namespace Weatherwane
 
             this.facade = new Facade(canvas.Width, canvas.Height);
             {
-                BaseCommand command = new LoadSceneCommand("C:/msys64/home/alena/last_course/weatherwane.json");
+                BaseCommand command = new LoadSceneCommand("C:/msys64/home/alena/last_course/Weatherwane/meta/weatherwane.json");
                 facade.executeCommand(command);
 
                 render();
