@@ -47,6 +47,10 @@
             this.choiceObject = new System.Windows.Forms.ComboBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.btnAddLightN = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -147,10 +151,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.btnAddLightN = new System.Windows.Forms.Button();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.btnDeleteObject.SuspendLayout();
@@ -370,13 +370,6 @@
             this.choiceObject.DisplayMember = "Сфера";
             this.choiceObject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.choiceObject.FormattingEnabled = true;
-            this.choiceObject.Items.AddRange(new object[] {
-            "Сфера",
-            "Конус",
-            "Четырехугольная пирамида",
-            "Треугольная пирамида",
-            "Цилиндр",
-            "Параллелепипед"});
             this.choiceObject.Location = new System.Drawing.Point(11, 12);
             this.choiceObject.Margin = new System.Windows.Forms.Padding(6);
             this.choiceObject.Name = "choiceObject";
@@ -442,6 +435,50 @@
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Освещение";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label32.Location = new System.Drawing.Point(40, 160);
+            this.label32.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(176, 29);
+            this.label32.TabIndex = 217;
+            this.label32.Text = "(направление)";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label31.Location = new System.Drawing.Point(40, 312);
+            this.label31.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(176, 29);
+            this.label31.TabIndex = 216;
+            this.label31.Text = "(направление)";
+            // 
+            // btnAddLightN
+            // 
+            this.btnAddLightN.Location = new System.Drawing.Point(329, 551);
+            this.btnAddLightN.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddLightN.Name = "btnAddLightN";
+            this.btnAddLightN.Size = new System.Drawing.Size(315, 42);
+            this.btnAddLightN.TabIndex = 215;
+            this.btnAddLightN.Text = "Добавить направленный";
+            this.btnAddLightN.UseVisualStyleBackColor = true;
+            this.btnAddLightN.Click += new System.EventHandler(this.btnAddLightN_Click);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label30.Location = new System.Drawing.Point(40, 461);
+            this.label30.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(176, 29);
+            this.label30.TabIndex = 214;
+            this.label30.Text = "(направление)";
             // 
             // label9
             // 
@@ -898,7 +935,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(2350, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(2350, 42);
             this.menuStrip1.TabIndex = 47;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1750,56 +1787,12 @@
             this.label29.TabIndex = 147;
             this.label29.Text = "Направление:";
             // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label30.Location = new System.Drawing.Point(40, 461);
-            this.label30.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(176, 29);
-            this.label30.TabIndex = 214;
-            this.label30.Text = "(направление)";
-            // 
-            // btnAddLightN
-            // 
-            this.btnAddLightN.Location = new System.Drawing.Point(329, 551);
-            this.btnAddLightN.Margin = new System.Windows.Forms.Padding(6);
-            this.btnAddLightN.Name = "btnAddLightN";
-            this.btnAddLightN.Size = new System.Drawing.Size(315, 42);
-            this.btnAddLightN.TabIndex = 215;
-            this.btnAddLightN.Text = "Добавить направленный";
-            this.btnAddLightN.UseVisualStyleBackColor = true;
-            this.btnAddLightN.Click += new System.EventHandler(this.btnAddLightN_Click);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label31.Location = new System.Drawing.Point(40, 312);
-            this.label31.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(176, 29);
-            this.label31.TabIndex = 216;
-            this.label31.Text = "(направление)";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label32.Location = new System.Drawing.Point(40, 160);
-            this.label32.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(176, 29);
-            this.label32.TabIndex = 217;
-            this.label32.Text = "(направление)";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkKhaki;
-            this.ClientSize = new System.Drawing.Size(2350, 1653);
+            this.ClientSize = new System.Drawing.Size(2350, 1564);
             this.Controls.Add(this.tabControl4);
             this.Controls.Add(this.tabControl3);
             this.Controls.Add(this.tabControl2);
@@ -1808,7 +1801,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
-            this.Text = "Флюгер";
+            this.Text = "Вращение флюгера";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();

@@ -44,8 +44,8 @@ namespace Weatherwane
 
         private void UpdateLightsName()
         {
-            int p = 1;
-            int d = 1;
+            int p = 0;
+            int d = 0;
             for (int i = 0; i < lights.Count; i++)
             {
                 if (lights[i].ltype == LightTypes.Point)
@@ -132,17 +132,21 @@ namespace Weatherwane
             primitives.Add(new DiskPlane(name, material, moving, C, V, radius));
         }
 
-        public void AddLight(Vec3 position, double intensity, LightTypes ltype)
+        public void AddLight(Vec3 position, double intensity, LightTypes ltype, string name=null)
         {
             if (ltype == LightTypes.Point)
             {
                 countPointLights += 1;
-                lights.Add(new Light("точечный_" + (countPointLights + 1), LightTypes.Point, position, intensity));
+                lights.Add(new Light("точечный_" + countPointLights, LightTypes.Point, position, intensity));
             }
             else if (ltype == LightTypes.Directional)
             {
                 countDirectionalLights += 1;
-                lights.Add(new Light("направленный_" + (countDirectionalLights + 1), LightTypes.Directional, position, intensity));
+                lights.Add(new Light("направленный_" + countDirectionalLights, LightTypes.Directional, position, intensity));
+            }
+            else if (name != null)
+            {
+                lights.Add(new Light(name, LightTypes.Ambient, position, intensity));
             }
         }
 

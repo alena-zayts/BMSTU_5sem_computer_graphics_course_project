@@ -88,8 +88,7 @@ namespace Weatherwane
             scene.lights.Clear();
 
             for (int i = 0; i < this.lights.Length; i++)
-                scene.lights.Add(this.lights[i]);
-
+                scene.AddLight(this.lights[i].position, this.lights[i].intensity, this.lights[i].ltype, this.lights[i].name);
         }
     }
 }
