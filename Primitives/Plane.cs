@@ -13,14 +13,13 @@ namespace Weatherwane
         public Plane(string name, Material material, bool moving, Vec3 C, Vec3 V) : base (name, material, moving)
         {
             this.C = C;
-            this.V = V.Normalize();
+            this.V = V;
         }
 
         public override void RotateOY(Vec3 turn_point, double teta)
         {
             Vec3 zero = new Vec3(0, 0, 0);
             this.V.RotateOY(zero, teta);
-            this.V = this.V.Normalize();
 
             this.C.RotateOY(turn_point, teta);
         }
@@ -66,7 +65,6 @@ namespace Weatherwane
         {
             Vec3 zero = new Vec3(0, 0, 0);
             this.V.RotateOY(zero, teta);
-            this.V = this.V.Normalize();
 
             this.C.RotateOY(turn_point, teta);
         }

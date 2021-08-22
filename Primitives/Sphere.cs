@@ -49,8 +49,6 @@ namespace Weatherwane
         public override Vec3 findNormal(Vec3 P)
         {
             Vec3 N = P - this.centre;
-            N = N.Normalize();
-
             return N;
         }
     }

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Weatherwane
 {
@@ -79,7 +83,6 @@ namespace Weatherwane
             Vec3 inters_point = t * V + centre;
 
             Vec3 N = P - inters_point;
-            N = N.Normalize();
 
             return N;
         }

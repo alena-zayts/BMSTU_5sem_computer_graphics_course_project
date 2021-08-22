@@ -49,8 +49,9 @@ namespace Weatherwane
 
         private double FindIntensity(Vec3 P, Vec3 N, Vec3 V, double specular)
         {
-            // N, V поступают единичными
             double intensity = 0;
+            double length_n = Vec3.Length(N);
+            double length_v = Vec3.Length(V);
 
             foreach (var light in scene.lights)
             {
@@ -81,32 +82,29 @@ namespace Weatherwane
                     if (shadow_object != null)
                         continue;
 
-                    light_vector = light_vector.Normalize();
-
                     // Диффузная составляющая
                     double NL = Vec3.ScalarMultiplication(N, light_vector);
                     if (NL > 0)
-                        intensity += light.intensity * NL;
-
+                        intensity += light.intensity * NL / (length_n * Vec3.Length(light_vector));
 
                     // Зеркальная составляющая
                     // по модели Фонга
                     if (!BF_model)
                     {
-                        Vec3 R = ReflectRay(light_vector, N); // возвращает единичный вектор
+                        Vec3 R = ReflectRay(light_vector, N);
                         double RV = Vec3.ScalarMultiplication(R, V);
 
                         if (RV > 0)
-                            intensity += light.intensity * Math.Pow(RV, specular);
+                            intensity += light.intensity * Math.Pow(RV / (Vec3.Length(R) * length_v), specular);
                     }
                     // по модели Блинна-Фонга
                     else
                     {
-                        Vec3 H = (light_vector + V);
+                        Vec3 H = (light_vector.Normalize() + V.Normalize());
                         double HN = Vec3.ScalarMultiplication(H, N);
 
                         if (HN > 0)
-                            intensity += light.intensity * Math.Pow(HN / Vec3.Length(H), specular * coef);
+                            intensity += light.intensity * Math.Pow(HN / (Vec3.Length(H) * length_n), specular * coef);
                     }
                 }
             }
@@ -115,7 +113,6 @@ namespace Weatherwane
 
         private Vec3 TraceRay(Vec3 camera_position, Vec3 view_vector, double t_min, double t_max, int depth, int x, int y)
         {
-            // view_vector поступает единичным
             double closest_t = Double.PositiveInfinity;
             Primitive closest_object = null;
 
@@ -130,7 +127,7 @@ namespace Weatherwane
             }
 
             Vec3 intersection_point = camera_position + closest_t * view_vector;
-            Vec3 N = closest_object.findNormal(intersection_point); // возвращает единичныЙ вектор 
+            Vec3 N = closest_object.findNormal(intersection_point).Normalize();
 
             double intensity = FindIntensity(intersection_point, N, -view_vector, closest_object.material.specular);
             Vec3 currentColor = intensity * closest_object.material.color * (1 - closest_object.material.reflective);
@@ -138,7 +135,7 @@ namespace Weatherwane
             if (depth <= 0 || closest_object.material.reflective <= 0)
                 return currentColor;
 
-            Vec3 reflected_vector = ReflectRay(-view_vector, N); // возвращает единичныЙ вектор 
+            Vec3 reflected_vector = ReflectRay(-view_vector, N);
             Vec3 reflectedColor = TraceRay(intersection_point, reflected_vector, 0.01, Double.PositiveInfinity, depth - 1, x, y);
 
             currentColor += reflectedColor * closest_object.material.reflective;
@@ -171,7 +168,6 @@ namespace Weatherwane
 
         private Vec3 ReflectRay(Vec3 L, Vec3 N)
         {
-            // N, V поступают единичными
             double LN = Vec3.ScalarMultiplication(L, N);
             Vec3 R = -L + 2 * LN * N;
             return R;
@@ -245,7 +241,7 @@ namespace Weatherwane
             {
                 for (int y = p.start_y; y < p.start_y + p.height; y++)
                 {
-                    view_vector = (ProjectPixel(x, y) * camera.rotation_mtrx).Normalize();
+                    view_vector = ProjectPixel(x, y) * camera.rotation_mtrx;
                     color = TraceRay(camera.position, view_vector, projection_plane_d, Double.PositiveInfinity, recursion_depth, x, y);
                     SetPixel(x, y, CountColor(color));
 
