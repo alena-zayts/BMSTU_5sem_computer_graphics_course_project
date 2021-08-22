@@ -15,7 +15,7 @@ namespace Weatherwane
 
         private int countPointLights = 0;
         private int countDirectionalLights = 0;
-        private Bitmap bmpBackground = new Bitmap(@"C:\msys64\home\alena\last_course\Weatherwane\meta\nebo.png", true);
+        private Bitmap bmpBackground = new Bitmap(@"C:\msys64\home\alena\last_course\Weatherwane\meta\background.jpg", true);
 
         public Scene(int canvasWidth, int canvasHeight)
         {
