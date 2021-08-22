@@ -27,6 +27,7 @@ namespace Weatherwane
         {
             Vec3 zero = new Vec3(0, 0, 0);
             this.normal.RotateOY(zero, teta);
+            this.normal = this.normal.Normalize();
 
             this.A.RotateOY(turn_point, teta);
             this.B.RotateOY(turn_point, teta);
