@@ -118,6 +118,7 @@ namespace Weatherwane
 
         void loadItem_Click(object sender, EventArgs e)
         {
+            smthChanged = true;
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
 
