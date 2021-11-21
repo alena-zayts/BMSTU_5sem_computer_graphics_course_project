@@ -935,7 +935,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(2350, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(2350, 24);
             this.menuStrip1.TabIndex = 47;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1455,6 +1455,7 @@
             this.dynamicButton.TabIndex = 187;
             this.dynamicButton.Text = "Запуск";
             this.dynamicButton.UseVisualStyleBackColor = true;
+            this.dynamicButton.Click += new System.EventHandler(this.dynamicButton_Click_1);
             // 
             // progressBar
             // 

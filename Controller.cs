@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Timers;
 using System.Diagnostics;
+using System.IO;
+
 
 namespace Weatherwane
 {
@@ -39,6 +41,7 @@ namespace Weatherwane
             // Timer
             timer = new System.Timers.Timer();
             timer.Elapsed += OnTimedEvent;
+            this.count_time();
         }
 
         public void render(ref PictureBox canvas, ref TextBox textBoxTime)
@@ -262,6 +265,74 @@ namespace Weatherwane
         public Camera getCamera()
         {
             return this.scene.camera;
+        }
+
+        public void count_time()
+        {
+            int n_repeats = 8;
+            int n_objects = 35;
+            int lp_amount = 8;
+            string fileout_name = @"C:\Users\alena\Desktop\BMSTU_5sem_analysis_of_algorithms\lab4\report\inc\img\time.txt";
+            FileInfo f = new FileInfo(fileout_name);
+            using (FileStream fs = f.Open(FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
+            {
+                using (StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8))
+                {
+                    for (int i = 5; i <= n_objects; i += 5)
+                    {
+                        Console.WriteLine(String.Format("################  N_OBJECTS: {0}", i));
+
+                        string filename = String.Format(@"C:\Users\alena\Desktop\BMSTU_5sem_analysis_of_algorithms\lab4\last_course\Weatherwane\meta\test{0}.json", i);
+                        this.loadScene(filename);
+
+                        // последователльный
+                        TimeSpan total_time = new TimeSpan(0, 0, 0);
+
+                        for (int j = 0; j < n_repeats; j++)
+                        {
+                            Stopwatch stopWatch = new Stopwatch();
+                            stopWatch.Start();
+                            tmp = rayTracer.render_simple();
+                            stopWatch.Stop();
+                            TimeSpan ts = stopWatch.Elapsed;
+                            total_time = total_time.Add(ts);
+
+                        }
+                        double middle_time = total_time.TotalSeconds / n_repeats;
+                        Console.WriteLine(String.Format("basic: middle_time {0}", middle_time));
+                        sw.Write(middle_time);
+                        sw.Write(" ");
+
+
+                        // parallelized
+                        total_time = new TimeSpan(0, 0, 0);
+
+                        for (int num_threads = 1; num_threads <= 4 * lp_amount; num_threads *= 2)
+                        {
+                            rayTracer.numThreads = num_threads;
+                            total_time = new TimeSpan(0, 0, 0);
+
+                            for (int j = 0; j < n_repeats; j++)
+                            {
+                                Stopwatch stopWatch = new Stopwatch();
+                                stopWatch.Start();
+                                tmp = rayTracer.render_parallelized();
+                                stopWatch.Stop();
+                                TimeSpan ts = stopWatch.Elapsed;
+                                total_time = total_time.Add(ts);
+
+                            }
+
+                            middle_time = total_time.TotalSeconds / n_repeats;
+                            Console.WriteLine(String.Format("parallelized: num_threads {0}, middle_time {1}", num_threads, middle_time));
+                            sw.Write(middle_time);
+                            sw.Write(" ");
+                        }
+                        sw.Write(middle_time);
+                        sw.WriteLine();
+                    }
+                }
+            }
         }
     }
 }

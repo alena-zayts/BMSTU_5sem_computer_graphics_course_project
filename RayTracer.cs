@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Threading;
+using System.Diagnostics;
 
 
 namespace Weatherwane
@@ -31,7 +32,7 @@ namespace Weatherwane
         private double coef;
         private bool drawBackground;
         private int recursion_depth;
-        private int numThreads;
+        public int numThreads;
 
         private int viewport_width = 1;
         private int viewport_height = 1;
@@ -208,7 +209,6 @@ namespace Weatherwane
             this.coef = coef;
             this.numThreads = numThreads;
         }
-
         public Bitmap render()
         {
             Thread[] threads = new Thread[numThreads];
@@ -232,6 +232,60 @@ namespace Weatherwane
         }
 
         private void rendering(object obj)
+        {
+            Limits p = (Limits)obj;
+            Camera camera = scene.camera;
+            Vec3 view_vector = null;
+            Vec3 color = null;
+            for (int x = p.start_x; x < p.start_x + p.width; x++)
+            {
+                for (int y = p.start_y; y < p.start_y + p.height; y++)
+                {
+                    view_vector = ProjectPixel(x, y) * camera.rotation_mtrx;
+                    color = TraceRay(camera.position, view_vector, projection_plane_d, Double.PositiveInfinity, recursion_depth, x, y);
+                    SetPixel(x, y, CountColor(color));
+
+                }
+            }
+        }
+
+        public Bitmap render_simple()
+        {
+            Camera camera = scene.camera;
+            Vec3 view_vector = null;
+            Vec3 color = null;
+            for (int x = -scene.canvasWidth / 2; x < scene.canvasWidth / 2; x++)
+            {
+                for (int y = -scene.canvasHeight / 2; y < scene.canvasHeight / 2; y++)
+                {
+                    view_vector = ProjectPixel(x, y) * camera.rotation_mtrx;
+                    color = TraceRay(camera.position, view_vector, projection_plane_d, Double.PositiveInfinity, recursion_depth, x, y);
+                    SetPixel(x, y, CountColor(color));
+
+                }
+            }
+
+            return this.bmp;
+        }
+
+        public Bitmap render_parallelized()
+        {
+            Thread[] threads = new Thread[numThreads];
+            for (int i = 0; i < numThreads; i++)
+            {
+                Limits p = new Limits(scene.canvasWidth / numThreads, scene.canvasHeight, -scene.canvasWidth / 2 + scene.canvasWidth / numThreads * i, -scene.canvasHeight / 2);
+                threads[i] = new Thread(render_par_working);
+                threads[i].Start(p);
+            }
+            foreach (Thread thread in threads)
+            {
+                thread.Join();
+            }
+
+            return this.bmp;
+        }
+
+        public void render_par_working(object obj)
         {
             Limits p = (Limits)obj;
             Camera camera = scene.camera;

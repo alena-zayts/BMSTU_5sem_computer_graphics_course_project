@@ -582,5 +582,10 @@ private void choiceObject_SelectedIndexChanged(object sender, EventArgs e)
             UpdateLightsName();
             comboBoxLights.SelectedIndex = 1;
         }
+
+        private void dynamicButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

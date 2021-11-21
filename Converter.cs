@@ -70,25 +70,30 @@ namespace Weatherwane
 
             scene.primitives.Clear();
 
-            for (int i = 0; i < this.spheres.Length; i++)
-                scene.AddSphere(this.spheres[i].name, this.spheres[i].material, this.spheres[i].moving, this.spheres[i].centre, this.spheres[i].radius);
+            if (this.spheres != null)
+                for (int i = 0; i < this.spheres.Length; i++)
+                    scene.AddSphere(this.spheres[i].name, this.spheres[i].material, this.spheres[i].moving, this.spheres[i].centre, this.spheres[i].radius);
+            
+            if (this.cylinders != null)
+                for (int i = 0; i < this.cylinders.Length; i++)
+                    scene.AddCylinder(this.cylinders[i].name, this.cylinders[i].material, this.cylinders[i].moving, this.cylinders[i].centre, this.cylinders[i].V, this.cylinders[i].radius, this.cylinders[i].height);
+            if (this.pyramids != null)
+                for (int i = 0; i < this.pyramids.Length; i++)
+                    scene.AddPyramid(this.pyramids[i].name, this.pyramids[i].material, this.pyramids[i].moving, this.pyramids[i].P, this.pyramids[i].A, this.pyramids[i].B, this.pyramids[i].C, this.pyramids[i].D);
 
-            for (int i = 0; i < this.cylinders.Length; i++)
-                scene.AddCylinder(this.cylinders[i].name, this.cylinders[i].material, this.cylinders[i].moving, this.cylinders[i].centre, this.cylinders[i].V, this.cylinders[i].radius, this.cylinders[i].height);
+            if (this.parallelepipeds != null)
+                for (int i = 0; i < this.parallelepipeds.Length; i++)
+                    scene.AddParallelepiped(this.parallelepipeds[i].name, this.parallelepipeds[i].material, this.parallelepipeds[i].moving, this.parallelepipeds[i].xl, this.parallelepipeds[i].xr, this.parallelepipeds[i].yu, this.parallelepipeds[i].yd, this.parallelepipeds[i].zf, this.parallelepipeds[i].zn);
 
-            for (int i = 0; i < this.pyramids.Length; i++)
-                scene.AddPyramid(this.pyramids[i].name, this.pyramids[i].material, this.pyramids[i].moving, this.pyramids[i].P, this.pyramids[i].A, this.pyramids[i].B, this.pyramids[i].C, this.pyramids[i].D);
-
-            for (int i = 0; i < this.parallelepipeds.Length; i++)
-                scene.AddParallelepiped(this.parallelepipeds[i].name, this.parallelepipeds[i].material, this.parallelepipeds[i].moving, this.parallelepipeds[i].xl, this.parallelepipeds[i].xr, this.parallelepipeds[i].yu, this.parallelepipeds[i].yd, this.parallelepipeds[i].zf, this.parallelepipeds[i].zn);
-
-            for (int i = 0; i < this.planes.Length; i++)
-                scene.AddPlane(this.planes[i].name, this.planes[i].material, this.parallelepipeds[i].moving, this.planes[i].C, this.planes[i].V);
+            if (this.planes != null)
+                for (int i = 0; i < this.planes.Length; i++)
+                    scene.AddPlane(this.planes[i].name, this.planes[i].material, this.planes[i].moving, this.planes[i].C, this.planes[i].V);
 
             scene.lights.Clear();
 
-            for (int i = 0; i < this.lights.Length; i++)
-                scene.AddLight(this.lights[i].position, this.lights[i].intensity, this.lights[i].ltype, this.lights[i].name);
+            if (this.lights != null)
+                for (int i = 0; i < this.lights.Length; i++)
+                    scene.AddLight(this.lights[i].position, this.lights[i].intensity, this.lights[i].ltype, this.lights[i].name);
         }
     }
 }
