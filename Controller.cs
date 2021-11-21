@@ -41,7 +41,7 @@ namespace Weatherwane
             // Timer
             timer = new System.Timers.Timer();
             timer.Elapsed += OnTimedEvent;
-            this.count_time();
+            //this.count_time();
         }
 
         public void render(ref PictureBox canvas, ref TextBox textBoxTime)
