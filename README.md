@@ -1,10 +1,3 @@
-# Weatherwane_last
+# Курсовой проект по компьютерной графике
 
-маятник ньютона
-https://github.com/Sunshine-ki/BMSTU5_CG_CP
-
-https://github.com/TheSawIsTheLaw/ComputerGraphicsCoursework
-
-https://github.com/mRrvz/quantum-ray-tracer
-
-https://github.com/NastyRu/Particle_explosion
+Трехмерная визуализация вращения флюгера (с использованием алгоритма обратной трассировки лучей)
